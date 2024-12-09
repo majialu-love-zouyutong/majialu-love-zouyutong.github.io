@@ -103,7 +103,7 @@ theme: butterfly
 deploy:
   type: git
   repo: git@github.com:majialu-love-zouyutong/majialu-love-zouyutong.github.io.git
-  branch: display
+  branch: main
 
 markdown:
   plugins:
