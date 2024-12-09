@@ -195,7 +195,7 @@ index_post_content:
 toc:
   post: true
   page: true
-  number: true
+  number: false
   expand: false
   # Only for post
   style_simple: false
