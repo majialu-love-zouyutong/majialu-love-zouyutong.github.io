@@ -24,6 +24,10 @@
 <p><code>super</code>关键字用于访问对象字面量或类的[[Prototype]]上的属性，或调用超类的构造函数。</p>
 <p><code>super.prop</code>和<code>super[expr]</code>表达式在<strong>类和对象字面量</strong>的任何<strong>方法定义</strong>中都有效。</p>
 <p><code>super(...args)</code>表达式只在<strong>类的构造函数中</strong>有效</p>
+<blockquote>
+<p><strong>注意</strong>：<code>super</code>是一个关键字，这些是特殊的语法结构，<code>super</code>不是指向<strong>proto</strong>对象的变量。尝试读取<code>super</code>本身是一个语法错误.也不能通过super来删除超类的属性。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> child = &#123;</span><br><span class="line">  <span class="title function_">myParent</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">super</span>); <span class="comment">// SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Base</span> &#123;</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">super</span>.<span class="property">foo</span>; <span class="comment">// this is bad</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Derived</span>().<span class="title function_">delete</span>(); <span class="comment">// ReferenceError: invalid delete involving &#x27;super&#x27;.</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="2-运行此代码-运行结果正确的是">2.运行此代码,运行结果正确的是</h2>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">nums.<span class="title function_">push</span>(<span class="number">0</span>);</span><br><span class="line">nums.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nums);</span><br></pre></td></tr></table></figure>
@@ -37,9 +41,9 @@
 <p>正确答案 A</p>
 </blockquote>
 <blockquote>
-<p>考点：数组API</p>
+<p>考点：数组 API</p>
 </blockquote>
-<p><strong>数组添加和移除元素常用API</strong></p>
+<p><strong>数组添加和移除元素常用 API</strong></p>
 <table>
 <thead>
 <tr>
@@ -62,7 +66,7 @@
 <tr>
 <td><code>shift()</code></td>
 <td>移除数组第一个元素，其他元素索引减一</td>
-<td>被移除的元素</td>
+<td>被移除的元素，若没有被移除的元素，则返回空数组</td>
 </tr>
 <tr>
 <td><code>unshift(e1,e2,...,en)</code></td>
@@ -89,11 +93,9 @@
 <p>**EventTarget.addEventListener()**方法将指定的监听器注册到<code>EventTarget</code>上，当该对象触发指定的事件时，指定的回调函数就会被执行。<code>EventTarget</code>可以是一个文档上的元素<code>Element</code>,<code>Document</code>和<code>Window</code>，也可以是任何支持事件的对象(比如<code>XMLHttpRequest</code>).</p>
 <p><code>addEventListener()</code>的工作原理是将实现<code>EventListener</code>的函数或对象添加到调用它的<code>EventTarget</code>上的指定事件类型的事件侦听器列表中。如果要绑定的函数或对象<strong>已经被添加到列表中</strong>，该函数或对象<strong>不会被再次添加</strong>。</p>
 <blockquote>
-<p>注意：如果先前向事件侦听器列表中添加过一个匿名函数，并且在之后的代码中调用<code>addEventListener</code>来添加一个功能完全相同的匿名函数(甚至代码完全相同),那么之后的这个匿名函数也会被添加到列表中。</p>
+<p>注意：如果先前向事件侦听器列表中添加过一个匿名函数，并且在之后的代码中调用<code>addEventListener</code>来添加一个功能完全相同的匿名函数(<strong>甚至代码完全相同</strong>),那么之后的这个匿名函数也会被添加到列表中。</p>
 <p>实际上，即使使用完全相同的代码来定义一个匿名函数，这两个函数仍然存在区别，并非同一个函数。</p>
 </blockquote>
-<p><strong>语法</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">addEventListener</span>(type, listener[, options])</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）">4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）</h2>
 <ul>
