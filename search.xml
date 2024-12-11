@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>随笔小记</title>
+    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h1>JS</h1>
+<h2 id="关于矩阵的创建">关于矩阵的创建</h2>
+<p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
+<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
+<p>我过去创建矩阵通常使用如下方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
+<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
+<p>错误示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>
+修改其中一个子数组会影响其他行：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>总结<br>
+Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>
+fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>
+切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OPPO23秋</title>
     <url>/2024/12/08/OPPO23%E7%A7%8B/</url>
     <content><![CDATA[<h1>考情分析</h1>
