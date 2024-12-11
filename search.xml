@@ -24,6 +24,10 @@ Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>
 fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>
 切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
 </blockquote>
+<h1>hexo 个人博客</h1>
+<h2 id="关于图片引用问题">关于图片引用问题</h2>
+<h3 id="文章图片本地和远程不能同时显示问题">文章图片本地和远程不能同时显示问题</h3>
+<h3 id="文章的top-img和cover路径问题">文章的top_img和cover路径问题</h3>
 ]]></content>
       <tags>
         <tag>随笔</tag>
