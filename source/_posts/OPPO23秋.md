@@ -4,6 +4,7 @@ date: 2024-12-08 21:05:05
 categories: 笔试真题
 tags: oppo
 cover: top.png
+top_img: /img/oppo.png
 ---
 
 # 考情分析
