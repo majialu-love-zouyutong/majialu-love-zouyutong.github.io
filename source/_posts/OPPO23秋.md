@@ -3,8 +3,8 @@ title: OPPO23秋
 date: 2024-12-08 21:05:05
 categories: 笔试真题
 tags: oppo
-top_img: top.png
 cover: top.png
+top_img: /img/oppo.png
 ---
 
 # 考情分析
@@ -53,7 +53,7 @@ console.log(obj2.getName());
 
 `super(...args)`表达式只在**类的构造函数中**有效
 
-> **注意**：`super`是一个关键字，这些是特殊的语法结构，`super`不是指向**proto**对象的变量。尝试读取`super`本身是一个语法错误.也不能通过super来删除超类的属性。
+> **注意**：`super`是一个关键字，这些是特殊的语法结构，`super`不是指向**proto**对象的变量。尝试读取`super`本身是一个语法错误.也不能通过 super 来删除超类的属性。
 
 ```js
 const child = {
@@ -111,16 +111,12 @@ console.log(nums);
 <button id="btn" type="button">点我</button>
 
 <script type="text/javascript">
-  document
-    .getElementById('btn')
-    .addEventListener('click', function () {
-      console.log('hello');
-    });
-  document
-    .getElementById('btn')
-    .addEventListener('click', function () {
-      console.log('hello nowcoder');
-    });
+  document.getElementById('btn').addEventListener('click', function () {
+    console.log('hello');
+  });
+  document.getElementById('btn').addEventListener('click', function () {
+    console.log('hello nowcoder');
+  });
 </script>
 ```
 
@@ -345,9 +341,7 @@ void (async function () {
   // 收集点的信息
   const points = [];
   for (let i = 0; i < n; i++) {
-    const [a, b, v] = (await readline())
-      .split(' ')
-      .map(Number);
+    const [a, b, v] = (await readline()).split(' ').map(Number);
     // 计算距离并存储点信息
     const distance = Math.sqrt(a * a + b * b);
     points.push({ distance, v });
@@ -734,18 +728,15 @@ void (async function () {
           const loopPie = document.createElement('div');
           loopPie.className = 'loop-pie';
           // 右半圆
-          const rightLoopPie =
-            document.createElement('div');
-          rightLoopPie.className =
-            'loop-pie-line loop-pie-r';
+          const rightLoopPie = document.createElement('div');
+          rightLoopPie.className = 'loop-pie-line loop-pie-r';
           const rightMask = document.createElement('div');
           rightMask.className = 'loop-pie-c loop-pie-rm';
           rightMask.id = 'loop-rc';
           rightLoopPie.appendChild(rightMask);
           // 左半圆
           const leftLoopPie = document.createElement('div');
-          leftLoopPie.className =
-            'loop-pie-line loop-pie-l';
+          leftLoopPie.className = 'loop-pie-line loop-pie-l';
           const leftMask = document.createElement('div');
           leftMask.className = 'loop-pie-c loop-pie-lm';
           leftMask.id = 'loop-lc';
@@ -775,9 +766,7 @@ void (async function () {
           // TODO：给submit的按钮添加点击事件，当被点击时调用 loadPercent() 方法
         },
         getPercenNumber() {
-          const input = document.querySelector(
-            '.percent-number input'
-          );
+          const input = document.querySelector('.percent-number input');
           // TODO：将输入框中的值保留四舍五入取整
           let num = 0;
           // TODO：将输入框框的值置为合理区间范围
