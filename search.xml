@@ -1,201 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>随笔小记</title>
-    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<h1>JS</h1>
-<h2 id="关于矩阵的创建">关于矩阵的创建</h2>
-<p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
-<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
-<p>我过去创建矩阵通常使用如下方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
-<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
-<p>错误示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>
-修改其中一个子数组会影响其他行：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>总结<br>
-Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>
-fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>
-切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
-</blockquote>
-<h2 id="map-和-parseInt-函数的使用">map 和 parseInt 函数的使用</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
-<p>今天在地铁上刷视频看到一个很有意思的题目，随笔记录一下，和大家分享。<br>
-乍一看这个题目，感觉非常简单，对一个字符串数组进行<code>map</code>处理,处理函数是<code>parseInt</code>,输出结果应该就是<code>[1, 2, 3]</code>.<br>
-然而当我们尝试运行这段代码会发现,真实的输出结果是<code>[1, NaN, NaN]</code>.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241212090639182.png" class="" title="image-20241212090639182">
-<p>那为什么会出现这么奇怪的现象呢?<br>
-这里有两个关键点,<code>map</code>和<code>parseInt</code>,我们需要深入且准确地弄清楚这两个函数的工作原理。才能解决这个问题。</p>
-<h3 id="map">map</h3>
-<p>Array 实例的 <code>map()</code> 方法创建一个<strong>新数组</strong>，其中填充了对调用数组中的每个元素调用提供的函数的结果。</p>
-<p>使用语法如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn[, thisArg])</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>callbackFn</code>: 要为数组中的每个元素执行的函数。其<strong>返回值</strong>将作为单个元素添加到新数组中。使用以下参数调用该函数：
-<ul>
-<li><code>element</code>: 数组中正在处理的当前元素</li>
-<li><code>index</code>: 数组中正在处理的当前元素的索引</li>
-<li><code>array</code>: 调用<code>map()</code>的数组</li>
-</ul>
-</li>
-<li><code>thisArg</code>: 可选。执行回调时使用的 this 值。(指定<code>callbackFn</code>函数内使用 this)</li>
-</ul>
-<h3 id="parseInt">parseInt</h3>
-<p><code>parseInt()</code>函数解析字符串参数并返回指定<strong>基数</strong>(数学数字系统中的基数)的整数.]<br>
-其实就是返回指定进制的整数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (default base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 123 (explicitly specify base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;   123 &#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (whitespace is ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;077&#x27;</span>));</span><br><span class="line"><span class="comment">// 77 (leading zeros are ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;1.9&#x27;</span>));</span><br><span class="line"><span class="comment">// 1 (decimal part is truncated)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;ff&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (lower-case hexadecimal)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;0xFF&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (upper-case hexadecimal with &quot;0x&quot; prefix)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;xyz&#x27;</span>));</span><br><span class="line"><span class="comment">// NaN (input can&#x27;t be converted to an integer)</span></span><br></pre></td></tr></table></figure>
-<p>使用语法如下:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string[, radix])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p><code>string</code>: 以整数开头的字符串.此参数的<strong>前导空格</strong>将被忽略</p>
-<ul>
-<li>如果第一个非空白字符不能转换为基数范围内的数字,直接返回<code>NaN</code></li>
-<li>对于字符串的符号(<code>+/-</code>),<code>parseInt</code>可以理解,正常输出,不作处理.原来是正数就是正数,原来是负数就是负数.</li>
-<li>如果<code>parseInt</code>遇到不是指定基数中的数字字符,它将<strong>忽略该字符和所有后续字符</strong>,并返回到该点为止解析的整数值.例如,尽管<code>1e3</code>在技术上对整数进行编码(并且将被<code>parseFloat()</code>正确解析为整数<code>1000</code>),但<code>parseInt(&quot;1e3&quot;,10)</code>返回<code>1</code>,因为<code>e</code>不是以10为基数的有效数字.由于<code>.</code>也不是数字,因此返回值将始终为整数(也就是说,如果来解析小数,遇到小数点就会自动停止并返回,所以如果可以成功返回,返回值一定是整数)</li>
-</ul>
-</li>
-<li>
-<p><code>radix</code>: 可选。一个介于<code>2</code>和<code>36</code>之间的整数，表示<code>字符串</code>的<strong>基数(进制)</strong>.</p>
-<ul>
-<li>
-<p>如果**非零且超出[2,36]**的范围,则函数将始终返回<code>NaN</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,-<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">37</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>如果<strong>未提供,或者值变为<code>0</code>,<code>NaN</code>,或<code>Infinity</code>(<code>undefined</code>被强制转换为<code>NaN</code>)</strong>,则将根据<code>字符串</code>的值推断基数.注意,并<strong>不是默认为10</strong></p>
-<ul>
-<li>
-<p>如果输入的<code>字符串</code>(删除了前导空格和可能的<code>+/-</code>符号)以<code>0x</code>或<code>0X</code>(0,后面跟小写或大写的<code>x</code>)开头,则基数假定为<strong>16</strong>,字符串的其余部分将被解析为16进制数.</p>
-</li>
-<li>
-<p>如果输入<code>字符串</code>以任何其他值开头,则基数为<code>10</code>(十进制)</p>
-<blockquote>
-<p><strong>注意:<strong>其他前缀(如<code>0b</code>)在数字字面量中有效,但是在<code>parseInt()</code>中视为普通数字.<code>parseInt()</code>也</strong>不会</strong>将以<code>0</code>字符开头的字符串视为八进制.<code>parseInt()</code>识别的<strong>唯一前缀</strong>是十六进制值的<code>0x</code>或<code>0X</code>.如果缺少<code>radix</code>,其他所有内容都被解析为十进制值.可以使用<code>Number()</code>或<code>BigInt()</code>来解析这些前缀.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>
-<p>如果为16,则可以在可选符号字符(<code>+/-</code>)后选择性地为字符串添加<code>0x</code>或<code>0X</code>前缀.</p>
-</li>
-<li>
-<p>对于大于<code>10</code>的基数,英文字母表的字母表示大于<code>9</code>的数字.例如,对于十六进制数,使用<code>A</code>到<code>F</code>.这些字母<strong>不区分大小写</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>在非字符串上使用<code>parseInt()</code></p>
-<p><code>parseInt()</code>在处理非字符串和高基数时可以产生有趣的结果;例如,<code>36</code>(使所有字母数字字符都是有效的数字进制,即0-9,和26个字母,总共36个)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">null</span>,<span class="number">36</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">undefined</span>,<span class="number">36</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1112745</span></span><br><span class="line"><span class="comment">// 86464843759093</span></span><br></pre></td></tr></table></figure>
-<p>我们应尽可能避免用<code>parseInt</code>处理非整数的字符串</p>
-<p>所以回到我们的题目,为什么会有下面的输出呢?</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
-<p>这是因为我们把<code>parseInt</code>作为了<code>map</code>的回调函数.那么传递给<code>parseInt</code>的两个参数就是<code>item</code>和<code>index</code></p>
-<p>所以实际的处理相当于如下所示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr = [<span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>, <span class="number">0</span>),<span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>), <span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>)];</span><br></pre></td></tr></table></figure>
-<p>对于第一个元素,传递的<code>radix</code>为0,字符串<code>'1'</code>也不是以<code>0x</code>或<code>0X</code>开头,所以这里采用十进制转换.结果为数字<code>1</code></p>
-<p>对于第二个元素,传递的<code>radix</code>为1,这是一个非法的进制,(因为合法的进制是2-36的一个整数),所以直接返回<code>NaN</code></p>
-<p>对于第三个元素,传递的<code>radix</code>是2,表示解析为二进制.当开始解析后,遇到第一个字符<code>'3'</code>就不是二进制中的一个合法字符(二进制只有<code>0</code>和<code>1</code>),所以直接停止,返回<code>NaN</code>.</p>
-<h1>CSS</h1>
-<h2 id="包含块">包含块</h2>
-<p>最近学着学着发现，css才是最难的.CSS的英文全称是<code>Cascading Style Sheets</code>，翻译过来就是层叠样式表.<br>
-也就是说多种选择器之间会互相影响覆盖,每次莫名其妙地某个元素直接就消失了,所以,如果不能准确透彻地理解CSS样式的计算规则,就会经常出现莫名其妙的bug.<br>
-比如我们经常写的如下代码</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">70%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>请问我们这里的100%和70%是相对于谁的来计算的百分比呢?<br>
-很多同学可能会想当然的说,当然是父元素了,这还用说吗?<br>
-然而事实并非如此.</p>
-<p>CSS里面有两大重点.<br>
-<strong>属性计算</strong>和<strong>视觉格式化模型</strong><br>
-对于视觉格式化模型,我们要清楚,以下内容</p>
-<ul>
-<li>元素的<code>width</code>,<code>height</code>,<code>margin</code>,<code>padding</code>的百分比都是相对于包含块的</li>
-<li>元素的<code>left</code>,<code>right</code>, <code>top</code>, <code>bottom</code>的百分比都是相对于包含块的</li>
-</ul>
-<p>那么如何来确定包含块呢?<br>
-包含块如何确定,完全取决于元素的<code>position</code>属性的值</p>
-<ol>
-<li>如果<code>position</code>属性是<code>static</code>(默认值),<code>relative</code>,或<code>stick</code>,包含块由<strong>最近的上级元素的内容盒的边缘形成</strong>,该元素可以是<strong>块容器</strong>(例如<code>inline-block</code>,<code>block</code>,<code>list-itme element</code>)或<strong>建立格式上下文</strong>(例如表格,网格,或块容器本身)</li>
-<li>如果<code>position</code>属性是<code>absolute</code>,包含块由最近的上级元素的定位<strong>非</strong><code>static</code>的父元素的<strong>内边距盒的边缘</strong>构成.</li>
-<li>如果<code>position</code>属性是<code>fixed</code>,包含块由<strong>视口(viewport)的边缘</strong>构成(在连续媒体的情况下),如果在分页媒体的情况下,则有页面区域的边缘构成.</li>
-<li>如果<code>position</code>属性是<code>absolute</code>或<code>fixed</code>,则包含块也可能由具有以下任何一项的最近上级元素的<strong>内边距盒边缘</strong>构成.
-<ul>
-<li><code>filter</code>,<code>backdrop-filter</code>,<code>transform</code>或<code>perspective</code>的值不是<code>none</code></li>
-<li>包含<code>layout</code>,<code>strict</code>,<code>paint</code>,或<code>content</code></li>
-<li><code>container-type</code>的值不是<code>normal</code></li>
-<li><code>will-change</code>的值包含一个属性,其非初始值形成一个包含块(例如<code>filter</code>和<code>transform</code>)</li>
-<li><code>content-visibility</code>的值是<code>auto</code></li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>注意: 根元素<code>&lt;html&gt;</code>所在的包含块是一个被称为<strong>初始包含块</strong>的矩形.它的尺寸是视口(viewport)的尺寸.</p>
-</blockquote>
-<p>我们来看下面的例子</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">70%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在这个例子中,<code>box</code>的高度是<code>0</code>.因为所有元素的属性默认值是<code>static</code>,所以我们依据第一条规则,<code>box</code>的百分比是相对于最近的上级元素的<code>内容盒</code>边缘形成的.即<code>container</code>.但是<code>container</code>没有明确设置<code>height</code>,所以为默认值<code>auto</code>由子元素撑开.所以这里无从参照,只能为0.</p>
-<p>当我们给<code>container</code>设置一个高度后,即可成功显示</p>
-<h1>hexo 个人博客</h1>
-<h2 id="关于图片引用问题">关于图片引用问题</h2>
-<h3 id="文章图片本地和远程不能同时显示问题">文章图片本地和远程不能同时显示问题</h3>
-<p>在本地 typora 中使用绝对路径插入的图片部署到网站中会无法正常显示，解决方式如下</p>
+    <title>ES6</title>
+    <url>/2024/12/14/ES6/</url>
+    <content><![CDATA[<h1>概述</h1>
 <ol>
 <li>
-<p>在 Typora 的偏好设置中的图片设置中，设置如下图</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211211639069.png" class="" title="image-20241211211639069">
-<p>这样我们在本地只需要直接在 Typora 中粘贴图片，就会将图片复制到当前 markdown 文件同级的同名目录下。</p>
+<p>ECMAScript, JavaScript, NodeJS, 它们的区别是什么？</p>
+<p>ECMAScript：简称ES，是一个语言标准(循环，判断，变量，数组等数据类型)</p>
+<p>JavaScript: 运行再浏览器端的语言，该语言使用ES标准.<code>ES + Web api = JavaScript</code></p>
+<p>Nodejs: 运行在服务器端的语言,该语言使用ES标准. <code>ES + node api = JavaScript</code></p>
+<p>无论JavaScript,还是Nodejs,它们都是ES的超集</p>
 </li>
 <li>
-<p>在 hexo 项目的根目录的配置文件<code>_config.yml</code>中，把<code>post_asset_folder</code>属性设置为<code>ture</code>.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211212013176.png" class="" title="image-20241211212013176">
-<p>这样当我们在 hexo 中使用命令<code>hexo new xxxx</code>的时候,就会同时创建一个同名目录,用来存放静态资源</p>
+<p>ECMAScript有哪些关键版本</p>
+<p>ES3.0: 1993</p>
+<p>ES5.0: 2009</p>
+<p>ES6.0: 2015, 从该版本之后,不再使用数字作为编号,而使用年份,每年发布一个新版本</p>
+<p>ES7.0: 2016</p>
 </li>
 <li>
-<p>安装<code>hexo-asset-img</code>插件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add hexo-asset-img</span><br></pre></td></tr></table></figure>
-<p>安装完这个插件后,使用相对路径引入的图片在部署到站点后也可以显示.</p>
+<p>为什么ES6如此重要</p>
+<p>ES6解决了JS无法开发大型应用的语言层面的问题.</p>
+</li>
+<li>
+<p>如何应对兼容性问题</p>
+<p>之后的课程会介绍如何解决</p>
+</li>
+<li>
+<p>学习本课程需要哪些前置知识</p>
+<p>HTML, CSS, JavaScript</p>
+</li>
+<li>
+<p>这套课程难不难?</p>
 </li>
 </ol>
-<h3 id="文章的-top-img-和-cover-路径问题">文章的 top_img 和 cover 路径问题</h3>
-<p>文章中图片的问题解决了以后，在文章页面中 top_img 和 cover 图片路径的问题就出现了。</p>
-<p>我们看下面这个例子,在经过上一步的设置后,已经在同级目录下有一个同名文件夹用来存放静态资源.这里我们在 OPPO23 秋文件夹中保存了一张<code>top.png</code>图片</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214502730.png" class="" title="image-20241211214502730">
-<p>然后在文章页的<code>Front-Formatter</code>中将封面图<code>cover</code>和顶部图<code>top_img</code>均设置为此图.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214653018.png" class="" title="image-20241211214653018">
-<p>然后我们在本地使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>命令运行博客</p>
-<p>我们可以看到封面图<code>cover</code>可以成功显示,没有问题.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214825220.png" class="" title="image-20241211214825220">
-<p>但是当我们点到文章页时,会发现<code>top_img</code>并没有成功显示</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214905887.png" class="" title="image-20241211214905887">
-<p>明明是一样的路径配置,但是一个正常,另一个不正常.很有可能是 hexo 以及我们安装的插件综合作用下,<strong>对<code>cover</code>和<code>top_img</code>的路径处理方式不同</strong>.</p>
-<p>为了验证我们的猜想,我们使用浏览器开发者工具分别查看两图片对应的元素,并对获取图片请求进行抓包分析.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211215143107.png" class="" title="image-20241211215143107">
-<p>对于<code>cover</code>我们可以看到,它是一个嵌套在<code>&lt;a&gt;</code>标签里的一个<code>&lt;img&gt;</code>标签.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220138804.png" class="" title="image-20241211220138804">
-<p>我们点击当前来源，跳转到图片资源位置，没有问题。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220401618.png" class="" title="image-20241211220401618">
-<p>我们再来看一下<code>top_img</code>图片。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220503933.png" class="" title="image-20241211220503933">
-<p>我们可以看到它并不是<code>&lt;img&gt;</code>，而是用 CSS 的<code>background-image</code>属性来设置的。这里难以看出问题，我们对网络请求进行抓包。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220746097.png" class="" title="image-20241211220746097">
-<p>我们可以看到是一个 404 错误，说明找不到资源，就是路径出错了。观察请求头地址，我们不难发现，<code>2024/12/08/OPPO23秋</code>这一部分内容写了两次.说明 hexo 在处理文章的<code>top_img</code>时,很有可能本来就会加上前面的内容,我们的插件之类的又产生了干扰.具体原因还不得而知,不过问题已经可以解决了.</p>
-<p>通过上述分析,我们可以推测,<code>top_img</code>不显示,很可能是因为我们使用了<strong>相对路径</strong>,框架在此处的路径处理出了一些问题,所以我们尝试改用绝对路径来引入.</p>
-<p>在项目的<code>source</code>文件夹下新建一个<code>img</code>目录,里面复制我们的<code>top.png</code></p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221230694.png" class="" title="image-20241211221230694">
-<p>将文章中<code>tom_img</code>路径改为绝对路径<code>/img/top.png</code>(因为 hexo 会把 source 文件当作根目录来建站,所以建站后<code>img</code>文件夹相当于在根目录下,使用<code>/img</code>即可访问)</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221402895.png" class="" title="image-20241211221402895">
-<p>清理 hexo,重新生成,发现顶部图成功显示!</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221456484.png" class="" title="image-20241211221456484">
+<h1>块级绑定</h1>
+<h2 id="使用var声明变量">使用<code>var</code>声明变量</h2>
+<ol>
+<li>
+<p>允许重复声明导致数据被覆盖</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">print</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设这里有一千行代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="title function_">print</span>();  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>变量提升: 怪异的数据访问</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">random</span>() &lt; <span class="number">0.5</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">&#x27;abc&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为变量提升,所以实际如下</span></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">random</span>() &lt; <span class="number">0.5</span>) &#123;</span><br><span class="line">  a = <span class="string">&#x27;abc&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>变量提升: 闭包问题</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.container&#x27;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">      btn.<span class="property">innerHTML</span> = i;</span><br><span class="line">      container.<span class="title function_">appendChild</span>(btn);</span><br><span class="line">      btn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 发现无论点击哪一个按钮,都输出11</span></span><br><span class="line"><span class="comment">// 因为实际上是这样</span></span><br><span class="line"><span class="keyword">var</span> i;</span><br><span class="line"><span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.container&#x27;</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">      btn.<span class="property">innerHTML</span> = i;</span><br><span class="line">      container.<span class="title function_">appendChild</span>(btn);</span><br><span class="line">      btn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 过去为了解决这样的问题,需要使用立即执行函数</span></span><br><span class="line"><span class="keyword">var</span> container = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.container&#x27;</span>);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">        btn.<span class="property">innerHTML</span> = i;</span><br><span class="line">        container.<span class="title function_">appendChild</span>(btn);</span><br><span class="line">        (<span class="keyword">function</span> (<span class="params">i</span>) &#123;</span><br><span class="line">          btn.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">          &#125;;</span><br><span class="line">        &#125;)(i);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>全局变量挂载到全局对象: 全局对象成员污染问题</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> abc = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">abc</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="使用let声明变量">使用<code>let</code>声明变量</h2>
+<p><code>let</code>声明的变量,不会挂载到全局对象</p>
+<p><code>let</code>声明的变量,不允许在当前作用域重复声明(包括<code>块级作用域</code>)</p>
+<blockquote>
+<p>块级作用域: 代码执行时遇到花括号,产生块级作用域,遇到结束花括号,块级作用域销毁.</p>
+</blockquote>
+<p><code>let</code>声明的变量,不能在初始化之前使用(存在<code>暂时性死区(TDZ)</code>).当代码运行到该变量的初始化代码时,会从暂时性死区中移除.</p>
+<p>在循环中,用<code>let</code>声明的循环变量,会特殊处理,**每次进入循环体,都会开启一个新的作用域,并且将循环变量绑定到该作用域.**每次循环使用的是一个全新的作用域.</p>
+<p>在循环中,使用let声明的循环变量,在循环结束后会销毁.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> container = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.container&#x27;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> btn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">      btn.<span class="property">innerHTML</span> = i;</span><br><span class="line">      container.<span class="title function_">appendChild</span>(btn);</span><br><span class="line">      btn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用const声明常量">使用<code>const</code>声明常量</h2>
+<p>和<code>let</code>基本相同,除了<code>const</code>必须初始化,且值不能修改.</p>
+<blockquote>
+<p>注意如果用const声明对象类型,只要<strong>地址不变</strong>就可以.地址里面的内容可以变</p>
+</blockquote>
+<p>在实际开发中,尽量使用<code>const</code>,当需要改变时,再使用<code>let</code></p>
+<h1>字符串和正则表达式</h1>
+<h2 id="更好的Unicode支持">更好的<code>Unicode</code>支持</h2>
+<p>早期,由于存储空间宝贵,<code>Unicode</code>使用16位二进制来存储文字.我们将一个16位的二进制编码叫做一个码元(<code>code Unit</code>)</p>
+<p>后来,由于技术的发展,<code>Unicode</code>对文字编码进行了扩展,将某些文字扩展到了32位(占用两个码元),并且,将某个文字对应的二级制数字叫做码点(<code>Code Point</code>)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;𠮷&#x27;</span>.<span class="property">length</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 因为𠮷这一个码点有两个码元</span></span><br></pre></td></tr></table></figure>
+<p>ES6为了解决这个困扰,为字符串提供了方法:<code>codePointAt(n)</code>,可以得到序号为<code>n</code>的码元的码点(往后判断).</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> text = <span class="string">&#x27;𠮷&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;得到第一个码点:&#x27;</span>, text.<span class="title function_">codePointAt</span>(<span class="number">0</span>)); <span class="comment">// 134071</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;得到第二个码点:&#x27;</span>, text.<span class="title function_">codePointAt</span>(<span class="number">1</span>)); <span class="comment">// 57271</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;得到第一个码元:&#x27;</span>, text.<span class="title function_">charCodeAt</span>(<span class="number">0</span>)); <span class="comment">// 55362</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;得到第二个码元:&#x27;</span>, text.<span class="title function_">charCodeAt</span>(<span class="number">1</span>)); <span class="comment">// 57271</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断字符串char，是32位还是16位</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; char </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">is32bit</span>(<span class="params">char, i</span>) &#123;</span><br><span class="line">  char.<span class="title function_">codePointAt</span>(i) &gt; <span class="number">0xFFFF</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 得到一个字符串真实的码点数量</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">String</span>&#125; str 要判断的字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> 字符串真实的码点数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getLengthOfCodePoint</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> len = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;str.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// i在索引码元</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_">is32bit</span>(str,i)) &#123;</span><br><span class="line">      <span class="comment">// 当前字符串，在i的位置，占用了两个码元,跳过下一个码元</span></span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    len++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同时,ES6为正则表达式添加了一个<code>flag</code>:<code>u</code>,如果添加了该配置,匹配的时候使用<strong>码点匹配</strong></p>
+<h2 id="更多的字符串API">更多的字符串API</h2>
+<p>一下均为字符串的实例方法</p>
+<h3 id="includes"><code>includes</code></h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.<span class="title function_">includes</span>(<span class="string">&#x27;substr&#x27;</span>, startIndex)</span><br></pre></td></tr></table></figure>
+<p>判断字符串中是否包含指定的子字符串</p>
+<h3 id="startWith"><code>startWith</code></h3>
+<p>判断是否以<code>substr</code>开始</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.<span class="title function_">startWith</span>(<span class="string">&#x27;substr&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="endWith"><code>endWith</code></h3>
+<p>判断是否以<code>substr</code>结束</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.<span class="title function_">endWith</span>(<span class="string">&#x27;substr&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="repeat"><code>repeat</code></h3>
+<p>返回一个字符串重复n次的结果</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.<span class="title function_">repeat</span>(n)</span><br></pre></td></tr></table></figure>
+<h2 id="正则中的粘连标记">*正则中的粘连标记</h2>
+<p>标记名: <code>y</code></p>
+<p>含义: 匹配时,完全按照正则对象中的<code>lastIndex</code>位置开始匹配,并且匹配的位置必须在<code>lastIndex</code>位置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> text = <span class="string">&quot;Hello World!!!&quot;</span></span><br><span class="line"><span class="keyword">const</span> reg1 = <span class="regexp">/W\w+/</span></span><br><span class="line"><span class="keyword">const</span> reg2 = <span class="regexp">/W\w+/</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(text))   <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(text))   <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="模板字符串">模板字符串</h2>
+<p>ES6之前处理字符串繁琐的两个方面:</p>
+<ol>
+<li>多行字符串</li>
+<li>字符串拼接</li>
+</ol>
+<p>ES6提供了模板字符串的写法用``来包裹字符串</p>
+<p>如果要在字符串中使用表达式,则在``中用${}包裹即可</p>
+<h2 id="模板字符串标记">*模板字符串标记</h2>
+<p>标记是一个函数,参数如下</p>
+<ol>
+<li>参数1: 被插值分割的字符串的数组</li>
+<li>剩余参数: 插值的值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> love1 = <span class="string">&#x27;苹果&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> love2 = <span class="string">&#x27;香蕉&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">myTag</span> = (<span class="params">[...args],...variables</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> item <span class="keyword">of</span> args) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> item <span class="keyword">of</span> variables) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> text = myTag<span class="string">`我喜欢了<span class="subst">$&#123;love1&#125;</span>和<span class="subst">$&#123;love2&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="comment">// text = myTag([&#x27;我喜欢了&#x27;, &#x27;和&#x27;], love1, love2);</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(text);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我喜欢了</span></span><br><span class="line"><span class="comment">// 和</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 苹果</span></span><br><span class="line"><span class="comment">// 香蕉</span></span><br><span class="line"><span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>用处,转义字符当普通字符输出,可以使用<code>String.raw</code>模板字符串标记</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;abc\nbcd&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// bcd</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>.<span class="property">raw</span><span class="string">`abc\nbcd`</span>);</span><br><span class="line"><span class="comment">// abc\nbcd</span></span><br></pre></td></tr></table></figure>
+<p>下面这种情况,当用户在text中写入标签时,如<code>&lt;h1&gt;jdsfj&lt;/h1&gt;</code>,就会导致输出为标题.我们本意想让他输出纯文本.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;textarea name=&quot;&quot; id=&quot;container&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">  &lt;p id=&quot;text&quot;&gt;&lt;/p&gt;</span><br><span class="line">  &lt;button id=&quot;btn&quot;&gt;按钮&lt;/button&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    const container = document.getElementById(&#x27;container&#x27;)</span><br><span class="line">    const btn = document.getElementById(&#x27;btn&#x27;)</span><br><span class="line">    const text = document.getElementById(&#x27;text&#x27;)</span><br><span class="line">    btn.onclick = () =&gt; &#123;</span><br><span class="line">      text.innerHTML = container.value</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>则进行如下改造</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;textarea name=&quot;&quot; id=&quot;container&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">  &lt;div id=&quot;text&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;button id=&quot;btn&quot;&gt;按钮&lt;/button&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    const container = document.getElementById(&#x27;container&#x27;)</span><br><span class="line">    const btn = document.getElementById(&#x27;btn&#x27;)</span><br><span class="line">    const text = document.getElementById(&#x27;text&#x27;)</span><br><span class="line">    btn.onclick = () =&gt; &#123;</span><br><span class="line">      text.innerHTML = safe`&lt;p&gt;$&#123;container.value&#125;&lt;/p&gt;`</span><br><span class="line">    &#125;</span><br><span class="line">    function safe(strings, ...values) &#123;</span><br><span class="line">      let str = &quot;&quot;</span><br><span class="line">      for(let i=0; i&lt;values.length; i++) &#123;</span><br><span class="line">        values[i] = values[i].replace(/&lt;/g, &#x27;&amp;lt;&#x27;).replace(/&gt;/g, &#x27;&amp;gt;&#x27;)</span><br><span class="line">        str += strings[i] + values[i]</span><br><span class="line">        if(i === values.length - 1) &#123;</span><br><span class="line">          str += strings[i+1]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return str</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h1>函数</h1>
+<h2 id="参数默认值">参数默认值</h2>
+<p>在书写时,直接给形参赋的值就是默认值</p>
+<h3 id="对arguments的影响">对arguments的影响</h3>
+<p>非严格模式下,在函数内部修改形参,会导致<code>arguments</code>的值也发生改变.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>], <span class="variable language_">arguments</span>[<span class="number">1</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">  a = <span class="number">3</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 1 2</span></span><br><span class="line"><span class="comment">// 1 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>但是在严格模式下,在函数内部修改形参,<code>arguments</code>的值不会发生改变</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>], <span class="variable language_">arguments</span>[<span class="number">1</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">  a = <span class="number">3</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 1 2</span></span><br><span class="line"><span class="comment">// 1 2</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p><strong>只要给函数加上参数默认值,该函数会自动变成严格模式下的规则:<code>arguments</code>和形参脱离</strong></p>
+<h3 id="留意暂时性死区">留意暂时性死区</h3>
+<p>形参和ES6中的<code>let</code>和<code>const</code>一样,具有作用域,并且根据参数的声明顺序,存在暂时性死区(TDZ)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b = a</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a = b, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="literal">undefined</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ReferenceError: Cannot access &#x27;b&#x27; before initialization</span></span><br></pre></td></tr></table></figure>
+<h2 id="剩余参数">剩余参数</h2>
+<p>使用<code>arguments</code>的缺陷</p>
+<ol>
+<li>如果和形参配合使用,容易导致混乱</li>
+<li>从语义上,使用<code>arguments</code>获取参数,由于形参缺失,无法从函数定义上理解函数的真实意图</li>
+</ol>
+<p>ES6的剩余参数,专门用于收集<strong>末尾</strong>的所有参数到一个形参数组中.</p>
+<p><strong>一个函数最多只能有一个剩余参数,而且必须是最后一个形参</strong></p>
+<h2 id="展开运算符">展开运算符</h2>
+<p>使用<code>...要展开的东西</code></p>
+<h2 id="函数柯里化">函数柯里化</h2>
+<p>用户固定某个函数前面的参数,得到一个新的函数,新的函数调用时,接收剩余参数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">func, ...args</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">...subArgs</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> allArgs = [...args,...subArgs];</span><br><span class="line">        <span class="keyword">if</span>(allArgs.<span class="property">length</span> &gt;= func.<span class="property">length</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="title function_">func</span>(...allArgs);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">curry</span>(func, ...allArgs);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="明确函数的双重用途">明确函数的双重用途</h2>
+<p>ES6提供了一个特殊的API,可以使用该API在函数内部,判断该函数是否使用了<code>new</code>来调用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span>.<span class="property">target</span></span><br></pre></td></tr></table></figure>
+<p>如果没有使用<code>new</code>来调用函数,则返回<code>undefined</code></p>
+<p>如果使用<code>new</code>调用函数,则得到的是<code>new</code>关键字后面的函数本身</p>
+<h2 id="箭头函数">箭头函数</h2>
+<p>回顾: <code>this</code>指向</p>
+<ol>
+<li>通过对象调用函数,<code>this</code>指向调用对象</li>
+<li>直接调用函数,<code>this</code>指向全局对象</li>
+<li>通过<code>new</code>调用函数,<code>this</code>指向新创建的对象</li>
+<li>通过<code>apply,call,bind</code>调用函数,<code>this</code>指向指定的数据</li>
+<li>DOM事件函数,<code>this</code>指向事件源</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">start</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// this -&gt; obj</span></span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// this -&gt; windox/global</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">count</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * ...</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>在过去需要通过使用闭包来解决</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">start</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// this -&gt; obj</span></span><br><span class="line">    <span class="keyword">let</span> _this = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// this -&gt; windox/global</span></span><br><span class="line">      _this.<span class="property">count</span>++;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(this_.<span class="property">count</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * ...</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>现在可以直接使用箭头函数.</p>
+<h3 id="使用语法">使用语法</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">func</span> = (<span class="params">arg</span>) =&gt; &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意细节">注意细节</h3>
+<p>箭头函数没有<code>this,arguments,new.target</code>,它只能继承定义位置的执行上下文的对应变量,与如何调用无关</p>
+<h3 id="应用场景">应用场景</h3>
+<ol>
+<li>事件处理函数</li>
+<li>异步处理函数</li>
+<li>临时函数</li>
+<li>为了绑定外层this</li>
+</ol>
 ]]></content>
       <tags>
-        <tag>随笔</tag>
+        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
@@ -541,6 +521,204 @@ fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>
       </categories>
       <tags>
         <tag>oppo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随笔小记</title>
+    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h1>JS</h1>
+<h2 id="关于矩阵的创建">关于矩阵的创建</h2>
+<p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
+<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
+<p>我过去创建矩阵通常使用如下方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
+<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
+<p>错误示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>
+修改其中一个子数组会影响其他行：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>总结<br>
+Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>
+fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>
+切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
+</blockquote>
+<h2 id="map-和-parseInt-函数的使用">map 和 parseInt 函数的使用</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
+<p>今天在地铁上刷视频看到一个很有意思的题目，随笔记录一下，和大家分享。<br>
+乍一看这个题目，感觉非常简单，对一个字符串数组进行<code>map</code>处理,处理函数是<code>parseInt</code>,输出结果应该就是<code>[1, 2, 3]</code>.<br>
+然而当我们尝试运行这段代码会发现,真实的输出结果是<code>[1, NaN, NaN]</code>.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241212090639182.png" class="" title="image-20241212090639182">
+<p>那为什么会出现这么奇怪的现象呢?<br>
+这里有两个关键点,<code>map</code>和<code>parseInt</code>,我们需要深入且准确地弄清楚这两个函数的工作原理。才能解决这个问题。</p>
+<h3 id="map">map</h3>
+<p>Array 实例的 <code>map()</code> 方法创建一个<strong>新数组</strong>，其中填充了对调用数组中的每个元素调用提供的函数的结果。</p>
+<p>使用语法如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn[, thisArg])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>callbackFn</code>: 要为数组中的每个元素执行的函数。其<strong>返回值</strong>将作为单个元素添加到新数组中。使用以下参数调用该函数：
+<ul>
+<li><code>element</code>: 数组中正在处理的当前元素</li>
+<li><code>index</code>: 数组中正在处理的当前元素的索引</li>
+<li><code>array</code>: 调用<code>map()</code>的数组</li>
+</ul>
+</li>
+<li><code>thisArg</code>: 可选。执行回调时使用的 this 值。(指定<code>callbackFn</code>函数内使用 this)</li>
+</ul>
+<h3 id="parseInt">parseInt</h3>
+<p><code>parseInt()</code>函数解析字符串参数并返回指定<strong>基数</strong>(数学数字系统中的基数)的整数.]<br>
+其实就是返回指定进制的整数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (default base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 123 (explicitly specify base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;   123 &#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (whitespace is ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;077&#x27;</span>));</span><br><span class="line"><span class="comment">// 77 (leading zeros are ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;1.9&#x27;</span>));</span><br><span class="line"><span class="comment">// 1 (decimal part is truncated)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;ff&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (lower-case hexadecimal)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;0xFF&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (upper-case hexadecimal with &quot;0x&quot; prefix)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;xyz&#x27;</span>));</span><br><span class="line"><span class="comment">// NaN (input can&#x27;t be converted to an integer)</span></span><br></pre></td></tr></table></figure>
+<p>使用语法如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string[, radix])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>string</code>: 以整数开头的字符串.此参数的<strong>前导空格</strong>将被忽略</p>
+<ul>
+<li>如果第一个非空白字符不能转换为基数范围内的数字,直接返回<code>NaN</code></li>
+<li>对于字符串的符号(<code>+/-</code>),<code>parseInt</code>可以理解,正常输出,不作处理.原来是正数就是正数,原来是负数就是负数.</li>
+<li>如果<code>parseInt</code>遇到不是指定基数中的数字字符,它将<strong>忽略该字符和所有后续字符</strong>,并返回到该点为止解析的整数值.例如,尽管<code>1e3</code>在技术上对整数进行编码(并且将被<code>parseFloat()</code>正确解析为整数<code>1000</code>),但<code>parseInt(&quot;1e3&quot;,10)</code>返回<code>1</code>,因为<code>e</code>不是以10为基数的有效数字.由于<code>.</code>也不是数字,因此返回值将始终为整数(也就是说,如果来解析小数,遇到小数点就会自动停止并返回,所以如果可以成功返回,返回值一定是整数)</li>
+</ul>
+</li>
+<li>
+<p><code>radix</code>: 可选。一个介于<code>2</code>和<code>36</code>之间的整数，表示<code>字符串</code>的<strong>基数(进制)</strong>.</p>
+<ul>
+<li>
+<p>如果**非零且超出[2,36]**的范围,则函数将始终返回<code>NaN</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,-<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">37</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>如果<strong>未提供,或者值变为<code>0</code>,<code>NaN</code>,或<code>Infinity</code>(<code>undefined</code>被强制转换为<code>NaN</code>)</strong>,则将根据<code>字符串</code>的值推断基数.注意,并<strong>不是默认为10</strong></p>
+<ul>
+<li>
+<p>如果输入的<code>字符串</code>(删除了前导空格和可能的<code>+/-</code>符号)以<code>0x</code>或<code>0X</code>(0,后面跟小写或大写的<code>x</code>)开头,则基数假定为<strong>16</strong>,字符串的其余部分将被解析为16进制数.</p>
+</li>
+<li>
+<p>如果输入<code>字符串</code>以任何其他值开头,则基数为<code>10</code>(十进制)</p>
+<blockquote>
+<p><strong>注意:<strong>其他前缀(如<code>0b</code>)在数字字面量中有效,但是在<code>parseInt()</code>中视为普通数字.<code>parseInt()</code>也</strong>不会</strong>将以<code>0</code>字符开头的字符串视为八进制.<code>parseInt()</code>识别的<strong>唯一前缀</strong>是十六进制值的<code>0x</code>或<code>0X</code>.如果缺少<code>radix</code>,其他所有内容都被解析为十进制值.可以使用<code>Number()</code>或<code>BigInt()</code>来解析这些前缀.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>如果为16,则可以在可选符号字符(<code>+/-</code>)后选择性地为字符串添加<code>0x</code>或<code>0X</code>前缀.</p>
+</li>
+<li>
+<p>对于大于<code>10</code>的基数,英文字母表的字母表示大于<code>9</code>的数字.例如,对于十六进制数,使用<code>A</code>到<code>F</code>.这些字母<strong>不区分大小写</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在非字符串上使用<code>parseInt()</code></p>
+<p><code>parseInt()</code>在处理非字符串和高基数时可以产生有趣的结果;例如,<code>36</code>(使所有字母数字字符都是有效的数字进制,即0-9,和26个字母,总共36个)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">null</span>,<span class="number">36</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">undefined</span>,<span class="number">36</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1112745</span></span><br><span class="line"><span class="comment">// 86464843759093</span></span><br></pre></td></tr></table></figure>
+<p>我们应尽可能避免用<code>parseInt</code>处理非整数的字符串</p>
+<p>所以回到我们的题目,为什么会有下面的输出呢?</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
+<p>这是因为我们把<code>parseInt</code>作为了<code>map</code>的回调函数.那么传递给<code>parseInt</code>的两个参数就是<code>item</code>和<code>index</code></p>
+<p>所以实际的处理相当于如下所示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr = [<span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>, <span class="number">0</span>),<span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>), <span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>)];</span><br></pre></td></tr></table></figure>
+<p>对于第一个元素,传递的<code>radix</code>为0,字符串<code>'1'</code>也不是以<code>0x</code>或<code>0X</code>开头,所以这里采用十进制转换.结果为数字<code>1</code></p>
+<p>对于第二个元素,传递的<code>radix</code>为1,这是一个非法的进制,(因为合法的进制是2-36的一个整数),所以直接返回<code>NaN</code></p>
+<p>对于第三个元素,传递的<code>radix</code>是2,表示解析为二进制.当开始解析后,遇到第一个字符<code>'3'</code>就不是二进制中的一个合法字符(二进制只有<code>0</code>和<code>1</code>),所以直接停止,返回<code>NaN</code>.</p>
+<h1>CSS</h1>
+<h2 id="包含块">包含块</h2>
+<p>最近学着学着发现，css才是最难的.CSS的英文全称是<code>Cascading Style Sheets</code>，翻译过来就是层叠样式表.<br>
+也就是说多种选择器之间会互相影响覆盖,每次莫名其妙地某个元素直接就消失了,所以,如果不能准确透彻地理解CSS样式的计算规则,就会经常出现莫名其妙的bug.<br>
+比如我们经常写的如下代码</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">70%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请问我们这里的100%和70%是相对于谁的来计算的百分比呢?<br>
+很多同学可能会想当然的说,当然是父元素了,这还用说吗?<br>
+然而事实并非如此.</p>
+<p>CSS里面有两大重点.<br>
+<strong>属性计算</strong>和<strong>视觉格式化模型</strong><br>
+对于视觉格式化模型,我们要清楚,以下内容</p>
+<ul>
+<li>元素的<code>width</code>,<code>height</code>,<code>margin</code>,<code>padding</code>的百分比都是相对于包含块的</li>
+<li>元素的<code>left</code>,<code>right</code>, <code>top</code>, <code>bottom</code>的百分比都是相对于包含块的</li>
+</ul>
+<p>那么如何来确定包含块呢?<br>
+包含块如何确定,完全取决于元素的<code>position</code>属性的值</p>
+<ol>
+<li>如果<code>position</code>属性是<code>static</code>(默认值),<code>relative</code>,或<code>stick</code>,包含块由<strong>最近的上级元素的内容盒的边缘形成</strong>,该元素可以是<strong>块容器</strong>(例如<code>inline-block</code>,<code>block</code>,<code>list-itme element</code>)或<strong>建立格式上下文</strong>(例如表格,网格,或块容器本身)</li>
+<li>如果<code>position</code>属性是<code>absolute</code>,包含块由最近的上级元素的定位<strong>非</strong><code>static</code>的父元素的<strong>内边距盒的边缘</strong>构成.</li>
+<li>如果<code>position</code>属性是<code>fixed</code>,包含块由<strong>视口(viewport)的边缘</strong>构成(在连续媒体的情况下),如果在分页媒体的情况下,则有页面区域的边缘构成.</li>
+<li>如果<code>position</code>属性是<code>absolute</code>或<code>fixed</code>,则包含块也可能由具有以下任何一项的最近上级元素的<strong>内边距盒边缘</strong>构成.
+<ul>
+<li><code>filter</code>,<code>backdrop-filter</code>,<code>transform</code>或<code>perspective</code>的值不是<code>none</code></li>
+<li>包含<code>layout</code>,<code>strict</code>,<code>paint</code>,或<code>content</code></li>
+<li><code>container-type</code>的值不是<code>normal</code></li>
+<li><code>will-change</code>的值包含一个属性,其非初始值形成一个包含块(例如<code>filter</code>和<code>transform</code>)</li>
+<li><code>content-visibility</code>的值是<code>auto</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>注意: 根元素<code>&lt;html&gt;</code>所在的包含块是一个被称为<strong>初始包含块</strong>的矩形.它的尺寸是视口(viewport)的尺寸.</p>
+</blockquote>
+<p>我们来看下面的例子</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">70%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在这个例子中,<code>box</code>的高度是<code>0</code>.因为所有元素的属性默认值是<code>static</code>,所以我们依据第一条规则,<code>box</code>的百分比是相对于最近的上级元素的<code>内容盒</code>边缘形成的.即<code>container</code>.但是<code>container</code>没有明确设置<code>height</code>,所以为默认值<code>auto</code>由子元素撑开.所以这里无从参照,只能为0.</p>
+<p>当我们给<code>container</code>设置一个高度后,即可成功显示</p>
+<h1>hexo 个人博客</h1>
+<h2 id="关于图片引用问题">关于图片引用问题</h2>
+<h3 id="文章图片本地和远程不能同时显示问题">文章图片本地和远程不能同时显示问题</h3>
+<p>在本地 typora 中使用绝对路径插入的图片部署到网站中会无法正常显示，解决方式如下</p>
+<ol>
+<li>
+<p>在 Typora 的偏好设置中的图片设置中，设置如下图</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211211639069.png" class="" title="image-20241211211639069">
+<p>这样我们在本地只需要直接在 Typora 中粘贴图片，就会将图片复制到当前 markdown 文件同级的同名目录下。</p>
+</li>
+<li>
+<p>在 hexo 项目的根目录的配置文件<code>_config.yml</code>中，把<code>post_asset_folder</code>属性设置为<code>ture</code>.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211212013176.png" class="" title="image-20241211212013176">
+<p>这样当我们在 hexo 中使用命令<code>hexo new xxxx</code>的时候,就会同时创建一个同名目录,用来存放静态资源</p>
+</li>
+<li>
+<p>安装<code>hexo-asset-img</code>插件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add hexo-asset-img</span><br></pre></td></tr></table></figure>
+<p>安装完这个插件后,使用相对路径引入的图片在部署到站点后也可以显示.</p>
+</li>
+</ol>
+<h3 id="文章的-top-img-和-cover-路径问题">文章的 top_img 和 cover 路径问题</h3>
+<p>文章中图片的问题解决了以后，在文章页面中 top_img 和 cover 图片路径的问题就出现了。</p>
+<p>我们看下面这个例子,在经过上一步的设置后,已经在同级目录下有一个同名文件夹用来存放静态资源.这里我们在 OPPO23 秋文件夹中保存了一张<code>top.png</code>图片</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214502730.png" class="" title="image-20241211214502730">
+<p>然后在文章页的<code>Front-Formatter</code>中将封面图<code>cover</code>和顶部图<code>top_img</code>均设置为此图.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214653018.png" class="" title="image-20241211214653018">
+<p>然后我们在本地使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>命令运行博客</p>
+<p>我们可以看到封面图<code>cover</code>可以成功显示,没有问题.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214825220.png" class="" title="image-20241211214825220">
+<p>但是当我们点到文章页时,会发现<code>top_img</code>并没有成功显示</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214905887.png" class="" title="image-20241211214905887">
+<p>明明是一样的路径配置,但是一个正常,另一个不正常.很有可能是 hexo 以及我们安装的插件综合作用下,<strong>对<code>cover</code>和<code>top_img</code>的路径处理方式不同</strong>.</p>
+<p>为了验证我们的猜想,我们使用浏览器开发者工具分别查看两图片对应的元素,并对获取图片请求进行抓包分析.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211215143107.png" class="" title="image-20241211215143107">
+<p>对于<code>cover</code>我们可以看到,它是一个嵌套在<code>&lt;a&gt;</code>标签里的一个<code>&lt;img&gt;</code>标签.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220138804.png" class="" title="image-20241211220138804">
+<p>我们点击当前来源，跳转到图片资源位置，没有问题。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220401618.png" class="" title="image-20241211220401618">
+<p>我们再来看一下<code>top_img</code>图片。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220503933.png" class="" title="image-20241211220503933">
+<p>我们可以看到它并不是<code>&lt;img&gt;</code>，而是用 CSS 的<code>background-image</code>属性来设置的。这里难以看出问题，我们对网络请求进行抓包。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220746097.png" class="" title="image-20241211220746097">
+<p>我们可以看到是一个 404 错误，说明找不到资源，就是路径出错了。观察请求头地址，我们不难发现，<code>2024/12/08/OPPO23秋</code>这一部分内容写了两次.说明 hexo 在处理文章的<code>top_img</code>时,很有可能本来就会加上前面的内容,我们的插件之类的又产生了干扰.具体原因还不得而知,不过问题已经可以解决了.</p>
+<p>通过上述分析,我们可以推测,<code>top_img</code>不显示,很可能是因为我们使用了<strong>相对路径</strong>,框架在此处的路径处理出了一些问题,所以我们尝试改用绝对路径来引入.</p>
+<p>在项目的<code>source</code>文件夹下新建一个<code>img</code>目录,里面复制我们的<code>top.png</code></p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221230694.png" class="" title="image-20241211221230694">
+<p>将文章中<code>tom_img</code>路径改为绝对路径<code>/img/top.png</code>(因为 hexo 会把 source 文件当作根目录来建站,所以建站后<code>img</code>文件夹相当于在根目录下,使用<code>/img</code>即可访问)</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221402895.png" class="" title="image-20241211221402895">
+<p>清理 hexo,重新生成,发现顶部图成功显示!</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221456484.png" class="" title="image-20241211221456484">
+]]></content>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
