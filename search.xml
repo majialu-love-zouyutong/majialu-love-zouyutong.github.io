@@ -173,6 +173,160 @@
 <li>临时函数</li>
 <li>为了绑定外层this</li>
 </ol>
+<h1>对象</h1>
+<h2 id="新增的对象字面量语法">新增的对象字面量语法</h2>
+<h3 id="成员速写">成员速写</h3>
+<p>如果对象字面量初始化时，如果一个成员的值来源于<strong>同名变量的值</strong>,则可以直接简写</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span><br><span class="line"><span class="comment">// &#123; name: &#x27;sdfj&#x27; &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法速写">方法速写</h3>
+<p>对象字面量初始化时,方法可以省略<code>冒号</code>和<code>function</code>关键字.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> ojb = &#123;</span><br><span class="line">    <span class="attr">sayHello</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    <span class="title function_">sayHello</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="计算属性名">计算属性名</h3>
+<p>有的时候,初始化对象时,某些<strong>属性名</strong>可能来源于某个表达式的值,在ES6,可以使用<strong>中括号</strong>来表示该属性名是通过计算得到的.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> pro1 = <span class="string">&#x27;name&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  [pro1]: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="comment">//&#123; name: &#x27;张三&#x27; &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Object的新增API">Object的新增API</h2>
+<p>以下都是静态方法</p>
+<h3 id="Object-is"><a href="http://Object.is">Object.is</a></h3>
+<p>用于判断两个对象是否相等,基本上和严格相等一致</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span>===<span class="title class_">NaN</span>) 	<span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(+<span class="number">0</span>===-<span class="number">0</span>)	<span class="comment">// true</span></span><br><span class="line"><span class="comment">// 上述是历史遗留问题</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">is</span>(<span class="title class_">NaN</span>, <span class="title class_">NaN</span>))	<span class="comment">// true</span></span><br><span class="line">cosnole.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">is</span>(+<span class="number">0</span>,-<span class="number">0</span>))		<span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-assign">Object.assign</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="title class_">Object</span>.<span class="title function_">assign</span>(obj1,obj2);</span><br><span class="line"><span class="comment">// 将obj2的数据覆盖到obj1,并改变obj1,返回obj1</span></span><br><span class="line"><span class="comment">// 要想不改动obj1,可以用如下方法</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;,obj1,obj2)</span><br><span class="line"><span class="comment">// ES7之后可以使用展开运算符</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;...obj1, ...obj2&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Object-getOwnProperNames的枚举顺序">Object.getOwnProperNames的枚举顺序</h3>
+<p><code>Object.getOwnPropertyNames</code>方法之前就存在,只不过,官方没有明确要求,对属性的顺序如何排列,并没有明确要求.</p>
+<p>ES6规定了该方法返回的数组排序方式与<code>for...in</code>循环或<code>Object.keys()</code>方法获取的顺序一致.</p>
+<blockquote>
+<p>根据现代 ECMAScript 规范，遍历顺序是明确定义的，并且在实现之间是一致的。在原型链的每个组件中，所有<strong>非负整数键（可以是数组索引的键</strong>）将首先<strong>按值升序</strong>遍历，然后按<strong>属性创建的时间升序遍历</strong>其他字符串键。</p>
+</blockquote>
+<h3 id="Object-setPrototypeOf">Object.setPrototypeOf</h3>
+<p>用于设置某个对象的隐式原型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj1, obj2)</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">obj1.<span class="property">__proto__</span> = obj2</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象简介">面向对象简介</h2>
+<p>面向对象: 一种编程思想,和具体语言无关.</p>
+<p>对比面向过程:</p>
+<ul>
+<li>面向过程:思考的切入点是功能的步骤</li>
+<li>面向对象:思考的切入点是对象的划分</li>
+</ul>
+<h2 id="类-构造函数的语法糖">类: 构造函数的语法糖</h2>
+<h3 id="传统构造函数的问题">传统构造函数的问题</h3>
+<ol>
+<li>属性和原型方法定义分离,降低了可读性</li>
+<li>原型成员可以被枚举</li>
+<li>默认情况下,构造函数仍然可以被当作普通函数使用</li>
+</ol>
+<h3 id="类的特点">类的特点</h3>
+<ol>
+<li>类声明不会被提升,与<code>let</code>和<code>const</code>一样,存在暂时性死区</li>
+<li>类中所有代码均在严格模式下执行</li>
+<li>类的所有方法都是不可枚举的</li>
+<li>类的所有方法内部都无法被当作构造函数使用</li>
+<li>类的构造器必须使用<code>new</code>来调用</li>
+</ol>
+<h2 id="类的其他书写方式">类的其他书写方式</h2>
+<h3 id="可计算的成员名">可计算的成员名</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> pro1 = <span class="string">&#x27;name&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Aniaml</span> &#123;</span><br><span class="line">    [pro1]: <span class="string">&#x27;zhangsan&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="getter和setter">getter和setter</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">  #name;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.#name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">name</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.#name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span> <span class="title function_">name</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.#name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> dog = <span class="keyword">new</span> <span class="title class_">Animal</span>(<span class="string">&#x27;旺财&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dog.<span class="property">name</span>);</span><br><span class="line">dog.<span class="property">name</span> = <span class="string">&#x27;小黑&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dog.<span class="property">name</span>);</span><br><span class="line"><span class="comment">// 旺财</span></span><br><span class="line"><span class="comment">// 小黑</span></span><br></pre></td></tr></table></figure>
+<h3 id="静态成员">静态成员</h3>
+<p>使用<code>static</code>关键字定义的成员即静态成员</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> name = <span class="string">&#x27;zhangsan&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字段初始化器-ES7">字段初始化器(ES7)</h3>
+<p>字段初始化器相当于在<code>constructor</code>中加上这些内容</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;zhangsan&#x27;</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span> = <span class="number">15</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 可以直接写为如下形式</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    name = <span class="string">&#x27;zhangsan&#x27;</span>,</span><br><span class="line">    age = <span class="number">15</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 直接书写,是定义在实例上的,而不是静态属性,这与方法不同,方法是定义在原型上的</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用<code>static</code>的字段初始化器,添加的是静态成员.</li>
+<li>没有使用<code>static</code>的字段初始化器,添加的成员位于<strong>对象上</strong>,注意,<strong>不是位于原型上</strong></li>
+<li>箭头函数在字段初始化器位置上,this指向当前对象</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    &#125;</span><br><span class="line">    print = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这里的print没有定义在原型上,而是每一个实例都会有一个自己的print</span></span><br></pre></td></tr></table></figure>
+<h3 id="类表达式">类表达式</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="keyword">class</span> &#123;</span><br><span class="line">    <span class="comment">// 匿名类,类表达式</span></span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">    b = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title function_">A</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br></pre></td></tr></table></figure>
+<h3 id="装饰器-ES7">装饰器(ES7)</h3>
+<h2 id="类的继承">类的继承</h2>
+<p>如果两个类A和B,如果可以描述为B是A,则A和B形成继承关系</p>
+<p>如果B是A,则:</p>
+<ol>
+<li>B继承自A</li>
+<li>A派生B</li>
+<li>B是A的子类</li>
+<li>A是B的父类</li>
+</ol>
+<p>如果A是B的父类,则B会自动拥有A中所有实例成员</p>
+<p>新的关键字</p>
+<ul>
+<li><code>extends</code>:继承,用于类的定义</li>
+<li><code>super</code>:
+<ul>
+<li>直接当作函数调用,当作父类的构造函数
+<ul>
+<li>如果定义了construcor,且该类是子类,必须在访问子类的constructor的this之前,调用super</li>
+<li>如果子类不写constructor,则会自动</li>
+</ul>
+</li>
+<li>当作对象调用
+<ul>
+<li>在实例方法中,指向父类原型</li>
+<li>在静态方法中,指向父类本身</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="抽象类">抽象类</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">new</span>.<span class="property">target</span> === <span class="title class_">Animal</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;不能实例化Animal类&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">eat</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>吃东西`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Animal</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(name);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.name&#125;</span>在跑`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>解构</h1>
+<h1>符号</h1>
+<h2 id="普通符号">普通符号</h2>
+<p>符号是ES6新增的一个数据类型,它通过使用函数<code>Symbol(符号描述)</code>来创建</p>
+<p>符号设计的初衷,是<strong>为了给对象设置私有属性</strong></p>
+<p>私有属性:只能在对象内部使用,外面无法使用.</p>
+<p>符号具有以下特点:</p>
+<ul>
+<li>没有字面量</li>
+<li>使用<code>typeof</code>得到的类型是<code>symbol</code></li>
+<li><strong>每次调用<code>Symbol</code>得到的符号永远不相等,无论符号名是否相同</strong></li>
+<li>符号可以作为对象的属性名存在,这种属性称之为符号属性
+<ul>
+<li>开发者可以通过精心的设计,让这些属性无法通过常规方式被外界访问.</li>
+<li>符号属性是不能被枚举的,因此,在<code>for-in</code>循环中无法读取到符号属性,<code>Object.keys</code>方法也无法读取到符号属性</li>
+<li><code>Object.getOwnPropertyNames</code>尽管可以得到所有无法枚举的属性,但是仍然无法读取到符号属性</li>
+<li>ES6新增了<code>Object.getOwnPropertySymbols</code>方法,可以读取符号</li>
+</ul>
+</li>
+<li>符号无法被隐式转换,因此不能被用于数学运算,字符串拼接或其他隐式转换的场景,但符号可显示地转换为字符串,通过<code>String</code>构造函数进行转换即可.<code>console.log</code>之所以可以输出符号,是因为它在内部进行了显示转换.</li>
+</ul>
+<h2 id="共享符号">共享符号</h2>
+<p>根据某个符号描述能够得到同一个符号</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;符号描述&quot;</span>)   <span class="comment">// 获取共享符号</span></span><br></pre></td></tr></table></figure>
+<h2 id="知名-公共-具名-符号">知名(公共,具名)符号</h2>
+<p>知名符号是一些具有特殊含义的共享符号,通过Symbol的静态属性得到</p>
+<p>ES6延续了ES5的思想:减少魔法,暴露内部实现!</p>
+<p>因此,ES6用知名符号暴露了某些场景的内部实现</p>
+<ol>
+<li>
+<p><code>Symbol.hasInstance</code></p>
+<p>该符号用于定义构造函数的静态成员,它将影响<code>instanceof</code>的判定</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">obj <span class="keyword">instanceof</span> A</span><br><span class="line"><span class="comment">// 等效于</span></span><br><span class="line">A[<span class="title class_">Symbol</span>.<span class="property">hasInstance</span>](obj)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>Symbol.isConcatSpreadable</code></p>
+<p>该符号会影响到数组的cancat方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">concat</span>(<span class="number">56</span>, [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br><span class="line"><span class="comment">// [3, 56, 5, 6, 7, 8]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>Symbol.toPrimitive</code></p>
+<p>该知名符号会影响类型转换的结果</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 会依次尝试以下方法，直达obj转化为基本类型</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="title class_">Symbol</span>.<span class="property">toPrimitive</span>])  <span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">valueOf</span>())      <span class="comment">// &#123;a: 1, b: 2&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">toString</span>())     <span class="comment">// [object Object]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj + <span class="number">123</span>);         <span class="comment">// [object Object]123</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    [<span class="title class_">Symbol</span>.<span class="property">toPrimitive</span>](hint) &#123;</span><br><span class="line">        <span class="keyword">if</span> (hint === <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">42</span>; <span class="comment">// 数值上下文</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (hint === <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span>; <span class="comment">// 字符串上下文</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;default&quot;</span>; <span class="comment">// 默认上下文</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(+obj); <span class="comment">// 42</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;obj&#125;</span>`</span>); <span class="comment">// &quot;Hello&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;default&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>Symbol.toStringTag</code></p>
+<p>该知名符号会影响<code>Object.prototype.toString</code>的返回值</p>
+</li>
+<li>
+<p>其他知名符号</p>
+</li>
+</ol>
 ]]></content>
       <tags>
         <tag>ES6</tag>
