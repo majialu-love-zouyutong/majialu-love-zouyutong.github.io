@@ -578,3 +578,375 @@ const func = (arg) => {
 2. 异步处理函数
 3. 临时函数
 4. 为了绑定外层this
+
+# 对象
+
+## 新增的对象字面量语法
+
+### 成员速写
+
+如果对象字面量初始化时，如果一个成员的值来源于**同名变量的值**,则可以直接简写
+
+```js
+const name = "zhangsan"
+const obj = {
+    name
+}
+console.log(obj);
+// { name: 'sdfj' }
+```
+
+### 方法速写
+
+对象字面量初始化时,方法可以省略`冒号`和`function`关键字.
+
+```js
+const ojb = {
+    sayHello: function(){
+        console.log('hello')
+    }
+}
+const obj = {
+    sayHello(){
+        console.log('hello')
+    }
+}
+```
+
+### 计算属性名
+
+有的时候,初始化对象时,某些**属性名**可能来源于某个表达式的值,在ES6,可以使用**中括号**来表示该属性名是通过计算得到的.
+
+```js
+const pro1 = 'name';
+const obj = {
+  [pro1]: '张三',
+};
+console.log(obj)
+//{ name: '张三' }
+```
+
+## Object的新增API
+
+以下都是静态方法
+
+### Object.is
+
+用于判断两个对象是否相等,基本上和严格相等一致
+
+```js
+console.log(NaN===NaN) 	// false
+console.log(+0===-0)	// true
+// 上述是历史遗留问题
+console.log(Object.is(NaN, NaN))	// true
+cosnole.log(Object.is(+0,-0))		// false
+```
+
+### Object.assign
+
+```js
+const obj = Object.assign(obj1,obj2);
+// 将obj2的数据覆盖到obj1,并改变obj1,返回obj1
+// 要想不改动obj1,可以用如下方法
+const obj = Object.assign({},obj1,obj2)
+// ES7之后可以使用展开运算符
+const obj = {...obj1, ...obj2}
+```
+
+### Object.getOwnProperNames的枚举顺序
+
+`Object.getOwnPropertyNames`方法之前就存在,只不过,官方没有明确要求,对属性的顺序如何排列,并没有明确要求.
+
+ES6规定了该方法返回的数组排序方式与`for...in`循环或`Object.keys()`方法获取的顺序一致.
+
+> 根据现代 ECMAScript 规范，遍历顺序是明确定义的，并且在实现之间是一致的。在原型链的每个组件中，所有**非负整数键（可以是数组索引的键**）将首先**按值升序**遍历，然后按**属性创建的时间升序遍历**其他字符串键。
+
+### Object.setPrototypeOf
+
+用于设置某个对象的隐式原型
+
+```js
+Object.setPrototypeOf(obj1, obj2)
+// 相当于
+obj1.__proto__ = obj2
+```
+
+## 面向对象简介
+
+面向对象: 一种编程思想,和具体语言无关.
+
+对比面向过程:
+
+- 面向过程:思考的切入点是功能的步骤
+- 面向对象:思考的切入点是对象的划分
+
+## 类: 构造函数的语法糖
+
+### 传统构造函数的问题
+
+1. 属性和原型方法定义分离,降低了可读性
+2. 原型成员可以被枚举
+3. 默认情况下,构造函数仍然可以被当作普通函数使用
+
+### 类的特点
+
+1. 类声明不会被提升,与`let`和`const`一样,存在暂时性死区
+2. 类中所有代码均在严格模式下执行
+3. 类的所有方法都是不可枚举的
+4. 类的所有方法内部都无法被当作构造函数使用
+5. 类的构造器必须使用`new`来调用
+
+## 类的其他书写方式
+
+### 可计算的成员名
+
+```js
+const pro1 = 'name'
+class Aniaml {
+    [pro1]: 'zhangsan'
+}
+```
+
+### getter和setter
+
+```js
+class Animal {
+  #name;
+  constructor(name) {
+    this.#name = name;
+  }
+  get name() {
+    return this.#name;
+  }
+  set name(name) {
+    this.#name = name;
+  }
+}
+const dog = new Animal('旺财');
+console.log(dog.name);
+dog.name = '小黑';
+console.log(dog.name);
+// 旺财
+// 小黑
+```
+
+### 静态成员
+
+使用`static`关键字定义的成员即静态成员
+
+```js
+class Animal {
+    static name = 'zhangsan'
+}
+```
+
+### 字段初始化器(ES7)
+
+字段初始化器相当于在`constructor`中加上这些内容
+
+```js
+class Animal {
+    constructor() {
+        this.name = 'zhangsan';
+        this.age = 15
+    }
+}
+// 可以直接写为如下形式
+class Animal {
+    name = 'zhangsan',
+    age = 15
+}
+// 直接书写,是定义在实例上的,而不是静态属性,这与方法不同,方法是定义在原型上的
+```
+
+1. 使用`static`的字段初始化器,添加的是静态成员.
+2. 没有使用`static`的字段初始化器,添加的成员位于**对象上**,注意,**不是位于原型上**
+3. 箭头函数在字段初始化器位置上,this指向当前对象
+
+```js
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    print = () => {
+        console.log(this.name)
+    }
+}
+// 这里的print没有定义在原型上,而是每一个实例都会有一个自己的print
+```
+
+### 类表达式
+
+```js
+const A = class {
+    // 匿名类,类表达式
+    a = 1;
+    b = 2;
+}
+const a = new A();
+console.log(a);
+```
+
+### 装饰器(ES7)
+
+
+
+## 类的继承
+
+如果两个类A和B,如果可以描述为B是A,则A和B形成继承关系
+
+如果B是A,则:
+
+1. B继承自A
+2. A派生B
+3. B是A的子类
+4. A是B的父类
+
+如果A是B的父类,则B会自动拥有A中所有实例成员
+
+新的关键字
+
+- `extends`:继承,用于类的定义
+- `super`:
+  - 直接当作函数调用,当作父类的构造函数
+    - 如果定义了construcor,且该类是子类,必须在访问子类的constructor的this之前,调用super
+    - 如果子类不写constructor,则会自动
+  - 当作对象调用
+    - 在实例方法中,指向父类原型
+    - 在静态方法中,指向父类本身
+
+## 抽象类
+
+```js
+class Animal {
+  constructor(name) {
+    if (new.target === Animal) {
+      throw new Error('不能实例化Animal类');
+    }
+    this.name = name;
+  }
+  eat() {
+    console.log(`${this.name}吃东西`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+  }
+  run() {
+    console.log(`${this.name}在跑`);
+  }
+}
+```
+
+# 解构
+
+# 符号
+
+##  普通符号
+
+符号是ES6新增的一个数据类型,它通过使用函数`Symbol(符号描述)`来创建
+
+符号设计的初衷,是**为了给对象设置私有属性**
+
+私有属性:只能在对象内部使用,外面无法使用.
+
+符号具有以下特点:
+
+- 没有字面量
+- 使用`typeof`得到的类型是`symbol`
+- **每次调用`Symbol`得到的符号永远不相等,无论符号名是否相同**
+- 符号可以作为对象的属性名存在,这种属性称之为符号属性
+  - 开发者可以通过精心的设计,让这些属性无法通过常规方式被外界访问.
+  - 符号属性是不能被枚举的,因此,在`for-in`循环中无法读取到符号属性,`Object.keys`方法也无法读取到符号属性
+  - `Object.getOwnPropertyNames`尽管可以得到所有无法枚举的属性,但是仍然无法读取到符号属性
+  - ES6新增了`Object.getOwnPropertySymbols`方法,可以读取符号
+- 符号无法被隐式转换,因此不能被用于数学运算,字符串拼接或其他隐式转换的场景,但符号可显示地转换为字符串,通过`String`构造函数进行转换即可.`console.log`之所以可以输出符号,是因为它在内部进行了显示转换.
+
+## 共享符号
+
+根据某个符号描述能够得到同一个符号
+
+```js
+Symbol.for("符号描述")   // 获取共享符号
+```
+
+## 知名(公共,具名)符号
+
+知名符号是一些具有特殊含义的共享符号,通过Symbol的静态属性得到
+
+ES6延续了ES5的思想:减少魔法,暴露内部实现!
+
+因此,ES6用知名符号暴露了某些场景的内部实现
+
+1. `Symbol.hasInstance`
+
+   该符号用于定义构造函数的静态成员,它将影响`instanceof`的判定
+
+   ```js
+   obj instanceof A
+   // 等效于
+   A[Symbol.hasInstance](obj)
+   ```
+
+2. `Symbol.isConcatSpreadable`
+
+   该符号会影响到数组的cancat方法
+
+   ```js
+   const arr = [3];
+   const result = arr.concat(56, [5, 6, 7, 8]);
+   console.log(result)
+   // [3, 56, 5, 6, 7, 8]
+   ```
+
+3. `Symbol.toPrimitive`
+
+   该知名符号会影响类型转换的结果
+
+   ```js
+   const obj = {
+     a: 1,
+     b: 2,
+   };
+   // 会依次尝试以下方法，直达obj转化为基本类型
+   console.log(obj[Symbol.toPrimitive])  // undefined
+   console.log(obj.valueOf())      // {a: 1, b: 2}
+   console.log(obj.toString())     // [object Object]
+   
+   
+   
+   console.log(obj + 123);         // [object Object]123
+   ```
+
+   ```js
+   const obj = {
+       [Symbol.toPrimitive](hint) {
+           if (hint === "number") {
+               return 42; // 数值上下文
+           }
+           if (hint === "string") {
+               return "Hello"; // 字符串上下文
+           }
+           return "default"; // 默认上下文
+       }
+   };
+   
+   console.log(+obj); // 42
+   console.log(`${obj}`); // "Hello"
+   console.log(obj + ""); // "default"
+   
+   ```
+
+4. `Symbol.toStringTag`
+
+   该知名符号会影响`Object.prototype.toString`的返回值
+
+   
+
+5. 其他知名符号
+
+
+
