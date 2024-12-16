@@ -948,5 +948,272 @@ ES6延续了ES5的思想:减少魔法,暴露内部实现!
 
 5. 其他知名符号
 
+# 迭代器和生成器
 
+## 迭代器
+
+### 背景知识
+
+1. 什么是迭代
+
+   从一个数据集合中按照一定的顺序，不断取出数据的过程
+
+2. 迭代和遍历的区别？
+
+   迭代强调的是依次取数据，并不保证取多少，也不保证把所有的数据取完
+
+   遍历强调的是完整性，要把整个数据依次全部取出
+
+3. 迭代器
+
+   对迭代过程的封装，在不同的语言中有不同的表现形式，通常为对象
+
+4. 迭代模式
+
+   一种设计模式，用于统一迭代的过程，并规范了迭代器的规格：
+
+   - 迭代器应该具有得到下一个数据的能力
+   - 迭代器应该具有判断是否还有后续数据的能力
+
+### JS中的迭代器
+
+JS规定，如果一个对象具有`next()`方法，并且该方法返回一个对象，该对象的格式如下
+
+```js
+{value: 值, done:是否迭代完成}
+```
+
+则认为该对象是一个迭代器
+
+含义:
+
+- `next`方法:用于得到下一个数据
+- 返回的对象
+  - `value`下一个对象的数据
+  - `done`是否结束
+
+```js
+const arr = [1, 2, 3, 4, 5];
+const iterator = {
+  i: 0,
+  next() {
+    //当前的数组下标
+    return {
+      value: arr[this.i++],
+      done: this.i >= arr.length,
+    };
+  },
+};
+
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+
+// { value: 1, done: false }
+// { value: 2, done: false }
+// { value: 3, done: false }
+// { value: 4, done: false }
+// { value: 5, done: true }
+// { value: undefined, done: true }
+
+```
+
+```js
+function createFeivoIterator() {
+  let prev1 = 1,
+    prev2 = 1;
+  return {
+    next() {
+      const result = {
+        value: prev1 + prev2,
+        done: false,
+      };
+      prev2 = prev1;
+      prev1 = result.value;
+      return result;
+    },
+  };
+}
+
+const iter = createFeivoIterator();
+console.log(iter.next().value);
+console.log(iter.next().value);
+```
+
+## 可迭代协议与`for-of`循环
+
+**概念回顾**
+
+- 迭代器(iterator): 一个具有next方法的对象, next方法返回下一个数据并且能指示是否迭代完成.
+- 迭代器创建函数(iterator creator): 一个返回迭代器的函数
+
+**可迭代协议**
+
+ES6规定,如果一个对象具有知名符号属性`Symbol.iterator`,并且属性值是一个迭代器创建函数,则该对象是可迭代的(iterable)
+
+> 思考:如何知晓一个对象是否是可迭代的?
+>
+> 思考:如何遍历一个可迭代对象?
+
+**`for-of`循环**
+
+`for-of`循环用于遍历可迭代对象,格式如下
+
+```js
+//迭代完成后循环
+for(const item of arr) {
+    console.log(item)
+}
+
+// 相当于
+const iterator = arr[Symbol.iterator]();
+let result = iterator.next();
+while(!result.done) {
+    const item = result.value;	// 取出数据
+    console.log(item);
+    // 下一次迭代
+    result = iterator.next();
+}
+```
+
+**展开运算符与可迭代对象**
+
+展开运算符可以将可迭代对象展开,这样可以轻松将其转换为数组
+
+## 生成器
+
+1. 什么是生成器?
+
+生成器是通过构造函数`Generator`创建的对象,生成器既是一个**迭代器**,同时又是一个**可迭代对象**.
+
+2. 如何创建生成器?
+
+生成器的创建,必须使用生成器函数(Generator Function)
+
+3. 如何书写一个生成器函数呢?
+
+```js
+function* mthod() {
+    
+}
+```
+
+```js
+function* test() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const generator = test();
+console.log(generator.next().value);
+console.log(generator.next().value);
+console.log(generator.next().value);
+
+// 1
+// 2
+// 3
+```
+
+4. 生成器函数内部是如何执行的?
+
+生成器函数内部是为了给生成器提供迭代数据
+
+每次调用生成器的next方法,将导致生成器函数运行到下一个yield关键字位置
+
+yield是一个关键字,该关键字只能在生成器函数内部使用,表达产生一个迭代数据.
+
+5. 有哪些需要注意的细节
+
+   1. 生成器函数可以有返回值,返回值表示第一次`done: true`时对应的`value`值
+
+   ```js
+   function* test() {
+     yield 1;
+     yield 2;
+     return 4;
+     yield 3;
+   }
+   
+   const generator = test();
+   console.log(generator.next());
+   console.log(generator.next());
+   console.log(generator.next());
+   console.log(generator.next());
+   
+   // { value: 1, done: false }
+   // { value: 2, done: false }
+   // { value: 4, done: true }
+   // { value: undefined, done: true }
+   ```
+   2. 调用生成器的next方法时,可以传递参数,传递的参数会交给`yield`表达式的返回值
+   3. 第一次调用next方法时,**传参没有任何意义**
+   
+   ![image-20241216221449085](ES6/image-20241216221449085.png)
+   
+   4. 在生成器函数内部还可以调用其他生成器函数,但是要注意加上`*`
+   
+      ```js
+      function* t1() {
+          yield "a"
+          yield "b"
+      }
+      function* test() {
+          yield* t1();
+          yield 1;
+          yield 2;
+          yield 3;
+      }
+      ```
+   
+6. 生成器的其他API
+
+   - return方法: 调用该方法,可以提前结束生成器函数,从而让整个迭代过程结束
+   - throw方法: 调用该方法,在生成器中产生一个错误
+
+## 生成器的应用-异步任务控制
+
+ES6之后有了Promise,但是`async`和`await`要ES7才有.
+
+```js
+function* task() {
+  const d = yield 1;
+  // d: 1
+  const resp = yield fetch('http://101.132.72.36:5100/api/local');
+  const result = yield resp.json();
+  console.log(result);
+}
+
+run(task);
+
+function run(generatorFunc) {
+  const generator = generatorFunc();
+  let result = generator.next(); // 启动任务,开始迭代
+  handleResult();
+  function handleResult() {
+    if (result.done) {
+      return; // 迭代完成
+    }
+    // 1. 迭代的数据是一个Promise
+    if (result.value.then === 'function') {
+      result.value.then(
+        function (data) {
+          result = generator.next(data);
+          handleResult();
+        },
+        function (error) {
+          result = generator.throw(error);
+          handleResult();
+        }
+      );
+    } else {
+      result = generator.next(result.value);
+      handleResult();
+    }
+  }
+}
+```
 
