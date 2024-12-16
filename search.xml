@@ -327,6 +327,115 @@
 <p>其他知名符号</p>
 </li>
 </ol>
+<h1>迭代器和生成器</h1>
+<h2 id="迭代器">迭代器</h2>
+<h3 id="背景知识">背景知识</h3>
+<ol>
+<li>
+<p>什么是迭代</p>
+<p>从一个数据集合中按照一定的顺序，不断取出数据的过程</p>
+</li>
+<li>
+<p>迭代和遍历的区别？</p>
+<p>迭代强调的是依次取数据，并不保证取多少，也不保证把所有的数据取完</p>
+<p>遍历强调的是完整性，要把整个数据依次全部取出</p>
+</li>
+<li>
+<p>迭代器</p>
+<p>对迭代过程的封装，在不同的语言中有不同的表现形式，通常为对象</p>
+</li>
+<li>
+<p>迭代模式</p>
+<p>一种设计模式，用于统一迭代的过程，并规范了迭代器的规格：</p>
+<ul>
+<li>迭代器应该具有得到下一个数据的能力</li>
+<li>迭代器应该具有判断是否还有后续数据的能力</li>
+</ul>
+</li>
+</ol>
+<h3 id="JS中的迭代器">JS中的迭代器</h3>
+<p>JS规定，如果一个对象具有<code>next()</code>方法，并且该方法返回一个对象，该对象的格式如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">value</span>: 值, <span class="attr">done</span>:是否迭代完成&#125;</span><br></pre></td></tr></table></figure>
+<p>则认为该对象是一个迭代器</p>
+<p>含义:</p>
+<ul>
+<li><code>next</code>方法:用于得到下一个数据</li>
+<li>返回的对象
+<ul>
+<li><code>value</code>下一个对象的数据</li>
+<li><code>done</code>是否结束</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> iterator = &#123;</span><br><span class="line">  <span class="attr">i</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="title function_">next</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//当前的数组下标</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">value</span>: arr[<span class="variable language_">this</span>.<span class="property">i</span>++],</span><br><span class="line">      <span class="attr">done</span>: <span class="variable language_">this</span>.<span class="property">i</span> &gt;= arr.<span class="property">length</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 4, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 5, done: true &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createFeivoIterator</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> prev1 = <span class="number">1</span>,</span><br><span class="line">    prev2 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> result = &#123;</span><br><span class="line">        <span class="attr">value</span>: prev1 + prev2,</span><br><span class="line">        <span class="attr">done</span>: <span class="literal">false</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">      prev2 = prev1;</span><br><span class="line">      prev1 = result.<span class="property">value</span>;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> iter = <span class="title function_">createFeivoIterator</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iter.<span class="title function_">next</span>().<span class="property">value</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iter.<span class="title function_">next</span>().<span class="property">value</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="可迭代协议与for-of循环">可迭代协议与<code>for-of</code>循环</h2>
+<p><strong>概念回顾</strong></p>
+<ul>
+<li>迭代器(iterator): 一个具有next方法的对象, next方法返回下一个数据并且能指示是否迭代完成.</li>
+<li>迭代器创建函数(iterator creator): 一个返回迭代器的函数</li>
+</ul>
+<p><strong>可迭代协议</strong></p>
+<p>ES6规定,如果一个对象具有知名符号属性<code>Symbol.iterator</code>,并且属性值是一个迭代器创建函数,则该对象是可迭代的(iterable)</p>
+<blockquote>
+<p>思考:如何知晓一个对象是否是可迭代的?</p>
+<p>思考:如何遍历一个可迭代对象?</p>
+</blockquote>
+<p><strong><code>for-of</code>循环</strong></p>
+<p><code>for-of</code>循环用于遍历可迭代对象,格式如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//迭代完成后循环</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">const</span> iterator = arr[<span class="title class_">Symbol</span>.<span class="property">iterator</span>]();</span><br><span class="line"><span class="keyword">let</span> result = iterator.<span class="title function_">next</span>();</span><br><span class="line"><span class="keyword">while</span>(!result.<span class="property">done</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = result.<span class="property">value</span>;	<span class="comment">// 取出数据</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item);</span><br><span class="line">    <span class="comment">// 下一次迭代</span></span><br><span class="line">    result = iterator.<span class="title function_">next</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>展开运算符与可迭代对象</strong></p>
+<p>展开运算符可以将可迭代对象展开,这样可以轻松将其转换为数组</p>
+<h2 id="生成器">生成器</h2>
+<ol>
+<li>什么是生成器?</li>
+</ol>
+<p>生成器是通过构造函数<code>Generator</code>创建的对象,生成器既是一个<strong>迭代器</strong>,同时又是一个<strong>可迭代对象</strong>.</p>
+<ol start="2">
+<li>如何创建生成器?</li>
+</ol>
+<p>生成器的创建,必须使用生成器函数(Generator Function)</p>
+<ol start="3">
+<li>如何书写一个生成器函数呢?</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">mthod</span>(<span class="params"></span>) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> generator = <span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>().<span class="property">value</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>().<span class="property">value</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>().<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>生成器函数内部是如何执行的?</li>
+</ol>
+<p>生成器函数内部是为了给生成器提供迭代数据</p>
+<p>每次调用生成器的next方法,将导致生成器函数运行到下一个yield关键字位置</p>
+<p>yield是一个关键字,该关键字只能在生成器函数内部使用,表达产生一个迭代数据.</p>
+<ol start="5">
+<li>
+<p>有哪些需要注意的细节</p>
+<ol>
+<li>生成器函数可以有返回值,返回值表示第一次<code>done: true</code>时对应的<code>value</code>值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> generator = <span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(generator.<span class="title function_">next</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 4, done: true &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>调用生成器的next方法时,可以传递参数,传递的参数会交给<code>yield</code>表达式的返回值</li>
+<li>第一次调用next方法时,<strong>传参没有任何意义</strong></li>
+</ol>
+<img src="/2024/12/14/ES6/image-20241216221449085.png" class="" title="image-20241216221449085">
+<ol start="4">
+<li>
+<p>在生成器函数内部还可以调用其他生成器函数,但是要注意加上<code>*</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">t1</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&quot;a&quot;</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&quot;b&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">yield</span>* <span class="title function_">t1</span>();</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>生成器的其他API</p>
+<ul>
+<li>return方法: 调用该方法,可以提前结束生成器函数,从而让整个迭代过程结束</li>
+<li>throw方法: 调用该方法,在生成器中产生一个错误</li>
+</ul>
+</li>
+</ol>
+<h2 id="生成器的应用-异步任务控制">生成器的应用-异步任务控制</h2>
+<p>ES6之后有了Promise,但是<code>async</code>和<code>await</code>要ES7才有.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">task</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> d = <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// d: 1</span></span><br><span class="line">  <span class="keyword">const</span> resp = <span class="keyword">yield</span> <span class="title function_">fetch</span>(<span class="string">&#x27;http://101.132.72.36:5100/api/local&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">yield</span> resp.<span class="title function_">json</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">run</span>(task);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">run</span>(<span class="params">generatorFunc</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> generator = <span class="title function_">generatorFunc</span>();</span><br><span class="line">  <span class="keyword">let</span> result = generator.<span class="title function_">next</span>(); <span class="comment">// 启动任务,开始迭代</span></span><br><span class="line">  <span class="title function_">handleResult</span>();</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleResult</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.<span class="property">done</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>; <span class="comment">// 迭代完成</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 1. 迭代的数据是一个Promise</span></span><br><span class="line">    <span class="keyword">if</span> (result.<span class="property">value</span>.<span class="property">then</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      result.<span class="property">value</span>.<span class="title function_">then</span>(</span><br><span class="line">        <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">          result = generator.<span class="title function_">next</span>(data);</span><br><span class="line">          <span class="title function_">handleResult</span>();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">          result = generator.<span class="keyword">throw</span>(error);</span><br><span class="line">          <span class="title function_">handleResult</span>();</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result = generator.<span class="title function_">next</span>(result.<span class="property">value</span>);</span><br><span class="line">      <span class="title function_">handleResult</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>ES6</tag>
