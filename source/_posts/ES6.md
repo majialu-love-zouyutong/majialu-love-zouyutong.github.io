@@ -2,6 +2,8 @@
 title: ES6
 date: 2024-12-14 16:57:42
 tags: ES6
+cover: ES6.png
+top_img: /img/ES6.png
 ---
 # 概述
 
