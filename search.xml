@@ -1,6 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OPPO23秋</title>
+    <url>/2024/12/08/OPPO23%E7%A7%8B/</url>
+    <content><![CDATA[<h1>考情分析</h1>
+<p><a href="https://www.nowcoder.com/exam/test/85190579/detail?pid=55153645&amp;examPageSource=Company&amp;subTabName=written_page&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3Doppo23&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">真题地址</a></p>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/OPPO23%E7%A7%8B%E6%8B%9B.png" class="" title="OPPO23秋招">
+<h1>题目解析</h1>
+<h2 id="1-下述代码的执行结果为">1.下述代码的执行结果为</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">getName</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj2, obj1);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2.<span class="title function_">getName</span>());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. undefined</li>
+<li>B. “张三”</li>
+<li>C. “李四”</li>
+<li>D. null</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<blockquote>
+<p>考点：<code>super</code>关键字， <code>this</code>关键字</p>
+</blockquote>
+<p><code>this</code>指向调用者</p>
+<p><code>super</code>关键字用于访问对象字面量或类的[[Prototype]]上的属性，或调用超类的构造函数。</p>
+<p><code>super.prop</code>和<code>super[expr]</code>表达式在<strong>类和对象字面量</strong>的任何<strong>方法定义</strong>中都有效。</p>
+<p><code>super(...args)</code>表达式只在<strong>类的构造函数中</strong>有效</p>
+<blockquote>
+<p><strong>注意</strong>：<code>super</code>是一个关键字，这些是特殊的语法结构，<code>super</code>不是指向<strong>proto</strong>对象的变量。尝试读取<code>super</code>本身是一个语法错误.也不能通过 super 来删除超类的属性。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> child = &#123;</span><br><span class="line">  <span class="title function_">myParent</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">super</span>); <span class="comment">// SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Base</span> &#123;</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">super</span>.<span class="property">foo</span>; <span class="comment">// this is bad</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Derived</span>().<span class="title function_">delete</span>(); <span class="comment">// ReferenceError: invalid delete involving &#x27;super&#x27;.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-运行此代码-运行结果正确的是">2.运行此代码,运行结果正确的是</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">nums.<span class="title function_">push</span>(<span class="number">0</span>);</span><br><span class="line">nums.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nums);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. [2, 3, 4, 5, 6, 7]</li>
+<li>B. [3, 4, 5, 6, 7, 0]</li>
+<li>C. [2, 3, 4, 5, 6, 7, 0]</li>
+<li>D. [0, 2, 3, 4, 5, 6]</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<blockquote>
+<p>考点：数组 API</p>
+</blockquote>
+<p><strong>数组添加和移除元素常用 API</strong></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>说明</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push(e1,e2,...,en)</code></td>
+<td>向数组的末尾添加一个或多个元素</td>
+<td>新数组的长度</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>移除数组的最后一个元素</td>
+<td>被移除的元素</td>
+</tr>
+<tr>
+<td><code>shift()</code></td>
+<td>移除数组第一个元素，其他元素索引减一</td>
+<td>被移除的元素，若没有被移除的元素，则返回空数组</td>
+</tr>
+<tr>
+<td><code>unshift(e1,e2,...,en)</code></td>
+<td>向数组的开头添加一个或多个元素</td>
+<td>新数组的长度</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）">3.运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello nowcoder&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. hello hello nowcoder</li>
+<li>B. hello</li>
+<li>C. hello nowcoder</li>
+<li>D. hello nowcoder hello nowcoder</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<blockquote>
+<p>考点：事件监听</p>
+</blockquote>
+<p>**EventTarget.addEventListener()**方法将指定的监听器注册到<code>EventTarget</code>上，当该对象触发指定的事件时，指定的回调函数就会被执行。<code>EventTarget</code>可以是一个文档上的元素<code>Element</code>,<code>Document</code>和<code>Window</code>，也可以是任何支持事件的对象(比如<code>XMLHttpRequest</code>).</p>
+<p><code>addEventListener()</code>的工作原理是将实现<code>EventListener</code>的函数或对象添加到调用它的<code>EventTarget</code>上的指定事件类型的事件侦听器列表中。如果要绑定的函数或对象<strong>已经被添加到列表中</strong>，该函数或对象<strong>不会被再次添加</strong>。</p>
+<blockquote>
+<p>注意：如果先前向事件侦听器列表中添加过一个匿名函数，并且在之后的代码中调用<code>addEventListener</code>来添加一个功能完全相同的匿名函数(<strong>甚至代码完全相同</strong>),那么之后的这个匿名函数也会被添加到列表中。</p>
+<p>实际上，即使使用完全相同的代码来定义一个匿名函数，这两个函数仍然存在区别，并非同一个函数。</p>
+</blockquote>
+<hr>
+<h2 id="4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）">4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）</h2>
+<ul>
+<li>A. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
+<li>B. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
+<li>C. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
+<li>D. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="5-请问一下-JS-代码输出的结果是">5.请问一下 JS 代码输出的结果是()</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">935</span>);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> val;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">res</span>(++val);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">res</span>(++val);</span><br><span class="line">      &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. 935 936 936</li>
+<li>B. 935 936 937</li>
+<li>C. 935 935 935</li>
+<li>D. 935 935 936</li>
+</ul>
+<blockquote>
+<p>正确答案 B</p>
+</blockquote>
+<hr>
+<h2 id="6-下列关于-SSL-说法错误的是">6.下列关于 SSL 说法错误的是__.</h2>
+<ul>
+<li>A. SSL 是 TCP 加强版本</li>
+<li>B. SSL 通过采用机密性，数据完整性，服务器鉴别和客户端鉴别来强化 TCP</li>
+<li>C. SSL 强制网络两端的用户使用特定的对称加密算法</li>
+<li>D. SSL 记录由类型字段，版本字段，长度字段，数据字段，MAC 字段组成</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="7-请问以下-JS-代码最终输出的结果是（）">7.请问以下 JS 代码最终输出的结果是（）</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b] = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; c, d &#125; = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(d);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. undefined undefined undefined undefined</li>
+<li>B. 1 2 1 2</li>
+<li>C. undefined undefined 1 2</li>
+<li>D. 1 2 undefined undefined</li>
+</ul>
+<blockquote>
+<p>正确答案：D</p>
+</blockquote>
+<hr>
+<h2 id="8-小明使用-Chrome-浏览器上-163-邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？">8.小明使用 Chrome 浏览器上 163 邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？</h2>
+<ul>
+<li>A. SMTP</li>
+<li>B. POP3</li>
+<li>C. HTTP</li>
+<li>D. IGMP</li>
+</ul>
+<blockquote>
+<p>正确答案</p>
+</blockquote>
+<hr>
+<h2 id="9-某个主机与服务器之间建立连接，经测试主机到服务器的平均-RTT-为-120ms，一个-gif-图像的平均发送时延为-45ms。如果一个-Web-页面使用非持久连接的-HTTP-协议，它包含了-8-幅-gif-图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本-HTML-文件、HTTP-请求报文、TCP-握手报文大小忽略不计，TCP-第三次握手捎带一个-HTTP-请求）">9.某个主机与服务器之间建立连接，经测试主机到服务器的平均 RTT 为 120ms，一个 gif 图像的平均发送时延为 45ms。如果一个 Web 页面使用非持久连接的 HTTP 协议，它包含了 8 幅 gif 图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本 HTML 文件、HTTP 请求报文、TCP 握手报文大小忽略不计，TCP 第三次握手捎带一个 HTTP 请求）</h2>
+<ul>
+<li>A. 1560ms</li>
+<li>B. 2280ms</li>
+<li>C. 2520ms</li>
+<li>D. 2640ms</li>
+</ul>
+<blockquote>
+<p>正确答案</p>
+</blockquote>
+<hr>
+<h2 id="10-对于某线性表来说，若第一个元素的存储地址为-100，每个元素的长度为-2，则经过五个元素后，第六个元素的存储地址为（）">10.对于某线性表来说，若第一个元素的存储地址为 100，每个元素的长度为 2，则经过五个元素后，第六个元素的存储地址为（）</h2>
+<ul>
+<li>A. 106</li>
+<li>B. 108</li>
+<li>C. 110</li>
+<li>D. 112</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="11-给定一组硬币面值-C-1-5-10-25-60-100-，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）">11.给定一组硬币面值 C={1,5,10,25,60,100}，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALGORITHM (x, c1, c2, …, cn)//c1,c2..表示货币金额</span><br><span class="line">SORT n coin denominations so that 0 &lt; c1 &lt; c2 &lt; … &lt; cn.</span><br><span class="line">S ← ∅.//选择货币的集合</span><br><span class="line">WHILE (x &gt; 0)</span><br><span class="line">    k ← largest coin denomination ck such that ck &lt;= x.</span><br><span class="line">    IF no such k, RETURN “no solution.”</span><br><span class="line">    ELSE</span><br><span class="line">        x ← x – ck.</span><br><span class="line">        S ← S ∪ &#123; k &#125;.</span><br><span class="line">RETURN S.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. 利用该贪心算法求解得到的解总是最优的</li>
+<li>B. 题目中所给的贪心算法适用于任何一套面值<code>c1&lt;c2&lt;...&lt;cn</code>的硬币，前提是<code>c1=1</code></li>
+<li>C. 题中所给的贪心算法只适合于硬币面值为 C = {1, 5, 10, 25, 60, 100}</li>
+<li>给定 x=90，得到的集合<code>C=&#123;1,5,10,25,60,100&#125;</code>，这个解是最优的</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<h2 id="12-分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为-5ms-时，为保证响应时间不超过-2s，最大就绪进程数为（）">12.分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为 5ms 时，为保证响应时间不超过 2s，最大就绪进程数为（）</h2>
+<ul>
+<li>A. 200</li>
+<li>B. 250</li>
+<li>C. 400</li>
+<li>D. 500</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="13-圆覆盖">13.圆覆盖</h2>
+<p>平面上有<em>n</em>个点，每个点有一个点权<em>v</em>。你现在可以以原点为圆心放置一个圆，请问要使圆能覆盖到的点的权值和达到<em>x</em>，圆的半径至少为多少？</p>
+<h3 id="输入描述">输入描述</h3>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125207210-17336635353651.png" class="" title="image-20241203125207210">
+<h3 id="输出描述">输出描述</h3>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125301195.png" class="" title="image-20241203125301195">
+<h4 id="示例-1">示例 1</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  4</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：5</span><br><span class="line">例子说明：</span><br><span class="line">半径为5时，点(0,1),(-1,1),(3,3),(-4,3)在圆内，权值和为10</span><br></pre></td></tr></table></figure>
+<h4 id="示例-2">示例 2</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  2</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：-1</span><br><span class="line">例子说明：</span><br><span class="line">权值和无法达到10</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 读入点数n, 点权和下限x</span></span><br><span class="line">  <span class="keyword">const</span> [n, x] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">  <span class="comment">// 收集点的信息</span></span><br><span class="line">  <span class="keyword">const</span> points = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> [a, b, v] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">    <span class="comment">// 计算距离并存储点信息</span></span><br><span class="line">    <span class="keyword">const</span> distance = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(a * a + b * b);</span><br><span class="line">    points.<span class="title function_">push</span>(&#123; distance, v &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 按照距离升序排序</span></span><br><span class="line">  points.<span class="title function_">sort</span>(<span class="function">(<span class="params">p1, p2</span>) =&gt;</span> p1.<span class="property">distance</span> - p2.<span class="property">distance</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将圆的半径从零开始扩大,依次将点的权值加和</span></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> &#123; distance, v &#125; <span class="keyword">of</span> points) &#123;</span><br><span class="line">    sum += v;</span><br><span class="line">    <span class="keyword">if</span> (sum &gt;= x) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(distance);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果所有点的权值加起来都达不到下限x</span></span><br><span class="line">  <span class="keyword">if</span> (sum &lt; x) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="时间复杂度">时间复杂度</h3>
+<ol>
+<li>读取输入：<code>O(n)</code></li>
+<li>计算距离： <code>O(n)</code></li>
+<li>排序操作：<code>O(nlogn)</code></li>
+<li>遍历求和：<code>O(n)</code></li>
+</ol>
+<p><strong>整体时间复杂度:<code>O(nlogn)</code></strong></p>
+<h3 id="空间复杂度-O-n">空间复杂度 <code>O(n)</code></h3>
+<hr>
+<h2 id="14-在-Linux-中，关于虚拟内存相关的说法正确的是（）">14.在 Linux 中，关于虚拟内存相关的说法正确的是（）</h2>
+<ul>
+<li>A. CPU 与内存之间通过 MMU 将虚拟内存地址翻译为物理内存地址</li>
+<li>B. 页是虚拟内存与物理内存的交换单元,最小的单位是 64KB</li>
+<li>C. 在页表结构中, 有效位为 1 代表虚拟地址未被分配</li>
+<li>D. 在一个进程中，每个线程之间的虚拟内存是独占的</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<hr>
+<h2 id="15-牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）">15.牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）</h2>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204125159609.png" class="" title="image-20241204125159609">
+<ul>
+<li>A. 快速排序</li>
+<li>B. 直接选择排序</li>
+<li>C. 堆排序</li>
+<li>D. 简单插入排序</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<hr>
+<h2 id="16-单词">16.单词</h2>
+<p>小欧有一些英文单词，他想知道这些单词是不是合法的。一个单词是合法的当且仅当这个单词首字母是大写的，其它字母均是小写的。你能帮帮他吗。</p>
+<h3 id="输入描述-2">输入描述</h3>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204130507901.png" class="" title="image-20241204130507901">
+<h3 id="输出描述-2">输出描述</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对于每一组数据，如果单词是合法的，输出一行&quot;YES&quot;，否则输出一行&quot;NO&quot;。</span><br></pre></td></tr></table></figure>
+<h4 id="示例-1-2">示例 1</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">yeerV</span><br><span class="line">Ophu</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">YES</span><br><span class="line">例子说明：</span><br><span class="line">yeerV的首字母是小写的，因此不是合法单词。</span><br><span class="line">Ophu的首字母是大写的，其它字母都是小写的，因此是合法单词。</span><br></pre></td></tr></table></figure>
+<h4 id="示例-2-2">示例 2</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">vvryuCryg</span><br><span class="line">pzjiyR</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Write your code here</span></span><br><span class="line">  <span class="comment">// 读入数据数量</span></span><br><span class="line">  <span class="keyword">const</span> reg = <span class="regexp">/^[A-Z][a-z]*$/</span>;</span><br><span class="line">  <span class="keyword">const</span> n = <span class="built_in">parseInt</span>(<span class="keyword">await</span> <span class="title function_">readline</span>());</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> word = <span class="keyword">await</span> <span class="title function_">readline</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(word) ? <span class="string">&#x27;YES&#x27;</span> : <span class="string">&#x27;NO&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="17-系统在作业调度时分配了-N-个物理块，页面引用串长度为-P，包含-M-个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）">17.系统在作业调度时分配了 N 个物理块，页面引用串长度为 P，包含 M 个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）</h2>
+<ul>
+<li>A. M, M</li>
+<li>B. P, min(M,N)</li>
+<li>C. N, N</li>
+<li>D. min(M, P), min(M, N)</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<hr>
+<h2 id="18-已知某二叉树的中序遍历为-dhbieafjckg，层序遍历为-abcdefghijk，则由此可得，其叶子结点的个数为（）">18.已知某二叉树的中序遍历为 dhbieafjckg，层序遍历为 abcdefghijk，则由此可得，其叶子结点的个数为（）</h2>
+<p><img src="assets/image-20241204132520754.png" alt="image-20241204132520754"></p>
+<ul>
+<li>A. 2</li>
+<li>B. 3</li>
+<li>C. 4</li>
+<li>D. 5</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="19-下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）">19.下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）</h2>
+<ul>
+<li>A. rm -rf *</li>
+<li>B. rm -rf nowcoder/*</li>
+<li>C. rm -rf nowcoder*</li>
+<li>D. rm -rf *nowcoder*</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<hr>
+<h2 id="20-请问根据以下代码，id-为-main-的-div-标签的宽度为（）">20.请问根据以下代码，id 为 main 的 div 标签的宽度为（）</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">body</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">150px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">300px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">120px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. 150px</li>
+<li>B. 300px</li>
+<li>C. 120px</li>
+<li>D. 100px</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<hr>
+<h2 id="21-根据代码，请问四个-div-标签从上到下的排列顺序（以-class-值代指）是（）">21.根据代码，请问四个 div 标签从上到下的排列顺序（以 class 值代指）是（）</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item1</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">10</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item3</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: green;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.son</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">100</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. son item2 item3 item1</li>
+<li>B. item1 item2 item3 son</li>
+<li>C. item2 item1 item3 son</li>
+<li>D. item1 son item2 item3</li>
+</ul>
+<blockquote>
+<p>正确答案 B</p>
+</blockquote>
+<hr>
+<h2 id="22-请问以下-HTML-中文字-a、b、c-的-font-size-值分别是多少-px（）">22.请问以下 HTML 中文字 a、b、c 的 font-size 值分别是多少 px（）</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">      a</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>b<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>c<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>A. 20 20 20</li>
+<li>B. 15 15 15</li>
+<li>C. 20 15 15</li>
+<li>D. 20 15 20</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="23-环形进度条">23.环形进度条</h2>
+<p>环形进度条</p>
+<p><code>id</code>为<code>&quot;magnifier&quot;</code>的<code>&quot;section&quot;</code>节点是一个环形进度条模块，而<code>&quot;magnifier&quot;</code>对象用于初始化该模块。该模块的功能如下：</p>
+<ol>
+<li>输入框中可以输入数字类型，数值即百分比值；</li>
+<li>当点击确定按钮时，环形进度条按输入框中的数值进行渲染；</li>
+<li>若输入框中的数据比 0 小，则将输入框中的值置为 0，百分比按 0% 渲染；</li>
+<li>若输入框中的数据比 100 大，则将输入框中的值置为 100，百分比按 100% 渲染；</li>
+</ol>
+<p>注意：若用户输入数据为小数，则按四舍五入取整处理</p>
+<p>请阅读给定的 JavaScript 代码，并在 TODO 处完善代码。效果如下：</p>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/8F2BFA0763F677AFC69BB69B4D0DCB41.gif" class="" title="8F2BFA0763F677AFC69BB69B4D0DCB41">
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-line</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-l</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">left</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-r</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">180deg</span>);</span></span><br><span class="line"><span class="language-css">        <span class="attribute">right</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-c</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">4px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(-<span class="number">45deg</span>);</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-rm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-lm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">18px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#submit</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;magnifier&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> magnifier = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">init</span>(<span class="params">param</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> el = param.<span class="property">el</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (!el) <span class="keyword">return</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">createElement</span>(el);</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">initEvent</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">loadPercent</span>();</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">createElement</span>(<span class="params">el</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> loopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-r&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-rm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">id</span> = <span class="string">&#x27;loop-rc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="title function_">appendChild</span>(rightMask);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-l&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-lm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">id</span> = <span class="string">&#x27;loop-lc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="title function_">appendChild</span>(leftMask);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(rightLoopPie);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(leftLoopPie);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 百分比输入框</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> percent = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="property">className</span> = <span class="string">&#x27;percent-number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">type</span> = <span class="string">&#x27;number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = <span class="number">25</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> button = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">innerText</span> = <span class="string">&#x27;确定&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">id</span> = <span class="string">&#x27;submit&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(input);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(button);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(loopPie);</span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(percent);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">initEvent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：获取id=submit的节点</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> submit = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：给submit的按钮添加点击事件，当被点击时调用 loadPercent() 方法</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getPercenNumber</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.percent-number input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框中的值保留四舍五入取整</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> num = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框框的值置为合理区间范围</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = num;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> num;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">loadPercent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：计算左半圆部分和右半圆部分旋转的角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateRight = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateLeft = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> lc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-lc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          lc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateLeft&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-rc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateRight&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      magnifier.<span class="title function_">init</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// <span class="doctag">TODO:</span> 请获取id=magnifier的节点</span></span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>: <span class="literal">null</span>,</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔试真题</category>
+      </categories>
+      <tags>
+        <tag>oppo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES6</title>
     <url>/2024/12/14/ES6/</url>
     <content><![CDATA[<h1>概述</h1>
@@ -572,351 +917,6 @@
 ]]></content>
       <tags>
         <tag>ES6</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OPPO23秋</title>
-    <url>/2024/12/08/OPPO23%E7%A7%8B/</url>
-    <content><![CDATA[<h1>考情分析</h1>
-<p><a href="https://www.nowcoder.com/exam/test/85190579/detail?pid=55153645&amp;examPageSource=Company&amp;subTabName=written_page&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3Doppo23&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">真题地址</a></p>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/OPPO23%E7%A7%8B%E6%8B%9B.png" class="" title="OPPO23秋招">
-<h1>题目解析</h1>
-<h2 id="1-下述代码的执行结果为">1.下述代码的执行结果为</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">getName</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj2, obj1);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2.<span class="title function_">getName</span>());</span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. undefined</li>
-<li>B. “张三”</li>
-<li>C. “李四”</li>
-<li>D. null</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<blockquote>
-<p>考点：<code>super</code>关键字， <code>this</code>关键字</p>
-</blockquote>
-<p><code>this</code>指向调用者</p>
-<p><code>super</code>关键字用于访问对象字面量或类的[[Prototype]]上的属性，或调用超类的构造函数。</p>
-<p><code>super.prop</code>和<code>super[expr]</code>表达式在<strong>类和对象字面量</strong>的任何<strong>方法定义</strong>中都有效。</p>
-<p><code>super(...args)</code>表达式只在<strong>类的构造函数中</strong>有效</p>
-<blockquote>
-<p><strong>注意</strong>：<code>super</code>是一个关键字，这些是特殊的语法结构，<code>super</code>不是指向<strong>proto</strong>对象的变量。尝试读取<code>super</code>本身是一个语法错误.也不能通过 super 来删除超类的属性。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> child = &#123;</span><br><span class="line">  <span class="title function_">myParent</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">super</span>); <span class="comment">// SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Base</span> &#123;</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">super</span>.<span class="property">foo</span>; <span class="comment">// this is bad</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Derived</span>().<span class="title function_">delete</span>(); <span class="comment">// ReferenceError: invalid delete involving &#x27;super&#x27;.</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="2-运行此代码-运行结果正确的是">2.运行此代码,运行结果正确的是</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">nums.<span class="title function_">push</span>(<span class="number">0</span>);</span><br><span class="line">nums.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nums);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. [2, 3, 4, 5, 6, 7]</li>
-<li>B. [3, 4, 5, 6, 7, 0]</li>
-<li>C. [2, 3, 4, 5, 6, 7, 0]</li>
-<li>D. [0, 2, 3, 4, 5, 6]</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<blockquote>
-<p>考点：数组 API</p>
-</blockquote>
-<p><strong>数组添加和移除元素常用 API</strong></p>
-<table>
-<thead>
-<tr>
-<th>API</th>
-<th>说明</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>push(e1,e2,...,en)</code></td>
-<td>向数组的末尾添加一个或多个元素</td>
-<td>新数组的长度</td>
-</tr>
-<tr>
-<td><code>pop()</code></td>
-<td>移除数组的最后一个元素</td>
-<td>被移除的元素</td>
-</tr>
-<tr>
-<td><code>shift()</code></td>
-<td>移除数组第一个元素，其他元素索引减一</td>
-<td>被移除的元素，若没有被移除的元素，则返回空数组</td>
-</tr>
-<tr>
-<td><code>unshift(e1,e2,...,en)</code></td>
-<td>向数组的开头添加一个或多个元素</td>
-<td>新数组的长度</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="3-运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）">3.运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello nowcoder&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. hello hello nowcoder</li>
-<li>B. hello</li>
-<li>C. hello nowcoder</li>
-<li>D. hello nowcoder hello nowcoder</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<blockquote>
-<p>考点：事件监听</p>
-</blockquote>
-<p>**EventTarget.addEventListener()**方法将指定的监听器注册到<code>EventTarget</code>上，当该对象触发指定的事件时，指定的回调函数就会被执行。<code>EventTarget</code>可以是一个文档上的元素<code>Element</code>,<code>Document</code>和<code>Window</code>，也可以是任何支持事件的对象(比如<code>XMLHttpRequest</code>).</p>
-<p><code>addEventListener()</code>的工作原理是将实现<code>EventListener</code>的函数或对象添加到调用它的<code>EventTarget</code>上的指定事件类型的事件侦听器列表中。如果要绑定的函数或对象<strong>已经被添加到列表中</strong>，该函数或对象<strong>不会被再次添加</strong>。</p>
-<blockquote>
-<p>注意：如果先前向事件侦听器列表中添加过一个匿名函数，并且在之后的代码中调用<code>addEventListener</code>来添加一个功能完全相同的匿名函数(<strong>甚至代码完全相同</strong>),那么之后的这个匿名函数也会被添加到列表中。</p>
-<p>实际上，即使使用完全相同的代码来定义一个匿名函数，这两个函数仍然存在区别，并非同一个函数。</p>
-</blockquote>
-<hr>
-<h2 id="4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）">4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）</h2>
-<ul>
-<li>A. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
-<li>B. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
-<li>C. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
-<li>D. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="5-请问一下-JS-代码输出的结果是">5.请问一下 JS 代码输出的结果是()</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">935</span>);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> val;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">res</span>(++val);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">res</span>(++val);</span><br><span class="line">      &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. 935 936 936</li>
-<li>B. 935 936 937</li>
-<li>C. 935 935 935</li>
-<li>D. 935 935 936</li>
-</ul>
-<blockquote>
-<p>正确答案 B</p>
-</blockquote>
-<hr>
-<h2 id="6-下列关于-SSL-说法错误的是">6.下列关于 SSL 说法错误的是__.</h2>
-<ul>
-<li>A. SSL 是 TCP 加强版本</li>
-<li>B. SSL 通过采用机密性，数据完整性，服务器鉴别和客户端鉴别来强化 TCP</li>
-<li>C. SSL 强制网络两端的用户使用特定的对称加密算法</li>
-<li>D. SSL 记录由类型字段，版本字段，长度字段，数据字段，MAC 字段组成</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="7-请问以下-JS-代码最终输出的结果是（）">7.请问以下 JS 代码最终输出的结果是（）</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b] = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; c, d &#125; = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(d);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. undefined undefined undefined undefined</li>
-<li>B. 1 2 1 2</li>
-<li>C. undefined undefined 1 2</li>
-<li>D. 1 2 undefined undefined</li>
-</ul>
-<blockquote>
-<p>正确答案：D</p>
-</blockquote>
-<hr>
-<h2 id="8-小明使用-Chrome-浏览器上-163-邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？">8.小明使用 Chrome 浏览器上 163 邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？</h2>
-<ul>
-<li>A. SMTP</li>
-<li>B. POP3</li>
-<li>C. HTTP</li>
-<li>D. IGMP</li>
-</ul>
-<blockquote>
-<p>正确答案</p>
-</blockquote>
-<hr>
-<h2 id="9-某个主机与服务器之间建立连接，经测试主机到服务器的平均-RTT-为-120ms，一个-gif-图像的平均发送时延为-45ms。如果一个-Web-页面使用非持久连接的-HTTP-协议，它包含了-8-幅-gif-图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本-HTML-文件、HTTP-请求报文、TCP-握手报文大小忽略不计，TCP-第三次握手捎带一个-HTTP-请求）">9.某个主机与服务器之间建立连接，经测试主机到服务器的平均 RTT 为 120ms，一个 gif 图像的平均发送时延为 45ms。如果一个 Web 页面使用非持久连接的 HTTP 协议，它包含了 8 幅 gif 图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本 HTML 文件、HTTP 请求报文、TCP 握手报文大小忽略不计，TCP 第三次握手捎带一个 HTTP 请求）</h2>
-<ul>
-<li>A. 1560ms</li>
-<li>B. 2280ms</li>
-<li>C. 2520ms</li>
-<li>D. 2640ms</li>
-</ul>
-<blockquote>
-<p>正确答案</p>
-</blockquote>
-<hr>
-<h2 id="10-对于某线性表来说，若第一个元素的存储地址为-100，每个元素的长度为-2，则经过五个元素后，第六个元素的存储地址为（）">10.对于某线性表来说，若第一个元素的存储地址为 100，每个元素的长度为 2，则经过五个元素后，第六个元素的存储地址为（）</h2>
-<ul>
-<li>A. 106</li>
-<li>B. 108</li>
-<li>C. 110</li>
-<li>D. 112</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="11-给定一组硬币面值-C-1-5-10-25-60-100-，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）">11.给定一组硬币面值 C={1,5,10,25,60,100}，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALGORITHM (x, c1, c2, …, cn)//c1,c2..表示货币金额</span><br><span class="line">SORT n coin denominations so that 0 &lt; c1 &lt; c2 &lt; … &lt; cn.</span><br><span class="line">S ← ∅.//选择货币的集合</span><br><span class="line">WHILE (x &gt; 0)</span><br><span class="line">    k ← largest coin denomination ck such that ck &lt;= x.</span><br><span class="line">    IF no such k, RETURN “no solution.”</span><br><span class="line">    ELSE</span><br><span class="line">        x ← x – ck.</span><br><span class="line">        S ← S ∪ &#123; k &#125;.</span><br><span class="line">RETURN S.</span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. 利用该贪心算法求解得到的解总是最优的</li>
-<li>B. 题目中所给的贪心算法适用于任何一套面值<code>c1&lt;c2&lt;...&lt;cn</code>的硬币，前提是<code>c1=1</code></li>
-<li>C. 题中所给的贪心算法只适合于硬币面值为 C = {1, 5, 10, 25, 60, 100}</li>
-<li>给定 x=90，得到的集合<code>C=&#123;1,5,10,25,60,100&#125;</code>，这个解是最优的</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<h2 id="12-分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为-5ms-时，为保证响应时间不超过-2s，最大就绪进程数为（）">12.分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为 5ms 时，为保证响应时间不超过 2s，最大就绪进程数为（）</h2>
-<ul>
-<li>A. 200</li>
-<li>B. 250</li>
-<li>C. 400</li>
-<li>D. 500</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="13-圆覆盖">13.圆覆盖</h2>
-<p>平面上有<em>n</em>个点，每个点有一个点权<em>v</em>。你现在可以以原点为圆心放置一个圆，请问要使圆能覆盖到的点的权值和达到<em>x</em>，圆的半径至少为多少？</p>
-<h3 id="输入描述">输入描述</h3>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125207210-17336635353651.png" class="" title="image-20241203125207210">
-<h3 id="输出描述">输出描述</h3>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125301195.png" class="" title="image-20241203125301195">
-<h4 id="示例-1">示例 1</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  4</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：5</span><br><span class="line">例子说明：</span><br><span class="line">半径为5时，点(0,1),(-1,1),(3,3),(-4,3)在圆内，权值和为10</span><br></pre></td></tr></table></figure>
-<h4 id="示例-2">示例 2</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  2</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：-1</span><br><span class="line">例子说明：</span><br><span class="line">权值和无法达到10</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 读入点数n, 点权和下限x</span></span><br><span class="line">  <span class="keyword">const</span> [n, x] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">  <span class="comment">// 收集点的信息</span></span><br><span class="line">  <span class="keyword">const</span> points = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> [a, b, v] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">    <span class="comment">// 计算距离并存储点信息</span></span><br><span class="line">    <span class="keyword">const</span> distance = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(a * a + b * b);</span><br><span class="line">    points.<span class="title function_">push</span>(&#123; distance, v &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 按照距离升序排序</span></span><br><span class="line">  points.<span class="title function_">sort</span>(<span class="function">(<span class="params">p1, p2</span>) =&gt;</span> p1.<span class="property">distance</span> - p2.<span class="property">distance</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将圆的半径从零开始扩大,依次将点的权值加和</span></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> &#123; distance, v &#125; <span class="keyword">of</span> points) &#123;</span><br><span class="line">    sum += v;</span><br><span class="line">    <span class="keyword">if</span> (sum &gt;= x) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(distance);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果所有点的权值加起来都达不到下限x</span></span><br><span class="line">  <span class="keyword">if</span> (sum &lt; x) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<h3 id="时间复杂度">时间复杂度</h3>
-<ol>
-<li>读取输入：<code>O(n)</code></li>
-<li>计算距离： <code>O(n)</code></li>
-<li>排序操作：<code>O(nlogn)</code></li>
-<li>遍历求和：<code>O(n)</code></li>
-</ol>
-<p><strong>整体时间复杂度:<code>O(nlogn)</code></strong></p>
-<h3 id="空间复杂度-O-n">空间复杂度 <code>O(n)</code></h3>
-<hr>
-<h2 id="14-在-Linux-中，关于虚拟内存相关的说法正确的是（）">14.在 Linux 中，关于虚拟内存相关的说法正确的是（）</h2>
-<ul>
-<li>A. CPU 与内存之间通过 MMU 将虚拟内存地址翻译为物理内存地址</li>
-<li>B. 页是虚拟内存与物理内存的交换单元,最小的单位是 64KB</li>
-<li>C. 在页表结构中, 有效位为 1 代表虚拟地址未被分配</li>
-<li>D. 在一个进程中，每个线程之间的虚拟内存是独占的</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<hr>
-<h2 id="15-牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）">15.牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）</h2>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204125159609.png" class="" title="image-20241204125159609">
-<ul>
-<li>A. 快速排序</li>
-<li>B. 直接选择排序</li>
-<li>C. 堆排序</li>
-<li>D. 简单插入排序</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<hr>
-<h2 id="16-单词">16.单词</h2>
-<p>小欧有一些英文单词，他想知道这些单词是不是合法的。一个单词是合法的当且仅当这个单词首字母是大写的，其它字母均是小写的。你能帮帮他吗。</p>
-<h3 id="输入描述-2">输入描述</h3>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204130507901.png" class="" title="image-20241204130507901">
-<h3 id="输出描述-2">输出描述</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对于每一组数据，如果单词是合法的，输出一行&quot;YES&quot;，否则输出一行&quot;NO&quot;。</span><br></pre></td></tr></table></figure>
-<h4 id="示例-1-2">示例 1</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">yeerV</span><br><span class="line">Ophu</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">YES</span><br><span class="line">例子说明：</span><br><span class="line">yeerV的首字母是小写的，因此不是合法单词。</span><br><span class="line">Ophu的首字母是大写的，其它字母都是小写的，因此是合法单词。</span><br></pre></td></tr></table></figure>
-<h4 id="示例-2-2">示例 2</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">vvryuCryg</span><br><span class="line">pzjiyR</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Write your code here</span></span><br><span class="line">  <span class="comment">// 读入数据数量</span></span><br><span class="line">  <span class="keyword">const</span> reg = <span class="regexp">/^[A-Z][a-z]*$/</span>;</span><br><span class="line">  <span class="keyword">const</span> n = <span class="built_in">parseInt</span>(<span class="keyword">await</span> <span class="title function_">readline</span>());</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> word = <span class="keyword">await</span> <span class="title function_">readline</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(word) ? <span class="string">&#x27;YES&#x27;</span> : <span class="string">&#x27;NO&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<h2 id="17-系统在作业调度时分配了-N-个物理块，页面引用串长度为-P，包含-M-个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）">17.系统在作业调度时分配了 N 个物理块，页面引用串长度为 P，包含 M 个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）</h2>
-<ul>
-<li>A. M, M</li>
-<li>B. P, min(M,N)</li>
-<li>C. N, N</li>
-<li>D. min(M, P), min(M, N)</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<hr>
-<h2 id="18-已知某二叉树的中序遍历为-dhbieafjckg，层序遍历为-abcdefghijk，则由此可得，其叶子结点的个数为（）">18.已知某二叉树的中序遍历为 dhbieafjckg，层序遍历为 abcdefghijk，则由此可得，其叶子结点的个数为（）</h2>
-<p><img src="assets/image-20241204132520754.png" alt="image-20241204132520754"></p>
-<ul>
-<li>A. 2</li>
-<li>B. 3</li>
-<li>C. 4</li>
-<li>D. 5</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="19-下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）">19.下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）</h2>
-<ul>
-<li>A. rm -rf *</li>
-<li>B. rm -rf nowcoder/*</li>
-<li>C. rm -rf nowcoder*</li>
-<li>D. rm -rf *nowcoder*</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<hr>
-<h2 id="20-请问根据以下代码，id-为-main-的-div-标签的宽度为（）">20.请问根据以下代码，id 为 main 的 div 标签的宽度为（）</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">body</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">150px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">300px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">120px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. 150px</li>
-<li>B. 300px</li>
-<li>C. 120px</li>
-<li>D. 100px</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<hr>
-<h2 id="21-根据代码，请问四个-div-标签从上到下的排列顺序（以-class-值代指）是（）">21.根据代码，请问四个 div 标签从上到下的排列顺序（以 class 值代指）是（）</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item1</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">10</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item3</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: green;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.son</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">100</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. son item2 item3 item1</li>
-<li>B. item1 item2 item3 son</li>
-<li>C. item2 item1 item3 son</li>
-<li>D. item1 son item2 item3</li>
-</ul>
-<blockquote>
-<p>正确答案 B</p>
-</blockquote>
-<hr>
-<h2 id="22-请问以下-HTML-中文字-a、b、c-的-font-size-值分别是多少-px（）">22.请问以下 HTML 中文字 a、b、c 的 font-size 值分别是多少 px（）</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">      a</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>b<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>c<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>A. 20 20 20</li>
-<li>B. 15 15 15</li>
-<li>C. 20 15 15</li>
-<li>D. 20 15 20</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="23-环形进度条">23.环形进度条</h2>
-<p>环形进度条</p>
-<p><code>id</code>为<code>&quot;magnifier&quot;</code>的<code>&quot;section&quot;</code>节点是一个环形进度条模块，而<code>&quot;magnifier&quot;</code>对象用于初始化该模块。该模块的功能如下：</p>
-<ol>
-<li>输入框中可以输入数字类型，数值即百分比值；</li>
-<li>当点击确定按钮时，环形进度条按输入框中的数值进行渲染；</li>
-<li>若输入框中的数据比 0 小，则将输入框中的值置为 0，百分比按 0% 渲染；</li>
-<li>若输入框中的数据比 100 大，则将输入框中的值置为 100，百分比按 100% 渲染；</li>
-</ol>
-<p>注意：若用户输入数据为小数，则按四舍五入取整处理</p>
-<p>请阅读给定的 JavaScript 代码，并在 TODO 处完善代码。效果如下：</p>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/8F2BFA0763F677AFC69BB69B4D0DCB41.gif" class="" title="8F2BFA0763F677AFC69BB69B4D0DCB41">
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-line</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-l</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">left</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-r</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">180deg</span>);</span></span><br><span class="line"><span class="language-css">        <span class="attribute">right</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-c</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">4px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(-<span class="number">45deg</span>);</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-rm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-lm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">18px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#submit</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;magnifier&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> magnifier = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">init</span>(<span class="params">param</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> el = param.<span class="property">el</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (!el) <span class="keyword">return</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">createElement</span>(el);</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">initEvent</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">loadPercent</span>();</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">createElement</span>(<span class="params">el</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> loopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-r&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-rm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">id</span> = <span class="string">&#x27;loop-rc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="title function_">appendChild</span>(rightMask);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-l&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-lm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">id</span> = <span class="string">&#x27;loop-lc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="title function_">appendChild</span>(leftMask);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(rightLoopPie);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(leftLoopPie);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 百分比输入框</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> percent = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="property">className</span> = <span class="string">&#x27;percent-number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">type</span> = <span class="string">&#x27;number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = <span class="number">25</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> button = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">innerText</span> = <span class="string">&#x27;确定&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">id</span> = <span class="string">&#x27;submit&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(input);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(button);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(loopPie);</span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(percent);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">initEvent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：获取id=submit的节点</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> submit = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：给submit的按钮添加点击事件，当被点击时调用 loadPercent() 方法</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getPercenNumber</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.percent-number input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框中的值保留四舍五入取整</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> num = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框框的值置为合理区间范围</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = num;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> num;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">loadPercent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：计算左半圆部分和右半圆部分旋转的角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateRight = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateLeft = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> lc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-lc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          lc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateLeft&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-rc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateRight&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      magnifier.<span class="title function_">init</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// <span class="doctag">TODO:</span> 请获取id=magnifier的节点</span></span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>: <span class="literal">null</span>,</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>笔试真题</category>
-      </categories>
-      <tags>
-        <tag>oppo</tag>
       </tags>
   </entry>
   <entry>
