@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex">
+      <img src="./image.png" alt="" /><button onclick="change()">转换</button>
+      <canvas width="366" height="223"></canvas>
+    </div>
+    <script>
+      function change() {
+        // 将img转换为黑白图像，显示在canvas中
+        const img = document.querySelector("img");
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.drawImage(img, 0, 0);
+        const imgData = ctx.getImageData(0, 0, img.width, img.height);
+        for(let i = 0; i < imgData.data.length; i += 4) {
+          const red = imgData.data[i];
+          const green = imgData.data[i + 1];
+          const blue = imgData.data[i + 2];
+          const alpha = imgData.data[i + 3];
+
+          const gray = (red + green + blue) / 3;
+
+          imgData.data[i] = gray;
+          imgData.data[i + 1] = gray;
+          imgData.data[i+ 2] = gray;
+        }
+        ctx.putImageData(imgData, 0, 0);
+        console.log(imgData);
+      }
+    </script>
+  </body>
+</html>

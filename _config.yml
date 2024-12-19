@@ -105,10 +105,7 @@ deploy:
   repo: git@github.com:majialu-love-zouyutong/majialu-love-zouyutong.github.io.git
   branch: main
 
-markdown:
-  plugins:
-    - '@renbaoshuo/markdown-it-katex'
-
+  
 search:
   path: search.xml
   field: post
