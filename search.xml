@@ -857,137 +857,6 @@
       </tags>
   </entry>
   <entry>
-    <title>webpack</title>
-    <url>/2024/12/16/webpack/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新机装机流程</title>
-    <url>/2024/12/19/%E6%96%B0%E6%9C%BA%E8%A3%85%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习，想到刚拿到新电脑时候的处理，决定写一个流程，记录拿到一个新电脑后如何快速安装自己的工具链</p>
-<h1 id="梳理所需工具"><a href="#梳理所需工具" class="headerlink" title="梳理所需工具"></a>梳理所需工具</h1><h2 id="即时通讯类"><a href="#即时通讯类" class="headerlink" title="即时通讯类"></a>即时通讯类</h2><ol>
-<li>QQ <a href="https://im.qq.com/index/">下载链接</a></li>
-<li>微信 <a href="https://weixin.qq.com/">下载链接</a></li>
-<li>飞书 <a href="https://www.feishu.cn/">下载链接</a></li>
-</ol>
-<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><ol>
-<li>clash 见 quark 网盘</li>
-</ol>
-<h2 id="日常办公类"><a href="#日常办公类" class="headerlink" title="日常办公类"></a>日常办公类</h2><ol>
-<li><p>Google Chrome <a href="https://www.google.cn/chrome/">下载链接</a></p>
-</li>
-<li><p>夸克 <a href="https://www.quark.cn/">下载链接</a></p>
-</li>
-<li><p>Xmind <a href="https://www.xmind.cn/">下载链接</a></p>
-</li>
-<li><p>Typora <strong>下载方式见后文</strong></p>
-</li>
-<li><p>Office 套件 <a href="https://mp.weixin.qq.com/s/o2WZaEKUaojoD9tASmJGgg">参考链接</a>,安装包见 quark.</p>
-</li>
-<li><p>winRar <a href="https://www.win-rar.com/download.html?&L=0">下载链接</a></p>
-</li>
-</ol>
-<h2 id="实用工具类"><a href="#实用工具类" class="headerlink" title="实用工具类"></a>实用工具类</h2><ol>
-<li><p>Snipaste <a href="https://zh.snipaste.com/">下载链接</a></p>
-</li>
-<li><p>ZoomIt <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">下载链接</a></p>
-</li>
-<li><p>PowerToys [下载链接] (<a href="https://learn.microsoft.com/zh-tw/windows/powertoys/">https://learn.microsoft.com/zh-tw/windows/powertoys/</a>)</p>
-</li>
-</ol>
-<h2 id="自媒体类"><a href="#自媒体类" class="headerlink" title="自媒体类"></a>自媒体类</h2><ol>
-<li>OBS<a href="https://obsproject.com/">下载链接</a></li>
-<li>Adobe 系列 quark 直接安装</li>
-</ol>
-<h2 id="核心生产力"><a href="#核心生产力" class="headerlink" title="核心生产力"></a>核心生产力</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ol>
-<li><p>VSCode <a href="https://code.visualstudio.com/">下载链接</a></p>
-</li>
-<li><p>JetBrains 全家桶 <strong>下载方式见后文</strong></p>
-</li>
-</ol>
-<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><ol>
-<li>Git <a href="https://git-scm.com/">下载链接</a></li>
-</ol>
-<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><ol>
-<li><p>nvm <a href="https://github.com/coreybutler/nvm-windows/releases">下载链接</a></p>
-</li>
-<li><p>powershell <a href="https://github.com/PowerShell/PowerShell/releases">下载链接</a></p>
-</li>
-</ol>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
-<li><p>MySQL <a href="https://dev.mysql.com/downloads/mysql/">下载链接</a></p>
-</li>
-<li><p>Navicate 安装方式同 typora</p>
-</li>
-</ol>
-<h3 id="api测试"><a href="#api测试" class="headerlink" title="api测试"></a>api测试</h3><ol>
-<li>Apifox <a href="https://www.apifox.cn/">下载链接</a></li>
-</ol>
-<h1 id="Typora-安装教程"><a href="#Typora-安装教程" class="headerlink" title="Typora 安装教程"></a>Typora 安装教程</h1><ol>
-<li><p>从 quark 下载 Typora 安装包到本地</p>
-</li>
-<li><p>解压并以管理员身份运行<code>typora-setup-x64.exe</code></p>
-</li>
-<li><p>打开 Typora 安装位置,将解压文件夹中的 Crack 目录下的<code>wim.dll</code>复制到 typora 安装目录中</p>
-</li>
-</ol>
-<h1 id="JetBrains-全家桶安装"><a href="#JetBrains-全家桶安装" class="headerlink" title="JetBrains 全家桶安装"></a>JetBrains 全家桶安装</h1><p>以 Pycharm 为例</p>
-<ol>
-<li><p>从 quark 下载安装包到本地并解压安装</p>
-</li>
-<li><p>将解压文件夹中的 Crack 文件夹复制到安装目录</p>
-</li>
-<li><p>运行 Crack 文件夹中的<code>安装.bat</code></p>
-</li>
-<li><p>将<code>zcode.txt</code>拖入激活码框中激活</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>新机处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模块化</title>
-    <url>/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="JavaScript-模块化发展史"><a href="#JavaScript-模块化发展史" class="headerlink" title="JavaScript 模块化发展史"></a>JavaScript 模块化发展史</h1><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>在<code>JavaScript</code>语言刚刚诞生的时候，它仅仅用于实现页面中一些小效果，那个时候，一个页面所用到的 JS 可能只有区区几百行的代码<br>在这种情况下，语言本身所存在的一些缺陷往往被大家有意地忽略，因为程序的规模实在太小，只要开发人员小心谨慎，往往不会造成什么问题<br>在这个阶段，也不存在专业的前端工程师，由于前端要做的事情实在太少，因此这一部分工作往往由后端工程师顺带完成<br>第一阶段发生的大事</p>
-<ul>
-<li>1996 年，<code>NetScape</code>将<code>JavaScript</code>语言提交给欧洲的一个标准指定组织 ECMA(欧洲计算机制造商协会)</li>
-<li>1998 年,<code>NetScape</code>在与微软浏览器 IE 的竞争中失利,宣布破产</li>
-</ul>
-<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p><code>ajax</code>的出现,逐渐改变了<code>JavaScript</code>在浏览器中扮演的角色.现在,它不仅可以实现小的效果,还可以和服务器之间进行交互,以更好的体验来改变数据.<br>JS 代码的数量开始逐渐增长,从最初的几百行,到后来的几万行,前端程序逐渐变得复杂.<br>后端开发者压力逐渐增加,致使一些公司开始招募专业的前端开发者<br>但此时,前端开发者的待遇远不及后端开发者,因为前端开发者承担的开发任务相对于后端来说,还是比较简单的,通过短短一个月的时间集训,就可以成为满足前端开发的需要<br>究其根本原因,是因为前端开发还有几个大的问题没有解决,这些问题严重地制约了前端程序的规模进一步扩大</p>
-<ol>
-<li>浏览器解释执行 JS 的速度太慢</li>
-<li>用户端的电脑配置不足</li>
-<li>更多的代码带来了全局变量污染,依赖关系混乱等问题<br>上面三个问题,就像是阿克琉斯之踵,成为前端开发挥之不去的阴影和原罪<br>在这个阶段,前端开服处在一个非常尴尬的境地,它在传统的开发模式和前后端分离之间无助地徘徊<br>第二阶段的大事件</li>
-<li>IE 浏览器制霸市场后,几乎不再更新</li>
-<li>ES4.0 流产,导致 JS 语言 10 年间几乎毫无变化</li>
-<li>2008 年 ES5 发布,仅解决了一些 JS API 不足的糟糕局面</li>
-</ol>
-<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>时间继续向前推进,到了 2008 年,谷歌的 V8 引擎发布,将 JS 的执行速度推上了一个新的台阶,甚至可以和后端语言媲美.<br>摩尔定律持续发酵,个人电脑的配置开始飞跃<br>突然间,制约前端发展的两大问题得以解决,此时,只剩下最后一个问题还在负隅顽抗,即<strong>全局变量污染和依赖混乱</strong>的问题,解决了它,前端便可以突破一切障碍,未来无可限量.<br>于是,全世界的前端开发者在社区中激烈的讨论,想要为这个问题寻求解决之道<br>2008 年,有一个名叫 Ryan Dahl 的小伙子正在为一件事焦头烂额,他需要在服务端手写一个高性能的 web 服务,该服务对性能要求之高,以至于目前市面上已有的 web 服务产品都满足不了需求.<br>经过分析,他确定,如果要实现高性能,那么必须要尽可能地减少线程,而要减少线程,避免不了使用异步的处理方案<br>一开始,他打算自己使用 C&#x2F;C++语言来编写,可是这一过程实在太痛苦.<br>就在他一筹莫展之际,谷歌的 v8 引擎引起了他的注意,他突然发现,JS 不就是最好的实现 web 服务的语言吗?它天生就是单线程,并且是基于异步的!有了 v8 引擎的支撑,它的执行速度完全可以撑起一个服务器.而且 V8 是大名鼎鼎的谷歌公司发布的,谷歌一定会不断地优化 V8,有这种省钱又省力的好事,我干嘛还要自己去写呢?<br>于是,它基于开源的 V8 引擎,对源代码作了一些修改,便快速的完成了该项目.<br>2009 年,Ryan 推出了该 web 服务项目,命名为 nodejs<br>从此,JS 第一次堂堂正正地入主后端,不再是必须附属于浏览器的”玩具”语言了.<br>也是从此刻开始,人们认识到,JS(ES)是一门真正的语言,它依附于运行环境(运行时)(宿主程序)而执行</p>
-<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241216093151767.png" class="" title="image-20241216093151767">
-
-<p>nodejs 的诞生,便把 JS 中的最后一个问题放到了台前,即<strong>全局变量污染和依赖混乱</strong>问题.</p>
-<p>要知道,nodejs 是服务器端,如果不解决这个问题,分模块开发就无从实现,而模块化开发是所有后端程序必不可少的内容<br>经过社区的激烈讨论,最终,形成了一个模块化的方案,即鼎鼎大名的<code>CommonJS</code>,该方案,彻底解决了全局变量污染和依赖混乱的问题<br>该方案一出,立即被 nodejs 支持,于是,nodejs 成为了第一个为 JS 语言实现模块化的平台,为前端接下来的迅猛发展奠定了实践基础<br>该阶段发生的大事件</p>
-<ul>
-<li>2008 年,v8 发布</li>
-<li>IE 的市场逐步被 firfox 和 chrome 蚕食,现已无力回天</li>
-<li>2009 年, nodejs 发布,并附带 commonjs 模块化标准</li>
-</ul>
-<h1 id="第四阶段"><a href="#第四阶段" class="headerlink" title="第四阶段"></a>第四阶段</h1><h2 id="CommonJS的出现打开了前端开发者的思路既然后端可以使用模块化的JS-作为JS语言的老东家浏览器为什么不行呢-于是-开始有人想办法把CommonJS运用到浏览器中可是这里面存在诸多的困难办法总比困难多-有些开发者就想-既然CommonJS运用到浏览器困难-我们干嘛不自己重新定一个模块化的标准出来-难道就一定要有CommonJS标准吗-于是很快-AMD规范出炉-它解决的问题和CommonJS一样-但是可以更好地适应浏览器环境-相继地-CMD规范出炉-它对AMD规范进行了改进-这些行为-都受到了ECMA官方的密切关注2015年-ES6发布-它提出了官方的模块化解决方案-ES-Module从此以后-模块化成为了JS本身特有的性质-这门语言终于有了和其他语言较量的资本-成为了可以编写大型应用的正式语言与此同时-很多开发者-技术厂商早已预见到JS的无穷潜力-于是有了下面的故事-既然JS也能编写大型应用-那么自然也需要像其他语言那样具有解决复杂问题的开发框架-Angular-React-Vue等前端开发框架出现-Express-Koa等后端开发框架出现-各种后端数据库驱动出现-要开发大型应用，自然少不了各种实用的第三方库的支持-npm包管理器的出现，使用第三方变得极其方便"><a href="#CommonJS的出现打开了前端开发者的思路既然后端可以使用模块化的JS-作为JS语言的老东家浏览器为什么不行呢-于是-开始有人想办法把CommonJS运用到浏览器中可是这里面存在诸多的困难办法总比困难多-有些开发者就想-既然CommonJS运用到浏览器困难-我们干嘛不自己重新定一个模块化的标准出来-难道就一定要有CommonJS标准吗-于是很快-AMD规范出炉-它解决的问题和CommonJS一样-但是可以更好地适应浏览器环境-相继地-CMD规范出炉-它对AMD规范进行了改进-这些行为-都受到了ECMA官方的密切关注2015年-ES6发布-它提出了官方的模块化解决方案-ES-Module从此以后-模块化成为了JS本身特有的性质-这门语言终于有了和其他语言较量的资本-成为了可以编写大型应用的正式语言与此同时-很多开发者-技术厂商早已预见到JS的无穷潜力-于是有了下面的故事-既然JS也能编写大型应用-那么自然也需要像其他语言那样具有解决复杂问题的开发框架-Angular-React-Vue等前端开发框架出现-Express-Koa等后端开发框架出现-各种后端数据库驱动出现-要开发大型应用，自然少不了各种实用的第三方库的支持-npm包管理器的出现，使用第三方变得极其方便" class="headerlink" title="CommonJS的出现打开了前端开发者的思路既然后端可以使用模块化的JS,作为JS语言的老东家浏览器为什么不行呢?于是,开始有人想办法把CommonJS运用到浏览器中可是这里面存在诸多的困难办法总比困难多,有些开发者就想,既然CommonJS运用到浏览器困难,我们干嘛不自己重新定一个模块化的标准出来,难道就一定要有CommonJS标准吗?于是很快,AMD规范出炉,它解决的问题和CommonJS一样,但是可以更好地适应浏览器环境.相继地,CMD规范出炉,它对AMD规范进行了改进.这些行为,都受到了ECMA官方的密切关注2015年,ES6发布,它提出了官方的模块化解决方案 ES Module从此以后,模块化成为了JS本身特有的性质,这门语言终于有了和其他语言较量的资本,成为了可以编写大型应用的正式语言与此同时,很多开发者,技术厂商早已预见到JS的无穷潜力,于是有了下面的故事- 既然JS也能编写大型应用,那么自然也需要像其他语言那样具有解决复杂问题的开发框架  - Angular,React,Vue等前端开发框架出现  - Express,Koa等后端开发框架出现  - 各种后端数据库驱动出现- 要开发大型应用，自然少不了各种实用的第三方库的支持  - npm包管理器的出现，使用第三方变得极其方便"></a><code>CommonJS</code>的出现打开了前端开发者的思路<br>既然后端可以使用模块化的JS,作为JS语言的老东家浏览器为什么不行呢?<br>于是,开始有人想办法把<code>CommonJS</code>运用到浏览器中<br>可是这里面存在诸多的困难<br>办法总比困难多,有些开发者就想,既然CommonJS运用到浏览器困难,我们干嘛不自己重新定一个模块化的标准出来,难道就一定要有CommonJS标准吗?<br>于是很快,<code>AMD</code>规范出炉,它解决的问题和CommonJS一样,但是可以更好地适应浏览器环境.<br>相继地,<code>CMD</code>规范出炉,它对<code>AMD</code>规范进行了改进.<br>这些行为,都受到了ECMA官方的密切关注<br>2015年,ES6发布,它提出了官方的模块化解决方案 <code>ES Module</code><br>从此以后,模块化成为了JS本身特有的性质,这门语言终于有了和其他语言较量的资本,成为了可以编写大型应用的正式语言<br>与此同时,很多开发者,技术厂商早已预见到JS的无穷潜力,于是有了下面的故事<br>- 既然JS也能编写大型应用,那么自然也需要像其他语言那样具有解决复杂问题的开发框架<br>  - <code>Angular</code>,<code>React</code>,<code>Vue</code>等前端开发框架出现<br>  - <code>Express</code>,<code>Koa</code>等后端开发框架出现<br>  - 各种后端数据库驱动出现<br>- 要开发大型应用，自然少不了各种实用的第三方库的支持<br>  - npm包管理器的出现，使用第三方变得极其方便</h2>]]></content>
-      <tags>
-        <tag>模块化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浏览器</title>
-    <url>/2024/12/16/%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>微嵌</title>
     <url>/2024/12/18/%E5%BE%AE%E5%B5%8C/</url>
     <content><![CDATA[<h1 id="计算机系统的结构组成与工作原理"><a href="#计算机系统的结构组成与工作原理" class="headerlink" title="计算机系统的结构组成与工作原理"></a>计算机系统的结构组成与工作原理</h1><h2 id="计算机系统的基本结构与组成"><a href="#计算机系统的基本结构与组成" class="headerlink" title="计算机系统的基本结构与组成"></a>计算机系统的基本结构与组成</h2><h3 id="层次模型Hiberarchy"><a href="#层次模型Hiberarchy" class="headerlink" title="层次模型Hiberarchy"></a>层次模型<code>Hiberarchy</code></h3><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218190526055.png" class="" title="image-20241218190526055">
@@ -1451,6 +1320,333 @@
       <tags>
         <tag>微嵌</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>新机装机流程</title>
+    <url>/2024/12/19/%E6%96%B0%E6%9C%BA%E8%A3%85%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习，想到刚拿到新电脑时候的处理，决定写一个流程，记录拿到一个新电脑后如何快速安装自己的工具链</p>
+<h1 id="梳理所需工具"><a href="#梳理所需工具" class="headerlink" title="梳理所需工具"></a>梳理所需工具</h1><h2 id="即时通讯类"><a href="#即时通讯类" class="headerlink" title="即时通讯类"></a>即时通讯类</h2><ol>
+<li>QQ <a href="https://im.qq.com/index/">下载链接</a></li>
+<li>微信 <a href="https://weixin.qq.com/">下载链接</a></li>
+<li>飞书 <a href="https://www.feishu.cn/">下载链接</a></li>
+</ol>
+<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><ol>
+<li>clash 见 quark 网盘</li>
+</ol>
+<h2 id="日常办公类"><a href="#日常办公类" class="headerlink" title="日常办公类"></a>日常办公类</h2><ol>
+<li><p>Google Chrome <a href="https://www.google.cn/chrome/">下载链接</a></p>
+</li>
+<li><p>夸克 <a href="https://www.quark.cn/">下载链接</a></p>
+</li>
+<li><p>Xmind <a href="https://www.xmind.cn/">下载链接</a></p>
+</li>
+<li><p>Typora <strong>下载方式见后文</strong></p>
+</li>
+<li><p>Office 套件 <a href="https://mp.weixin.qq.com/s/o2WZaEKUaojoD9tASmJGgg">参考链接</a>,安装包见 quark.</p>
+</li>
+<li><p>winRar <a href="https://www.win-rar.com/download.html?&L=0">下载链接</a></p>
+</li>
+</ol>
+<h2 id="实用工具类"><a href="#实用工具类" class="headerlink" title="实用工具类"></a>实用工具类</h2><ol>
+<li><p>Snipaste <a href="https://zh.snipaste.com/">下载链接</a></p>
+</li>
+<li><p>ZoomIt <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">下载链接</a></p>
+</li>
+<li><p>PowerToys [下载链接] (<a href="https://learn.microsoft.com/zh-tw/windows/powertoys/">https://learn.microsoft.com/zh-tw/windows/powertoys/</a>)</p>
+</li>
+</ol>
+<h2 id="自媒体类"><a href="#自媒体类" class="headerlink" title="自媒体类"></a>自媒体类</h2><ol>
+<li>OBS<a href="https://obsproject.com/">下载链接</a></li>
+<li>Adobe 系列 quark 直接安装</li>
+</ol>
+<h2 id="核心生产力"><a href="#核心生产力" class="headerlink" title="核心生产力"></a>核心生产力</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ol>
+<li><p>VSCode <a href="https://code.visualstudio.com/">下载链接</a></p>
+</li>
+<li><p>JetBrains 全家桶 <strong>下载方式见后文</strong></p>
+</li>
+</ol>
+<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><ol>
+<li>Git <a href="https://git-scm.com/">下载链接</a></li>
+</ol>
+<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><ol>
+<li><p>nvm <a href="https://github.com/coreybutler/nvm-windows/releases">下载链接</a></p>
+</li>
+<li><p>powershell <a href="https://github.com/PowerShell/PowerShell/releases">下载链接</a></p>
+</li>
+</ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
+<li><p>MySQL <a href="https://dev.mysql.com/downloads/mysql/">下载链接</a></p>
+</li>
+<li><p>Navicate 安装方式同 typora</p>
+</li>
+</ol>
+<h3 id="api测试"><a href="#api测试" class="headerlink" title="api测试"></a>api测试</h3><ol>
+<li>Apifox <a href="https://www.apifox.cn/">下载链接</a></li>
+</ol>
+<h1 id="Typora-安装教程"><a href="#Typora-安装教程" class="headerlink" title="Typora 安装教程"></a>Typora 安装教程</h1><ol>
+<li><p>从 quark 下载 Typora 安装包到本地</p>
+</li>
+<li><p>解压并以管理员身份运行<code>typora-setup-x64.exe</code></p>
+</li>
+<li><p>打开 Typora 安装位置,将解压文件夹中的 Crack 目录下的<code>wim.dll</code>复制到 typora 安装目录中</p>
+</li>
+</ol>
+<h1 id="JetBrains-全家桶安装"><a href="#JetBrains-全家桶安装" class="headerlink" title="JetBrains 全家桶安装"></a>JetBrains 全家桶安装</h1><p>以 Pycharm 为例</p>
+<ol>
+<li><p>从 quark 下载安装包到本地并解压安装</p>
+</li>
+<li><p>将解压文件夹中的 Crack 文件夹复制到安装目录</p>
+</li>
+<li><p>运行 Crack 文件夹中的<code>安装.bat</code></p>
+</li>
+<li><p>将<code>zcode.txt</code>拖入激活码框中激活</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>新机处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack</title>
+    <url>/2024/12/16/webpack/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模块化</title>
+    <url>/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="JavaScript-模块化发展史"><a href="#JavaScript-模块化发展史" class="headerlink" title="JavaScript 模块化发展史"></a>JavaScript 模块化发展史</h1><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>在<code>JavaScript</code>语言刚刚诞生的时候，它仅仅用于实现页面中一些小效果，那个时候，一个页面所用到的 JS 可能只有区区几百行的代码<br>在这种情况下，语言本身所存在的一些缺陷往往被大家有意地忽略，因为程序的规模实在太小，只要开发人员小心谨慎，往往不会造成什么问题<br>在这个阶段，也不存在专业的前端工程师，由于前端要做的事情实在太少，因此这一部分工作往往由后端工程师顺带完成<br>第一阶段发生的大事</p>
+<ul>
+<li>1996 年，<code>NetScape</code>将<code>JavaScript</code>语言提交给欧洲的一个标准指定组织 ECMA(欧洲计算机制造商协会)</li>
+<li>1998 年,<code>NetScape</code>在与微软浏览器 IE 的竞争中失利,宣布破产</li>
+</ul>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p><code>ajax</code>的出现,逐渐改变了<code>JavaScript</code>在浏览器中扮演的角色.现在,它不仅可以实现小的效果,还可以和服务器之间进行交互,以更好的体验来改变数据.<br>JS 代码的数量开始逐渐增长,从最初的几百行,到后来的几万行,前端程序逐渐变得复杂.<br>后端开发者压力逐渐增加,致使一些公司开始招募专业的前端开发者<br>但此时,前端开发者的待遇远不及后端开发者,因为前端开发者承担的开发任务相对于后端来说,还是比较简单的,通过短短一个月的时间集训,就可以成为满足前端开发的需要<br>究其根本原因,是因为前端开发还有几个大的问题没有解决,这些问题严重地制约了前端程序的规模进一步扩大</p>
+<ol>
+<li>浏览器解释执行 JS 的速度太慢</li>
+<li>用户端的电脑配置不足</li>
+<li>更多的代码带来了全局变量污染,依赖关系混乱等问题<br>上面三个问题,就像是阿克琉斯之踵,成为前端开发挥之不去的阴影和原罪<br>在这个阶段,前端开服处在一个非常尴尬的境地,它在传统的开发模式和前后端分离之间无助地徘徊<br>第二阶段的大事件</li>
+<li>IE 浏览器制霸市场后,几乎不再更新</li>
+<li>ES4.0 流产,导致 JS 语言 10 年间几乎毫无变化</li>
+<li>2008 年 ES5 发布,仅解决了一些 JS API 不足的糟糕局面</li>
+</ol>
+<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>时间继续向前推进,到了 2008 年,谷歌的 V8 引擎发布,将 JS 的执行速度推上了一个新的台阶,甚至可以和后端语言媲美.<br>摩尔定律持续发酵,个人电脑的配置开始飞跃<br>突然间,制约前端发展的两大问题得以解决,此时,只剩下最后一个问题还在负隅顽抗,即<strong>全局变量污染和依赖混乱</strong>的问题,解决了它,前端便可以突破一切障碍,未来无可限量.<br>于是,全世界的前端开发者在社区中激烈的讨论,想要为这个问题寻求解决之道<br>2008 年,有一个名叫 Ryan Dahl 的小伙子正在为一件事焦头烂额,他需要在服务端手写一个高性能的 web 服务,该服务对性能要求之高,以至于目前市面上已有的 web 服务产品都满足不了需求.<br>经过分析,他确定,如果要实现高性能,那么必须要尽可能地减少线程,而要减少线程,避免不了使用异步的处理方案<br>一开始,他打算自己使用 C&#x2F;C++语言来编写,可是这一过程实在太痛苦.<br>就在他一筹莫展之际,谷歌的 v8 引擎引起了他的注意,他突然发现,JS 不就是最好的实现 web 服务的语言吗?它天生就是单线程,并且是基于异步的!有了 v8 引擎的支撑,它的执行速度完全可以撑起一个服务器.而且 V8 是大名鼎鼎的谷歌公司发布的,谷歌一定会不断地优化 V8,有这种省钱又省力的好事,我干嘛还要自己去写呢?<br>于是,它基于开源的 V8 引擎,对源代码作了一些修改,便快速的完成了该项目.<br>2009 年,Ryan 推出了该 web 服务项目,命名为 nodejs<br>从此,JS 第一次堂堂正正地入主后端,不再是必须附属于浏览器的”玩具”语言了.<br>也是从此刻开始,人们认识到,JS(ES)是一门真正的语言,它依附于运行环境(运行时)(宿主程序)而执行</p>
+<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241216093151767.png" class="" title="image-20241216093151767">
+
+<p>nodejs 的诞生,便把 JS 中的最后一个问题放到了台前,即<strong>全局变量污染和依赖混乱</strong>问题.</p>
+<p>要知道,nodejs 是服务器端,如果不解决这个问题,分模块开发就无从实现,而模块化开发是所有后端程序必不可少的内容<br>经过社区的激烈讨论,最终,形成了一个模块化的方案,即鼎鼎大名的<code>CommonJS</code>,该方案,彻底解决了全局变量污染和依赖混乱的问题<br>该方案一出,立即被 nodejs 支持,于是,nodejs 成为了第一个为 JS 语言实现模块化的平台,为前端接下来的迅猛发展奠定了实践基础<br>该阶段发生的大事件</p>
+<ul>
+<li>2008 年,v8 发布</li>
+<li>IE 的市场逐步被 firfox 和 chrome 蚕食,现已无力回天</li>
+<li>2009 年, nodejs 发布,并附带 commonjs 模块化标准</li>
+</ul>
+<h2 id="第四阶段"><a href="#第四阶段" class="headerlink" title="第四阶段"></a>第四阶段</h2><p><code>CommonJS</code>的出现打开了前端开发者的思路<br>既然后端可以使用模块化的 JS,作为 JS 语言的老东家浏览器为什么不行呢?<br>于是,开始有人想办法把<code>CommonJS</code>运用到浏览器中<br>可是这里面存在诸多的困难<br>办法总比困难多,有些开发者就想,既然 CommonJS 运用到浏览器困难,我们干嘛不自己重新定一个模块化的标准出来,难道就一定要有 CommonJS 标准吗?<br>于是很快,<code>AMD</code>规范出炉,它解决的问题和 CommonJS 一样,但是可以更好地适应浏览器环境.<br>相继地,<code>CMD</code>规范出炉,它对<code>AMD</code>规范进行了改进.<br>这些行为,都受到了 ECMA 官方的密切关注<br>2015 年,ES6 发布,它提出了官方的模块化解决方案 <code>ES Module</code><br>从此以后,模块化成为了 JS 本身特有的性质,这门语言终于有了和其他语言较量的资本,成为了可以编写大型应用的正式语言<br>与此同时,很多开发者,技术厂商早已预见到 JS 的无穷潜力,于是有了下面的故事</p>
+<ul>
+<li>既然 JS 也能编写大型应用,那么自然也需要像其他语言那样具有解决复杂问题的开发框架<ul>
+<li><code>Angular</code>,<code>React</code>,<code>Vue</code>等前端开发框架出现</li>
+<li><code>Express</code>,<code>Koa</code>等后端开发框架出现</li>
+<li>各种后端数据库驱动出现</li>
+</ul>
+</li>
+<li>要开发大型应用，自然少不了各种实用的第三方库的支持<ul>
+<li>npm 包管理器的出现，使用第三方变得极其方便</li>
+<li>webpack 等构建工具出现，专门用于打包和部署</li>
+</ul>
+</li>
+<li>既然 JS 可以放到服务器环境，为什么不能放到其他终端环境呢？<ul>
+<li><code>Electron</code>的发布，可以使用 JS 语言开发桌面应用程序</li>
+<li><code>RN</code>和<code>Weex</code>的发布，可以使用 JS 语言开发移动应用程序</li>
+<li>各种小程序出现，可以使用 JS 编写依附于其他应用的小程序</li>
+<li>目前还有很多厂商致力于将 JS 应用到各种其他的终端设备，最终形成大前端生态</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>可以看到，模块化的出现，是 JS 通向大型应用的最后一堵墙，学习好模块化，便具备了编写大型应用的基本功.</p>
+</blockquote>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>在 nodejs 中,由于有且仅有一个入口文件(启动文件),而开发一个应用肯定会涉及到多个文件的配合,因此,nodejs 对模块化的需求比浏览器端要大的多</p>
+<p>由于 nodejs 刚刚发布的时候,前端没有统一的,官方的模块化规范,因此,它选择使用社区提供的 CommonJS 规范</p>
+<p>在学习 CommonJS 之前,首先认识两个重要概念: <strong>模块的导出和模块的导入</strong></p>
+<h2 id="模块的导出"><a href="#模块的导出" class="headerlink" title="模块的导出"></a>模块的导出</h2><p>要理解模块的导出,首先要理解模块的含义</p>
+<p>什么是模块?</p>
+<p>模块就是一个 JS 文件, 它实现了一部分功能,并隐藏自己的内部实现,同时提供了一些接口供其他模块使用</p>
+<p>模块有两个核心要素: <strong>隐藏</strong>和<strong>暴露</strong></p>
+<p>隐藏的是自己的内部实现</p>
+<p>暴露的是希望外部使用的接口</p>
+<p>任何一个正常的模块化标准,都应该默认隐藏模块中的所有实现,而是通过一些语法或 api 调用来暴露接口</p>
+<p><strong>暴露接口的过程即模块的导出</strong></p>
+<h2 id="模块的导入"><a href="#模块的导入" class="headerlink" title="模块的导入"></a>模块的导入</h2><p>当需要使用一个模块时,使用的是该模块暴露的部分(导出的部分), 隐藏的部分是永远无法使用的</p>
+<p><strong>当通过某种语法或 api 去使用一个模块时,这个过程就叫做模块的导入</strong></p>
+<h2 id="CommonJS-规范"><a href="#CommonJS-规范" class="headerlink" title="CommonJS 规范"></a>CommonJS 规范</h2><p>CommonJS 使用<code>exports</code>导出模块,使用<code>require</code>导入模块</p>
+<p>具体规范如下:</p>
+<ol>
+<li>如果一个 JS 文件中存在<code>exports</code>或<code>require</code>,该文件是一个模块</li>
+<li>模块内的所有代码均为隐藏代码,包括全局变量,全局函数,这些全局的内容均不应该对全局变量造成任何污染.</li>
+<li>如果一个模块需要暴露一些 API 提供给外部使用,需要通过<code>exports</code>导出, <code>exports</code>是一个空的对象,你可以为该对象添加任何需要导出的内容</li>
+<li>如果一个模块需要导入其他模块,通过<code>require</code>实现,<code>require</code>是一个函数,其返回值是模块的导出内容,<code>require</code>的参数是模块的路径</li>
+</ol>
+<h2 id="nodejs-对-CommonJS-的实现"><a href="#nodejs-对-CommonJS-的实现" class="headerlink" title="nodejs 对 CommonJS 的实现"></a>nodejs 对 CommonJS 的实现</h2><p>为了实现 CommonJS 规范, nodejs 对模块做出了以下处理</p>
+<ol>
+<li><p>为了保证高效地执行, 仅加载必要的模块. nodejs 只有执行到<code>require</code>函数时才会加载<strong>并执行模块</strong> (模块中的代码会被执行一遍)</p>
+</li>
+<li><p>为了隐藏模块中的代码, nodejs 执行模块时, 会将模块中的所有代码放置到一个函数中执行,以保证不污染全局变量.</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>为了保证顺利地导出模块内容,nodejs 做了以下处理</li>
+</ol>
+<ul>
+<li>在模块开始执行前,初始化一个值<code>module.exports=&#123;&#125;</code></li>
+<li><code>module.exports</code>就是模块的导出值</li>
+<li>为了方便开发者便捷的导出, nodejs 在初始化完<code>module.exports</code>之后,又声明了一个变量<code>exports = module.exports</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> <span class="built_in">exports</span> = <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>为了避免反复加载同一个模块, nodejs 默认开启了模块缓存, 如果加载的模块已经被加载过了,则会自动使用之前的导出结果(不会再次执行模块代码)</li>
+</ol>
+<h1 id="浏览器端模块化的难题"><a href="#浏览器端模块化的难题" class="headerlink" title="浏览器端模块化的难题"></a>浏览器端模块化的难题</h1><h2 id="CommonJS-的工作原理"><a href="#CommonJS-的工作原理" class="headerlink" title="CommonJS 的工作原理"></a>CommonJS 的工作原理</h2><p>当使用<code>require(模块路径)</code>导入一个模块时,node 会做以下两件事情(不考虑模块缓存):</p>
+<ol>
+<li>通过模块路径找到本机文件,并读取文件内容</li>
+<li>将文件中的代码放入到一个函数环境中执行,并将执行后<code>module.exports</code>的值作为<code>require</code>函数的返回结果</li>
+</ol>
+<p>正是这两个步骤,使得 CommonJS 在 node 端可以良好地被支持</p>
+<p>可以认为, <strong>CommonJS 是同步的</strong>, 必须要等到加载完文件并执行完代码后才能继续向后执行</p>
+<h2 id="当浏览器遇到-CommonJS"><a href="#当浏览器遇到-CommonJS" class="headerlink" title="当浏览器遇到 CommonJS"></a>当浏览器遇到 CommonJS</h2><p>当想要把 CommonJS 放到浏览器端时,就遇到了一些挑战</p>
+<ol>
+<li><p>浏览器要加载 JS 文件,需要远程从服务器读取,而网络传输的效率远远低于 node 环境中读取本地文件的效率.由于 CommonJS 是同步的,这会极大地降低运行性能</p>
+</li>
+<li><p>如果需要读取 JS 文件内容并把它放入到一个环境中执行,需要浏览器厂商的支持,可是浏览器厂商不愿意提供支持,最大啊的原因是 CommonJS 属于社区规范,而不是官方标准</p>
+</li>
+</ol>
+<h2 id="新的规范"><a href="#新的规范" class="headerlink" title="新的规范"></a>新的规范</h2><p>基于以上两点原因,浏览器无法支持模块化<br>可这并不代表模块化不能在浏览器中实现<br>要在浏览器中实现模块化,只要能解决上面的两个问题就行了<br>解决办法其实很简单:</p>
+<ol>
+<li>远程加载 JS 浪费了时间? 做成异步即可,加载完成后调用一个回调就行了</li>
+<li>模块中的代码需要放置到函数中执行? 编写模块时,直接放函数中就行了</li>
+</ol>
+<p>基于这种简单有效的思路,出现了<code>AMD</code>和<code>CMD</code>规范,有效地解决了浏览器的模块化问题.</p>
+<h1 id="ES6-模块化简介"><a href="#ES6-模块化简介" class="headerlink" title="ES6 模块化简介"></a>ES6 模块化简介</h1><p>ECMA 组织参考了众多社区模块化标准,终于在 2015 年,随着 ES6 发布了官方的模块化标准,后成为 ES6 模块化标准</p>
+<p>ES6 模块化具有以下的特点</p>
+<ol>
+<li><p>使用依赖<strong>预声明</strong>的方式导入模块</p>
+<ol>
+<li>依赖延迟声明<ol>
+<li>优点: 某些时候可以提高效率</li>
+<li>缺点: 无法在一开始确定模块依赖关系</li>
+</ol>
+</li>
+<li>依赖预声明<ol>
+<li>优点: 可以在编译时确定模块依赖关系</li>
+<li>缺点: 某些时候效率较低</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>灵活的多种导入导出方式</p>
+</li>
+<li><p>规范的路径表示法: 所有路径必须以.&#x2F;或..&#x2F;开头</p>
+</li>
+</ol>
+<h2 id="基本的导入导出"><a href="#基本的导入导出" class="headerlink" title="基本的导入导出"></a>基本的导入导出</h2><h3 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h3><p><strong>注意: 这一部分非模块化标准</strong></p>
+<p>目前,浏览器使用以下方式引入一个 ES6 模块文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span> <span class="attr">src</span>=<span class="string">&quot;入口文件&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="模块的基本导入导出"><a href="#模块的基本导入导出" class="headerlink" title="模块的基本导入导出"></a>模块的基本导入导出</h3><p>ES6 中模块的导入导出分为两种</p>
+<ol>
+<li><p>基本导入导出</p>
+</li>
+<li><p>默认导入导出</p>
+</li>
+</ol>
+<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241223104956888.png" class="" title="image-20241223104956888">
+
+<h3 id="基本导出"><a href="#基本导出" class="headerlink" title="基本导出"></a>基本导出</h3><p>类似于<code>exports.xxx = xxxxx</code></p>
+<p>基本导出可以有多个, 每个必须有名称</p>
+<p>基本导出的语法如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> 声明表达式</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> b;     <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"><span class="keyword">export</span> c = <span class="number">3</span>; <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;b&#125; <span class="comment">// 将b变量的名称作为导出名称,将b变量的值作为导出的值</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 具名符号 &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>由于基本导出必须具有名称,所以要求导出的内容必须跟上<strong>声明表达式</strong>或<strong>具名符号</strong></p>
+<h3 id="基本导入"><a href="#基本导入" class="headerlink" title="基本导入"></a>基本导入</h3><p>由于使用的是<strong>依赖预加载</strong>,因此,导入任何模块,导入代码必须放置到所有代码之前</p>
+<p>对于基本导出, 如果要进行导入,使用下面的代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; 导入的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意以下细节</p>
+<ul>
+<li>导入和导出时,可以通过关键字<code>as</code>对导入的符号进行重命名</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; c <span class="keyword">as</span> a &#125;;</span><br><span class="line"><span class="keyword">import</span> &#123; a <span class="keyword">as</span> a2 &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>导入时使用的符号是常量,不可修改</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">234324</span>;</span><br><span class="line"><span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用<code>*</code>号导入所有的基本导出,形成一个对象(必须使用<code>as</code>重命名)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> obj <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">a</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ESModule 同样具有导入缓存<br>如果只想执行模块中代码,不想导入,可以直接使用<code>import &#39;./a.js&#39;</code></p>
+</blockquote>
+<h2 id="默认导入导出"><a href="#默认导入导出" class="headerlink" title="默认导入导出"></a>默认导入导出</h2><h3 id="默认导出"><a href="#默认导出" class="headerlink" title="默认导出"></a>默认导出</h3><p>每个模块,除了允许有多个基本导出之外,还允许有<strong>一个</strong>默认导出<br>默认导出类似于 CommonJS 中的<code>module.exports</code>,由于只有一个,因此无需具名<br>具体的语法是</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> 默认导出的数据;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 默认导出的数据 <span class="keyword">as</span> <span class="keyword">default</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>; <span class="comment">// 基本导出a = 1</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a; <span class="comment">// 默认导出a的值(即默认导出1)</span></span><br></pre></td></tr></table></figure>
+
+<p>由于每个模块仅允许有一个默认导出,因此,每个模块不能出现多个默认导出语句</p>
+<h3 id="默认导入"><a href="#默认导入" class="headerlink" title="默认导入"></a>默认导入</h3><p>想要导入一个模块的默认导出,需要使用下面的语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 接受变量名 <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> data <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>; <span class="comment">// 将模块默认导出的值赋给data</span></span><br></pre></td></tr></table></figure>
+
+<p>类似于 CommonJS 中的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 接受变量名 = <span class="built_in">require</span>(<span class="string">&#x27;模块路径&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由于默认导入时变量名是自行定义的,因此没有别名一说<br>如果希望同时导入某个模块的默认导出和基本导出,可以使用下面的语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 接收默认导出的变量, &#123; 接收基本导出的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果使用*号,会将所有基本导出和默认导出聚合到一个<strong>对象</strong>中,默认导出会作为属性<code>default</code>存在</p>
+</blockquote>
+<h2 id="ES6-模块化细节"><a href="#ES6-模块化细节" class="headerlink" title="ES6 模块化细节"></a>ES6 模块化细节</h2><ol>
+<li>尽量导出不可变的值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> method, &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 模块a</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">method</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// module a</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  name = <span class="string">&#x27;module a&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可能导致混乱,所以在导出时尽量使用<code>const</code>声明语句</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>可以使用无绑定的导入用于执行一些初始化代码<br>如果我们只是想执行模块中的一些代码,而不需要导入它的任何内容,可以使用无绑定导入</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>可以使用绑定再导出来重新导出来自另一个模块的内容</li>
+</ol>
+<p>有的时候,我们可能需要用一个模块封装多个模块,然后有选择地将多个模块的内容分别导出,可以使用下面的语法轻松完成</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 绑定的表示符 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>模块化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浏览器</title>
+    <url>/2024/12/16/%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>随笔小记</title>
