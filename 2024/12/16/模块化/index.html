@@ -160,8 +160,9 @@
 <li>ES4.0 流产,导致 JS 语言 10 年间几乎毫无变化</li>
 <li>2008 年 ES5 发布,仅解决了一些 JS API 不足的糟糕局面</li>
 </ol>
-<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>时间继续向前推进,到了 2008 年,谷歌的 V8 引擎发布,将 JS 的执行速度推上了一个新的台阶,甚至可以和后端语言媲美.<br>摩尔定律持续发酵,个人电脑的配置开始飞跃<br>突然间,制约前端发展的两大问题得以解决,此时,只剩下最后一个问题还在负隅顽抗,即<strong>全局变量污染和依赖混乱</strong>的问题,解决了它,前端便可以突破一切障碍,未来无可限量.<br>于是,全世界的前端开发者在社区中激烈的讨论,想要为这个问题寻求解决之道<br>2008 年,有一个名叫 Ryan Dahl 的小伙子正在为一件事焦头烂额,他需要在服务端手写一个高性能的 web 服务,该服务对性能要求之高,以至于目前市面上已有的 web 服务产品都满足不了需求.<br>经过分析,他确定,如果要实现高性能,那么必须要尽可能地减少线程,而要减少线程,避免不了使用异步的处理方案<br>一开始,他打算自己使用 C/C++语言来编写,可是这一过程实在太痛苦.<br>就在他一筹莫展之际,谷歌的 v8 引擎引起了他的注意,他突然发现,JS 不就是最好的实现 web 服务的语言吗?它天生就是单线程,并且是基于异步的!有了 v8 引擎的支撑,它的执行速度完全可以撑起一个服务器.而且 V8 是大名鼎鼎的谷歌公司发布的,谷歌一定会不断地优化 V8,有这种省钱又省力的好事,我干嘛还要自己去写呢?<br>于是,它基于开源的 V8 引擎,对源代码作了一些修改,便快速的完成了该项目.<br>2009 年,Ryan 推出了该 web 服务项目,命名为 nodejs<br>从此,JS 第一次堂堂正正地入主后端,不再是必须附属于浏览器的”玩具”语言了.<br>也是从此刻开始,人们认识到,JS(ES)是一门真正的语言,它依附于运行环境(运行时)(宿主程序)而执行</p>
+<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>时间继续向前推进,到了 2008 年,谷歌的 V8 引擎发布,将 JS 的执行速度推上了一个新的台阶,甚至可以和后端语言媲美.<br>摩尔定律持续发酵,个人电脑的配置开始飞跃<br>突然间,制约前端发展的两大问题得以解决,此时,只剩下最后一个问题还在负隅顽抗,即<strong>全局变量污染和依赖混乱</strong>的问题,解决了它,前端便可以突破一切障碍,未来无可限量.<br>于是,全世界的前端开发者在社区中激烈的讨论,想要为这个问题寻求解决之道<br>2008 年,有一个名叫 Ryan Dahl 的小伙子正在为一件事焦头烂额,他需要在服务端手写一个高性能的 web 服务,该服务对性能要求之高,以至于目前市面上已有的 web 服务产品都满足不了需求.<br>经过分析,他确定,如果要实现高性能,那么必须要尽可能地减少线程,而要减少线程,避免不了使用异步的处理方案<br>一开始,他打算自己使用 C&#x2F;C++语言来编写,可是这一过程实在太痛苦.<br>就在他一筹莫展之际,谷歌的 v8 引擎引起了他的注意,他突然发现,JS 不就是最好的实现 web 服务的语言吗?它天生就是单线程,并且是基于异步的!有了 v8 引擎的支撑,它的执行速度完全可以撑起一个服务器.而且 V8 是大名鼎鼎的谷歌公司发布的,谷歌一定会不断地优化 V8,有这种省钱又省力的好事,我干嘛还要自己去写呢?<br>于是,它基于开源的 V8 引擎,对源代码作了一些修改,便快速的完成了该项目.<br>2009 年,Ryan 推出了该 web 服务项目,命名为 nodejs<br>从此,JS 第一次堂堂正正地入主后端,不再是必须附属于浏览器的”玩具”语言了.<br>也是从此刻开始,人们认识到,JS(ES)是一门真正的语言,它依附于运行环境(运行时)(宿主程序)而执行</p>
 <img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241216093151767.png" class="" title="image-20241216093151767">
+
 <p>nodejs 的诞生,便把 JS 中的最后一个问题放到了台前,即<strong>全局变量污染和依赖混乱</strong>问题.</p>
 <p>要知道,nodejs 是服务器端,如果不解决这个问题,分模块开发就无从实现,而模块化开发是所有后端程序必不可少的内容<br>经过社区的激烈讨论,最终,形成了一个模块化的方案,即鼎鼎大名的<code>CommonJS</code>,该方案,彻底解决了全局变量污染和依赖混乱的问题<br>该方案一出,立即被 nodejs 支持,于是,nodejs 成为了第一个为 JS 语言实现模块化的平台,为前端接下来的迅猛发展奠定了实践基础<br>该阶段发生的大事件</p>
 <ul>
@@ -222,7 +223,8 @@
 </li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="3">
 <li>为了保证顺利地导出模块内容,nodejs 做了以下处理</li>
 </ol>
 <ul>
@@ -231,7 +233,8 @@
 <li>为了方便开发者便捷的导出, nodejs 在初始化完<code>module.exports</code>之后,又声明了一个变量<code>exports = module.exports</code></li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> <span class="built_in">exports</span> = <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="4">
 <li>为了避免反复加载同一个模块, nodejs 默认开启了模块缓存, 如果加载的模块已经被加载过了,则会自动使用之前的导出结果(不会再次执行模块代码)</li>
 </ol>
 <h1 id="浏览器端模块化的难题"><a href="#浏览器端模块化的难题" class="headerlink" title="浏览器端模块化的难题"></a>浏览器端模块化的难题</h1><h2 id="CommonJS-的工作原理"><a href="#CommonJS-的工作原理" class="headerlink" title="CommonJS 的工作原理"></a>CommonJS 的工作原理</h2><p>当使用<code>require(模块路径)</code>导入一个模块时,node 会做以下两件事情(不考虑模块缓存):</p>
@@ -273,12 +276,13 @@
 </li>
 <li><p>灵活的多种导入导出方式</p>
 </li>
-<li><p>规范的路径表示法: 所有路径必须以./或../开头</p>
+<li><p>规范的路径表示法: 所有路径必须以.&#x2F;或..&#x2F;开头</p>
 </li>
 </ol>
 <h2 id="基本的导入导出"><a href="#基本的导入导出" class="headerlink" title="基本的导入导出"></a>基本的导入导出</h2><h3 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h3><p><strong>注意: 这一部分非模块化标准</strong></p>
 <p>目前,浏览器使用以下方式引入一个 ES6 模块文件</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span> <span class="attr">src</span>=<span class="string">&quot;入口文件&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="模块的基本导入导出"><a href="#模块的基本导入导出" class="headerlink" title="模块的基本导入导出"></a>模块的基本导入导出</h3><p>ES6 中模块的导入导出分为两种</p>
 <ol>
 <li><p>基本导入导出</p>
@@ -287,44 +291,57 @@
 </li>
 </ol>
 <img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241223104956888.png" class="" title="image-20241223104956888">
+
 <h3 id="基本导出"><a href="#基本导出" class="headerlink" title="基本导出"></a>基本导出</h3><p>类似于<code>exports.xxx = xxxxx</code></p>
 <p>基本导出可以有多个, 每个必须有名称</p>
 <p>基本导出的语法如下:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> 声明表达式</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> b;     <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"><span class="keyword">export</span> c = <span class="number">3</span>; <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;b&#125; <span class="comment">// 将b变量的名称作为导出名称,将b变量的值作为导出的值</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>或</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 具名符号 &#125;;</span><br></pre></td></tr></table></figure>
+
 <p>由于基本导出必须具有名称,所以要求导出的内容必须跟上<strong>声明表达式</strong>或<strong>具名符号</strong></p>
 <h3 id="基本导入"><a href="#基本导入" class="headerlink" title="基本导入"></a>基本导入</h3><p>由于使用的是<strong>依赖预加载</strong>,因此,导入任何模块,导入代码必须放置到所有代码之前</p>
 <p>对于基本导出, 如果要进行导入,使用下面的代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; 导入的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <p>注意以下细节</p>
 <ul>
 <li>导入和导出时,可以通过关键字<code>as</code>对导入的符号进行重命名</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; c <span class="keyword">as</span> a &#125;;</span><br><span class="line"><span class="keyword">import</span> &#123; a <span class="keyword">as</span> a2 &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>导入时使用的符号是常量,不可修改</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">234324</span>;</span><br><span class="line"><span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>可以使用<code>*</code>号导入所有的基本导出,形成一个对象(必须使用<code>as</code>重命名)</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> obj <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">a</span>);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>ESModule 同样具有导入缓存<br>如果只想执行模块中代码,不想导入,可以直接使用<code>import &#39;./a.js&#39;</code></p>
 </blockquote>
 <h2 id="默认导入导出"><a href="#默认导入导出" class="headerlink" title="默认导入导出"></a>默认导入导出</h2><h3 id="默认导出"><a href="#默认导出" class="headerlink" title="默认导出"></a>默认导出</h3><p>每个模块,除了允许有多个基本导出之外,还允许有<strong>一个</strong>默认导出<br>默认导出类似于 CommonJS 中的<code>module.exports</code>,由于只有一个,因此无需具名<br>具体的语法是</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> 默认导出的数据;</span><br></pre></td></tr></table></figure>
+
 <p>或</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 默认导出的数据 <span class="keyword">as</span> <span class="keyword">default</span> &#125;;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>; <span class="comment">// 基本导出a = 1</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a; <span class="comment">// 默认导出a的值(即默认导出1)</span></span><br></pre></td></tr></table></figure>
+
 <p>由于每个模块仅允许有一个默认导出,因此,每个模块不能出现多个默认导出语句</p>
 <h3 id="默认导入"><a href="#默认导入" class="headerlink" title="默认导入"></a>默认导入</h3><p>想要导入一个模块的默认导出,需要使用下面的语法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> 接受变量名 <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> data <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>; <span class="comment">// 将模块默认导出的值赋给data</span></span><br></pre></td></tr></table></figure>
+
 <p>类似于 CommonJS 中的</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 接受变量名 = <span class="built_in">require</span>(<span class="string">&#x27;模块路径&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>由于默认导入时变量名是自行定义的,因此没有别名一说<br>如果希望同时导入某个模块的默认导出和基本导出,可以使用下面的语法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> 接收默认导出的变量, &#123; 接收基本导出的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>如果使用*号,会将所有基本导出和默认导出聚合到一个<strong>对象</strong>中,默认导出会作为属性<code>default</code>存在</p>
 </blockquote>
@@ -332,14 +349,18 @@
 <li>尽量导出不可变的值</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> method, &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 模块a</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">method</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// module a</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  name = <span class="string">&#x27;module a&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>可能导致混乱,所以在导出时尽量使用<code>const</code>声明语句</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>可以使用无绑定的导入用于执行一些初始化代码<br>如果我们只是想执行模块中的一些代码,而不需要导入它的任何内容,可以使用无绑定导入</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="3">
 <li>可以使用绑定再导出来重新导出来自另一个模块的内容</li>
 </ol>
 <p>有的时候,我们可能需要用一个模块封装多个模块,然后有选择地将多个模块的内容分别导出,可以使用下面的语法轻松完成</p>
