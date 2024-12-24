@@ -211,6 +211,149 @@ console.log(c);
 
 # 编译结果分析
 
+**手写`my-main.js`**
+
+```js
+// 合并两个模块
+
+// ./src/a.js
+// ./src/index.js
+
+(function (modules) {
+  var moduleExports = {}; // 用于缓存模块的导出结果
+
+  /**
+   * 运行一个模块，得到模块的导出结果
+   * @param {string} moduleId 模块路径
+   */
+  function __webpack_require(moduleId) {
+    // 检查是否有缓存
+    if (moduleExports[moduleId]) {
+      return moduleExports[moduleId];
+    }
+    var func = modules[moduleId]; // 得到该模块对应的函数
+    var module = {
+      exports: {},
+    };
+    func(module, module.exports, __webpack_require); // 运行模块
+    var result = module.exports; // 得到模块的导出结果
+    moduleExports[moduleId] = result;
+    return result;
+  }
+  // 执行入口模块
+  __webpack_require('./src/index.js');
+})(
+  // 该对象保存了所有的模块，以及模块对应的代码
+  {
+    './src/a.js': function (module, exports) {
+      console.log('module a');
+      module.exports = 'a';
+    },
+    './src/index.js': function (module, exports, require) {
+      console.log('index module');
+      var a = require('./src/a.js');
+      var newA = require('./src/a.js');
+      console.log(a);
+    },
+  }
+);
+```
+
+**真实的`main.js`**
+
+```js
+(() => {
+  var __webpack_modules__ = {
+    './src/a.js': (module) => {
+      eval(
+        "console.log('module a');\r\nmodule.exports = 'a';\r\n\n\n//# sourceURL=webpack://code/./src/a.js?"
+      );
+    },
+    './src/index.js': (
+      __unused_webpack_module,
+      __unused_webpack_exports,
+      __webpack_require__
+    ) => {
+      eval(
+        'console.log(\'index module\');\r\nvar a = __webpack_require__(/*! ./a */ "./src/a.js");\r\nconsole.log(a);\n\n//# sourceURL=webpack://code/./src/index.js?'
+      );
+    },
+  };
+  var __webpack_module_cache__ = {};
+
+  function __webpack_require__(moduleId) {
+    var cachedModule = __webpack_module_cache__[moduleId];
+    if (cachedModule !== undefined) {
+      return cachedModule.exports;
+    }
+    var module = (__webpack_module_cache__[moduleId] = {
+      exports: {},
+    });
+    __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+
+    return module.exports;
+  }
+  var __webpack_exports__ = __webpack_require__('./src/index.js');
+})();
+```
+
+**为什么要把代码放到`eval()`函数中，而不是直接写**
+
+当代码报错时，如果在`eval()`中,可以单独显示
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var a = 1;
+      var b = 2;
+      var c = 3;
+
+      eval('var d = null; \n d.abc();');
+    </script>
+  </body>
+</html>
+
+```
+
+![image-20241224164121991](webpack学习/image-20241224164121991.png)
+
+![image-20241224164112332](webpack学习/image-20241224164112332.png)
+
+可以通过增加注释的方自定义打开空间
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var a = 1;
+      var b = 2;
+      var c = 3;
+
+      eval('var d = null; \n d.abc();//# sourceURL=webpack:///./src/a.js');
+    </script>
+  </body>
+</html>
+```
+
+![image-20241224164436488](webpack学习/image-20241224164436488.png)
+
+![image-20241224164450771](webpack学习/image-20241224164450771.png)
+
+
+
 # 学习可以很轻松
 
 ## 重过程, 轻目标: 心态
@@ -228,3 +371,25 @@ console.log(c);
 ## 重实践, 轻理论: 方法
 
 实践和自己写是两码事情
+
+# 配置文件
+
+webpack提供的cli支持很多的参数,例如`--mode`,但更多的时候,我们会使用更加灵活的配置文件来控制webpack的行为
+
+默认情况下,webpack会读取`webpack.config.js`文件作为配置文件,但也可以通过CLI参数`--config`来指定某个配置文件
+
+配置文件中通过`CommonJS`模块导出一个对象,对象中的各种属性对应不同的webpack配置
+
+**注意: 配置文件中的代码,必须是有效的node代码**
+
+当命令行参数与配置文件中的配置出现冲突时,**以命令行参数为准**
+
+**基本配置**
+
+1. `mode`: 编译模式,字符串,取值为`development`或`production`,指定编译结果代码运行的环境,会影响webpack对编译结果代码格式的处理.
+2. `entry`: 入口,字符串(后续详细讲解), 指定入口文件
+3. `output`: 出口, 字符串(后续详细讲解), 指定编译结果文件
+
+>注意: `webpack`支持我们`src`目录下的源代码使用`commonjs`或`ESmodule`,因为源代码在构建过程中根本不会运行,最后运行的是webpack打包后的文件.
+>
+>但是`webpack.config.js`这个配置文件本身在构建过程中是要在node环境下运行的
