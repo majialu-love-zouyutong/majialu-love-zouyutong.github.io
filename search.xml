@@ -1,896 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>webpack</title>
-    <url>/2024/12/16/webpack/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OPPO23秋</title>
-    <url>/2024/12/08/OPPO23%E7%A7%8B/</url>
-    <content><![CDATA[<h1 id="考情分析"><a href="#考情分析" class="headerlink" title="考情分析"></a>考情分析</h1><p><a href="https://www.nowcoder.com/exam/test/85190579/detail?pid=55153645&examPageSource=Company&subTabName=written_page&testCallback=https://www.nowcoder.com/exam/company?currentTab=recommand&jobId=100&keyword=oppo23&testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">真题地址</a></p>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/OPPO23%E7%A7%8B%E6%8B%9B.png" class="" title="OPPO23秋招">
-
-<h1 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h1><h2 id="1-下述代码的执行结果为"><a href="#1-下述代码的执行结果为" class="headerlink" title="1.下述代码的执行结果为"></a>1.下述代码的执行结果为</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">getName</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj2, obj1);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2.<span class="title function_">getName</span>());</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. undefined</li>
-<li>B. “张三”</li>
-<li>C. “李四”</li>
-<li>D. null</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<blockquote>
-<p>考点：<code>super</code>关键字， <code>this</code>关键字</p>
-</blockquote>
-<p><code>this</code>指向调用者</p>
-<p><code>super</code>关键字用于访问对象字面量或类的[[Prototype]]上的属性，或调用超类的构造函数。</p>
-<p><code>super.prop</code>和<code>super[expr]</code>表达式在<strong>类和对象字面量</strong>的任何<strong>方法定义</strong>中都有效。</p>
-<p><code>super(...args)</code>表达式只在<strong>类的构造函数中</strong>有效</p>
-<blockquote>
-<p><strong>注意</strong>：<code>super</code>是一个关键字，这些是特殊的语法结构，<code>super</code>不是指向<strong>proto</strong>对象的变量。尝试读取<code>super</code>本身是一个语法错误.也不能通过 super 来删除超类的属性。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> child = &#123;</span><br><span class="line">  <span class="title function_">myParent</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">super</span>); <span class="comment">// SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Base</span> &#123;</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">super</span>.<span class="property">foo</span>; <span class="comment">// this is bad</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Derived</span>().<span class="title function_">delete</span>(); <span class="comment">// ReferenceError: invalid delete involving &#x27;super&#x27;.</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="2-运行此代码-运行结果正确的是"><a href="#2-运行此代码-运行结果正确的是" class="headerlink" title="2.运行此代码,运行结果正确的是"></a>2.运行此代码,运行结果正确的是</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">nums.<span class="title function_">push</span>(<span class="number">0</span>);</span><br><span class="line">nums.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nums);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. [2, 3, 4, 5, 6, 7]</li>
-<li>B. [3, 4, 5, 6, 7, 0]</li>
-<li>C. [2, 3, 4, 5, 6, 7, 0]</li>
-<li>D. [0, 2, 3, 4, 5, 6]</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<blockquote>
-<p>考点：数组 API</p>
-</blockquote>
-<p><strong>数组添加和移除元素常用 API</strong></p>
-<table>
-<thead>
-<tr>
-<th>API</th>
-<th>说明</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>push(e1,e2,...,en)</code></td>
-<td>向数组的末尾添加一个或多个元素</td>
-<td>新数组的长度</td>
-</tr>
-<tr>
-<td><code>pop()</code></td>
-<td>移除数组的最后一个元素</td>
-<td>被移除的元素</td>
-</tr>
-<tr>
-<td><code>shift()</code></td>
-<td>移除数组第一个元素，其他元素索引减一</td>
-<td>被移除的元素，若没有被移除的元素，则返回空数组</td>
-</tr>
-<tr>
-<td><code>unshift(e1,e2,...,en)</code></td>
-<td>向数组的开头添加一个或多个元素</td>
-<td>新数组的长度</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="3-运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）"><a href="#3-运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）" class="headerlink" title="3.运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）"></a>3.运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello nowcoder&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. hello hello nowcoder</li>
-<li>B. hello</li>
-<li>C. hello nowcoder</li>
-<li>D. hello nowcoder hello nowcoder</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<blockquote>
-<p>考点：事件监听</p>
-</blockquote>
-<p>**EventTarget.addEventListener()**方法将指定的监听器注册到<code>EventTarget</code>上，当该对象触发指定的事件时，指定的回调函数就会被执行。<code>EventTarget</code>可以是一个文档上的元素<code>Element</code>,<code>Document</code>和<code>Window</code>，也可以是任何支持事件的对象(比如<code>XMLHttpRequest</code>).</p>
-<p><code>addEventListener()</code>的工作原理是将实现<code>EventListener</code>的函数或对象添加到调用它的<code>EventTarget</code>上的指定事件类型的事件侦听器列表中。如果要绑定的函数或对象<strong>已经被添加到列表中</strong>，该函数或对象<strong>不会被再次添加</strong>。</p>
-<blockquote>
-<p>注意：如果先前向事件侦听器列表中添加过一个匿名函数，并且在之后的代码中调用<code>addEventListener</code>来添加一个功能完全相同的匿名函数(<strong>甚至代码完全相同</strong>),那么之后的这个匿名函数也会被添加到列表中。</p>
-<p>实际上，即使使用完全相同的代码来定义一个匿名函数，这两个函数仍然存在区别，并非同一个函数。</p>
-</blockquote>
-<hr>
-<h2 id="4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）"><a href="#4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）" class="headerlink" title="4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）"></a>4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）</h2><ul>
-<li>A. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
-<li>B. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
-<li>C. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
-<li>D. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="5-请问一下-JS-代码输出的结果是"><a href="#5-请问一下-JS-代码输出的结果是" class="headerlink" title="5.请问一下 JS 代码输出的结果是()"></a>5.请问一下 JS 代码输出的结果是()</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">935</span>);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> val;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">res</span>(++val);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">res</span>(++val);</span><br><span class="line">      &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. 935 936 936</li>
-<li>B. 935 936 937</li>
-<li>C. 935 935 935</li>
-<li>D. 935 935 936</li>
-</ul>
-<blockquote>
-<p>正确答案 B</p>
-</blockquote>
-<hr>
-<h2 id="6-下列关于-SSL-说法错误的是"><a href="#6-下列关于-SSL-说法错误的是" class="headerlink" title="6.下列关于 SSL 说法错误的是__."></a>6.下列关于 SSL 说法错误的是__.</h2><ul>
-<li>A. SSL 是 TCP 加强版本</li>
-<li>B. SSL 通过采用机密性，数据完整性，服务器鉴别和客户端鉴别来强化 TCP</li>
-<li>C. SSL 强制网络两端的用户使用特定的对称加密算法</li>
-<li>D. SSL 记录由类型字段，版本字段，长度字段，数据字段，MAC 字段组成</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="7-请问以下-JS-代码最终输出的结果是（）"><a href="#7-请问以下-JS-代码最终输出的结果是（）" class="headerlink" title="7.请问以下 JS 代码最终输出的结果是（）"></a>7.请问以下 JS 代码最终输出的结果是（）</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b] = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; c, d &#125; = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(d);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. undefined undefined undefined undefined</li>
-<li>B. 1 2 1 2</li>
-<li>C. undefined undefined 1 2</li>
-<li>D. 1 2 undefined undefined</li>
-</ul>
-<blockquote>
-<p>正确答案：D</p>
-</blockquote>
-<hr>
-<h2 id="8-小明使用-Chrome-浏览器上-163-邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？"><a href="#8-小明使用-Chrome-浏览器上-163-邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？" class="headerlink" title="8.小明使用 Chrome 浏览器上 163 邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？"></a>8.小明使用 Chrome 浏览器上 163 邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？</h2><ul>
-<li>A. SMTP</li>
-<li>B. POP3</li>
-<li>C. HTTP</li>
-<li>D. IGMP</li>
-</ul>
-<blockquote>
-<p>正确答案</p>
-</blockquote>
-<hr>
-<h2 id="9-某个主机与服务器之间建立连接，经测试主机到服务器的平均-RTT-为-120ms，一个-gif-图像的平均发送时延为-45ms。如果一个-Web-页面使用非持久连接的-HTTP-协议，它包含了-8-幅-gif-图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本-HTML-文件、HTTP-请求报文、TCP-握手报文大小忽略不计，TCP-第三次握手捎带一个-HTTP-请求）"><a href="#9-某个主机与服务器之间建立连接，经测试主机到服务器的平均-RTT-为-120ms，一个-gif-图像的平均发送时延为-45ms。如果一个-Web-页面使用非持久连接的-HTTP-协议，它包含了-8-幅-gif-图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本-HTML-文件、HTTP-请求报文、TCP-握手报文大小忽略不计，TCP-第三次握手捎带一个-HTTP-请求）" class="headerlink" title="9.某个主机与服务器之间建立连接，经测试主机到服务器的平均 RTT 为 120ms，一个 gif 图像的平均发送时延为 45ms。如果一个 Web 页面使用非持久连接的 HTTP 协议，它包含了 8 幅 gif 图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本 HTML 文件、HTTP 请求报文、TCP 握手报文大小忽略不计，TCP 第三次握手捎带一个 HTTP 请求）"></a>9.某个主机与服务器之间建立连接，经测试主机到服务器的平均 RTT 为 120ms，一个 gif 图像的平均发送时延为 45ms。如果一个 Web 页面使用非持久连接的 HTTP 协议，它包含了 8 幅 gif 图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本 HTML 文件、HTTP 请求报文、TCP 握手报文大小忽略不计，TCP 第三次握手捎带一个 HTTP 请求）</h2><ul>
-<li>A. 1560ms</li>
-<li>B. 2280ms</li>
-<li>C. 2520ms</li>
-<li>D. 2640ms</li>
-</ul>
-<blockquote>
-<p>正确答案</p>
-</blockquote>
-<hr>
-<h2 id="10-对于某线性表来说，若第一个元素的存储地址为-100，每个元素的长度为-2，则经过五个元素后，第六个元素的存储地址为（）"><a href="#10-对于某线性表来说，若第一个元素的存储地址为-100，每个元素的长度为-2，则经过五个元素后，第六个元素的存储地址为（）" class="headerlink" title="10.对于某线性表来说，若第一个元素的存储地址为 100，每个元素的长度为 2，则经过五个元素后，第六个元素的存储地址为（）"></a>10.对于某线性表来说，若第一个元素的存储地址为 100，每个元素的长度为 2，则经过五个元素后，第六个元素的存储地址为（）</h2><ul>
-<li>A. 106</li>
-<li>B. 108</li>
-<li>C. 110</li>
-<li>D. 112</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="11-给定一组硬币面值-C-1-5-10-25-60-100-，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）"><a href="#11-给定一组硬币面值-C-1-5-10-25-60-100-，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）" class="headerlink" title="11.给定一组硬币面值 C&#x3D;{1,5,10,25,60,100}，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）"></a>11.给定一组硬币面值 C&#x3D;{1,5,10,25,60,100}，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALGORITHM (x, c1, c2, …, cn)//c1,c2..表示货币金额</span><br><span class="line">SORT n coin denominations so that 0 &lt; c1 &lt; c2 &lt; … &lt; cn.</span><br><span class="line">S ← ∅.//选择货币的集合</span><br><span class="line">WHILE (x &gt; 0)</span><br><span class="line">    k ← largest coin denomination ck such that ck &lt;= x.</span><br><span class="line">    IF no such k, RETURN “no solution.”</span><br><span class="line">    ELSE</span><br><span class="line">        x ← x – ck.</span><br><span class="line">        S ← S ∪ &#123; k &#125;.</span><br><span class="line">RETURN S.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. 利用该贪心算法求解得到的解总是最优的</li>
-<li>B. 题目中所给的贪心算法适用于任何一套面值<code>c1&lt;c2&lt;...&lt;cn</code>的硬币，前提是<code>c1=1</code></li>
-<li>C. 题中所给的贪心算法只适合于硬币面值为 C &#x3D; {1, 5, 10, 25, 60, 100}</li>
-<li>给定 x&#x3D;90，得到的集合<code>C=&#123;1,5,10,25,60,100&#125;</code>，这个解是最优的</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<h2 id="12-分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为-5ms-时，为保证响应时间不超过-2s，最大就绪进程数为（）"><a href="#12-分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为-5ms-时，为保证响应时间不超过-2s，最大就绪进程数为（）" class="headerlink" title="12.分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为 5ms 时，为保证响应时间不超过 2s，最大就绪进程数为（）"></a>12.分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为 5ms 时，为保证响应时间不超过 2s，最大就绪进程数为（）</h2><ul>
-<li>A. 200</li>
-<li>B. 250</li>
-<li>C. 400</li>
-<li>D. 500</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="13-圆覆盖"><a href="#13-圆覆盖" class="headerlink" title="13.圆覆盖"></a>13.圆覆盖</h2><p>平面上有<em>n</em>个点，每个点有一个点权<em>v</em>。你现在可以以原点为圆心放置一个圆，请问要使圆能覆盖到的点的权值和达到<em>x</em>，圆的半径至少为多少？</p>
-<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125207210-17336635353651.png" class="" title="image-20241203125207210">
-
-<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125301195.png" class="" title="image-20241203125301195">
-
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  4</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：5</span><br><span class="line">例子说明：</span><br><span class="line">半径为5时，点(0,1),(-1,1),(3,3),(-4,3)在圆内，权值和为10</span><br></pre></td></tr></table></figure>
-
-<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  2</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：-1</span><br><span class="line">例子说明：</span><br><span class="line">权值和无法达到10</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 读入点数n, 点权和下限x</span></span><br><span class="line">  <span class="keyword">const</span> [n, x] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">  <span class="comment">// 收集点的信息</span></span><br><span class="line">  <span class="keyword">const</span> points = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> [a, b, v] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">    <span class="comment">// 计算距离并存储点信息</span></span><br><span class="line">    <span class="keyword">const</span> distance = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(a * a + b * b);</span><br><span class="line">    points.<span class="title function_">push</span>(&#123; distance, v &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 按照距离升序排序</span></span><br><span class="line">  points.<span class="title function_">sort</span>(<span class="function">(<span class="params">p1, p2</span>) =&gt;</span> p1.<span class="property">distance</span> - p2.<span class="property">distance</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将圆的半径从零开始扩大,依次将点的权值加和</span></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> &#123; distance, v &#125; <span class="keyword">of</span> points) &#123;</span><br><span class="line">    sum += v;</span><br><span class="line">    <span class="keyword">if</span> (sum &gt;= x) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(distance);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果所有点的权值加起来都达不到下限x</span></span><br><span class="line">  <span class="keyword">if</span> (sum &lt; x) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ol>
-<li>读取输入：<code>O(n)</code></li>
-<li>计算距离： <code>O(n)</code></li>
-<li>排序操作：<code>O(nlogn)</code></li>
-<li>遍历求和：<code>O(n)</code></li>
-</ol>
-<p><strong>整体时间复杂度:<code>O(nlogn)</code></strong></p>
-<h3 id="空间复杂度-O-n"><a href="#空间复杂度-O-n" class="headerlink" title="空间复杂度 O(n)"></a>空间复杂度 <code>O(n)</code></h3><hr>
-<h2 id="14-在-Linux-中，关于虚拟内存相关的说法正确的是（）"><a href="#14-在-Linux-中，关于虚拟内存相关的说法正确的是（）" class="headerlink" title="14.在 Linux 中，关于虚拟内存相关的说法正确的是（）"></a>14.在 Linux 中，关于虚拟内存相关的说法正确的是（）</h2><ul>
-<li>A. CPU 与内存之间通过 MMU 将虚拟内存地址翻译为物理内存地址</li>
-<li>B. 页是虚拟内存与物理内存的交换单元,最小的单位是 64KB</li>
-<li>C. 在页表结构中, 有效位为 1 代表虚拟地址未被分配</li>
-<li>D. 在一个进程中，每个线程之间的虚拟内存是独占的</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<hr>
-<h2 id="15-牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）"><a href="#15-牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）" class="headerlink" title="15.牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）"></a>15.牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）</h2><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204125159609.png" class="" title="image-20241204125159609">
-
-<ul>
-<li>A. 快速排序</li>
-<li>B. 直接选择排序</li>
-<li>C. 堆排序</li>
-<li>D. 简单插入排序</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<hr>
-<h2 id="16-单词"><a href="#16-单词" class="headerlink" title="16.单词"></a>16.单词</h2><p>小欧有一些英文单词，他想知道这些单词是不是合法的。一个单词是合法的当且仅当这个单词首字母是大写的，其它字母均是小写的。你能帮帮他吗。</p>
-<h3 id="输入描述-1"><a href="#输入描述-1" class="headerlink" title="输入描述"></a>输入描述</h3><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204130507901.png" class="" title="image-20241204130507901">
-
-<h3 id="输出描述-1"><a href="#输出描述-1" class="headerlink" title="输出描述"></a>输出描述</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对于每一组数据，如果单词是合法的，输出一行&quot;YES&quot;，否则输出一行&quot;NO&quot;。</span><br></pre></td></tr></table></figure>
-
-<h4 id="示例-1-1"><a href="#示例-1-1" class="headerlink" title="示例 1"></a>示例 1</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">yeerV</span><br><span class="line">Ophu</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">YES</span><br><span class="line">例子说明：</span><br><span class="line">yeerV的首字母是小写的，因此不是合法单词。</span><br><span class="line">Ophu的首字母是大写的，其它字母都是小写的，因此是合法单词。</span><br></pre></td></tr></table></figure>
-
-<h4 id="示例-2-1"><a href="#示例-2-1" class="headerlink" title="示例 2"></a>示例 2</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">vvryuCryg</span><br><span class="line">pzjiyR</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Write your code here</span></span><br><span class="line">  <span class="comment">// 读入数据数量</span></span><br><span class="line">  <span class="keyword">const</span> reg = <span class="regexp">/^[A-Z][a-z]*$/</span>;</span><br><span class="line">  <span class="keyword">const</span> n = <span class="built_in">parseInt</span>(<span class="keyword">await</span> <span class="title function_">readline</span>());</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> word = <span class="keyword">await</span> <span class="title function_">readline</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(word) ? <span class="string">&#x27;YES&#x27;</span> : <span class="string">&#x27;NO&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<h2 id="17-系统在作业调度时分配了-N-个物理块，页面引用串长度为-P，包含-M-个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）"><a href="#17-系统在作业调度时分配了-N-个物理块，页面引用串长度为-P，包含-M-个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）" class="headerlink" title="17.系统在作业调度时分配了 N 个物理块，页面引用串长度为 P，包含 M 个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）"></a>17.系统在作业调度时分配了 N 个物理块，页面引用串长度为 P，包含 M 个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）</h2><ul>
-<li>A. M, M</li>
-<li>B. P, min(M,N)</li>
-<li>C. N, N</li>
-<li>D. min(M, P), min(M, N)</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<hr>
-<h2 id="18-已知某二叉树的中序遍历为-dhbieafjckg，层序遍历为-abcdefghijk，则由此可得，其叶子结点的个数为（）"><a href="#18-已知某二叉树的中序遍历为-dhbieafjckg，层序遍历为-abcdefghijk，则由此可得，其叶子结点的个数为（）" class="headerlink" title="18.已知某二叉树的中序遍历为 dhbieafjckg，层序遍历为 abcdefghijk，则由此可得，其叶子结点的个数为（）"></a>18.已知某二叉树的中序遍历为 dhbieafjckg，层序遍历为 abcdefghijk，则由此可得，其叶子结点的个数为（）</h2><p><img src="/assets/image-20241204132520754.png" alt="image-20241204132520754"></p>
-<ul>
-<li>A. 2</li>
-<li>B. 3</li>
-<li>C. 4</li>
-<li>D. 5</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="19-下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）"><a href="#19-下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）" class="headerlink" title="19.下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）"></a>19.下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）</h2><ul>
-<li>A. rm -rf *</li>
-<li>B. rm -rf nowcoder&#x2F;*</li>
-<li>C. rm -rf nowcoder*</li>
-<li>D. rm -rf *nowcoder*</li>
-</ul>
-<blockquote>
-<p>正确答案 D</p>
-</blockquote>
-<hr>
-<h2 id="20-请问根据以下代码，id-为-main-的-div-标签的宽度为（）"><a href="#20-请问根据以下代码，id-为-main-的-div-标签的宽度为（）" class="headerlink" title="20.请问根据以下代码，id 为 main 的 div 标签的宽度为（）"></a>20.请问根据以下代码，id 为 main 的 div 标签的宽度为（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">body</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">150px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">300px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">120px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. 150px</li>
-<li>B. 300px</li>
-<li>C. 120px</li>
-<li>D. 100px</li>
-</ul>
-<blockquote>
-<p>正确答案 A</p>
-</blockquote>
-<hr>
-<h2 id="21-根据代码，请问四个-div-标签从上到下的排列顺序（以-class-值代指）是（）"><a href="#21-根据代码，请问四个-div-标签从上到下的排列顺序（以-class-值代指）是（）" class="headerlink" title="21.根据代码，请问四个 div 标签从上到下的排列顺序（以 class 值代指）是（）"></a>21.根据代码，请问四个 div 标签从上到下的排列顺序（以 class 值代指）是（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item1</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">10</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item3</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: green;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.son</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">100</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. son item2 item3 item1</li>
-<li>B. item1 item2 item3 son</li>
-<li>C. item2 item1 item3 son</li>
-<li>D. item1 son item2 item3</li>
-</ul>
-<blockquote>
-<p>正确答案 B</p>
-</blockquote>
-<hr>
-<h2 id="22-请问以下-HTML-中文字-a、b、c-的-font-size-值分别是多少-px（）"><a href="#22-请问以下-HTML-中文字-a、b、c-的-font-size-值分别是多少-px（）" class="headerlink" title="22.请问以下 HTML 中文字 a、b、c 的 font-size 值分别是多少 px（）"></a>22.请问以下 HTML 中文字 a、b、c 的 font-size 值分别是多少 px（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">      a</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>b<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>c<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A. 20 20 20</li>
-<li>B. 15 15 15</li>
-<li>C. 20 15 15</li>
-<li>D. 20 15 20</li>
-</ul>
-<blockquote>
-<p>正确答案 C</p>
-</blockquote>
-<hr>
-<h2 id="23-环形进度条"><a href="#23-环形进度条" class="headerlink" title="23.环形进度条"></a>23.环形进度条</h2><p>环形进度条</p>
-<p><code>id</code>为<code>&quot;magnifier&quot;</code>的<code>&quot;section&quot;</code>节点是一个环形进度条模块，而<code>&quot;magnifier&quot;</code>对象用于初始化该模块。该模块的功能如下：</p>
-<ol>
-<li>输入框中可以输入数字类型，数值即百分比值；</li>
-<li>当点击确定按钮时，环形进度条按输入框中的数值进行渲染；</li>
-<li>若输入框中的数据比 0 小，则将输入框中的值置为 0，百分比按 0% 渲染；</li>
-<li>若输入框中的数据比 100 大，则将输入框中的值置为 100，百分比按 100% 渲染；</li>
-</ol>
-<p>注意：若用户输入数据为小数，则按四舍五入取整处理</p>
-<p>请阅读给定的 JavaScript 代码，并在 TODO 处完善代码。效果如下：</p>
-<img src="/2024/12/08/OPPO23%E7%A7%8B/8F2BFA0763F677AFC69BB69B4D0DCB41.gif" class="" title="8F2BFA0763F677AFC69BB69B4D0DCB41">
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-line</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-l</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">left</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-r</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">180deg</span>);</span></span><br><span class="line"><span class="language-css">        <span class="attribute">right</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-c</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">4px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(-<span class="number">45deg</span>);</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-rm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-lm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">18px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#submit</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;magnifier&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> magnifier = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">init</span>(<span class="params">param</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> el = param.<span class="property">el</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (!el) <span class="keyword">return</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">createElement</span>(el);</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">initEvent</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">loadPercent</span>();</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">createElement</span>(<span class="params">el</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> loopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-r&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-rm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">id</span> = <span class="string">&#x27;loop-rc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="title function_">appendChild</span>(rightMask);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-l&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-lm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">id</span> = <span class="string">&#x27;loop-lc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="title function_">appendChild</span>(leftMask);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(rightLoopPie);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(leftLoopPie);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 百分比输入框</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> percent = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="property">className</span> = <span class="string">&#x27;percent-number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">type</span> = <span class="string">&#x27;number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = <span class="number">25</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> button = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">innerText</span> = <span class="string">&#x27;确定&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">id</span> = <span class="string">&#x27;submit&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(input);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(button);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(loopPie);</span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(percent);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">initEvent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：获取id=submit的节点</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> submit = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：给submit的按钮添加点击事件，当被点击时调用 loadPercent() 方法</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getPercenNumber</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.percent-number input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框中的值保留四舍五入取整</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> num = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框框的值置为合理区间范围</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = num;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> num;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">loadPercent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：计算左半圆部分和右半圆部分旋转的角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateRight = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateLeft = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> lc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-lc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          lc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateLeft&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-rc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateRight&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      magnifier.<span class="title function_">init</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// <span class="doctag">TODO:</span> 请获取id=magnifier的节点</span></span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>: <span class="literal">null</span>,</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>笔试真题</category>
-      </categories>
-      <tags>
-        <tag>oppo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新机装机流程</title>
-    <url>/2024/12/19/%E6%96%B0%E6%9C%BA%E8%A3%85%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习，想到刚拿到新电脑时候的处理，决定写一个流程，记录拿到一个新电脑后如何快速安装自己的工具链</p>
-<h1 id="梳理所需工具"><a href="#梳理所需工具" class="headerlink" title="梳理所需工具"></a>梳理所需工具</h1><h2 id="即时通讯类"><a href="#即时通讯类" class="headerlink" title="即时通讯类"></a>即时通讯类</h2><ol>
-<li>QQ <a href="https://im.qq.com/index/">下载链接</a></li>
-<li>微信 <a href="https://weixin.qq.com/">下载链接</a></li>
-<li>飞书 <a href="https://www.feishu.cn/">下载链接</a></li>
-</ol>
-<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><ol>
-<li>clash 见 quark 网盘</li>
-</ol>
-<h2 id="日常办公类"><a href="#日常办公类" class="headerlink" title="日常办公类"></a>日常办公类</h2><ol>
-<li><p>Google Chrome <a href="https://www.google.cn/chrome/">下载链接</a></p>
-</li>
-<li><p>夸克 <a href="https://www.quark.cn/">下载链接</a></p>
-</li>
-<li><p>Xmind <a href="https://www.xmind.cn/">下载链接</a></p>
-</li>
-<li><p>Typora <strong>下载方式见后文</strong></p>
-</li>
-<li><p>Office 套件 <a href="https://mp.weixin.qq.com/s/o2WZaEKUaojoD9tASmJGgg">参考链接</a>,安装包见 quark.</p>
-</li>
-<li><p>winRar <a href="https://www.win-rar.com/download.html?&L=0">下载链接</a></p>
-</li>
-</ol>
-<h2 id="实用工具类"><a href="#实用工具类" class="headerlink" title="实用工具类"></a>实用工具类</h2><ol>
-<li><p>Snipaste <a href="https://zh.snipaste.com/">下载链接</a></p>
-</li>
-<li><p>ZoomIt <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">下载链接</a></p>
-</li>
-<li><p>PowerToys [下载链接] (<a href="https://learn.microsoft.com/zh-tw/windows/powertoys/">https://learn.microsoft.com/zh-tw/windows/powertoys/</a>)</p>
-</li>
-</ol>
-<h2 id="自媒体类"><a href="#自媒体类" class="headerlink" title="自媒体类"></a>自媒体类</h2><ol>
-<li>OBS<a href="https://obsproject.com/">下载链接</a></li>
-<li>Adobe 系列 quark 直接安装</li>
-</ol>
-<h2 id="核心生产力"><a href="#核心生产力" class="headerlink" title="核心生产力"></a>核心生产力</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ol>
-<li><p>VSCode <a href="https://code.visualstudio.com/">下载链接</a></p>
-</li>
-<li><p>JetBrains 全家桶 <strong>下载方式见后文</strong></p>
-</li>
-</ol>
-<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><ol>
-<li>Git <a href="https://git-scm.com/">下载链接</a></li>
-</ol>
-<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><ol>
-<li><p>nvm <a href="https://github.com/coreybutler/nvm-windows/releases">下载链接</a></p>
-</li>
-<li><p>powershell <a href="https://github.com/PowerShell/PowerShell/releases">下载链接</a></p>
-</li>
-</ol>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
-<li><p>MySQL <a href="https://dev.mysql.com/downloads/mysql/">下载链接</a></p>
-</li>
-<li><p>Navicate 安装方式同 typora</p>
-</li>
-</ol>
-<h3 id="api测试"><a href="#api测试" class="headerlink" title="api测试"></a>api测试</h3><ol>
-<li>Apifox <a href="https://www.apifox.cn/">下载链接</a></li>
-</ol>
-<h1 id="Typora-安装教程"><a href="#Typora-安装教程" class="headerlink" title="Typora 安装教程"></a>Typora 安装教程</h1><ol>
-<li><p>从 quark 下载 Typora 安装包到本地</p>
-</li>
-<li><p>解压并以管理员身份运行<code>typora-setup-x64.exe</code></p>
-</li>
-<li><p>打开 Typora 安装位置,将解压文件夹中的 Crack 目录下的<code>wim.dll</code>复制到 typora 安装目录中</p>
-</li>
-</ol>
-<h1 id="JetBrains-全家桶安装"><a href="#JetBrains-全家桶安装" class="headerlink" title="JetBrains 全家桶安装"></a>JetBrains 全家桶安装</h1><p>以 Pycharm 为例</p>
-<ol>
-<li><p>从 quark 下载安装包到本地并解压安装</p>
-</li>
-<li><p>将解压文件夹中的 Crack 文件夹复制到安装目录</p>
-</li>
-<li><p>运行 Crack 文件夹中的<code>安装.bat</code></p>
-</li>
-<li><p>将<code>zcode.txt</code>拖入激活码框中激活</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>新机处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微嵌</title>
-    <url>/2024/12/18/%E5%BE%AE%E5%B5%8C/</url>
-    <content><![CDATA[<h1 id="计算机系统的结构组成与工作原理"><a href="#计算机系统的结构组成与工作原理" class="headerlink" title="计算机系统的结构组成与工作原理"></a>计算机系统的结构组成与工作原理</h1><h2 id="计算机系统的基本结构与组成"><a href="#计算机系统的基本结构与组成" class="headerlink" title="计算机系统的基本结构与组成"></a>计算机系统的基本结构与组成</h2><h3 id="层次模型Hiberarchy"><a href="#层次模型Hiberarchy" class="headerlink" title="层次模型Hiberarchy"></a>层次模型<code>Hiberarchy</code></h3><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218190526055.png" class="" title="image-20241218190526055">
-
-<p>图(a)自下而上反映了逐级<strong>开发</strong>计算机系统的过程，自上而下反映了计算机系统<strong>求解</strong>问题的过程。</p>
-<p>图(b)的语言层次越往上抽象程度越高</p>
-<p>简单地分为三个层次</p>
-<ul>
-<li>针对解决具体问题的应用软件</li>
-<li>包括操作系统在内的软件</li>
-<li>计算机系统硬件</li>
-</ul>
-<h3 id="结构Architecture-组成Organization与实现Realization"><a href="#结构Architecture-组成Organization与实现Realization" class="headerlink" title="结构Architecture,组成Organization与实现Realization"></a>结构<code>Architecture</code>,组成<code>Organization</code>与实现<code>Realization</code></h3><ul>
-<li>计算机系统的体系结构</li>
-</ul>
-<p>程序员关心的计算机概念结构和功能特性(<strong>系列机</strong>)</p>
-<p>如：确定指令集中是否有乘法指令；</p>
-<ul>
-<li>计算机系统的组成</li>
-</ul>
-<p>从硬件角度关注物理机器的组织</p>
-<p>如：乘法指令由专用乘法器还是用加法器实现</p>
-<ul>
-<li>计算机系统的实现方式</li>
-</ul>
-<p>底层的器件技术，微组装技术，冷却技术等</p>
-<p>如：加法器底层的物理器件类型及微组装技术</p>
-<h2 id="计算机系统的工作原理"><a href="#计算机系统的工作原理" class="headerlink" title="计算机系统的工作原理"></a>计算机系统的工作原理</h2><h3 id="冯·诺伊曼计算机架构"><a href="#冯·诺伊曼计算机架构" class="headerlink" title="冯·诺伊曼计算机架构"></a>冯·诺伊曼计算机架构</h3><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218194915734.png" class="" title="image-20241218194915734">
-
-<ul>
-<li>程序和数据存放在存储器中</li>
-<li>控制器实现指令的执行操作</li>
-<li>运算器完成各种算数逻辑运算</li>
-<li>输入设备和输出设备分别完成指令和原市数据的输入，运算结果的输出</li>
-</ul>
-<h3 id="模型机：系统结构，指令集，工作流程"><a href="#模型机：系统结构，指令集，工作流程" class="headerlink" title="模型机：系统结构，指令集，工作流程"></a>模型机：系统结构，指令集，工作流程</h3><p><strong>处理器</strong>：计算机系统的计算，控制中心，用来实现算术逻辑运算及其他各种操作，并实现对计算机系统所有部件的控制。</p>
-<ul>
-<li>CPU 主要由<strong>控制器，运算器和寄存器组</strong>组成，并通过<strong>内部总线</strong>连接</li>
-<li>控制器根据<strong>指令进行译码</strong>，产生控制 CPU 内部<strong>各模块间信息传输</strong>的控制信号，并产生<strong>控制外设</strong>的控制信号</li>
-<li>运算器完成各种算术逻辑等运算操作</li>
-</ul>
-<p><strong>程序的执行</strong></p>
-<ul>
-<li>程序由完成一定功能的<strong>多条指令</strong>组成</li>
-<li>指令执行的过程分为三个阶段<ul>
-<li>从存储器<strong>读取指令(fetch)</strong></li>
-<li>CPU 的控制器解析指令(decode),即<strong>指令译码</strong></li>
-<li><strong>执行指令(execute)</strong>,各个控制信号控制 CPU 内部和外部电路完成对应的操作功能。</li>
-</ul>
-</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218203952426.png" class="" title="image-20241218203952426">
-
-<p><strong>存储器</strong>：存放处理器可以直接运行的程序，数据和结果</p>
-<ul>
-<li>**RAM(Random Access Memory)**随机存取存储器，是半导体类型的存储器，可随时将程序和数据写入或读出。一旦断电后，存放在其中的程序和数据即消失</li>
-<li>**ROM(Read Only Memory)**只读存储器，是半导体存储器，一般情况下只能读出存放在其中的程序和数据，在特殊条件下才能将程序和数据写入。断电后，存放在其中的内容不会消失。</li>
-</ul>
-<p>存储器是<strong>存放机器指令和数据</strong>等信息的载体，由 3 部分组成</p>
-<ul>
-<li>存储体：存放**机器指令和数据(均为 0,1 序列)**的电路实体，划分为多个单元，每个单元有多个二进制位</li>
-<li>地址：指示指令和数据的<strong>具体存放位置</strong>，由地址寄存和译码器组成</li>
-<li>控制电路：控制存储体中信息的<strong>输入或输出</strong></li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218202409866.png" class="" title="image-20241218202409866">
-
-<p><strong>存储器访问原理</strong></p>
-<ul>
-<li>写操作： 提供给的地址信号经地址译码选中存储位置，控制操作为输入，数据输入到存储器并存放</li>
-<li>读操作：控制为输出，地址信号经地址译码选中存储位置，该位置的数据由数据线输出</li>
-</ul>
-<p><strong>存储子系统</strong>：存放当前的运行程序和数据</p>
-<p><strong>外设</strong>：输入设备与输出设备的统称<br><strong>I&#x2F;O 接口</strong>：处理器与计算机系统各种输入&#x2F;输出设备之间的电路</p>
-<p><strong>输入输出子系统</strong>：完成计算机与外部的信息交换</p>
-<p><strong>总线</strong>：根据传输信息的不同</p>
-<ul>
-<li>数据总线 DB：用于数据交换，传送机器指令，原始数据和计算结果信息，通常是<strong>分时双向的</strong></li>
-<li>地址总线 AB：通常是<strong>单向</strong>的，由<strong>主设备</strong>(如 CPU)发出，用于选择读写对象(如某个特定的存储单元或外部设备端口)</li>
-<li>控制总线 CB：用于传输方向，传送时间，异常处理等各种控制的信号。包括真正的<strong>控制</strong>信号线(如读&#x2F;写信号)和一些<strong>状态</strong>信号线(如是否已将数据送上总线)，用于实现对设备的监视和控制。</li>
-</ul>
-<p><strong>总线子系统</strong>：作为公共通道连接各子部件，用于实现各部分之间的数据，信息等的传输和交换</p>
-<p><strong>指令</strong>是发送到 CPU 的命令，指示 CPU 执行一个特定的处理，如数据搬移，对数据进行算术运算</p>
-<p>指令通常包含<strong>操作码</strong>和<strong>操作数</strong>两部分</p>
-<ul>
-<li>操作码指明要完成的操作功能，如加，减，数据传送，移位等</li>
-<li>操作数指明上述规定操作的数据或获取该数据所存放地址的方法</li>
-</ul>
-<p>指令通常有两种形式</p>
-<ul>
-<li>机器指令：包含操作码和操作数，由 0 和 1 组成，CPU 能直接解析，执行并完成一定功能，如 1011 0000 0101 1100</li>
-<li>汇编指令：与机器指令功能一一对应，由具有一定含义的字符串，寄存器名和立即数组成，如<code>MOV R1,#5CH</code></li>
-</ul>
-<p><strong>模型机的执行过程</strong></p>
-<p>计算机的运行本质上就是<strong>执行程序</strong>的过程</p>
-<p>程序执行的两种类型</p>
-<ul>
-<li>顺序执行</li>
-<li>非顺序执行<ul>
-<li>转移(jump)：执行条件&#x2F;无条件转移指令，<strong>不返回</strong></li>
-<li>过程(procedure)调用：子程序执行完后，<strong>返回原处</strong></li>
-<li>异常(exception)：将正常程序(包括顺序，转移，过程调用等)的执行过程暂时中止，转而执行其他级别更高的程序，如数据出错</li>
-<li>中断(interrupt)：异常之一，用于优先级更高的处理</li>
-</ul>
-</li>
-</ul>
-<h2 id="微处理器体系结构的演进"><a href="#微处理器体系结构的演进" class="headerlink" title="微处理器体系结构的演进"></a>微处理器体系结构的演进</h2><p>冯·诺伊曼机器的数据传输时瓶颈，解决途径</p>
-<ul>
-<li>程序和数据分开存储，即<strong>哈弗结构</strong></li>
-<li>采用并行结构，包括<strong>流水线结构</strong></li>
-</ul>
-<h3 id="指令集结构的演进"><a href="#指令集结构的演进" class="headerlink" title="指令集结构的演进"></a>指令集结构的演进</h3><p><strong>CISC(Complex Instruction Set Computer)<strong>，复杂指令集：为软件编程方便和提高程序的运行速度，不断增加可</strong>实现复杂功能的指令和多种灵活的寻址方式</strong>。为实现程序兼容,同一系列的新机器的指令系统只能扩充而不能减少,也使指令系统愈加复杂</p>
-<ul>
-<li>优点:有较强的<strong>处理高级语言</strong>的能力</li>
-<li>缺点:<strong>硬件越来越复杂</strong>,反而影响了执行速度和性能.典型程序的 80%使用 20%的指令实现的</li>
-<li>演进:指令系统应当<strong>只包含哪些使用频率很高的少量指令</strong>.适当保留支持高级语言和操作系统的必要指令,即精简指令集</li>
-</ul>
-<p><strong>RISC(Reduced Instruction Set Computer)</strong>, 精简指令集.</p>
-<ul>
-<li>RISC 把较长的指令分拆成若干条<strong>长度相同的单一操作</strong>指令,可使 CPU 的工作变得单纯,速度更快,设计和开发也更简单.</li>
-<li>缺点: 软件支持较少</li>
-<li>演进:CISC 吸纳 RISC 技术优点,RISC 保持部分 CISC 先进思想.<strong>架构不同,技术融合</strong></li>
-</ul>
-<h3 id="体系结构的演进"><a href="#体系结构的演进" class="headerlink" title="体系结构的演进"></a>体系结构的演进</h3><p><strong>冯·诺伊曼</strong>体系结构也称为<strong>普林斯顿结构</strong>,它把<strong>程序指令看作为特殊的数据</strong>,可以像数据一样被处理,将<strong>程序和数据存放在相同的存储器中</strong>,</p>
-<p>采用<strong>统一编制</strong>,但程序存储地址和数据存储地址指向不同的物理位置.</p>
-<ul>
-<li>在通用计算机系统中由于灵活方便<strong>重分代码与数据空间</strong>,更新内容而占有优势.统一编址可以最大限度地利用资源.</li>
-<li>如程序执行过程所述,处理器首先到程序指令存储器中<strong>读取程序指令内容,解码后得到数据地址</strong>,再到相应的数据存储器中读取数据,并进行下一步的操作(如运算处理).显然<strong>读取指令和读取数据是串行的</strong>,速度慢.</li>
-<li>演进为哈弗结构</li>
-</ul>
-<p><strong>哈弗结构</strong>,是一种将<strong>程序指令存储和数据存储完全分开</strong>的存储器结构,采用分离编址.</p>
-<ul>
-<li><p>哈弗与两个存储器相对应的是系统的 4 套总线.</p>
-<ul>
-<li>程序的数据总线</li>
-<li>程序的地址总线</li>
-<li>数据的数据总线</li>
-<li>数据的地址总线</li>
-</ul>
-<p>可以在一个机器周期内同时获得<strong>指令码</strong>(来自程序存储器)和<strong>操作数</strong>(来自数据存储器),从而提高了执行速度</p>
-</li>
-<li><p>由于程序和数据存储器在两个分开的物理空间中,因此<strong>取指</strong>和<strong>执行</strong>能<strong>完全重叠</strong></p>
-</li>
-<li><p>哈弗结构的缺点: 数据存储器和程序代码存储器各自需要数据与地址总线,<strong>引脚信号线多</strong></p>
-</li>
-<li><p>再次演进: 对于 CPU 内部,通过不同的<strong>数据和指令 cache</strong>,采用哈弗结构以有效的提高指令的执行效率.而处理器外部采用冯·诺伊曼结构</p>
-</li>
-</ul>
-<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><p><strong>总线</strong>:用于连接计算机系统各部件的导线集合,即部件间传输信息的<strong>共用通道</strong>,可以是线缆,也可以是 PCB 板上的金属线</p>
-<p>计算机系统的部件之间通信为何采用总线结构</p>
-<ul>
-<li>存储器由多种类型,多种功能,<strong>多组芯片</strong>组成</li>
-<li>计算机外部设备因<strong>功能,性能和应用等不同</strong>而具有各自的接口电路</li>
-<li>多电路部件,多芯片间的<strong>点对点互联复杂,连线多,扩展性差</strong></li>
-</ul>
-<p><strong>按照总线在计算机系统中所处位置不同划分</strong></p>
-<ul>
-<li>CPU 片内总线: 连接 CPU 内部控制器,运算器和寄存器组的总线</li>
-<li>片总线: 通常指处理器芯片引脚的总线,用于连接处理器片外的存储器,接口芯片等</li>
-<li>系统总线: 用于连接计算机系统外的其他电路模块的总线,如 PCI 总线</li>
-</ul>
-<h3 id="存储器结构"><a href="#存储器结构" class="headerlink" title="存储器结构"></a>存储器结构</h3><p>如何以<strong>合理的价格搭建出容量和速度都满足要求</strong>的存储器系统,始终是计算机体系结构设计中的关键问题之一.</p>
-<p>现代计算机系统通常把不同的存储设备按一定的体系结构组织起来,以解决<strong>存储容量,存取速度和价格之间的矛盾</strong></p>
-<p>采用<strong>分级结构</strong>,以均衡速度,容量,成本,长期存储等问题.</p>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218213152282.png" class="" title="image-20241218213152282">
-
-<p>在存储器分层结构中,上面一层的存储器作为下一层存储器的高速缓存</p>
-<ul>
-<li>CPU 中的寄存器就是 cache 的高速缓存,寄存器保存来自 cache 的字</li>
-<li>cache 又是内存层的高速缓存,从内存中提取数据送给 CPU 进行处理,并将 CPU 的处理结果返回到内存中</li>
-<li>内存又是主存储器的高速缓存,它将经常用到的数据从 Flash 等主存储器中提取出来,放到内存中,从而加快了 CPU 的运行效率</li>
-<li>嵌入式系统的主存储器容量是有限的,磁盘,光盘或 CF,SD 卡等外部存储器用来保存大信息量的数据</li>
-<li>在某些带有<strong>分布式文件系统的嵌入式网络系统</strong>中,外部存储器就作为其他系统中被存储数据的高速缓存</li>
-</ul>
-<h3 id="微处理器机构的改变"><a href="#微处理器机构的改变" class="headerlink" title="微处理器机构的改变"></a>微处理器机构的改变</h3><p><strong>通过”并行”提高处理速度</strong></p>
-<ul>
-<li>多层次的并行处理技术</li>
-<li>流水线结构</li>
-<li>超标量结构</li>
-<li>超长指令字</li>
-<li>多核结构</li>
-<li>并行机</li>
-</ul>
-<p><strong>并行处理技术</strong>实现多个处理器或处理模块的并行性,其基本思想包括<strong>时间重叠(time interleaving)</strong>,<strong>资源重复(resource replication)</strong>,和<strong>资源共享(resource sharing)</strong></p>
-<ul>
-<li><p>电路级并行技术 CLP</p>
-<ul>
-<li>组相联 cache, 先行进位加法器</li>
-</ul>
-</li>
-<li><p>指令级并行技术 ISP</p>
-<ul>
-<li>流水线，超标量</li>
-</ul>
-<p>不同的处理器的流水线级数不同</p>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219131532650.png" class="" title="image-20241219131532650">
-<p>超标量技术：通过重复设置多套指令执行部件，同时处理并完成多条指令，实现并行操作来达到提高处理速度的目的。</p>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219131741339.png" class="" title="image-20241219131741339">
-
-<p>可在一个时钟周期内对多条指令进行并行处理，<strong>使 CPI 小于 1</strong></p>
-<p>有 5 个执行单元的超标量流水线，指令的执行比取指，译码的时间更长，通过超标量均衡各级流水的执行时间。</p>
-<p><strong>VLIW(Very Long Instruction Word)<strong>超长指令字，</strong>依靠编译器</strong>编译时找出指令之间潜在的并行性，把能并行执行的多条指令组装成一条很长的指令</p>
-<p>处理机中多个<strong>相互独立的执行部件</strong>分别执行长指令中的一个操作，即相当于同时执行多条指令。</p>
-<p>WLIW 处理机很大程度上取决于代码压缩的效率，其编译程序和体系机构的关系非常密切。</p>
-</li>
-<li><p>线程级并行技术</p>
-<ul>
-<li>同时多线程</li>
-</ul>
-</li>
-<li><p>系统级并行技术</p>
-<ul>
-<li>多处理器</li>
-</ul>
-</li>
-</ul>
-<p>**大规模并行处理机(MPP)**是一种价格昂贵的超级计算机，它由许多 CPU 通过高速专用互联网络连接。</p>
-<p>**机群(cluster)**由多台同构或异构的独立计算机通过高性能网络或局域网连在一起协同完成特定的并行计算任务。</p>
-<p>**刀片(blade)**通常指包含一个或多个 CPU, 内存以及网络接口的服务器主板。通常一个刀片柜共享其他外部 I&#x2F;O 和电源，而辅助存储器则由距离刀片柜较近的存储服务器提供。</p>
-<p>**网络计算(Network)**是一组由高速网络连接的不同的计算机系统，可以相互合作也可以独立工作。网络计算机将接受中央服务器分配的任务，然后在不忙的时候执行这些任务。</p>
-<h2 id="计算机体系结构的分类与性能评测"><a href="#计算机体系结构的分类与性能评测" class="headerlink" title="计算机体系结构的分类与性能评测"></a>计算机体系结构的分类与性能评测</h2><p><strong>Flynn 分类</strong>:根据<strong>指令流和数据流</strong>的多少进行分类</p>
-<p>CU: 控制部件</p>
-<p>PU: 处理部件</p>
-<p>MM: 存储单元</p>
-<p>CS: 控制流</p>
-<p>DS: 数据流</p>
-<p>IS: 指令流</p>
-<ul>
-<li>单指令单数据<strong>SISD</strong><ul>
-<li>传统的顺序处理机</li>
-<li>标量流水线处理机</li>
-<li>超标量流水线处理机</li>
-</ul>
-</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219221639943.png" class="" title="image-20241219221639943">
-
-<ul>
-<li>单指令多数据<strong>SIMD</strong><ul>
-<li>阵列处理机</li>
-<li>向量处理机</li>
-</ul>
-</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219221654600.png" class="" title="image-20241219221654600">
-
-<ul>
-<li>多指令单数据<strong>MISD</strong>,无实际机型对应</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219222101268.png" class="" title="image-20241219222101268">
-
-<ul>
-<li>多指令多数据<strong>MIMD</strong>：多处理机系统</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219222134711.png" class="" title="image-20241219222134711">
-
-<p>计算机系统的性能由<strong>硬件性能和程序特性</strong>决定，通常使用<strong>标准测试程序</strong>来测定性能</p>
-<ul>
-<li>用<strong>MIPS</strong>(Million Instructions Per Second,每秒百万条指令)或<strong>MFLOPS</strong>(每秒百万次浮点操作)的数值来衡量计算机系统的硬件速度</li>
-<li>用<strong>CPU 执行时间 t</strong>来量化硬软件结合系统的有效速度。<ul>
-<li>MIPS&#x3D;f(MHz)&#x2F;CPI</li>
-<li>t(s) &#x3D; IC*CPI*T</li>
-</ul>
-</li>
-</ul>
-<p>T:CPU 主时钟周期(s), 对应的主时钟频率 f&#x3D;1&#x2F;T(Hz)</p>
-<p>IC(指令数目): 运行的程序指令总数</p>
-<p>CPI(Cycles Per Instruction): 平均单条指令执行所需的时钟周期数，可以从运行大量测试程序或实际程序的统计数据中计算出来。</p>
-<h1 id="微处理器设计技术"><a href="#微处理器设计技术" class="headerlink" title="微处理器设计技术"></a>微处理器设计技术</h1><h2 id="CISC-与-RISC-体系结构"><a href="#CISC-与-RISC-体系结构" class="headerlink" title="CISC 与 RISC 体系结构"></a>CISC 与 RISC 体系结构</h2><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092121417.png" class="" title="image-20241220092121417">
-
-<p><strong>CISS</strong>的特点及设计思想</p>
-<ul>
-<li>许多复杂指令很少被使用，“2-8”原则</li>
-<li>控制器硬件复杂(指令多，且具有不定长格式和复杂的数据类型),占用了大量的芯片面积，且容易出错。</li>
-<li>指令操作繁杂，速度慢</li>
-<li>指令规整性不好，不利用采用流水线技术提高性能</li>
-</ul>
-<p><strong>RISC</strong>机的设计应当遵循以下五个原则</p>
-<ul>
-<li>指令条数少，格式简单，易于译码</li>
-<li>提供足够的寄存器，只允许<code>load</code>和<code>store</code>指令访问内存</li>
-<li>指令由硬件直接执行，在单个周期内完成</li>
-<li>充分利用流水线</li>
-<li>依赖优化编译器的作用</li>
-</ul>
-<p><strong>区别</strong></p>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092606386.png" class="" title="image-20241220092606386">
-
-<h2 id="指令系统设计"><a href="#指令系统设计" class="headerlink" title="指令系统设计"></a>指令系统设计</h2><p><strong>指令结构</strong></p>
-<blockquote>
-<p>指令系统是软硬件之间的一个约定,是计算机软硬件接口之一</p>
-</blockquote>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092838227-1734658120135-1.png" class="" title="image-20241220092838227">
-
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092849142.png" class="" title="image-20241220092849142">
-
-<p><strong>指令集结构(ISA)</strong></p>
-<p>指令集结构(Instruction Set Architecture)</p>
-<p>处理器的接口，包含了与该处理器交互所需要的信息，但并不设计处理器自身如何设计和实现的细节</p>
-<p>ISA包括</p>
-<ul>
-<li>指令集</li>
-<li>程序员可以直接访问的寄存器细节</li>
-<li>访问内存所需要的信息</li>
-<li>中断(异常)处理</li>
-</ul>
-<p><strong>指令的组成</strong></p>
-<ul>
-<li>操作码(operation code, opcode): 需要完成的操作</li>
-<li>源操作数(source operand reference): 操作所需的输入</li>
-<li>结果操作数(result operand reference): 操作产生的结果</li>
-<li>下一条指令(next instruction reference): 告诉CPU到哪里取下一条指令</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220093256013.png" class="" title="image-20241220093256013">
-
-<p><strong>指令格式</strong></p>
-<p>在计算机内部，指令由一个位串来表示。相应于指令的各要素，这些位串划分成几个字段</p>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220124724735.png" class="" title="image-20241220124724735">
-
-<ul>
-<li>操作码字段<ul>
-<li>说明CPU应进行的操作</li>
-<li>按操作类型分组：同类操作要求同样或类似的控制信号，因此编码也类似(有尽可能多的公共位)</li>
-</ul>
-</li>
-<li>操作数&#x2F;地址字段<ul>
-<li>说明源操作数和目的操作数存放的位置信息(R,M或I&#x2F;O)</li>
-<li>说明源操作数和目的操作数的数据类型</li>
-</ul>
-</li>
-<li>下一条指令地址字段<ul>
-<li>如紧跟当前指令，在主存或虚存中，则不需要显示引用</li>
-<li>如可能产生跳转，则需要显示给出存储地址</li>
-</ul>
-</li>
-</ul>
-<p><strong>操作码设计(指令类型)</strong></p>
-<p>指令操作码<strong>按操作分组</strong>即是指令类型，按功能可分成三种基本类型：</p>
-<ol>
-<li>数据传输：将数据从一个地方(源地址)复制到另一个地方(目的地址),传输结束后源地址中的内容不变.</li>
-<li>数据运算:算术运算和逻辑运算</li>
-<li>控制类:用于改变正常的程序执行流程,完成程序的跳转,主要包括转移指令和过程指令</li>
-</ol>
-<p><strong>操作数字段</strong></p>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220125914348-1734670755521-1.png" class="" title="image-20241220125914348">
-
-<ul>
-<li>立即数寻址:在指令码中指定操作数</li>
-<li>寄存器直接寻址:指令的地址字段给出寄存器名,而被指定的寄存器的内容就是操作数</li>
-<li>寄存器简介寻址:指令的地址字段给出寄存器名,而被指定的寄存器的内容是操作数的地址</li>
-<li>存储器直接寻址:指令的地址字段给定存储单元的地址,存储单元中是操作数</li>
-<li>存储器间接寻址:指令的地址字段给定存储单元的地址,存储单元中是操作数的地址</li>
-<li>位移量寻址方式:通常用于数据,矩阵,类向量数据的存取,立即数指定数组首址,寄存器指定组内偏移.</li>
-<li>变址寻址方式:寄存器1指定数组首地址,寄存器2指定组内偏移</li>
-<li>比例尺寻址方式:指定<strong>两个寄存器</strong>中的存储器地址加上<code>imm</code>字段的位移量</li>
-<li>PC相对寻址方式:主要用在转移和跳转指令,指定汇编语言程序码的内部位置作为<strong>目的地址偏移量</strong>操作数</li>
-<li>独立编址系统的I&#x2F;O寻址方式: 系统视端口和存储单元位不同的对象</li>
-<li>统一编制系统的I&#x2F;O寻址方式: 将端口看作存储单元,仅以<strong>地址范围的不同</strong>来区分两者.</li>
-</ul>
-<h2 id="指令流水线设计"><a href="#指令流水线设计" class="headerlink" title="指令流水线设计"></a>指令流水线设计</h2><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220133039210.png" class="" title="image-20241220133039210">
-
-<p><strong>流水线冲突</strong></p>
-<p>理想流水线性能:每个时钟周期完成一条指令</p>
-<p>实际流水机器中可能存在*<em>冒险</em>8导致停顿</p>
-<ul>
-<li>数据冲突</li>
-<li>结构冲突</li>
-<li>控制冲突</li>
-</ul>
-<h1 id="总线技术与总线标准"><a href="#总线技术与总线标准" class="headerlink" title="总线技术与总线标准"></a>总线技术与总线标准</h1><h2 id="总线技术"><a href="#总线技术" class="headerlink" title="总线技术"></a>总线技术</h2><h3 id="总线要素"><a href="#总线要素" class="headerlink" title="总线要素"></a>总线要素</h3><p><strong>线路介质</strong></p>
-<ol>
-<li>种类： 有线(电缆，光缆), 无线(电磁波)</li>
-<li>特性：<ol>
-<li>原始数据传输率， 带宽</li>
-<li>对噪声，失真，衰减的敏感性等</li>
-</ol>
-</li>
-</ol>
-<p><strong>总线协议</strong></p>
-<p>电气性能</p>
-<ul>
-<li>总线信号:有效电平,传输方向&#x2F;速率&#x2F;格式等</li>
-<li>总线时序:规定通信双方的联络方式</li>
-<li>总线仲裁:规定解决总线冲突的方式</li>
-<li>其他: 如差错控制</li>
-</ul>
-<p>机械性能</p>
-<ul>
-<li>接口尺寸</li>
-<li>形状</li>
-</ul>
-<p>$$<br>总线协议 \begin{cases} 消息的内容 \begin{cases} 数据内容 \ 命令内容 \end{cases} \ 消息传输\begin{cases} 介质 \begin{cases} 位编码 \ 位传输 \end{cases} \ 通道组织 \begin{cases} 单工&#x2F;双工 \ 通道共享 \ 并行&#x2F;串行 \end{cases} \ 协调 \begin{cases} 时钟同步 \ 检错和纠错 \end{cases} \end{cases} \end{cases}<br>$$</p>
-<h3 id="总线的分类"><a href="#总线的分类" class="headerlink" title="总线的分类"></a>总线的分类</h3><p>按<strong>所处位置</strong>(数据传送范围)</p>
-<ul>
-<li>片上总线</li>
-<li>芯片总线(片间总线, 元件级总线)</li>
-<li>系统内总线(插板级总线)</li>
-<li>系统外总线(通信总线)</li>
-</ul>
-<p>按<strong>总线功能</strong></p>
-<ul>
-<li>地址总线</li>
-<li>数据总线</li>
-<li>控制总线</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241223091957591.png" class="" title="image-20241223091957591">
-
-<p>按<strong>数据格式</strong></p>
-<ul>
-<li>并行总线<ul>
-<li>同步</li>
-<li>半同步</li>
-<li>异步</li>
-</ul>
-</li>
-<li>串行总线<ul>
-<li>同步</li>
-<li>异步</li>
-</ul>
-</li>
-</ul>
-<p>按<strong>总线组织</strong></p>
-<ul>
-<li>单总线<ul>
-<li>特点: 存储器和I&#x2F;O<strong>分时</strong>使用同一总线</li>
-<li>优点: 结构简单,成本低廉,易于扩充</li>
-<li>缺点: 带宽有限,传输率不高(可能造成物理长度过长)</li>
-</ul>
-</li>
-<li>双总线<ul>
-<li>特点: 存储总线 + I&#x2F;O总线</li>
-<li>优点: 提高了总线带宽和数据传输速率</li>
-<li>缺点: CPU繁忙</li>
-</ul>
-</li>
-<li>多级总线<ul>
-<li>特点: 高速外设和低速外设分开使用不同的总线</li>
-<li>优点: 高效,进一步提高系统的传输带宽和传输速率</li>
-<li>缺点: 复杂</li>
-</ul>
-</li>
-</ul>
-<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241223092022191-1734916823177-1.png" class="" title="image-20241223092022191">
-
-<h3 id="总线的性能指标"><a href="#总线的性能指标" class="headerlink" title="总线的性能指标"></a>总线的性能指标</h3><p><strong>总线时钟频率(Hz)</strong></p>
-<p><strong>总线宽度(bits)</strong></p>
-<ul>
-<li>数据线: 数据通路宽度</li>
-<li>地址线: 寻址空间</li>
-</ul>
-<p><strong>总线速率(次&#x2F;s)</strong>:传送一次数据所需的时钟周期数<br>$$<br>总线速率 &#x3D; \frac{总线时钟频率}{总线周期数}<br>$$</p>
-<p><strong>总线带宽(Bytes&#x2F;s)</strong><br>$$<br>总线带宽 &#x3D; 总线速率 * 总线宽度<br>$$</p>
-<p><strong>总线负载能力</strong></p>
-<p><strong>总线带宽的计算</strong></p>
-<ol>
-<li>CPU的前端总线(FSB, Front Side Bus) 频率为<strong>800MHz</strong>,总线周期数为<strong>1&#x2F;4</strong>(即一个时钟周期传送4次数据),位宽为<strong>64bit</strong>,则FSB带宽为多少?</li>
-</ol>
-]]></content>
-      <categories>
-        <category>课程笔记</category>
-      </categories>
-      <tags>
-        <tag>微嵌</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES6</title>
     <url>/2024/12/14/ES6/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ol>
@@ -1413,6 +523,1201 @@
 ]]></content>
       <tags>
         <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人简历书写指南</title>
+    <url>/2024/12/23/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E4%B9%A6%E5%86%99%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
+<li>姓名</li>
+<li>性别</li>
+<li>邮箱：使用 gmail 邮箱，表明自己具备科学上网的能力</li>
+<li>年龄</li>
+</ul>
+<h1 id="教育经历"><a href="#教育经历" class="headerlink" title="教育经历"></a>教育经历</h1><p>入学-毕业时间</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="前端基础能力"><a href="#前端基础能力" class="headerlink" title="前端基础能力"></a>前端基础能力</h2><ul>
+<li>熟练掌握 HTML5, CSS3, JavaScript(ES6+), TypeScript, less, sass.</li>
+<li>熟练使用原生 H5 完成 WebApp</li>
+<li>熟练使用 CSS3 的媒介查询完成响应式布局</li>
+<li>深入理解原型原型链，异步，作用域链，this 指向，闭包，垃圾回收，事件循环等 JS 相关知识</li>
+<li>深入理解浏览器的工作原理</li>
+</ul>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
+<li>熟悉网络通信，并深入理解 HTTP, HTTP2, HTTPS, WebSocket 等常见应用层协议</li>
+<li>熟练使用 apifox 进行接口测试等</li>
+<li>熟练使用 AJAX 的 XHR 和 Fetch API 完成前后端通信</li>
+<li>熟悉 JWT, CORS, HTTP Cache, cookie, XSS, CSRF 等网络中常见的应用和安全相关知识</li>
+<li>能利用网络实现文件上传，分片，鉴权，缓存等各种网络应用需求</li>
+</ul>
+<h2 id="效率和工具"><a href="#效率和工具" class="headerlink" title="效率和工具"></a>效率和工具</h2><ul>
+<li>熟练掌握诸多常用第三方库，包括: JQuery, layui, esyui,loadash,mockjs,axios,moment,echart,threejs,animate.css, validata.js 等</li>
+<li>熟练使用 git 版本控制工具, github, gitlab 等代码托管平台</li>
+<li>熟练使用 vscode,能够熟练利用 AI 辅助编程，提高开发效率</li>
+</ul>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><ul>
+<li>深入理解模块化，能熟练使用 CommonJS, ES Module 模块化标准完成分模块开发</li>
+<li>熟练使用 npm, pnpm 等包管理工具</li>
+<li>深入理解 webpack 原理</li>
+<li>熟练配置 babel, postcss, eslint, prettier 等前端常见工具链</li>
+</ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
+<li>熟练使用 Vue3 全家桶， 深入理解 Vue 原理</li>
+<li>熟练使用 element-plus，echarts 等组件库</li>
+<li>熟练使用 uniapp</li>
+<li>了解 flutter</li>
+</ul>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><ul>
+<li>熟练使用 node, express, koa 等技术开发服务器程序</li>
+<li>熟练使用 mysql, mongodb, redis 等数据库</li>
+<li>能利用服务器完成诸如图片水印，防盗链，验证码，token 生成等常见功能</li>
+<li>能够熟练使用 nginx 等服务器代理工具</li>
+<li>能够熟练使用 docker, k8s 等容器编排工具</li>
+<li>能够熟练使用 pm2 等进程管理工具</li>
+<li>熟悉 CI&#x2F;CD 等自动化构建工具</li>
+</ul>
+<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><ul>
+<li>时间 公司 职位</li>
+<li>分点描述岗位职责和成果</li>
+</ul>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h1 id="证书和奖项"><a href="#证书和奖项" class="headerlink" title="证书和奖项"></a>证书和奖项</h1>]]></content>
+  </entry>
+  <entry>
+    <title>OPPO23秋</title>
+    <url>/2024/12/08/OPPO23%E7%A7%8B/</url>
+    <content><![CDATA[<h1 id="考情分析"><a href="#考情分析" class="headerlink" title="考情分析"></a>考情分析</h1><p><a href="https://www.nowcoder.com/exam/test/85190579/detail?pid=55153645&examPageSource=Company&subTabName=written_page&testCallback=https://www.nowcoder.com/exam/company?currentTab=recommand&jobId=100&keyword=oppo23&testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">真题地址</a></p>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/OPPO23%E7%A7%8B%E6%8B%9B.png" class="" title="OPPO23秋招">
+
+<h1 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h1><h2 id="1-下述代码的执行结果为"><a href="#1-下述代码的执行结果为" class="headerlink" title="1.下述代码的执行结果为"></a>1.下述代码的执行结果为</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">  <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">getName</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj2, obj1);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2.<span class="title function_">getName</span>());</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. undefined</li>
+<li>B. “张三”</li>
+<li>C. “李四”</li>
+<li>D. null</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<blockquote>
+<p>考点：<code>super</code>关键字， <code>this</code>关键字</p>
+</blockquote>
+<p><code>this</code>指向调用者</p>
+<p><code>super</code>关键字用于访问对象字面量或类的[[Prototype]]上的属性，或调用超类的构造函数。</p>
+<p><code>super.prop</code>和<code>super[expr]</code>表达式在<strong>类和对象字面量</strong>的任何<strong>方法定义</strong>中都有效。</p>
+<p><code>super(...args)</code>表达式只在<strong>类的构造函数中</strong>有效</p>
+<blockquote>
+<p><strong>注意</strong>：<code>super</code>是一个关键字，这些是特殊的语法结构，<code>super</code>不是指向<strong>proto</strong>对象的变量。尝试读取<code>super</code>本身是一个语法错误.也不能通过 super 来删除超类的属性。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> child = &#123;</span><br><span class="line">  <span class="title function_">myParent</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">super</span>); <span class="comment">// SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Base</span> &#123;</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">super</span>.<span class="property">foo</span>; <span class="comment">// this is bad</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Derived</span>().<span class="title function_">delete</span>(); <span class="comment">// ReferenceError: invalid delete involving &#x27;super&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-运行此代码-运行结果正确的是"><a href="#2-运行此代码-运行结果正确的是" class="headerlink" title="2.运行此代码,运行结果正确的是"></a>2.运行此代码,运行结果正确的是</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">nums.<span class="title function_">push</span>(<span class="number">0</span>);</span><br><span class="line">nums.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nums);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. [2, 3, 4, 5, 6, 7]</li>
+<li>B. [3, 4, 5, 6, 7, 0]</li>
+<li>C. [2, 3, 4, 5, 6, 7, 0]</li>
+<li>D. [0, 2, 3, 4, 5, 6]</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<blockquote>
+<p>考点：数组 API</p>
+</blockquote>
+<p><strong>数组添加和移除元素常用 API</strong></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>说明</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>push(e1,e2,...,en)</code></td>
+<td>向数组的末尾添加一个或多个元素</td>
+<td>新数组的长度</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>移除数组的最后一个元素</td>
+<td>被移除的元素</td>
+</tr>
+<tr>
+<td><code>shift()</code></td>
+<td>移除数组第一个元素，其他元素索引减一</td>
+<td>被移除的元素，若没有被移除的元素，则返回空数组</td>
+</tr>
+<tr>
+<td><code>unshift(e1,e2,...,en)</code></td>
+<td>向数组的开头添加一个或多个元素</td>
+<td>新数组的长度</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3-运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）"><a href="#3-运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）" class="headerlink" title="3.运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）"></a>3.运行此代码，并单击页面中的按钮“点我”，控制台的输出结果正确的是（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello nowcoder&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. hello hello nowcoder</li>
+<li>B. hello</li>
+<li>C. hello nowcoder</li>
+<li>D. hello nowcoder hello nowcoder</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<blockquote>
+<p>考点：事件监听</p>
+</blockquote>
+<p>**EventTarget.addEventListener()**方法将指定的监听器注册到<code>EventTarget</code>上，当该对象触发指定的事件时，指定的回调函数就会被执行。<code>EventTarget</code>可以是一个文档上的元素<code>Element</code>,<code>Document</code>和<code>Window</code>，也可以是任何支持事件的对象(比如<code>XMLHttpRequest</code>).</p>
+<p><code>addEventListener()</code>的工作原理是将实现<code>EventListener</code>的函数或对象添加到调用它的<code>EventTarget</code>上的指定事件类型的事件侦听器列表中。如果要绑定的函数或对象<strong>已经被添加到列表中</strong>，该函数或对象<strong>不会被再次添加</strong>。</p>
+<blockquote>
+<p>注意：如果先前向事件侦听器列表中添加过一个匿名函数，并且在之后的代码中调用<code>addEventListener</code>来添加一个功能完全相同的匿名函数(<strong>甚至代码完全相同</strong>),那么之后的这个匿名函数也会被添加到列表中。</p>
+<p>实际上，即使使用完全相同的代码来定义一个匿名函数，这两个函数仍然存在区别，并非同一个函数。</p>
+</blockquote>
+<hr>
+<h2 id="4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）"><a href="#4-当单击-a-标签中的文本时，要求跳转到-div-标签区域，下列选项中，做法正确的是（）" class="headerlink" title="4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）"></a>4.当单击 a 标签中的文本时，要求跳转到 div 标签区域，下列选项中，做法正确的是（）</h2><ul>
+<li>A. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
+<li>B. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;a&quot;&gt;跳转&lt;/a&gt;</code></li>
+<li>C. <code>&lt;div id=&quot;a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
+<li>D. <code>&lt;div id=&quot;#a&quot;&gt;&lt;/div&gt; &lt;a href=&quot;#a&quot;&gt;跳转&lt;/a&gt;</code></li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="5-请问一下-JS-代码输出的结果是"><a href="#5-请问一下-JS-代码输出的结果是" class="headerlink" title="5.请问一下 JS 代码输出的结果是()"></a>5.请问一下 JS 代码输出的结果是()</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">935</span>);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> val;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">res</span>(++val);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">res</span>(++val);</span><br><span class="line">      &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. 935 936 936</li>
+<li>B. 935 936 937</li>
+<li>C. 935 935 935</li>
+<li>D. 935 935 936</li>
+</ul>
+<blockquote>
+<p>正确答案 B</p>
+</blockquote>
+<hr>
+<h2 id="6-下列关于-SSL-说法错误的是"><a href="#6-下列关于-SSL-说法错误的是" class="headerlink" title="6.下列关于 SSL 说法错误的是__."></a>6.下列关于 SSL 说法错误的是__.</h2><ul>
+<li>A. SSL 是 TCP 加强版本</li>
+<li>B. SSL 通过采用机密性，数据完整性，服务器鉴别和客户端鉴别来强化 TCP</li>
+<li>C. SSL 强制网络两端的用户使用特定的对称加密算法</li>
+<li>D. SSL 记录由类型字段，版本字段，长度字段，数据字段，MAC 字段组成</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="7-请问以下-JS-代码最终输出的结果是（）"><a href="#7-请问以下-JS-代码最终输出的结果是（）" class="headerlink" title="7.请问以下 JS 代码最终输出的结果是（）"></a>7.请问以下 JS 代码最终输出的结果是（）</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b] = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; c, d &#125; = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(d);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. undefined undefined undefined undefined</li>
+<li>B. 1 2 1 2</li>
+<li>C. undefined undefined 1 2</li>
+<li>D. 1 2 undefined undefined</li>
+</ul>
+<blockquote>
+<p>正确答案：D</p>
+</blockquote>
+<hr>
+<h2 id="8-小明使用-Chrome-浏览器上-163-邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？"><a href="#8-小明使用-Chrome-浏览器上-163-邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？" class="headerlink" title="8.小明使用 Chrome 浏览器上 163 邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？"></a>8.小明使用 Chrome 浏览器上 163 邮箱发送了一封邮件，请问这封邮件发向邮件服务器时采用的什么协议？</h2><ul>
+<li>A. SMTP</li>
+<li>B. POP3</li>
+<li>C. HTTP</li>
+<li>D. IGMP</li>
+</ul>
+<blockquote>
+<p>正确答案</p>
+</blockquote>
+<hr>
+<h2 id="9-某个主机与服务器之间建立连接，经测试主机到服务器的平均-RTT-为-120ms，一个-gif-图像的平均发送时延为-45ms。如果一个-Web-页面使用非持久连接的-HTTP-协议，它包含了-8-幅-gif-图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本-HTML-文件、HTTP-请求报文、TCP-握手报文大小忽略不计，TCP-第三次握手捎带一个-HTTP-请求）"><a href="#9-某个主机与服务器之间建立连接，经测试主机到服务器的平均-RTT-为-120ms，一个-gif-图像的平均发送时延为-45ms。如果一个-Web-页面使用非持久连接的-HTTP-协议，它包含了-8-幅-gif-图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本-HTML-文件、HTTP-请求报文、TCP-握手报文大小忽略不计，TCP-第三次握手捎带一个-HTTP-请求）" class="headerlink" title="9.某个主机与服务器之间建立连接，经测试主机到服务器的平均 RTT 为 120ms，一个 gif 图像的平均发送时延为 45ms。如果一个 Web 页面使用非持久连接的 HTTP 协议，它包含了 8 幅 gif 图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本 HTML 文件、HTTP 请求报文、TCP 握手报文大小忽略不计，TCP 第三次握手捎带一个 HTTP 请求）"></a>9.某个主机与服务器之间建立连接，经测试主机到服务器的平均 RTT 为 120ms，一个 gif 图像的平均发送时延为 45ms。如果一个 Web 页面使用非持久连接的 HTTP 协议，它包含了 8 幅 gif 图像，请问使用上述主机访问这个页面需要多少时间（）（页面的基本 HTML 文件、HTTP 请求报文、TCP 握手报文大小忽略不计，TCP 第三次握手捎带一个 HTTP 请求）</h2><ul>
+<li>A. 1560ms</li>
+<li>B. 2280ms</li>
+<li>C. 2520ms</li>
+<li>D. 2640ms</li>
+</ul>
+<blockquote>
+<p>正确答案</p>
+</blockquote>
+<hr>
+<h2 id="10-对于某线性表来说，若第一个元素的存储地址为-100，每个元素的长度为-2，则经过五个元素后，第六个元素的存储地址为（）"><a href="#10-对于某线性表来说，若第一个元素的存储地址为-100，每个元素的长度为-2，则经过五个元素后，第六个元素的存储地址为（）" class="headerlink" title="10.对于某线性表来说，若第一个元素的存储地址为 100，每个元素的长度为 2，则经过五个元素后，第六个元素的存储地址为（）"></a>10.对于某线性表来说，若第一个元素的存储地址为 100，每个元素的长度为 2，则经过五个元素后，第六个元素的存储地址为（）</h2><ul>
+<li>A. 106</li>
+<li>B. 108</li>
+<li>C. 110</li>
+<li>D. 112</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="11-给定一组硬币面值-C-1-5-10-25-60-100-，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）"><a href="#11-给定一组硬币面值-C-1-5-10-25-60-100-，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）" class="headerlink" title="11.给定一组硬币面值 C&#x3D;{1,5,10,25,60,100}，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）"></a>11.给定一组硬币面值 C&#x3D;{1,5,10,25,60,100}，下面是用最少的硬币向客户支付金额的贪心算法，下列关于该贪心算法的叙述正确的是（）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALGORITHM (x, c1, c2, …, cn)//c1,c2..表示货币金额</span><br><span class="line">SORT n coin denominations so that 0 &lt; c1 &lt; c2 &lt; … &lt; cn.</span><br><span class="line">S ← ∅.//选择货币的集合</span><br><span class="line">WHILE (x &gt; 0)</span><br><span class="line">    k ← largest coin denomination ck such that ck &lt;= x.</span><br><span class="line">    IF no such k, RETURN “no solution.”</span><br><span class="line">    ELSE</span><br><span class="line">        x ← x – ck.</span><br><span class="line">        S ← S ∪ &#123; k &#125;.</span><br><span class="line">RETURN S.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. 利用该贪心算法求解得到的解总是最优的</li>
+<li>B. 题目中所给的贪心算法适用于任何一套面值<code>c1&lt;c2&lt;...&lt;cn</code>的硬币，前提是<code>c1=1</code></li>
+<li>C. 题中所给的贪心算法只适合于硬币面值为 C &#x3D; {1, 5, 10, 25, 60, 100}</li>
+<li>给定 x&#x3D;90，得到的集合<code>C=&#123;1,5,10,25,60,100&#125;</code>，这个解是最优的</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<h2 id="12-分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为-5ms-时，为保证响应时间不超过-2s，最大就绪进程数为（）"><a href="#12-分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为-5ms-时，为保证响应时间不超过-2s，最大就绪进程数为（）" class="headerlink" title="12.分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为 5ms 时，为保证响应时间不超过 2s，最大就绪进程数为（）"></a>12.分时操作系统中，当时间片固定时，用户数越多，每个用户分到的时间片就越少，响应时间自然就变长。在一个分时操作系统，当时间片固定为 5ms 时，为保证响应时间不超过 2s，最大就绪进程数为（）</h2><ul>
+<li>A. 200</li>
+<li>B. 250</li>
+<li>C. 400</li>
+<li>D. 500</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="13-圆覆盖"><a href="#13-圆覆盖" class="headerlink" title="13.圆覆盖"></a>13.圆覆盖</h2><p>平面上有<em>n</em>个点，每个点有一个点权<em>v</em>。你现在可以以原点为圆心放置一个圆，请问要使圆能覆盖到的点的权值和达到<em>x</em>，圆的半径至少为多少？</p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125207210-17336635353651.png" class="" title="image-20241203125207210">
+
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241203125301195.png" class="" title="image-20241203125301195">
+
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  4</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：5</span><br><span class="line">例子说明：</span><br><span class="line">半径为5时，点(0,1),(-1,1),(3,3),(-4,3)在圆内，权值和为10</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">        5  10</span><br><span class="line">        0  1  2</span><br><span class="line">        -1  1  3</span><br><span class="line">        3  3  2</span><br><span class="line">        -4  3  1</span><br><span class="line">        5  -3  1</span><br><span class="line"></span><br><span class="line">输出例子：-1</span><br><span class="line">例子说明：</span><br><span class="line">权值和无法达到10</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 读入点数n, 点权和下限x</span></span><br><span class="line">  <span class="keyword">const</span> [n, x] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">  <span class="comment">// 收集点的信息</span></span><br><span class="line">  <span class="keyword">const</span> points = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> [a, b, v] = (<span class="keyword">await</span> <span class="title function_">readline</span>()).<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="title class_">Number</span>);</span><br><span class="line">    <span class="comment">// 计算距离并存储点信息</span></span><br><span class="line">    <span class="keyword">const</span> distance = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(a * a + b * b);</span><br><span class="line">    points.<span class="title function_">push</span>(&#123; distance, v &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 按照距离升序排序</span></span><br><span class="line">  points.<span class="title function_">sort</span>(<span class="function">(<span class="params">p1, p2</span>) =&gt;</span> p1.<span class="property">distance</span> - p2.<span class="property">distance</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将圆的半径从零开始扩大,依次将点的权值加和</span></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> &#123; distance, v &#125; <span class="keyword">of</span> points) &#123;</span><br><span class="line">    sum += v;</span><br><span class="line">    <span class="keyword">if</span> (sum &gt;= x) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(distance);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果所有点的权值加起来都达不到下限x</span></span><br><span class="line">  <span class="keyword">if</span> (sum &lt; x) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ol>
+<li>读取输入：<code>O(n)</code></li>
+<li>计算距离： <code>O(n)</code></li>
+<li>排序操作：<code>O(nlogn)</code></li>
+<li>遍历求和：<code>O(n)</code></li>
+</ol>
+<p><strong>整体时间复杂度:<code>O(nlogn)</code></strong></p>
+<h3 id="空间复杂度-O-n"><a href="#空间复杂度-O-n" class="headerlink" title="空间复杂度 O(n)"></a>空间复杂度 <code>O(n)</code></h3><hr>
+<h2 id="14-在-Linux-中，关于虚拟内存相关的说法正确的是（）"><a href="#14-在-Linux-中，关于虚拟内存相关的说法正确的是（）" class="headerlink" title="14.在 Linux 中，关于虚拟内存相关的说法正确的是（）"></a>14.在 Linux 中，关于虚拟内存相关的说法正确的是（）</h2><ul>
+<li>A. CPU 与内存之间通过 MMU 将虚拟内存地址翻译为物理内存地址</li>
+<li>B. 页是虚拟内存与物理内存的交换单元,最小的单位是 64KB</li>
+<li>C. 在页表结构中, 有效位为 1 代表虚拟地址未被分配</li>
+<li>D. 在一个进程中，每个线程之间的虚拟内存是独占的</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<hr>
+<h2 id="15-牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）"><a href="#15-牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）" class="headerlink" title="15.牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）"></a>15.牛牛想要对下表中的数据进行排序，要求以考核成绩进行排序，成绩相同的不改变现有的位置关系，以下排序算法中牛牛必须选择（）</h2><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204125159609.png" class="" title="image-20241204125159609">
+
+<ul>
+<li>A. 快速排序</li>
+<li>B. 直接选择排序</li>
+<li>C. 堆排序</li>
+<li>D. 简单插入排序</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<hr>
+<h2 id="16-单词"><a href="#16-单词" class="headerlink" title="16.单词"></a>16.单词</h2><p>小欧有一些英文单词，他想知道这些单词是不是合法的。一个单词是合法的当且仅当这个单词首字母是大写的，其它字母均是小写的。你能帮帮他吗。</p>
+<h3 id="输入描述-1"><a href="#输入描述-1" class="headerlink" title="输入描述"></a>输入描述</h3><img src="/2024/12/08/OPPO23%E7%A7%8B/image-20241204130507901.png" class="" title="image-20241204130507901">
+
+<h3 id="输出描述-1"><a href="#输出描述-1" class="headerlink" title="输出描述"></a>输出描述</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对于每一组数据，如果单词是合法的，输出一行&quot;YES&quot;，否则输出一行&quot;NO&quot;。</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-1-1"><a href="#示例-1-1" class="headerlink" title="示例 1"></a>示例 1</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">yeerV</span><br><span class="line">Ophu</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">YES</span><br><span class="line">例子说明：</span><br><span class="line">yeerV的首字母是小写的，因此不是合法单词。</span><br><span class="line">Ophu的首字母是大写的，其它字母都是小写的，因此是合法单词。</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-2-1"><a href="#示例-2-1" class="headerlink" title="示例 2"></a>示例 2</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入例子：</span><br><span class="line">2</span><br><span class="line">vvryuCryg</span><br><span class="line">pzjiyR</span><br><span class="line">输出例子：</span><br><span class="line">NO</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&#x27;readline&#x27;</span>).<span class="title function_">createInterface</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: process.<span class="property">stdin</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">void</span> (<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Write your code here</span></span><br><span class="line">  <span class="comment">// 读入数据数量</span></span><br><span class="line">  <span class="keyword">const</span> reg = <span class="regexp">/^[A-Z][a-z]*$/</span>;</span><br><span class="line">  <span class="keyword">const</span> n = <span class="built_in">parseInt</span>(<span class="keyword">await</span> <span class="title function_">readline</span>());</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> word = <span class="keyword">await</span> <span class="title function_">readline</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(word) ? <span class="string">&#x27;YES&#x27;</span> : <span class="string">&#x27;NO&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h2 id="17-系统在作业调度时分配了-N-个物理块，页面引用串长度为-P，包含-M-个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）"><a href="#17-系统在作业调度时分配了-N-个物理块，页面引用串长度为-P，包含-M-个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）" class="headerlink" title="17.系统在作业调度时分配了 N 个物理块，页面引用串长度为 P，包含 M 个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）"></a>17.系统在作业调度时分配了 N 个物理块，页面引用串长度为 P，包含 M 个不同的页号，当使用固定分配局部置换算法时，缺页次数不会少于（）？当使用可变分配局部置换算法时，缺页次数不会少于（）</h2><ul>
+<li>A. M, M</li>
+<li>B. P, min(M,N)</li>
+<li>C. N, N</li>
+<li>D. min(M, P), min(M, N)</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<hr>
+<h2 id="18-已知某二叉树的中序遍历为-dhbieafjckg，层序遍历为-abcdefghijk，则由此可得，其叶子结点的个数为（）"><a href="#18-已知某二叉树的中序遍历为-dhbieafjckg，层序遍历为-abcdefghijk，则由此可得，其叶子结点的个数为（）" class="headerlink" title="18.已知某二叉树的中序遍历为 dhbieafjckg，层序遍历为 abcdefghijk，则由此可得，其叶子结点的个数为（）"></a>18.已知某二叉树的中序遍历为 dhbieafjckg，层序遍历为 abcdefghijk，则由此可得，其叶子结点的个数为（）</h2><p><img src="/assets/image-20241204132520754.png" alt="image-20241204132520754"></p>
+<ul>
+<li>A. 2</li>
+<li>B. 3</li>
+<li>C. 4</li>
+<li>D. 5</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="19-下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）"><a href="#19-下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）" class="headerlink" title="19.下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）"></a>19.下面选项中，哪个命令可以删除当前目录下名字中包含“nowcoder”的所有文件（）</h2><ul>
+<li>A. rm -rf *</li>
+<li>B. rm -rf nowcoder&#x2F;*</li>
+<li>C. rm -rf nowcoder*</li>
+<li>D. rm -rf *nowcoder*</li>
+</ul>
+<blockquote>
+<p>正确答案 D</p>
+</blockquote>
+<hr>
+<h2 id="20-请问根据以下代码，id-为-main-的-div-标签的宽度为（）"><a href="#20-请问根据以下代码，id-为-main-的-div-标签的宽度为（）" class="headerlink" title="20.请问根据以下代码，id 为 main 的 div 标签的宽度为（）"></a>20.请问根据以下代码，id 为 main 的 div 标签的宽度为（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">body</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">150px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">300px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">max-width</span>: <span class="number">120px</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. 150px</li>
+<li>B. 300px</li>
+<li>C. 120px</li>
+<li>D. 100px</li>
+</ul>
+<blockquote>
+<p>正确答案 A</p>
+</blockquote>
+<hr>
+<h2 id="21-根据代码，请问四个-div-标签从上到下的排列顺序（以-class-值代指）是（）"><a href="#21-根据代码，请问四个-div-标签从上到下的排列顺序（以-class-值代指）是（）" class="headerlink" title="21.根据代码，请问四个 div 标签从上到下的排列顺序（以 class 值代指）是（）"></a>21.根据代码，请问四个 div 标签从上到下的排列顺序（以 class 值代指）是（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item1</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">10</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.item3</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: -<span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: green;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">40px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.son</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">z-index</span>: <span class="number">100</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. son item2 item3 item1</li>
+<li>B. item1 item2 item3 son</li>
+<li>C. item2 item1 item3 son</li>
+<li>D. item1 son item2 item3</li>
+</ul>
+<blockquote>
+<p>正确答案 B</p>
+</blockquote>
+<hr>
+<h2 id="22-请问以下-HTML-中文字-a、b、c-的-font-size-值分别是多少-px（）"><a href="#22-请问以下-HTML-中文字-a、b、c-的-font-size-值分别是多少-px（）" class="headerlink" title="22.请问以下 HTML 中文字 a、b、c 的 font-size 值分别是多少 px（）"></a>22.请问以下 HTML 中文字 a、b、c 的 font-size 值分别是多少 px（）</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">      a</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>b<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>c<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>A. 20 20 20</li>
+<li>B. 15 15 15</li>
+<li>C. 20 15 15</li>
+<li>D. 20 15 20</li>
+</ul>
+<blockquote>
+<p>正确答案 C</p>
+</blockquote>
+<hr>
+<h2 id="23-环形进度条"><a href="#23-环形进度条" class="headerlink" title="23.环形进度条"></a>23.环形进度条</h2><p>环形进度条</p>
+<p><code>id</code>为<code>&quot;magnifier&quot;</code>的<code>&quot;section&quot;</code>节点是一个环形进度条模块，而<code>&quot;magnifier&quot;</code>对象用于初始化该模块。该模块的功能如下：</p>
+<ol>
+<li>输入框中可以输入数字类型，数值即百分比值；</li>
+<li>当点击确定按钮时，环形进度条按输入框中的数值进行渲染；</li>
+<li>若输入框中的数据比 0 小，则将输入框中的值置为 0，百分比按 0% 渲染；</li>
+<li>若输入框中的数据比 100 大，则将输入框中的值置为 100，百分比按 100% 渲染；</li>
+</ol>
+<p>注意：若用户输入数据为小数，则按四舍五入取整处理</p>
+<p>请阅读给定的 JavaScript 代码，并在 TODO 处完善代码。效果如下：</p>
+<img src="/2024/12/08/OPPO23%E7%A7%8B/8F2BFA0763F677AFC69BB69B4D0DCB41.gif" class="" title="8F2BFA0763F677AFC69BB69B4D0DCB41">
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-line</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-l</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">left</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-r</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">180deg</span>);</span></span><br><span class="line"><span class="language-css">        <span class="attribute">right</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-c</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">4px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">transform</span>: <span class="built_in">rotate</span>(-<span class="number">45deg</span>);</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-rm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.loop-pie-lm</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-left</span>: <span class="number">10px</span> solid <span class="number">#baedee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-bottom</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-right</span>: <span class="number">10px</span> solid <span class="number">#1ac4c7</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.percent-number</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">18px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#submit</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;magnifier&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> magnifier = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">init</span>(<span class="params">param</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> el = param.<span class="property">el</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (!el) <span class="keyword">return</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">createElement</span>(el);</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">initEvent</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">this</span>.<span class="title function_">loadPercent</span>();</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">createElement</span>(<span class="params">el</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> loopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-r&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rightMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-rm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightMask.<span class="property">id</span> = <span class="string">&#x27;loop-rc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          rightLoopPie.<span class="title function_">appendChild</span>(rightMask);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftLoopPie = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="property">className</span> = <span class="string">&#x27;loop-pie-line loop-pie-l&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> leftMask = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">className</span> = <span class="string">&#x27;loop-pie-c loop-pie-lm&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftMask.<span class="property">id</span> = <span class="string">&#x27;loop-lc&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          leftLoopPie.<span class="title function_">appendChild</span>(leftMask);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(rightLoopPie);</span></span><br><span class="line"><span class="language-javascript">          loopPie.<span class="title function_">appendChild</span>(leftLoopPie);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 百分比输入框</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> percent = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="property">className</span> = <span class="string">&#x27;percent-number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">type</span> = <span class="string">&#x27;number&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = <span class="number">25</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> button = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">innerText</span> = <span class="string">&#x27;确定&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          button.<span class="property">id</span> = <span class="string">&#x27;submit&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(input);</span></span><br><span class="line"><span class="language-javascript">          percent.<span class="title function_">appendChild</span>(button);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(loopPie);</span></span><br><span class="line"><span class="language-javascript">          el.<span class="title function_">appendChild</span>(percent);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">initEvent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：获取id=submit的节点</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> submit = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：给submit的按钮添加点击事件，当被点击时调用 loadPercent() 方法</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getPercenNumber</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.percent-number input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框中的值保留四舍五入取整</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> num = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：将输入框框的值置为合理区间范围</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          input.<span class="property">value</span> = num;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> num;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">loadPercent</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// TODO：计算左半圆部分和右半圆部分旋转的角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 右半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateRight = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 左半圆部分旋转角度</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> rotateLeft = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> lc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-lc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          lc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateLeft&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> rc = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#loop-rc&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          rc.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`rotate(<span class="subst">$&#123;rotateRight&#125;</span>deg)`</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      magnifier.<span class="title function_">init</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// <span class="doctag">TODO:</span> 请获取id=magnifier的节点</span></span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>: <span class="literal">null</span>,</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔试真题</category>
+      </categories>
+      <tags>
+        <tag>oppo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack学习</title>
+    <url>/2024/12/16/webpack%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="课程简介"><a href="#课程简介" class="headerlink" title="课程简介"></a>课程简介</h1><p>本门课需要的前置知识: ES6, 模块化, 包管理器, git</p>
+<p>本门课程的讲解特点:</p>
+<ol>
+<li>合适的深度: webpack 使用层面很简单,但原理层面非常复杂</li>
+<li>合适的广度: webpack 生态圈极其繁荣,有海量的第三方库可以融入到 webpack</li>
+</ol>
+<h2 id="浏览器端的模块化"><a href="#浏览器端的模块化" class="headerlink" title="浏览器端的模块化"></a>浏览器端的模块化</h2><p>问题:</p>
+<ul>
+<li>效率问题: 精细的模块划分带来了更多的 JS 文件,更多的 JS 文件带来了更多的请求,降低了页面访问效率</li>
+<li>兼容性问题: 浏览器目前仅支持 ES6 的模块化标准,并且还存在在兼容性问题</li>
+<li>工具问题: 浏览器不支持 npm 下载的第三方包</li>
+</ul>
+<p>这些仅仅是前端工程化的一个缩影</p>
+<p>当开发一个就具有规模的程序，你将遇到非常多的非业务问题，这些问题包括：执行效率，兼容性，代码的可维护性和可扩展性，团队协作，测试等等。我们将这些问题称之为工程问题.工程问题于业务无关,但他深刻地影响到开发进度,如果没有一个好的工具解决这些问题,将使得开发进度变得极其缓慢,同时也让开发者陷入技术泥潭.</p>
+<h2 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h2><p>思考:上面提到的问题,为什么在 node 端没有那么明显,反而到了浏览器端变得如此严重呢?</p>
+<p>答:在 node 端,运行的 JS 文件在本地,因此可以本地读取文件,它的效率比浏览器远程传输文件高得多</p>
+<p><strong>根本原因</strong> : 在浏览器端, 开发时态(devtime)和运行时态(runtime)的侧重点不一样.</p>
+<p><strong>开发时态, devtime</strong>:</p>
+<ol>
+<li>模块划分越细越好</li>
+<li>支持多种模块化标准</li>
+<li>支持 npm 或其他包管理器下载的模块</li>
+<li>能够解决其他工程化问题</li>
+</ol>
+<p><strong>运行时态, runtime</strong>:</p>
+<ol>
+<li>文件越少越好</li>
+<li>文件体积越小越好</li>
+<li>代码内容越乱越好</li>
+<li>所有浏览器都要兼容</li>
+<li>能够解决其他运行时的问题,主要是执行效率问题</li>
+</ol>
+<p>这种差异在小项目中表现的并不明显,可是一旦项目形成规模,就越来越明显,如果不解决这些问题,前端项目形成规模只能是空谈</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>既然开发时态和运行时态面临的局面有巨大的差异,因此,我们需要有一个工具,这个工具能够让开发者专心的在开发时态写代码,然后利用这个工具将开发时态编写的代码转换为运行时态需要的东西</p>
+<p>这样的工具,叫做<strong>构建工具</strong></p>
+<img src="/2024/12/16/webpack%E5%AD%A6%E4%B9%A0/image-20241224101123264.png" class="" title="image-20241224101123264">
+
+<p>这样一来,开发者就可以专注于开发时态的代码结构,而不用担心运行时态遇到的问题了</p>
+<h2 id="常见的构建工具"><a href="#常见的构建工具" class="headerlink" title="常见的构建工具"></a>常见的构建工具</h2><ul>
+<li>webpack</li>
+<li>grunt</li>
+<li>gulp</li>
+<li>browserify</li>
+<li>fis</li>
+<li>其他</li>
+</ul>
+<h1 id="webpack-的安装和使用"><a href="#webpack-的安装和使用" class="headerlink" title="webpack 的安装和使用"></a>webpack 的安装和使用</h1><blockquote>
+<p>webpack 官网: <a href="https://webpack.js.org/">https://webpack.js.org/</a></p>
+</blockquote>
+<h2 id="webpack-简介"><a href="#webpack-简介" class="headerlink" title="webpack 简介"></a>webpack 简介</h2><p>webpack 是基于模块化的打包(构建)工具,它把一切视为模块<br>它通过一个开发时态的入口模块为起点,分析出所有的依赖关系,然后经过一系列的过程(压缩,合并),最终生成运行时态的文件.</p>
+<p>webpack 的特点:</p>
+<ul>
+<li><strong>为前端工程化而生</strong>: webpack 致力于解决前端工程化,特别是浏览器端工程化中遇到的问题,让开发者集中精力编写业务代码</li>
+<li><strong>简单易用</strong>: 支持零配置</li>
+<li><strong>强大的生态</strong>: webpack 是非常灵活,可扩展的,有许多第三方插件</li>
+<li><strong>基于 nodejs</strong>: 由于 webapck 在构建过程中需要读取文件,因此它是运行在 node 环境中的</li>
+<li><strong>基于模块化</strong>: webpack 在构建过程中要分析依赖关系,方式是通过模块化导入语句进行分析的,它支持各种模块化标准,包括但不限于 CommonJS, ES6 Module</li>
+</ul>
+<h2 id="webpack-的安装"><a href="#webpack-的安装" class="headerlink" title="webpack 的安装"></a>webpack 的安装</h2><p>webapck 通过 npm 安装,它提供了两个包</p>
+<ul>
+<li>webpack: 核心包,包含了 webpack 构建过程中要用到的所有 api</li>
+<li>webpack-cli: 提供了命令行工具,它调用 webpack 核心包的 api 来完成构建过程</li>
+</ul>
+<p>安装方式:</p>
+<ul>
+<li>全局安装: 可以全局使用 webpack 命令, 但是无法为不同项目对应不同的 webpack 版本</li>
+<li>本地安装: <strong>推荐</strong>, 每个项目都是用自己的 webpack 版本</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在本地全局或项目中安装 webpack 和 webpack-cli</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pnpm add webpack webpack<span class="literal">-cli</span> <span class="literal">-D</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 pnpm 运行 webapck 命令</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pnpm webpack</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下,webpack 会以<code>./src/index.js</code>作为入口文件分析依赖关系,打包到<code>./dist/main.js</code>文件中</p>
+<p>通过 <code>--mode</code>选项可以控制 webpack 的打包结果的运行环境</p>
+<h1 id="模块化兼容性"><a href="#模块化兼容性" class="headerlink" title="模块化兼容性"></a>模块化兼容性</h1><p>由于 webpack 同时支持 CommonJS 和 ES6 module, 因此需要理解他们互操作时,webpack 是如何处理的</p>
+<h2 id="同模块化标准"><a href="#同模块化标准" class="headerlink" title="同模块化标准"></a>同模块化标准</h2><p>如果导出和导入使用的是同一种模块化标准,打包后的效果和之前学习的模块化没有任何差异</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// CommonJS export</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">C</span>: <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// CommonJS import</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;./a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ES6 export</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">3</span>;</span><br><span class="line"><span class="comment">// ES6 import</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> obj <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span><br><span class="line"><span class="comment">/**&#123;</span></span><br><span class="line"><span class="comment">    a: 1, </span></span><br><span class="line"><span class="comment">    b: 2,</span></span><br><span class="line"><span class="comment">        default: 3</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="不同模块化标准"><a href="#不同模块化标准" class="headerlink" title="不同模块化标准"></a>不同模块化标准</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ES6 export</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CommonJS import</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">require</span>(<span class="string">&#x27;.a&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span><br><span class="line"><span class="comment">/**&#123;</span></span><br><span class="line"><span class="comment">    a: 1, </span></span><br><span class="line"><span class="comment">    b: 2,</span></span><br><span class="line"><span class="comment">        default: 3</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里尤其要注意,使用<code>ES</code>导出,<code>CommonJS</code>导入时,导入的是把普通导出和默认导出整合在一起的一个对象,默认导出是其中的<code>defatult</code>属性</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// CommonJS export</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">C</span>: <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 import</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> obj <span class="keyword">from</span> <span class="string">&#x27;./a&#x27;</span>; <span class="comment">// 导入全部内容</span></span><br><span class="line"><span class="keyword">import</span> c <span class="keyword">from</span> <span class="string">&#x27;./a&#x27;</span>; <span class="comment">// 导入默认值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上两种完全相同,得到的结果都是</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ojb);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br><span class="line"><span class="comment">/**&#123;</span></span><br><span class="line"><span class="comment">    a: 1, </span></span><br><span class="line"><span class="comment">    b: 2,</span></span><br><span class="line"><span class="comment">    c: 3</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>代码编写最忌讳的是精神分类,选择一个合适的模块化标准,然后贯彻整个开发阶段.</p>
+<h1 id="练习-酷炫的数字查找特效"><a href="#练习-酷炫的数字查找特效" class="headerlink" title="练习:酷炫的数字查找特效"></a>练习:酷炫的数字查找特效</h1><h1 id="编译结果分析"><a href="#编译结果分析" class="headerlink" title="编译结果分析"></a>编译结果分析</h1><h1 id="学习可以很轻松"><a href="#学习可以很轻松" class="headerlink" title="学习可以很轻松"></a>学习可以很轻松</h1><h2 id="重过程-轻目标-心态"><a href="#重过程-轻目标-心态" class="headerlink" title="重过程, 轻目标: 心态"></a>重过程, 轻目标: 心态</h2><p>以轻松的心态去学习,享受学习的过程. 轻装上阵才能学习的更持久</p>
+<h2 id="重大局-轻细节-思维"><a href="#重大局-轻细节-思维" class="headerlink" title="重大局, 轻细节: 思维"></a>重大局, 轻细节: 思维</h2><p>不要一头扎进 API, 要从宏观上把握某一个技术到底是<strong>为了解决什么问题</strong>,而不是纠结于其解决问题的具体方法.</p>
+<h2 id="重基础-轻上层-路径"><a href="#重基础-轻上层-路径" class="headerlink" title="重基础, 轻上层: 路径"></a>重基础, 轻上层: 路径</h2><p>要先从基础开始,把基础学完,再学习上层的东西.</p>
+<h2 id="重实践-轻理论-方法"><a href="#重实践-轻理论-方法" class="headerlink" title="重实践, 轻理论: 方法"></a>重实践, 轻理论: 方法</h2><p>实践和自己写是两码事情</p>
+]]></content>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微嵌</title>
+    <url>/2024/12/18/%E5%BE%AE%E5%B5%8C/</url>
+    <content><![CDATA[<h1 id="计算机系统的结构组成与工作原理"><a href="#计算机系统的结构组成与工作原理" class="headerlink" title="计算机系统的结构组成与工作原理"></a>计算机系统的结构组成与工作原理</h1><h2 id="计算机系统的基本结构与组成"><a href="#计算机系统的基本结构与组成" class="headerlink" title="计算机系统的基本结构与组成"></a>计算机系统的基本结构与组成</h2><h3 id="层次模型Hiberarchy"><a href="#层次模型Hiberarchy" class="headerlink" title="层次模型Hiberarchy"></a>层次模型<code>Hiberarchy</code></h3><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218190526055.png" class="" title="image-20241218190526055">
+
+<p>图(a)自下而上反映了逐级<strong>开发</strong>计算机系统的过程，自上而下反映了计算机系统<strong>求解</strong>问题的过程。</p>
+<p>图(b)的语言层次越往上抽象程度越高</p>
+<p>简单地分为三个层次</p>
+<ul>
+<li>针对解决具体问题的应用软件</li>
+<li>包括操作系统在内的软件</li>
+<li>计算机系统硬件</li>
+</ul>
+<h3 id="结构Architecture-组成Organization与实现Realization"><a href="#结构Architecture-组成Organization与实现Realization" class="headerlink" title="结构Architecture,组成Organization与实现Realization"></a>结构<code>Architecture</code>,组成<code>Organization</code>与实现<code>Realization</code></h3><ul>
+<li>计算机系统的体系结构</li>
+</ul>
+<p>程序员关心的计算机概念结构和功能特性(<strong>系列机</strong>)</p>
+<p>如：确定指令集中是否有乘法指令；</p>
+<ul>
+<li>计算机系统的组成</li>
+</ul>
+<p>从硬件角度关注物理机器的组织</p>
+<p>如：乘法指令由专用乘法器还是用加法器实现</p>
+<ul>
+<li>计算机系统的实现方式</li>
+</ul>
+<p>底层的器件技术，微组装技术，冷却技术等</p>
+<p>如：加法器底层的物理器件类型及微组装技术</p>
+<h2 id="计算机系统的工作原理"><a href="#计算机系统的工作原理" class="headerlink" title="计算机系统的工作原理"></a>计算机系统的工作原理</h2><h3 id="冯·诺伊曼计算机架构"><a href="#冯·诺伊曼计算机架构" class="headerlink" title="冯·诺伊曼计算机架构"></a>冯·诺伊曼计算机架构</h3><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218194915734.png" class="" title="image-20241218194915734">
+
+<ul>
+<li>程序和数据存放在存储器中</li>
+<li>控制器实现指令的执行操作</li>
+<li>运算器完成各种算数逻辑运算</li>
+<li>输入设备和输出设备分别完成指令和原市数据的输入，运算结果的输出</li>
+</ul>
+<h3 id="模型机：系统结构，指令集，工作流程"><a href="#模型机：系统结构，指令集，工作流程" class="headerlink" title="模型机：系统结构，指令集，工作流程"></a>模型机：系统结构，指令集，工作流程</h3><p><strong>处理器</strong>：计算机系统的计算，控制中心，用来实现算术逻辑运算及其他各种操作，并实现对计算机系统所有部件的控制。</p>
+<ul>
+<li>CPU 主要由<strong>控制器，运算器和寄存器组</strong>组成，并通过<strong>内部总线</strong>连接</li>
+<li>控制器根据<strong>指令进行译码</strong>，产生控制 CPU 内部<strong>各模块间信息传输</strong>的控制信号，并产生<strong>控制外设</strong>的控制信号</li>
+<li>运算器完成各种算术逻辑等运算操作</li>
+</ul>
+<p><strong>程序的执行</strong></p>
+<ul>
+<li>程序由完成一定功能的<strong>多条指令</strong>组成</li>
+<li>指令执行的过程分为三个阶段<ul>
+<li>从存储器<strong>读取指令(fetch)</strong></li>
+<li>CPU 的控制器解析指令(decode),即<strong>指令译码</strong></li>
+<li><strong>执行指令(execute)</strong>,各个控制信号控制 CPU 内部和外部电路完成对应的操作功能。</li>
+</ul>
+</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218203952426.png" class="" title="image-20241218203952426">
+
+<p><strong>存储器</strong>：存放处理器可以直接运行的程序，数据和结果</p>
+<ul>
+<li>**RAM(Random Access Memory)**随机存取存储器，是半导体类型的存储器，可随时将程序和数据写入或读出。一旦断电后，存放在其中的程序和数据即消失</li>
+<li>**ROM(Read Only Memory)**只读存储器，是半导体存储器，一般情况下只能读出存放在其中的程序和数据，在特殊条件下才能将程序和数据写入。断电后，存放在其中的内容不会消失。</li>
+</ul>
+<p>存储器是<strong>存放机器指令和数据</strong>等信息的载体，由 3 部分组成</p>
+<ul>
+<li>存储体：存放**机器指令和数据(均为 0,1 序列)**的电路实体，划分为多个单元，每个单元有多个二进制位</li>
+<li>地址：指示指令和数据的<strong>具体存放位置</strong>，由地址寄存和译码器组成</li>
+<li>控制电路：控制存储体中信息的<strong>输入或输出</strong></li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218202409866.png" class="" title="image-20241218202409866">
+
+<p><strong>存储器访问原理</strong></p>
+<ul>
+<li>写操作： 提供给的地址信号经地址译码选中存储位置，控制操作为输入，数据输入到存储器并存放</li>
+<li>读操作：控制为输出，地址信号经地址译码选中存储位置，该位置的数据由数据线输出</li>
+</ul>
+<p><strong>存储子系统</strong>：存放当前的运行程序和数据</p>
+<p><strong>外设</strong>：输入设备与输出设备的统称<br><strong>I&#x2F;O 接口</strong>：处理器与计算机系统各种输入&#x2F;输出设备之间的电路</p>
+<p><strong>输入输出子系统</strong>：完成计算机与外部的信息交换</p>
+<p><strong>总线</strong>：根据传输信息的不同</p>
+<ul>
+<li>数据总线 DB：用于数据交换，传送机器指令，原始数据和计算结果信息，通常是<strong>分时双向的</strong></li>
+<li>地址总线 AB：通常是<strong>单向</strong>的，由<strong>主设备</strong>(如 CPU)发出，用于选择读写对象(如某个特定的存储单元或外部设备端口)</li>
+<li>控制总线 CB：用于传输方向，传送时间，异常处理等各种控制的信号。包括真正的<strong>控制</strong>信号线(如读&#x2F;写信号)和一些<strong>状态</strong>信号线(如是否已将数据送上总线)，用于实现对设备的监视和控制。</li>
+</ul>
+<p><strong>总线子系统</strong>：作为公共通道连接各子部件，用于实现各部分之间的数据，信息等的传输和交换</p>
+<p><strong>指令</strong>是发送到 CPU 的命令，指示 CPU 执行一个特定的处理，如数据搬移，对数据进行算术运算</p>
+<p>指令通常包含<strong>操作码</strong>和<strong>操作数</strong>两部分</p>
+<ul>
+<li>操作码指明要完成的操作功能，如加，减，数据传送，移位等</li>
+<li>操作数指明上述规定操作的数据或获取该数据所存放地址的方法</li>
+</ul>
+<p>指令通常有两种形式</p>
+<ul>
+<li>机器指令：包含操作码和操作数，由 0 和 1 组成，CPU 能直接解析，执行并完成一定功能，如 1011 0000 0101 1100</li>
+<li>汇编指令：与机器指令功能一一对应，由具有一定含义的字符串，寄存器名和立即数组成，如<code>MOV R1,#5CH</code></li>
+</ul>
+<p><strong>模型机的执行过程</strong></p>
+<p>计算机的运行本质上就是<strong>执行程序</strong>的过程</p>
+<p>程序执行的两种类型</p>
+<ul>
+<li>顺序执行</li>
+<li>非顺序执行<ul>
+<li>转移(jump)：执行条件&#x2F;无条件转移指令，<strong>不返回</strong></li>
+<li>过程(procedure)调用：子程序执行完后，<strong>返回原处</strong></li>
+<li>异常(exception)：将正常程序(包括顺序，转移，过程调用等)的执行过程暂时中止，转而执行其他级别更高的程序，如数据出错</li>
+<li>中断(interrupt)：异常之一，用于优先级更高的处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="微处理器体系结构的演进"><a href="#微处理器体系结构的演进" class="headerlink" title="微处理器体系结构的演进"></a>微处理器体系结构的演进</h2><p>冯·诺伊曼机器的数据传输时瓶颈，解决途径</p>
+<ul>
+<li>程序和数据分开存储，即<strong>哈弗结构</strong></li>
+<li>采用并行结构，包括<strong>流水线结构</strong></li>
+</ul>
+<h3 id="指令集结构的演进"><a href="#指令集结构的演进" class="headerlink" title="指令集结构的演进"></a>指令集结构的演进</h3><p><strong>CISC(Complex Instruction Set Computer)<strong>，复杂指令集：为软件编程方便和提高程序的运行速度，不断增加可</strong>实现复杂功能的指令和多种灵活的寻址方式</strong>。为实现程序兼容,同一系列的新机器的指令系统只能扩充而不能减少,也使指令系统愈加复杂</p>
+<ul>
+<li>优点:有较强的<strong>处理高级语言</strong>的能力</li>
+<li>缺点:<strong>硬件越来越复杂</strong>,反而影响了执行速度和性能.典型程序的 80%使用 20%的指令实现的</li>
+<li>演进:指令系统应当<strong>只包含哪些使用频率很高的少量指令</strong>.适当保留支持高级语言和操作系统的必要指令,即精简指令集</li>
+</ul>
+<p><strong>RISC(Reduced Instruction Set Computer)</strong>, 精简指令集.</p>
+<ul>
+<li>RISC 把较长的指令分拆成若干条<strong>长度相同的单一操作</strong>指令,可使 CPU 的工作变得单纯,速度更快,设计和开发也更简单.</li>
+<li>缺点: 软件支持较少</li>
+<li>演进:CISC 吸纳 RISC 技术优点,RISC 保持部分 CISC 先进思想.<strong>架构不同,技术融合</strong></li>
+</ul>
+<h3 id="体系结构的演进"><a href="#体系结构的演进" class="headerlink" title="体系结构的演进"></a>体系结构的演进</h3><p><strong>冯·诺伊曼</strong>体系结构也称为<strong>普林斯顿结构</strong>,它把<strong>程序指令看作为特殊的数据</strong>,可以像数据一样被处理,将<strong>程序和数据存放在相同的存储器中</strong>,</p>
+<p>采用<strong>统一编制</strong>,但程序存储地址和数据存储地址指向不同的物理位置.</p>
+<ul>
+<li>在通用计算机系统中由于灵活方便<strong>重分代码与数据空间</strong>,更新内容而占有优势.统一编址可以最大限度地利用资源.</li>
+<li>如程序执行过程所述,处理器首先到程序指令存储器中<strong>读取程序指令内容,解码后得到数据地址</strong>,再到相应的数据存储器中读取数据,并进行下一步的操作(如运算处理).显然<strong>读取指令和读取数据是串行的</strong>,速度慢.</li>
+<li>演进为哈弗结构</li>
+</ul>
+<p><strong>哈弗结构</strong>,是一种将<strong>程序指令存储和数据存储完全分开</strong>的存储器结构,采用分离编址.</p>
+<ul>
+<li><p>哈弗与两个存储器相对应的是系统的 4 套总线.</p>
+<ul>
+<li>程序的数据总线</li>
+<li>程序的地址总线</li>
+<li>数据的数据总线</li>
+<li>数据的地址总线</li>
+</ul>
+<p>可以在一个机器周期内同时获得<strong>指令码</strong>(来自程序存储器)和<strong>操作数</strong>(来自数据存储器),从而提高了执行速度</p>
+</li>
+<li><p>由于程序和数据存储器在两个分开的物理空间中,因此<strong>取指</strong>和<strong>执行</strong>能<strong>完全重叠</strong></p>
+</li>
+<li><p>哈弗结构的缺点: 数据存储器和程序代码存储器各自需要数据与地址总线,<strong>引脚信号线多</strong></p>
+</li>
+<li><p>再次演进: 对于 CPU 内部,通过不同的<strong>数据和指令 cache</strong>,采用哈弗结构以有效的提高指令的执行效率.而处理器外部采用冯·诺伊曼结构</p>
+</li>
+</ul>
+<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><p><strong>总线</strong>:用于连接计算机系统各部件的导线集合,即部件间传输信息的<strong>共用通道</strong>,可以是线缆,也可以是 PCB 板上的金属线</p>
+<p>计算机系统的部件之间通信为何采用总线结构</p>
+<ul>
+<li>存储器由多种类型,多种功能,<strong>多组芯片</strong>组成</li>
+<li>计算机外部设备因<strong>功能,性能和应用等不同</strong>而具有各自的接口电路</li>
+<li>多电路部件,多芯片间的<strong>点对点互联复杂,连线多,扩展性差</strong></li>
+</ul>
+<p><strong>按照总线在计算机系统中所处位置不同划分</strong></p>
+<ul>
+<li>CPU 片内总线: 连接 CPU 内部控制器,运算器和寄存器组的总线</li>
+<li>片总线: 通常指处理器芯片引脚的总线,用于连接处理器片外的存储器,接口芯片等</li>
+<li>系统总线: 用于连接计算机系统外的其他电路模块的总线,如 PCI 总线</li>
+</ul>
+<h3 id="存储器结构"><a href="#存储器结构" class="headerlink" title="存储器结构"></a>存储器结构</h3><p>如何以<strong>合理的价格搭建出容量和速度都满足要求</strong>的存储器系统,始终是计算机体系结构设计中的关键问题之一.</p>
+<p>现代计算机系统通常把不同的存储设备按一定的体系结构组织起来,以解决<strong>存储容量,存取速度和价格之间的矛盾</strong></p>
+<p>采用<strong>分级结构</strong>,以均衡速度,容量,成本,长期存储等问题.</p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241218213152282.png" class="" title="image-20241218213152282">
+
+<p>在存储器分层结构中,上面一层的存储器作为下一层存储器的高速缓存</p>
+<ul>
+<li>CPU 中的寄存器就是 cache 的高速缓存,寄存器保存来自 cache 的字</li>
+<li>cache 又是内存层的高速缓存,从内存中提取数据送给 CPU 进行处理,并将 CPU 的处理结果返回到内存中</li>
+<li>内存又是主存储器的高速缓存,它将经常用到的数据从 Flash 等主存储器中提取出来,放到内存中,从而加快了 CPU 的运行效率</li>
+<li>嵌入式系统的主存储器容量是有限的,磁盘,光盘或 CF,SD 卡等外部存储器用来保存大信息量的数据</li>
+<li>在某些带有<strong>分布式文件系统的嵌入式网络系统</strong>中,外部存储器就作为其他系统中被存储数据的高速缓存</li>
+</ul>
+<h3 id="微处理器机构的改变"><a href="#微处理器机构的改变" class="headerlink" title="微处理器机构的改变"></a>微处理器机构的改变</h3><p><strong>通过”并行”提高处理速度</strong></p>
+<ul>
+<li>多层次的并行处理技术</li>
+<li>流水线结构</li>
+<li>超标量结构</li>
+<li>超长指令字</li>
+<li>多核结构</li>
+<li>并行机</li>
+</ul>
+<p><strong>并行处理技术</strong>实现多个处理器或处理模块的并行性,其基本思想包括<strong>时间重叠(time interleaving)</strong>,<strong>资源重复(resource replication)</strong>,和<strong>资源共享(resource sharing)</strong></p>
+<ul>
+<li><p>电路级并行技术 CLP</p>
+<ul>
+<li>组相联 cache, 先行进位加法器</li>
+</ul>
+</li>
+<li><p>指令级并行技术 ISP</p>
+<ul>
+<li>流水线，超标量</li>
+</ul>
+<p>不同的处理器的流水线级数不同</p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219131532650.png" class="" title="image-20241219131532650">
+<p>超标量技术：通过重复设置多套指令执行部件，同时处理并完成多条指令，实现并行操作来达到提高处理速度的目的。</p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219131741339.png" class="" title="image-20241219131741339">
+
+<p>可在一个时钟周期内对多条指令进行并行处理，<strong>使 CPI 小于 1</strong></p>
+<p>有 5 个执行单元的超标量流水线，指令的执行比取指，译码的时间更长，通过超标量均衡各级流水的执行时间。</p>
+<p><strong>VLIW(Very Long Instruction Word)<strong>超长指令字，</strong>依靠编译器</strong>编译时找出指令之间潜在的并行性，把能并行执行的多条指令组装成一条很长的指令</p>
+<p>处理机中多个<strong>相互独立的执行部件</strong>分别执行长指令中的一个操作，即相当于同时执行多条指令。</p>
+<p>WLIW 处理机很大程度上取决于代码压缩的效率，其编译程序和体系机构的关系非常密切。</p>
+</li>
+<li><p>线程级并行技术</p>
+<ul>
+<li>同时多线程</li>
+</ul>
+</li>
+<li><p>系统级并行技术</p>
+<ul>
+<li>多处理器</li>
+</ul>
+</li>
+</ul>
+<p>**大规模并行处理机(MPP)**是一种价格昂贵的超级计算机，它由许多 CPU 通过高速专用互联网络连接。</p>
+<p>**机群(cluster)**由多台同构或异构的独立计算机通过高性能网络或局域网连在一起协同完成特定的并行计算任务。</p>
+<p>**刀片(blade)**通常指包含一个或多个 CPU, 内存以及网络接口的服务器主板。通常一个刀片柜共享其他外部 I&#x2F;O 和电源，而辅助存储器则由距离刀片柜较近的存储服务器提供。</p>
+<p>**网络计算(Network)**是一组由高速网络连接的不同的计算机系统，可以相互合作也可以独立工作。网络计算机将接受中央服务器分配的任务，然后在不忙的时候执行这些任务。</p>
+<h2 id="计算机体系结构的分类与性能评测"><a href="#计算机体系结构的分类与性能评测" class="headerlink" title="计算机体系结构的分类与性能评测"></a>计算机体系结构的分类与性能评测</h2><p><strong>Flynn 分类</strong>:根据<strong>指令流和数据流</strong>的多少进行分类</p>
+<p>CU: 控制部件</p>
+<p>PU: 处理部件</p>
+<p>MM: 存储单元</p>
+<p>CS: 控制流</p>
+<p>DS: 数据流</p>
+<p>IS: 指令流</p>
+<ul>
+<li>单指令单数据<strong>SISD</strong><ul>
+<li>传统的顺序处理机</li>
+<li>标量流水线处理机</li>
+<li>超标量流水线处理机</li>
+</ul>
+</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219221639943.png" class="" title="image-20241219221639943">
+
+<ul>
+<li>单指令多数据<strong>SIMD</strong><ul>
+<li>阵列处理机</li>
+<li>向量处理机</li>
+</ul>
+</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219221654600.png" class="" title="image-20241219221654600">
+
+<ul>
+<li>多指令单数据<strong>MISD</strong>,无实际机型对应</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219222101268.png" class="" title="image-20241219222101268">
+
+<ul>
+<li>多指令多数据<strong>MIMD</strong>：多处理机系统</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241219222134711.png" class="" title="image-20241219222134711">
+
+<p>计算机系统的性能由<strong>硬件性能和程序特性</strong>决定，通常使用<strong>标准测试程序</strong>来测定性能</p>
+<ul>
+<li>用<strong>MIPS</strong>(Million Instructions Per Second,每秒百万条指令)或<strong>MFLOPS</strong>(每秒百万次浮点操作)的数值来衡量计算机系统的硬件速度</li>
+<li>用<strong>CPU 执行时间 t</strong>来量化硬软件结合系统的有效速度。<ul>
+<li>MIPS&#x3D;f(MHz)&#x2F;CPI</li>
+<li>t(s) &#x3D; IC*CPI*T</li>
+</ul>
+</li>
+</ul>
+<p>T:CPU 主时钟周期(s), 对应的主时钟频率 f&#x3D;1&#x2F;T(Hz)</p>
+<p>IC(指令数目): 运行的程序指令总数</p>
+<p>CPI(Cycles Per Instruction): 平均单条指令执行所需的时钟周期数，可以从运行大量测试程序或实际程序的统计数据中计算出来。</p>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li>某测试程序在一个 40 MHz 处理器上运行，其目标代码有 100 000 条指令，由如下各类指令及其时钟周期计数混合组成，试确定这个程序的有效 CPI、MIPS 的值和执行时间。</li>
+</ol>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241222092529893.png" class="" title="image-20241222092529893">
+
+<p>$有效CPI &#x3D; 0.45<em>1 + 0.32</em>2 + 0.15<em>2 + 0.08</em>2&#x3D;1.55$</p>
+<p>$MIPS&#x3D;\frac{4<em>10^7}{1.55</em>10^6}  \approx 25.81$</p>
+<p>$执行时间&#x3D;\frac{1.55<em>10^6}{4</em>10^7} &#x3D; 0.003875s$</p>
+<ol start="2">
+<li>假设一条指令的执行过程分为“取指令”、“分析”和“执行”三段，每一段的时间分别为 ∆t,2∆t 和 3∆t。在下列各种情况下，分别写出连续执行 n 条指令所需要的时间表达式。<br>（1） 顺序执行方式<br>（2） 仅“取指令”和“执行”重叠<br>（3） “取指令”、“分析”和“执行”重叠</li>
+</ol>
+<p>(1): $n(1+2+3)\Delta t &#x3D; 6n\Delta t$</p>
+<p>(2):$6 \Delta t + (n-1)*3\Delta t$</p>
+<p>(3):$6 \Delta t + (n-1)*3\Delta t$</p>
+<ol start="3">
+<li>请简述高速缓冲存储器技术和虚拟存储器技术。计算机系统中采用这两种技术的根本目的是什么？这两种技术有什么相同点？</li>
+</ol>
+<p><strong>高速缓冲存储器</strong>（Cache Memory）是计算机系统中用于提高存取速度的存储器。它是位于主存（RAM）与 CPU 之间的小容量、高速度的存储设备。由于 CPU 的处理速度远快于主存的读写速度，因此，当 CPU 需要访问数据时，通过缓存存储器来加速数据的读取，减少访问主存的时间。</p>
+<p><strong>根本目的</strong>：提高数据访问速度，减少 CPU 访问主存的延迟，使得计算机系统能更高效地执行任务。</p>
+<p><strong>虚拟存储器</strong>是一种存储管理技术，它允许程序拥有比物理内存更大的虚拟内存空间，通过将数据分块存储在磁盘上，当程序需要时再将这些数据从磁盘加载到物理内存中。虚拟存储器的出现使得程序可以假装它拥有连续且充足的内存空间，而实际的物理内存可能远远不足以支持这么大的空间。</p>
+<p><strong>根本目的</strong>：提供大于物理内存的地址空间，允许程序使用更多的内存，并有效管理内存，使得多任务可以共享内存资源，而不受物理内存限制。</p>
+<p><strong>这两种技术的相同点</strong></p>
+<ul>
+<li><p><strong>缓存与虚拟存储器都依赖于存储管理技术</strong>：缓存是为了优化数据访问速度，而虚拟存储器则是为了扩展可用的内存空间，二者都通过管理数据的存储位置来提高系统性能。</p>
+</li>
+<li><p><strong>都实现了存储器的透明性</strong>：对于程序员而言，无论是访问缓存中的数据还是虚拟内存中的数据，系统都将这些操作隐藏，程序可以认为它直接访问整个内存空间，且访问速度较快。</p>
+</li>
+<li><p><strong>都通过硬件和软件协作来实现</strong>：高速缓存技术依赖 CPU 的硬件支持，而虚拟存储器需要操作系统的管理与硬件的支持（如 MMU）来实现地址转换和内存调度。</p>
+</li>
+</ul>
+<ol start="4">
+<li>简述冯诺依曼计算机“存储程序和自动执行程序”的过程。导致冯诺依曼计算机性能瓶颈的主要原因是什么？</li>
+</ol>
+<p><strong>存储程序</strong>:</p>
+<p>在冯诺依曼架构中，程序和数据被存储在同一存储器（通常是内存）中。这意味着程序指令和数据都可以被存储和读取，并且程序指令和数据并没有明确区分，它们共享相同的内存空间。程序员编写的指令会被存储到计算机的内存中，CPU 从内存中读取这些指令并逐一执行。</p>
+<p><strong>自动执行程序</strong>:</p>
+<p>一旦程序被加载到内存，<strong>控制单元（CU）开始自动执行这些指令。CPU 按照**指令周期</strong>（取指、译码、执行）的过程执行程序：</p>
+<ul>
+<li><strong>取指（Fetch）</strong>：CPU 通过程序计数器（PC）指示内存中的位置，按顺序从内存中取出指令。</li>
+<li><strong>译码（Decode）</strong>：CPU 解码指令，理解其含义。</li>
+<li><strong>执行（Execute）</strong>：执行指令，可能涉及算术运算、数据存储、输入输出操作等。</li>
+</ul>
+<p>每完成一条指令的执行，程序计数器（PC）递增，指向下一条指令的地址，CPU 继续执行程序，直到遇到终止指令或程序结束。</p>
+<p><strong>性能瓶颈</strong></p>
+<p><strong>冯诺依曼瓶颈（Von Neumann Bottleneck）</strong>：</p>
+<ul>
+<li>由于冯诺依曼架构的程序和数据存储在同一个内存中，CPU 在执行程序时需要频繁地从内存中读取指令和数据。内存访问速度远低于 CPU 的处理速度，因此 CPU 和内存之间的数据传输成为性能的主要瓶颈。</li>
+<li>具体来说，<strong>内存带宽</strong>和<strong>CPU 计算速度</strong>之间的不匹配导致了冯诺依曼瓶颈。CPU 的处理速度通常要比内存的读写速度快得多，每当 CPU 需要访问内存时，会导致处理器的等待时间，影响整体性能。</li>
+</ul>
+<p><strong>数据传输延迟</strong>：</p>
+<ul>
+<li>程序指令和数据共享同一个内存通道，CPU 在每个时钟周期内只能执行一次内存操作（取指或读写数据），这使得指令取用和数据存取在时间上产生冲突，导致处理器空闲等待，降低了整体效率。</li>
+</ul>
+<p><strong>指令和数据的分离问题</strong>：</p>
+<ul>
+<li>冯诺依曼架构中，指令和数据是通过同一通道进行访问的，这种设计限制了数据和指令的并行处理。虽然现代计算机采用了缓存（如 L1&#x2F;L2 缓存）等技术来缓解这一问题，但仍然无法完全消除瓶颈。</li>
+</ul>
+<p><strong>内存访问的串行性</strong>：</p>
+<ul>
+<li>传统的冯诺依曼架构在执行过程中通常是<strong>串行的</strong>，即每次只能执行一条指令，这使得它不能充分发挥出多核处理器和并行计算的优势。尽管现代处理器引入了多级缓存和并行处理机制，但基础架构的串行特性依然影响性能。</li>
+</ul>
+<h1 id="微处理器设计技术"><a href="#微处理器设计技术" class="headerlink" title="微处理器设计技术"></a>微处理器设计技术</h1><h2 id="CISC-与-RISC-体系结构"><a href="#CISC-与-RISC-体系结构" class="headerlink" title="CISC 与 RISC 体系结构"></a>CISC 与 RISC 体系结构</h2><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092121417.png" class="" title="image-20241220092121417">
+
+<p><strong>CISS</strong>的特点及设计思想</p>
+<ul>
+<li>许多复杂指令很少被使用，“2-8”原则</li>
+<li>控制器硬件复杂(指令多，且具有不定长格式和复杂的数据类型),占用了大量的芯片面积，且容易出错。</li>
+<li>指令操作繁杂，速度慢</li>
+<li>指令规整性不好，不利用采用流水线技术提高性能</li>
+</ul>
+<p><strong>RISC</strong>机的设计应当遵循以下五个原则</p>
+<ul>
+<li>指令条数少，格式简单，易于译码</li>
+<li>提供足够的寄存器，只允许<code>load</code>和<code>store</code>指令访问内存</li>
+<li>指令由硬件直接执行，在单个周期内完成</li>
+<li>充分利用流水线</li>
+<li>依赖优化编译器的作用</li>
+</ul>
+<p><strong>区别</strong></p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092606386.png" class="" title="image-20241220092606386">
+
+<h2 id="指令系统设计"><a href="#指令系统设计" class="headerlink" title="指令系统设计"></a>指令系统设计</h2><p><strong>指令结构</strong></p>
+<blockquote>
+<p>指令系统是软硬件之间的一个约定,是计算机软硬件接口之一</p>
+</blockquote>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092838227-1734658120135-1.png" class="" title="image-20241220092838227">
+
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220092849142.png" class="" title="image-20241220092849142">
+
+<p><strong>指令集结构(ISA)</strong></p>
+<p>指令集结构(Instruction Set Architecture)</p>
+<p>处理器的接口，包含了与该处理器交互所需要的信息，但并不设计处理器自身如何设计和实现的细节</p>
+<p>ISA 包括</p>
+<ul>
+<li>指令集</li>
+<li>程序员可以直接访问的寄存器细节</li>
+<li>访问内存所需要的信息</li>
+<li>中断(异常)处理</li>
+</ul>
+<p><strong>指令的组成</strong></p>
+<ul>
+<li>操作码(operation code, opcode): 需要完成的操作</li>
+<li>源操作数(source operand reference): 操作所需的输入</li>
+<li>结果操作数(result operand reference): 操作产生的结果</li>
+<li>下一条指令(next instruction reference): 告诉 CPU 到哪里取下一条指令</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220093256013.png" class="" title="image-20241220093256013">
+
+<p><strong>指令格式</strong></p>
+<p>在计算机内部，指令由一个位串来表示。相应于指令的各要素，这些位串划分成几个字段</p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220124724735.png" class="" title="image-20241220124724735">
+
+<ul>
+<li>操作码字段<ul>
+<li>说明 CPU 应进行的操作</li>
+<li>按操作类型分组：同类操作要求同样或类似的控制信号，因此编码也类似(有尽可能多的公共位)</li>
+</ul>
+</li>
+<li>操作数&#x2F;地址字段<ul>
+<li>说明源操作数和目的操作数存放的位置信息(R,M 或 I&#x2F;O)</li>
+<li>说明源操作数和目的操作数的数据类型</li>
+</ul>
+</li>
+<li>下一条指令地址字段<ul>
+<li>如紧跟当前指令，在主存或虚存中，则不需要显示引用</li>
+<li>如可能产生跳转，则需要显示给出存储地址</li>
+</ul>
+</li>
+</ul>
+<p><strong>操作码设计(指令类型)</strong></p>
+<p>指令操作码<strong>按操作分组</strong>即是指令类型，按功能可分成三种基本类型：</p>
+<ol>
+<li>数据传输：将数据从一个地方(源地址)复制到另一个地方(目的地址),传输结束后源地址中的内容不变.</li>
+<li>数据运算:算术运算和逻辑运算</li>
+<li>控制类:用于改变正常的程序执行流程,完成程序的跳转,主要包括转移指令和过程指令</li>
+</ol>
+<p><strong>操作数字段</strong></p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220125914348-1734670755521-1.png" class="" title="image-20241220125914348">
+
+<ul>
+<li>立即数寻址:在指令码中指定操作数</li>
+<li>寄存器直接寻址:指令的地址字段给出寄存器名,而被指定的寄存器的内容就是操作数</li>
+<li>寄存器简介寻址:指令的地址字段给出寄存器名,而被指定的寄存器的内容是操作数的地址</li>
+<li>存储器直接寻址:指令的地址字段给定存储单元的地址,存储单元中是操作数</li>
+<li>存储器间接寻址:指令的地址字段给定存储单元的地址,存储单元中是操作数的地址</li>
+<li>位移量寻址方式:通常用于数据,矩阵,类向量数据的存取,立即数指定数组首址,寄存器指定组内偏移.</li>
+<li>变址寻址方式:寄存器 1 指定数组首地址,寄存器 2 指定组内偏移</li>
+<li>比例尺寻址方式:指定<strong>两个寄存器</strong>中的存储器地址加上<code>imm</code>字段的位移量</li>
+<li>PC 相对寻址方式:主要用在转移和跳转指令,指定汇编语言程序码的内部位置作为<strong>目的地址偏移量</strong>操作数</li>
+<li>独立编址系统的 I&#x2F;O 寻址方式: 系统视端口和存储单元位不同的对象</li>
+<li>统一编制系统的 I&#x2F;O 寻址方式: 将端口看作存储单元,仅以<strong>地址范围的不同</strong>来区分两者.</li>
+</ul>
+<h2 id="指令流水线设计"><a href="#指令流水线设计" class="headerlink" title="指令流水线设计"></a>指令流水线设计</h2><img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241220133039210.png" class="" title="image-20241220133039210">
+
+<p><strong>流水线冲突</strong></p>
+<p>理想流水线性能:每个时钟周期完成一条指令</p>
+<p>实际流水机器中可能存在<strong>冒险</strong>导致停顿</p>
+<ul>
+<li><p>数据冲突:当前指令之间存在依赖关系时发生的冲突,例如一条指令的结果是另一条指令的输入</p>
+<ul>
+<li>前递(数据旁路): 将执行阶段产生的结果直接传递给后续需要这个结果的指令,而不是等待结果被写回到寄存器文件中.这可以减少由于读-后写(RAW)依赖导致的停顿</li>
+<li>延迟分支: 在某些架构中,在分支指令之后插入一个或多个空操作(NOP),以确保所有依赖的数据都已经准备好.</li>
+<li>编译器优化: 通过重新排序代码中的指令来避免或最小化数据依赖性,如调度指令以增加并行度</li>
+</ul>
+</li>
+<li><p>结构冲突:因为硬件资源不足以同时支持多条指令的并发而引起的</p>
+<ul>
+<li>资源复制(超标量):增加功能单元的数量,使得同一周期内可以处理更多的指令.例如,增加 ALU 的数量或者拥有多个内存访问端口</li>
+<li>互斥访问: 设计流水线使得不同阶段的指令不会同时争夺相同的硬件资源</li>
+</ul>
+</li>
+<li><p>控制冲突: 通常发生在分支条件或跳转指令处,因为这些指令改变了程序的正常顺序执行流程</p>
+<ul>
+<li>分支预测: 使用静态或动态分支预测算法来猜测分支的方向,并提前加载可能执行的指令路径.现代处理器还采用了复杂的分支目标缓冲区(BTB)等机制</li>
+<li>投机执行:基于预测的结果继续执行指令,如果预测正确则提高效率,如果错误,则回滚到正确的状态并清除错误预测后的指令</li>
+<li>延迟分支: 类似于解决数据相关的延迟分支方法,可以在分支指令前安排一下不影响分支决策的指令.</li>
+</ul>
+</li>
+</ul>
+<p><strong>流水线性能分析</strong></p>
+<p><strong>基本要求</strong></p>
+<ul>
+<li>流水线各个段的操作相互独立</li>
+<li>流水线各个段的操作同步</li>
+</ul>
+<p><strong>性能指标</strong></p>
+<ul>
+<li>吞吐率：单位时间内能完成的作业量</li>
+<li>最大吞吐量：流水线达到稳定状态后的吞吐量</li>
+</ul>
+<p>用于描述流水线执行各种运算的速率，通常表示为每秒执行的运算数或每周期执行的运算数</p>
+<p>若一个<strong>m 级</strong>线性流水线各级时长(即拍长)均为$\Delta t$,则连续处理 n 条指令时的实际吞吐率$T_p$为</p>
+<p>$T_p&#x3D;\frac{n}{m\Delta t + (n-1)\Delta t} &#x3D; \frac{1}{[1+\frac{m-1}{n}]\Delta t}$</p>
+<p>可以看出,当$n \rightarrow \infin$时,最大吞吐量$T_pmaz &#x3D; 1&#x2F;( \Delta t)$</p>
+<ul>
+<li>加速比: 非流水线执行时间相对流水线执行时间之比</li>
+</ul>
+<p>$S_p&#x3D;\frac{T_{串行}}{T_{流水}} &#x3D; \frac{n·m \Delta t}{m \Delta t + (n-1) \Delta t} &#x3D; \frac{nm}{m+n-1} &#x3D; \frac{m}{1+(m-1)&#x2F;n}$</p>
+<p>可以看出,当$n \rightarrow \infin$时,$S_p \rightarrow m$,即最大加速比等于流水线的段数<strong>m</strong></p>
+<ul>
+<li>效率: 一定时间段内,流水线所有段处于工作状态的比率</li>
+</ul>
+<p>若一个<strong>m 级</strong>线性流水线各级时长(即拍长)均为$\Delta t$,求取连续处理 n 条指令时的效率 E</p>
+<p>利用指令时空图进行分析</p>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241222090955017.png" class="" title="image-20241222090955017">
+
+<p>$E &#x3D; \frac{指令完成时间内占用的时空区}{指令总时空区}&#x3D;\frac{nm \Delta t}{[n+(m-1)]m \Delta t}&#x3D;\frac{1}{1+\frac{m-1}{n}}$</p>
+<p>可以看出,当$n \rightarrow \infin $时,$E \rightarrow 1$,即流过流水线的指令越多,流水线效率越高</p>
+<ul>
+<li>深度或并行度：流水级数 m</li>
+<li>延迟时间：每一作业从开始到结束所需时钟周期数</li>
+</ul>
+<p><strong>计算机性能测评</strong></p>
+<ol>
+<li>字长</li>
+<li>存储容量</li>
+<li>运算速度</li>
+</ol>
+<h2 id="作业-1"><a href="#作业-1" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>一个时钟频率为 2.5 GHz 的非流水式处理器，其平均 CPI 是 4。此处理器的升级版本引入了 5 级流水。然而，由于如锁存延迟这样的流水线内部延迟，使新版处理器的时钟频率必须降低到 2 GHz。</p>
+<p>‎</p>
+<p>‎(1) 对一典型程序，新版所实现的加速比是多少？</p>
+<p>‎</p>
+<p>‎(2) 新、旧两版处理器的 MIPS 各是多少？</p>
+</li>
+</ol>
+<p>(1) 假设有 n 条指令</p>
+<p>$T_{串行} &#x3D; \frac{4n}{2.5*10^9}s$</p>
+<p>引入流水线后,理想情况下</p>
+<p>$T_{流水线} &#x3D; \frac{n}{2*10^9}$</p>
+<p>$加速比S_p &#x3D; \frac{T_{串行}}{T_{流水}}&#x3D;3.2$</p>
+<p>(2)</p>
+<p>旧版: $MIPS_{old} &#x3D; \frac{2.5<em>10^9}{4</em>10*6} &#x3D; 625$</p>
+<p>新版: $MIPS_{new} &#x3D; \frac{2<em>10^9}{1</em>10^6} &#x3D; 2000$</p>
+<ol start="2">
+<li><p>微码体系结构与随机逻辑体系结构有什么区别？</p>
+</li>
+<li><p><strong>实现方式</strong><br><strong>微码体系结构</strong>：使用一种低级的、类似于软件的微程序来实现机器指令。每条机器指令被分解为一系列微指令，这些微指令存储在一个特殊的只读存储器（ROM）或可编程逻辑阵列（PLA）中。控制单元通过执行这些微指令序列来生成所需的控制信号。<br><strong>随机逻辑体系结构</strong>：采用硬连线逻辑电路直接实现机器指令。指令的解码和控制信号的生成是由固定的硬件逻辑电路完成的，通常由组合逻辑和时序逻辑构成。</p>
+</li>
+<li><p><strong>灵活性与可维护性</strong><br><strong>微码体系结构</strong>：具有更高的灵活性，因为可以通过修改微程序来改变或扩展指令集，甚至可以在不改动硬件的情况下修复某些类型的错误。这使得微码体系结构更容易进行更新和维护。<br><strong>随机逻辑体系结构</strong>：一旦设计完成，其指令集就很难更改，因为这需要对硬件逻辑进行物理上的改动。因此，它的灵活性较低，但这也意味着更稳定和确定的行为。</p>
+</li>
+<li><p><strong>复杂性与设计难度</strong><br><strong>微码体系结构</strong>：可以更容易地处理复杂的指令集架构（CISC），因为它允许以相对简单的方式实现复杂的操作。然而，设计一个高效的微程序控制器可能需要更多的工程努力，并且优化微代码以达到最佳性能也是一项挑战。<br><strong>随机逻辑体系结构</strong>：对于简单的指令集架构（RISC），硬连线逻辑可以提供更加紧凑和快速的设计。但是，随着指令集变得越来越复杂，设计和验证这样的控制单元也会变得更加困难。</p>
+</li>
+<li><p><strong>性能</strong><br><strong>微码体系结构</strong>：由于涉及额外的微指令解释层，理论上可能会比等效的随机逻辑实现稍慢。不过，现代微码实现技术已经大大减少了这种差距，并且在某些情况下，微码实现可以更有效地利用资源。<br><strong>随机逻辑体系结构</strong>：通常能够提供更快的响应时间和更低的延迟，因为它没有中间的微指令层，所有操作都是直接由硬件逻辑完成的。</p>
+</li>
+<li><p><strong>成本与功耗</strong><br><strong>微码体系结构</strong>：由于需要额外的存储空间来保存微程序，可能会增加芯片面积和成本。此外，微程序的执行也可能导致稍微更高的功耗。<br><strong>随机逻辑体系结构</strong>：一般而言，硬连线逻辑会占用较少的硅片面积，从而降低成本并减少功耗。</p>
+</li>
+</ol>
+<h1 id="总线技术与总线标准"><a href="#总线技术与总线标准" class="headerlink" title="总线技术与总线标准"></a>总线技术与总线标准</h1><h2 id="总线技术"><a href="#总线技术" class="headerlink" title="总线技术"></a>总线技术</h2><h3 id="总线要素"><a href="#总线要素" class="headerlink" title="总线要素"></a>总线要素</h3><p><strong>线路介质</strong></p>
+<ol>
+<li>种类： 有线(电缆，光缆), 无线(电磁波)</li>
+<li>特性：<ol>
+<li>原始数据传输率， 带宽</li>
+<li>对噪声，失真，衰减的敏感性等</li>
+</ol>
+</li>
+</ol>
+<p><strong>总线协议</strong></p>
+<p>电气性能</p>
+<ul>
+<li>总线信号:有效电平,传输方向&#x2F;速率&#x2F;格式等</li>
+<li>总线时序:规定通信双方的联络方式</li>
+<li>总线仲裁:规定解决总线冲突的方式</li>
+<li>其他: 如差错控制</li>
+</ul>
+<p>机械性能</p>
+<ul>
+<li>接口尺寸</li>
+<li>形状</li>
+</ul>
+<p>$$<br>总线协议 \begin{cases} 消息的内容 \begin{cases} 数据内容 \ 命令内容 \end{cases} \ 消息传输\begin{cases} 介质 \begin{cases} 位编码 \ 位传输 \end{cases} \ 通道组织 \begin{cases} 单工&#x2F;双工 \ 通道共享 \ 并行&#x2F;串行 \end{cases} \ 协调 \begin{cases} 时钟同步 \ 检错和纠错 \end{cases} \end{cases} \end{cases}<br>$$</p>
+<h3 id="总线的分类"><a href="#总线的分类" class="headerlink" title="总线的分类"></a>总线的分类</h3><p>按<strong>所处位置</strong>(数据传送范围)</p>
+<ul>
+<li>片上总线</li>
+<li>芯片总线(片间总线, 元件级总线)</li>
+<li>系统内总线(插板级总线)</li>
+<li>系统外总线(通信总线)</li>
+</ul>
+<p>按<strong>总线功能</strong></p>
+<ul>
+<li>地址总线</li>
+<li>数据总线</li>
+<li>控制总线</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241223091957591.png" class="" title="image-20241223091957591">
+
+<p>按<strong>数据格式</strong></p>
+<ul>
+<li>并行总线<ul>
+<li>同步</li>
+<li>半同步</li>
+<li>异步</li>
+</ul>
+</li>
+<li>串行总线<ul>
+<li>同步</li>
+<li>异步</li>
+</ul>
+</li>
+</ul>
+<p>按<strong>总线组织</strong></p>
+<ul>
+<li>单总线<ul>
+<li>特点: 存储器和 I&#x2F;O<strong>分时</strong>使用同一总线</li>
+<li>优点: 结构简单,成本低廉,易于扩充</li>
+<li>缺点: 带宽有限,传输率不高(可能造成物理长度过长)</li>
+</ul>
+</li>
+<li>双总线<ul>
+<li>特点: 存储总线 + I&#x2F;O 总线</li>
+<li>优点: 提高了总线带宽和数据传输速率</li>
+<li>缺点: CPU 繁忙</li>
+</ul>
+</li>
+<li>多级总线<ul>
+<li>特点: 高速外设和低速外设分开使用不同的总线</li>
+<li>优点: 高效,进一步提高系统的传输带宽和传输速率</li>
+<li>缺点: 复杂</li>
+</ul>
+</li>
+</ul>
+<img src="/2024/12/18/%E5%BE%AE%E5%B5%8C/image-20241223092022191-1734916823177-1.png" class="" title="image-20241223092022191">
+
+<h3 id="总线的性能指标"><a href="#总线的性能指标" class="headerlink" title="总线的性能指标"></a>总线的性能指标</h3><p><strong>总线时钟频率(Hz)</strong></p>
+<p><strong>总线宽度(bits)</strong></p>
+<ul>
+<li>数据线: 数据通路宽度</li>
+<li>地址线: 寻址空间</li>
+</ul>
+<p><strong>总线速率(次&#x2F;s)</strong>:传送一次数据所需的时钟周期数</p>
+<p>$$<br>总线速率 &#x3D; \frac{总线时钟频率}{总线周期数}<br>$$</p>
+<p><strong>总线带宽(Bytes&#x2F;s)</strong></p>
+<p>$$<br>总线带宽 &#x3D; 总线速率 * 总线宽度<br>$$</p>
+<p><strong>总线负载能力</strong></p>
+<p><strong>总线带宽的计算</strong></p>
+<ol>
+<li>CPU 的前端总线(FSB, Front Side Bus) 频率为<strong>800MHz</strong>,总线周期数为<strong>1&#x2F;4</strong>(即一个时钟周期传送 4 次数据),位宽为<strong>64bit</strong>,则 FSB 带宽为多少?</li>
+</ol>
+]]></content>
+      <categories>
+        <category>课程笔记</category>
+      </categories>
+      <tags>
+        <tag>微嵌</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新机装机流程</title>
+    <url>/2024/12/19/%E6%96%B0%E6%9C%BA%E8%A3%85%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习，想到刚拿到新电脑时候的处理，决定写一个流程，记录拿到一个新电脑后如何快速安装自己的工具链</p>
+<h1 id="梳理所需工具"><a href="#梳理所需工具" class="headerlink" title="梳理所需工具"></a>梳理所需工具</h1><h2 id="即时通讯类"><a href="#即时通讯类" class="headerlink" title="即时通讯类"></a>即时通讯类</h2><ol>
+<li>QQ <a href="https://im.qq.com/index/">下载链接</a></li>
+<li>微信 <a href="https://weixin.qq.com/">下载链接</a></li>
+<li>飞书 <a href="https://www.feishu.cn/">下载链接</a></li>
+</ol>
+<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><ol>
+<li>clash 见 quark 网盘</li>
+</ol>
+<h2 id="日常办公类"><a href="#日常办公类" class="headerlink" title="日常办公类"></a>日常办公类</h2><ol>
+<li><p>Google Chrome <a href="https://www.google.cn/chrome/">下载链接</a></p>
+</li>
+<li><p>夸克 <a href="https://www.quark.cn/">下载链接</a></p>
+</li>
+<li><p>Xmind <a href="https://www.xmind.cn/">下载链接</a></p>
+</li>
+<li><p>Typora <strong>下载方式见后文</strong></p>
+</li>
+<li><p>Office 套件 <a href="https://mp.weixin.qq.com/s/o2WZaEKUaojoD9tASmJGgg">参考链接</a>,安装包见 quark.</p>
+</li>
+<li><p>winRar <a href="https://www.win-rar.com/download.html?&L=0">下载链接</a></p>
+</li>
+</ol>
+<h2 id="实用工具类"><a href="#实用工具类" class="headerlink" title="实用工具类"></a>实用工具类</h2><ol>
+<li><p>Snipaste <a href="https://zh.snipaste.com/">下载链接</a></p>
+</li>
+<li><p>ZoomIt <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">下载链接</a></p>
+</li>
+<li><p>PowerToys [下载链接] (<a href="https://learn.microsoft.com/zh-tw/windows/powertoys/">https://learn.microsoft.com/zh-tw/windows/powertoys/</a>)</p>
+</li>
+</ol>
+<h2 id="自媒体类"><a href="#自媒体类" class="headerlink" title="自媒体类"></a>自媒体类</h2><ol>
+<li>OBS<a href="https://obsproject.com/">下载链接</a></li>
+<li>Adobe 系列 quark 直接安装</li>
+</ol>
+<h2 id="核心生产力"><a href="#核心生产力" class="headerlink" title="核心生产力"></a>核心生产力</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ol>
+<li><p>VSCode <a href="https://code.visualstudio.com/">下载链接</a></p>
+</li>
+<li><p>JetBrains 全家桶 <strong>下载方式见后文</strong></p>
+</li>
+</ol>
+<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><ol>
+<li>Git <a href="https://git-scm.com/">下载链接</a></li>
+</ol>
+<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><ol>
+<li><p>nvm <a href="https://github.com/coreybutler/nvm-windows/releases">下载链接</a></p>
+</li>
+<li><p>powershell <a href="https://github.com/PowerShell/PowerShell/releases">下载链接</a></p>
+</li>
+</ol>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
+<li><p>WSL <a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">下载链接</a></p>
+</li>
+<li><p>VMware <a href="https://www.vmware.com/">下载链接</a></p>
+</li>
+</ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
+<li><p>MySQL <a href="https://dev.mysql.com/downloads/mysql/">下载链接</a></p>
+</li>
+<li><p>Navicate 安装方式同 typora</p>
+</li>
+</ol>
+<h3 id="api-测试"><a href="#api-测试" class="headerlink" title="api 测试"></a>api 测试</h3><ol>
+<li>Apifox <a href="https://www.apifox.cn/">下载链接</a></li>
+</ol>
+<h1 id="Typora-安装教程"><a href="#Typora-安装教程" class="headerlink" title="Typora 安装教程"></a>Typora 安装教程</h1><ol>
+<li><p>从 quark 下载 Typora 安装包到本地</p>
+</li>
+<li><p>解压并以管理员身份运行<code>typora-setup-x64.exe</code></p>
+</li>
+<li><p>打开 Typora 安装位置,将解压文件夹中的 Crack 目录下的<code>wim.dll</code>复制到 typora 安装目录中</p>
+</li>
+</ol>
+<h1 id="JetBrains-全家桶安装"><a href="#JetBrains-全家桶安装" class="headerlink" title="JetBrains 全家桶安装"></a>JetBrains 全家桶安装</h1><p>以 Pycharm 为例</p>
+<ol>
+<li><p>从 quark 下载安装包到本地并解压安装</p>
+</li>
+<li><p>将解压文件夹中的 Crack 文件夹复制到安装目录</p>
+</li>
+<li><p>运行 Crack 文件夹中的<code>安装.bat</code></p>
+</li>
+<li><p>将<code>zcode.txt</code>拖入激活码框中激活</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>新机处理</tag>
       </tags>
   </entry>
   <entry>
