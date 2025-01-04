@@ -1271,4 +1271,113 @@ _.drop([1,2,3],2);;	//起作用
 
 **css in js**
 
-这种方案虽然可以利用js语言解决重复样式值的问题,但由于太过激进,很多习惯写css的开发求
+这种方案虽然可以利用js语言解决重复样式值的问题,但由于太过激进,很多习惯写css的开发者编写起来并不是很适应
+
+**预编译器**
+
+有些第三方搞出一套语言CSS语言进化版来解决这个问题，它支持变量，函数等高级语法，然后经过编译器将其编译为正常的css
+
+这种方案特别像构建工具，不过它仅针对CSS
+
+常见的CSS预编译器有
+
+- less
+- sass
+
+### 解决css文件细分问题
+
+这一部分，就要依靠构建工具,例如webapck来解决了
+
+利用一些loader或plugin来打包,合并,压缩css文件
+
+# 利用webpack拆分css
+
+要拆分css, 就必须把css当成像js那样的模块;要把css当场模块,就必须有一个构建工具(webpack),它具备合并代码的能力
+
+而webpack本身只能读取css文件的内容,将其当作JS代码进行分析,因此,会导致错误,于是,就必须有一个loader,能够将css代码转换为js代码
+
+## css-loader
+
+css-loader的作用,就是将css代码转换为js代码
+
+它的处理原理极其简单,将css代码作为字符串导出
+
+例如:
+
+```css
+.red{
+    color: "red";
+}
+```
+
+经过css-loader转换后变成js代码
+
+```javascript
+module.exports = `.red {
+	color: "red";
+}`
+```
+
+>上面的js代码是经过简化后的,不代表真实的css-loader的转换后代码,css-loader转换后的代码有些复杂,同时会导出更多的信息,但核心思想不变
+
+再例如
+
+```css
+.red {
+    color: "red";
+    background: url("./bg.png");
+}
+```
+
+经过css-loader转换后的js代码如下:
+
+```js
+var import1 = require("./bg.png")
+module.exports = `.red {
+	color: "red",
+	background: url("${import1}")
+} `
+```
+
+这样一来,经过webpack的后续处理,会把依赖`./bg.png`添加到模块列表,然后再将代码转化为
+
+```js
+var import1 = __webpack_require__("./src/bg.png");
+module.exports = `.red {
+	color: "red",
+	background: url("${import1}")
+} `
+```
+
+再例如
+
+```css
+@import "./reset.css";
+.red {
+    color: "red";
+    background: url("./bg.png");
+}
+```
+
+会转换为
+
+```javascript
+var import1 = require("./reset.css");
+var import2 = require("./bg.png");
+
+.red {
+    color: "red";
+    background: url("${import2}")
+}
+```
+
+## style-loader
+
+
+
+
+
+
+
+
+
