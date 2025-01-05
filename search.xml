@@ -1,6 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MySQL</title>
+    <url>/2024/12/31/MySQL/</url>
+    <content><![CDATA[<h1 id="SQL基础篇"><a href="#SQL基础篇" class="headerlink" title="SQL基础篇"></a>SQL基础篇</h1><img src="/2024/12/31/MySQL/image-20241231103711854.png" class="" title="image-20241231103711854">
+
+<h2 id="MySQL的安装与启动"><a href="#MySQL的安装与启动" class="headerlink" title="MySQL的安装与启动"></a>MySQL的安装与启动</h2><h3 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">net <span class="built_in">start</span> &lt;服务名&gt;</span><br><span class="line">net stop &lt;服务名&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Win + R </span><br></pre></td></tr></table></figure>
+
+<img src="/2024/12/31/MySQL/image-20241231105525347.png" class="" title="image-20241231105525347">
+
+<img src="/2024/12/31/MySQL/image-20241231105546041.png" class="" title="image-20241231105546041">
+
+<h2 id="SQL通用语法及分类"><a href="#SQL通用语法及分类" class="headerlink" title="SQL通用语法及分类"></a>SQL通用语法及分类</h2><h3 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h3><ul>
+<li>可以<strong>单行</strong>或<strong>多行</strong>书写,以分号结尾</li>
+<li>可以使用空格&#x2F;缩进来增强语句的可读性</li>
+<li>不区分大小写,<strong>关键字建议使用大写</strong></li>
+<li>注释<ul>
+<li>单行注释:  –注释内容 或 #注释内容(MySQL特有)</li>
+<li>多行注释: &#x2F;* 注释内容 *&#x2F;</li>
+</ul>
+</li>
+</ul>
+<h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>全称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DDL</td>
+<td>Data Definition Language</td>
+<td>数据定义语言,用来定义数据库对象(数据库,表,字段)</td>
+</tr>
+<tr>
+<td>DML</td>
+<td>Data Manipulation Language</td>
+<td>数据操作语言,用来对数据库表中的数据进行增删改</td>
+</tr>
+<tr>
+<td>DQL</td>
+<td>Data Query Language</td>
+<td>数据查询语言, 用来查询数据库中表的记录</td>
+</tr>
+<tr>
+<td>DCL</td>
+<td>Data Control Language</td>
+<td>数据控制语言,用来创建数据库用户,控制数据库访问权限</td>
+</tr>
+</tbody></table>
+<h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询所有数据库</span></span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br><span class="line"><span class="comment">-- 查询当前数据库</span></span><br><span class="line"><span class="keyword">SELECT</span> DATABASE();</span><br><span class="line"><span class="comment">-- 创建</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] 数据库名 [<span class="keyword">DEFAULT</span> CHARSET 字符集][<span class="keyword">COLLATE</span> 排序规则]</span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">DROP</span> DATABASE[IF <span class="keyword">EXISTS</span>]数据库名</span><br><span class="line"><span class="comment">-- 使用</span></span><br><span class="line">USE 数据库名</span><br></pre></td></tr></table></figure>
+
+<h3 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h3><p><strong>查询</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询当前数据库所有表</span></span><br><span class="line"><span class="keyword">SHOW</span> TABLES;</span><br><span class="line"><span class="comment">-- 查询表结构</span></span><br><span class="line"><span class="keyword">DESC</span> 表名;</span><br><span class="line"><span class="comment">-- 查询指定表的创建语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> (</span><br><span class="line">    字段<span class="number">1</span> 字段<span class="number">1</span>类型[COMMENT 字段<span class="number">1</span>注释],</span><br><span class="line">    字段<span class="number">2</span> 字段<span class="number">2</span>类型[COMMENT 字段<span class="number">2</span>注释],</span><br><span class="line">    字段<span class="number">3</span> 字段<span class="number">3</span>类型[COMMENT 字段<span class="number">3</span>注释],</span><br><span class="line">    字段<span class="number">4</span> 字段<span class="number">4</span>类型[COMMENT 字段<span class="number">4</span>注释],</span><br><span class="line">    ....</span><br><span class="line">    字段n 字段n类型[COMMENT 字段n注释],</span><br><span class="line">)[COMMENT 表注释]</span><br></pre></td></tr></table></figure>
+
+<p><strong>数据类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>类型</th>
+<th>大小</th>
+<th>有符号数(SIGNED)范围</th>
+<th>无符号(UNSIGNED)范围</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><code>TINYINT</code></td>
+<td>1Byte</td>
+<td>(-128-127)</td>
+<td>(0,255)</td>
+<td>小整数值</td>
+</tr>
+<tr>
+<td></td>
+<td><code>SMALLINT</code></td>
+<td>2Byte</td>
+<td>(-32768,32767)</td>
+<td>(0,65535)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES6</title>
     <url>/2024/12/14/ES6/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ol>
@@ -523,148 +665,6 @@
 ]]></content>
       <tags>
         <tag>ES6</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL</title>
-    <url>/2024/12/31/MySQL/</url>
-    <content><![CDATA[<h1 id="SQL基础篇"><a href="#SQL基础篇" class="headerlink" title="SQL基础篇"></a>SQL基础篇</h1><img src="/2024/12/31/MySQL/image-20241231103711854.png" class="" title="image-20241231103711854">
-
-<h2 id="MySQL的安装与启动"><a href="#MySQL的安装与启动" class="headerlink" title="MySQL的安装与启动"></a>MySQL的安装与启动</h2><h3 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">net <span class="built_in">start</span> &lt;服务名&gt;</span><br><span class="line">net stop &lt;服务名&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Win + R </span><br></pre></td></tr></table></figure>
-
-<img src="/2024/12/31/MySQL/image-20241231105525347.png" class="" title="image-20241231105525347">
-
-<img src="/2024/12/31/MySQL/image-20241231105546041.png" class="" title="image-20241231105546041">
-
-<h2 id="SQL通用语法及分类"><a href="#SQL通用语法及分类" class="headerlink" title="SQL通用语法及分类"></a>SQL通用语法及分类</h2><h3 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h3><ul>
-<li>可以<strong>单行</strong>或<strong>多行</strong>书写,以分号结尾</li>
-<li>可以使用空格&#x2F;缩进来增强语句的可读性</li>
-<li>不区分大小写,<strong>关键字建议使用大写</strong></li>
-<li>注释<ul>
-<li>单行注释:  –注释内容 或 #注释内容(MySQL特有)</li>
-<li>多行注释: &#x2F;* 注释内容 *&#x2F;</li>
-</ul>
-</li>
-</ul>
-<h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><table>
-<thead>
-<tr>
-<th>分类</th>
-<th>全称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DDL</td>
-<td>Data Definition Language</td>
-<td>数据定义语言,用来定义数据库对象(数据库,表,字段)</td>
-</tr>
-<tr>
-<td>DML</td>
-<td>Data Manipulation Language</td>
-<td>数据操作语言,用来对数据库表中的数据进行增删改</td>
-</tr>
-<tr>
-<td>DQL</td>
-<td>Data Query Language</td>
-<td>数据查询语言, 用来查询数据库中表的记录</td>
-</tr>
-<tr>
-<td>DCL</td>
-<td>Data Control Language</td>
-<td>数据控制语言,用来创建数据库用户,控制数据库访问权限</td>
-</tr>
-</tbody></table>
-<h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询所有数据库</span></span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br><span class="line"><span class="comment">-- 查询当前数据库</span></span><br><span class="line"><span class="keyword">SELECT</span> DATABASE();</span><br><span class="line"><span class="comment">-- 创建</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] 数据库名 [<span class="keyword">DEFAULT</span> CHARSET 字符集][<span class="keyword">COLLATE</span> 排序规则]</span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">DROP</span> DATABASE[IF <span class="keyword">EXISTS</span>]数据库名</span><br><span class="line"><span class="comment">-- 使用</span></span><br><span class="line">USE 数据库名</span><br></pre></td></tr></table></figure>
-
-<h3 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h3><p><strong>查询</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询当前数据库所有表</span></span><br><span class="line"><span class="keyword">SHOW</span> TABLES;</span><br><span class="line"><span class="comment">-- 查询表结构</span></span><br><span class="line"><span class="keyword">DESC</span> 表名;</span><br><span class="line"><span class="comment">-- 查询指定表的创建语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> (</span><br><span class="line">    字段<span class="number">1</span> 字段<span class="number">1</span>类型[COMMENT 字段<span class="number">1</span>注释],</span><br><span class="line">    字段<span class="number">2</span> 字段<span class="number">2</span>类型[COMMENT 字段<span class="number">2</span>注释],</span><br><span class="line">    字段<span class="number">3</span> 字段<span class="number">3</span>类型[COMMENT 字段<span class="number">3</span>注释],</span><br><span class="line">    字段<span class="number">4</span> 字段<span class="number">4</span>类型[COMMENT 字段<span class="number">4</span>注释],</span><br><span class="line">    ....</span><br><span class="line">    字段n 字段n类型[COMMENT 字段n注释],</span><br><span class="line">)[COMMENT 表注释]</span><br></pre></td></tr></table></figure>
-
-<p><strong>数据类型</strong></p>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>类型</th>
-<th>大小</th>
-<th>有符号数(SIGNED)范围</th>
-<th>无符号(UNSIGNED)范围</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><code>TINYINT</code></td>
-<td>1Byte</td>
-<td>(-128-127)</td>
-<td>(0,255)</td>
-<td>小整数值</td>
-</tr>
-<tr>
-<td></td>
-<td><code>SMALLINT</code></td>
-<td>2Byte</td>
-<td>(-32768,32767)</td>
-<td>(0,65535)</td>
-<td>大整数值</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-]]></content>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1482,10 +1482,21 @@
 <p>即提供一种命名的标准,来解决冲突,常见的标准有:</p>
 <ul>
 <li>BEM</li>
+</ul>
+<p>全称是<strong>B</strong>lock <strong>E</strong>lement <strong>M</strong>odifier</p>
+<p>一个完整的BEM类名:block__element__modifier,例如<code>banner__dot__selected</code>,可以表示: 轮播图中,处于选中状态的小圆点</p>
+<ul>
 <li>OOCSS</li>
 <li>AMCSS</li>
 <li>SMACSS</li>
 <li>其他</li>
+</ul>
+<p>在某些大型工程中,还可能会加一个前缀,表示类名的用途</p>
+<ul>
+<li>l: layout,表示这个类是用于布局的</li>
+<li>c: component, 表示这个样式是一个组件,即一个功能区域</li>
+<li>u: util,表示工具性样式</li>
+<li>j: javascript,表示这个样式没有实际意义,是专门提供给js获取元素使用的</li>
 </ul>
 <p><strong>css in js</strong></p>
 <p>这种方案非常大胆,他觉得,css语言本身几乎无可救药了,干脆直接用js对象来表示样式,然后把样式直接应用到元素的style中</p>
@@ -1498,6 +1509,36 @@
 </ul>
 <p><strong>css module</strong></p>
 <p>非常有趣和好用的css模块化方案,编写简单,绝对不重名</p>
+<p>css module 遵循以下思路解决类名冲突</p>
+<ol>
+<li>css的类名冲突往往发生在大型项目中</li>
+<li>大型项目往往会使用构建工具(wepack等)搭建工程</li>
+<li>构建工具允许将css样式切分为更加精细的模块</li>
+<li>同JS变量一样,每个css模块文件中难以出现冲突的类名,冲突的类名往往发生在不同的css模块文件中</li>
+<li>只需要保证构建工具在合并样式代码后不会出现类名冲突即可.</li>
+</ol>
+<p><strong>实现原理</strong></p>
+<p>在webpack中,作为处理css的css-loader,它实现了<code>css module</code>的思想,要启用<code>css module</code>,需要将css-loader的配置<code>modules</code>设置为<code>true</code></p>
+<p>开启后类名转换为唯一的hash值</p>
+<p><strong>如何应用样式</strong></p>
+<p><code>css module</code>带来了一个新的问题,源代码的类名和最终生成的类名是不一样的,而开发者只知道自己写的源代码中的类名,并不知道最终的类名是什么,那如何应用类名到元素上呢?</p>
+<p>为了解决这个问题,css-loader会导出原类名和最终类名的对应关系,该关系是通过一个对象描述的</p>
+<img src="/2024/12/16/webpack%E5%AD%A6%E4%B9%A0/image-20250105221011563.png" class="" title="image-20250105221011563">
+
+<p><strong>其他操作</strong></p>
+<p><strong>全局类名</strong></p>
+<p>某些类名是全局的,静态的,不需要进行转换,仅需要再类名位置使用一个特殊的语法即可</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">global</span>(.main) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用了global的类名不会进行转换,相反的,没有使用global的类名,表示默认使用了local</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">local</span>(.main) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用了local的类名表示局部类名,是可能会造成冲突的类名,会被<code>css module</code>进行转换</p>
+<ul>
+<li>往往配合构建工具使用</li>
+<li>仅处理顶级类名,不处理嵌套类名</li>
+<li>仅处理类名,不处理其他选择器</li>
+</ul>
 <h3 id="解决重复样式问题"><a href="#解决重复样式问题" class="headerlink" title="解决重复样式问题"></a>解决重复样式问题</h3><p><strong>css in js</strong></p>
 <p>这种方案虽然可以利用js语言解决重复样式值的问题,但由于太过激进,很多习惯写css的开发者编写起来并不是很适应</p>
 <p><strong>预编译器</strong></p>
@@ -1538,7 +1579,54 @@
 <p>会转换为</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> import1 = <span class="built_in">require</span>(<span class="string">&quot;./reset.css&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> import2 = <span class="built_in">require</span>(<span class="string">&quot;./bg.png&quot;</span>);</span><br><span class="line"></span><br><span class="line">.<span class="property">red</span> &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&quot;red&quot;</span>;</span><br><span class="line">    <span class="attr">background</span>: <span class="title function_">url</span>(<span class="string">&quot;$&#123;import2&#125;&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="style-loader"><a href="#style-loader" class="headerlink" title="style-loader"></a>style-loader</h2>]]></content>
+<h2 id="style-loader"><a href="#style-loader" class="headerlink" title="style-loader"></a>style-loader</h2><p>由于css-loader仅提供了将css转换为字符串导出的能力,剩余的事情要交给其他loader或plugin来处理.</p>
+<p>style-loader可以将css-loader转换后的代码进一步处理,将css-loader导出的字符串加入到页面的style元素中</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.red</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="string">&quot;#f40&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经过css-loader转换后成为js代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="string">`.red&#123;</span></span><br><span class="line"><span class="string">	color: &quot;#f40&quot;;</span></span><br><span class="line"><span class="string">&#125; `</span></span><br></pre></td></tr></table></figure>
+
+<p>经过style-loader转换后变成</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="string">`.red&#123;</span></span><br><span class="line"><span class="string">	color: &quot;#f40&quot;;</span></span><br><span class="line"><span class="string">&#125; `</span></span><br><span class="line"><span class="keyword">var</span> style = <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line"><span class="keyword">var</span> styleElem = documents.<span class="title function_">createElement</span>(<span class="string">&quot;style&quot;</span>);</span><br><span class="line">styleElem.<span class="property">innerHTML</span> = style;</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(styleElem);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上均为简化后的代码,不代表真实的代码</p>
+<p>style-loader可以避免元素重复导入</p>
+</blockquote>
+<h1 id="css预编译器"><a href="#css预编译器" class="headerlink" title="css预编译器"></a>css预编译器</h1><p>编写css时, 受限于css语言本身,尝尝难以处理一些问题</p>
+<ul>
+<li>重复的样式值</li>
+<li>重复的代码段</li>
+<li>重复的嵌套书写</li>
+</ul>
+<p>由于官方迟迟不对css语言本身做出改进,一些第三方的机构开始想办法来解决这些问题</p>
+<p>其中一种方案,便是预编译器</p>
+<p>预编译器的原理很简单,即使用一种更加优雅的方式来书写样式代码,通过一个编译器,将其转换为可被浏览器识别的传统css代码</p>
+<p>目前,最流行的预编译器有<code>less</code>和<code>sass</code>,由于他们两者特别相似,因此仅学习一种即可.</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pnpm add less <span class="literal">-D</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="comment">// less代码</span></span><br><span class="line"><span class="variable">@red:</span><span class="number">#f40</span></span><br><span class="line"></span><br><span class="line">    .redcolor &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="variable">@red</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>less基本使用</p>
+<ul>
+<li>变量</li>
+<li>混合</li>
+<li>嵌套</li>
+<li>运算</li>
+<li>函数</li>
+<li>作用域</li>
+<li>注释</li>
+<li>导入</li>
+</ul>
+<h1 id="PostCss"><a href="#PostCss" class="headerlink" title="PostCss"></a>PostCss</h1><blockquote>
+<p>本节课内容与webpack无关</p>
+</blockquote>
+<h2 id="什么是PostCss"><a href="#什么是PostCss" class="headerlink" title="什么是PostCss"></a>什么是PostCss</h2><p>如果把css单独拎出来看,光是样式本身,就有很多事情要处理.</p>
+<p>既然有这么多的事情要处理,为什么不把这些事情集中到一起处理呢?</p>
+<p>PostCss就是基于这样的理念出现的.</p>
+<p>PostCss类似于一个编译器,可以把样式的源码,编译为最终的代码</p>
+<p>但是PostCss和less,Sass的思路不同,它其实</p>
+]]></content>
       <tags>
         <tag>webpack</tag>
       </tags>
@@ -1598,6 +1686,325 @@
 <li>分点描述岗位职责和成果</li>
 </ul>
 <h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h1 id="证书和奖项"><a href="#证书和奖项" class="headerlink" title="证书和奖项"></a>证书和奖项</h1>]]></content>
+  </entry>
+  <entry>
+    <title>新机装机流程</title>
+    <url>/2024/12/19/%E6%96%B0%E6%9C%BA%E8%A3%85%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习，想到刚拿到新电脑时候的处理，决定写一个流程，记录拿到一个新电脑后如何快速安装自己的工具链</p>
+<h1 id="梳理所需工具"><a href="#梳理所需工具" class="headerlink" title="梳理所需工具"></a>梳理所需工具</h1><h2 id="即时通讯类"><a href="#即时通讯类" class="headerlink" title="即时通讯类"></a>即时通讯类</h2><ol>
+<li>QQ <a href="https://im.qq.com/index/">下载链接</a></li>
+<li>微信 <a href="https://weixin.qq.com/">下载链接</a></li>
+<li>飞书 <a href="https://www.feishu.cn/">下载链接</a></li>
+</ol>
+<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><ol>
+<li>clash 见 quark 网盘</li>
+</ol>
+<h2 id="日常办公类"><a href="#日常办公类" class="headerlink" title="日常办公类"></a>日常办公类</h2><ol>
+<li><p>Google Chrome <a href="https://www.google.cn/chrome/">下载链接</a></p>
+</li>
+<li><p>夸克 <a href="https://www.quark.cn/">下载链接</a></p>
+</li>
+<li><p>Xmind <a href="https://www.xmind.cn/">下载链接</a></p>
+</li>
+<li><p>Typora <strong>下载方式见后文</strong></p>
+</li>
+<li><p>Office 套件 <a href="https://mp.weixin.qq.com/s/o2WZaEKUaojoD9tASmJGgg">参考链接</a>,安装包见 quark.</p>
+</li>
+<li><p>winRar <a href="https://www.win-rar.com/download.html?&L=0">下载链接</a></p>
+</li>
+</ol>
+<h2 id="实用工具类"><a href="#实用工具类" class="headerlink" title="实用工具类"></a>实用工具类</h2><ol>
+<li><p>Snipaste <a href="https://zh.snipaste.com/">下载链接</a></p>
+</li>
+<li><p>ZoomIt <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">下载链接</a></p>
+</li>
+<li><p>PowerToys [下载链接] (<a href="https://learn.microsoft.com/zh-tw/windows/powertoys/">https://learn.microsoft.com/zh-tw/windows/powertoys/</a>)</p>
+</li>
+</ol>
+<h2 id="自媒体类"><a href="#自媒体类" class="headerlink" title="自媒体类"></a>自媒体类</h2><ol>
+<li>OBS<a href="https://obsproject.com/">下载链接</a></li>
+<li>Adobe 系列 quark 直接安装</li>
+</ol>
+<h2 id="核心生产力"><a href="#核心生产力" class="headerlink" title="核心生产力"></a>核心生产力</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ol>
+<li><p>VSCode <a href="https://code.visualstudio.com/">下载链接</a></p>
+</li>
+<li><p>JetBrains 全家桶 <strong>下载方式见后文</strong></p>
+</li>
+</ol>
+<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><ol>
+<li>Git <a href="https://git-scm.com/">下载链接</a></li>
+</ol>
+<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><ol>
+<li><p>nvm <a href="https://github.com/coreybutler/nvm-windows/releases">下载链接</a></p>
+</li>
+<li><p>powershell <a href="https://github.com/PowerShell/PowerShell/releases">下载链接</a></p>
+</li>
+</ol>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
+<li><p>WSL <a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">下载链接</a></p>
+</li>
+<li><p>VMware <a href="https://www.vmware.com/">下载链接</a></p>
+</li>
+</ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
+<li><p>MySQL <a href="https://dev.mysql.com/downloads/mysql/">下载链接</a></p>
+</li>
+<li><p>Navicate 安装方式同 typora</p>
+</li>
+</ol>
+<h3 id="api-测试"><a href="#api-测试" class="headerlink" title="api 测试"></a>api 测试</h3><ol>
+<li>Apifox <a href="https://www.apifox.cn/">下载链接</a></li>
+</ol>
+<h1 id="Typora-安装教程"><a href="#Typora-安装教程" class="headerlink" title="Typora 安装教程"></a>Typora 安装教程</h1><ol>
+<li><p>从 quark 下载 Typora 安装包到本地</p>
+</li>
+<li><p>解压并以管理员身份运行<code>typora-setup-x64.exe</code></p>
+</li>
+<li><p>打开 Typora 安装位置,将解压文件夹中的 Crack 目录下的<code>wim.dll</code>复制到 typora 安装目录中</p>
+</li>
+</ol>
+<h1 id="JetBrains-全家桶安装"><a href="#JetBrains-全家桶安装" class="headerlink" title="JetBrains 全家桶安装"></a>JetBrains 全家桶安装</h1><p>以 Pycharm 为例</p>
+<ol>
+<li><p>从 quark 下载安装包到本地并解压安装</p>
+</li>
+<li><p>将解压文件夹中的 Crack 文件夹复制到安装目录</p>
+</li>
+<li><p>运行 Crack 文件夹中的<code>安装.bat</code></p>
+</li>
+<li><p>将<code>zcode.txt</code>拖入激活码框中激活</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>新机处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模块化</title>
+    <url>/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="JavaScript-模块化发展史"><a href="#JavaScript-模块化发展史" class="headerlink" title="JavaScript 模块化发展史"></a>JavaScript 模块化发展史</h1><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>在<code>JavaScript</code>语言刚刚诞生的时候，它仅仅用于实现页面中一些小效果，那个时候，一个页面所用到的 JS 可能只有区区几百行的代码<br>在这种情况下，语言本身所存在的一些缺陷往往被大家有意地忽略，因为程序的规模实在太小，只要开发人员小心谨慎，往往不会造成什么问题<br>在这个阶段，也不存在专业的前端工程师，由于前端要做的事情实在太少，因此这一部分工作往往由后端工程师顺带完成<br>第一阶段发生的大事</p>
+<ul>
+<li>1996 年，<code>NetScape</code>将<code>JavaScript</code>语言提交给欧洲的一个标准指定组织 ECMA(欧洲计算机制造商协会)</li>
+<li>1998 年,<code>NetScape</code>在与微软浏览器 IE 的竞争中失利,宣布破产</li>
+</ul>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p><code>ajax</code>的出现,逐渐改变了<code>JavaScript</code>在浏览器中扮演的角色.现在,它不仅可以实现小的效果,还可以和服务器之间进行交互,以更好的体验来改变数据.<br>JS 代码的数量开始逐渐增长,从最初的几百行,到后来的几万行,前端程序逐渐变得复杂.<br>后端开发者压力逐渐增加,致使一些公司开始招募专业的前端开发者<br>但此时,前端开发者的待遇远不及后端开发者,因为前端开发者承担的开发任务相对于后端来说,还是比较简单的,通过短短一个月的时间集训,就可以成为满足前端开发的需要<br>究其根本原因,是因为前端开发还有几个大的问题没有解决,这些问题严重地制约了前端程序的规模进一步扩大</p>
+<ol>
+<li>浏览器解释执行 JS 的速度太慢</li>
+<li>用户端的电脑配置不足</li>
+<li>更多的代码带来了全局变量污染,依赖关系混乱等问题<br>上面三个问题,就像是阿克琉斯之踵,成为前端开发挥之不去的阴影和原罪<br>在这个阶段,前端开服处在一个非常尴尬的境地,它在传统的开发模式和前后端分离之间无助地徘徊<br>第二阶段的大事件</li>
+<li>IE 浏览器制霸市场后,几乎不再更新</li>
+<li>ES4.0 流产,导致 JS 语言 10 年间几乎毫无变化</li>
+<li>2008 年 ES5 发布,仅解决了一些 JS API 不足的糟糕局面</li>
+</ol>
+<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>时间继续向前推进,到了 2008 年,谷歌的 V8 引擎发布,将 JS 的执行速度推上了一个新的台阶,甚至可以和后端语言媲美.<br>摩尔定律持续发酵,个人电脑的配置开始飞跃<br>突然间,制约前端发展的两大问题得以解决,此时,只剩下最后一个问题还在负隅顽抗,即<strong>全局变量污染和依赖混乱</strong>的问题,解决了它,前端便可以突破一切障碍,未来无可限量.<br>于是,全世界的前端开发者在社区中激烈的讨论,想要为这个问题寻求解决之道<br>2008 年,有一个名叫 Ryan Dahl 的小伙子正在为一件事焦头烂额,他需要在服务端手写一个高性能的 web 服务,该服务对性能要求之高,以至于目前市面上已有的 web 服务产品都满足不了需求.<br>经过分析,他确定,如果要实现高性能,那么必须要尽可能地减少线程,而要减少线程,避免不了使用异步的处理方案<br>一开始,他打算自己使用 C&#x2F;C++语言来编写,可是这一过程实在太痛苦.<br>就在他一筹莫展之际,谷歌的 v8 引擎引起了他的注意,他突然发现,JS 不就是最好的实现 web 服务的语言吗?它天生就是单线程,并且是基于异步的!有了 v8 引擎的支撑,它的执行速度完全可以撑起一个服务器.而且 V8 是大名鼎鼎的谷歌公司发布的,谷歌一定会不断地优化 V8,有这种省钱又省力的好事,我干嘛还要自己去写呢?<br>于是,它基于开源的 V8 引擎,对源代码作了一些修改,便快速的完成了该项目.<br>2009 年,Ryan 推出了该 web 服务项目,命名为 nodejs<br>从此,JS 第一次堂堂正正地入主后端,不再是必须附属于浏览器的”玩具”语言了.<br>也是从此刻开始,人们认识到,JS(ES)是一门真正的语言,它依附于运行环境(运行时)(宿主程序)而执行</p>
+<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241216093151767.png" class="" title="image-20241216093151767">
+
+<p>nodejs 的诞生,便把 JS 中的最后一个问题放到了台前,即<strong>全局变量污染和依赖混乱</strong>问题.</p>
+<p>要知道,nodejs 是服务器端,如果不解决这个问题,分模块开发就无从实现,而模块化开发是所有后端程序必不可少的内容<br>经过社区的激烈讨论,最终,形成了一个模块化的方案,即鼎鼎大名的<code>CommonJS</code>,该方案,彻底解决了全局变量污染和依赖混乱的问题<br>该方案一出,立即被 nodejs 支持,于是,nodejs 成为了第一个为 JS 语言实现模块化的平台,为前端接下来的迅猛发展奠定了实践基础<br>该阶段发生的大事件</p>
+<ul>
+<li>2008 年,v8 发布</li>
+<li>IE 的市场逐步被 firfox 和 chrome 蚕食,现已无力回天</li>
+<li>2009 年, nodejs 发布,并附带 commonjs 模块化标准</li>
+</ul>
+<h2 id="第四阶段"><a href="#第四阶段" class="headerlink" title="第四阶段"></a>第四阶段</h2><p><code>CommonJS</code>的出现打开了前端开发者的思路<br>既然后端可以使用模块化的 JS,作为 JS 语言的老东家浏览器为什么不行呢?<br>于是,开始有人想办法把<code>CommonJS</code>运用到浏览器中<br>可是这里面存在诸多的困难<br>办法总比困难多,有些开发者就想,既然 CommonJS 运用到浏览器困难,我们干嘛不自己重新定一个模块化的标准出来,难道就一定要有 CommonJS 标准吗?<br>于是很快,<code>AMD</code>规范出炉,它解决的问题和 CommonJS 一样,但是可以更好地适应浏览器环境.<br>相继地,<code>CMD</code>规范出炉,它对<code>AMD</code>规范进行了改进.<br>这些行为,都受到了 ECMA 官方的密切关注<br>2015 年,ES6 发布,它提出了官方的模块化解决方案 <code>ES Module</code><br>从此以后,模块化成为了 JS 本身特有的性质,这门语言终于有了和其他语言较量的资本,成为了可以编写大型应用的正式语言<br>与此同时,很多开发者,技术厂商早已预见到 JS 的无穷潜力,于是有了下面的故事</p>
+<ul>
+<li>既然 JS 也能编写大型应用,那么自然也需要像其他语言那样具有解决复杂问题的开发框架<ul>
+<li><code>Angular</code>,<code>React</code>,<code>Vue</code>等前端开发框架出现</li>
+<li><code>Express</code>,<code>Koa</code>等后端开发框架出现</li>
+<li>各种后端数据库驱动出现</li>
+</ul>
+</li>
+<li>要开发大型应用，自然少不了各种实用的第三方库的支持<ul>
+<li>npm 包管理器的出现，使用第三方变得极其方便</li>
+<li>webpack 等构建工具出现，专门用于打包和部署</li>
+</ul>
+</li>
+<li>既然 JS 可以放到服务器环境，为什么不能放到其他终端环境呢？<ul>
+<li><code>Electron</code>的发布，可以使用 JS 语言开发桌面应用程序</li>
+<li><code>RN</code>和<code>Weex</code>的发布，可以使用 JS 语言开发移动应用程序</li>
+<li>各种小程序出现，可以使用 JS 编写依附于其他应用的小程序</li>
+<li>目前还有很多厂商致力于将 JS 应用到各种其他的终端设备，最终形成大前端生态</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>可以看到，模块化的出现，是 JS 通向大型应用的最后一堵墙，学习好模块化，便具备了编写大型应用的基本功.</p>
+</blockquote>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>在 nodejs 中,由于有且仅有一个入口文件(启动文件),而开发一个应用肯定会涉及到多个文件的配合,因此,nodejs 对模块化的需求比浏览器端要大的多</p>
+<p>由于 nodejs 刚刚发布的时候,前端没有统一的,官方的模块化规范,因此,它选择使用社区提供的 CommonJS 规范</p>
+<p>在学习 CommonJS 之前,首先认识两个重要概念: <strong>模块的导出和模块的导入</strong></p>
+<h2 id="模块的导出"><a href="#模块的导出" class="headerlink" title="模块的导出"></a>模块的导出</h2><p>要理解模块的导出,首先要理解模块的含义</p>
+<p>什么是模块?</p>
+<p>模块就是一个 JS 文件, 它实现了一部分功能,并隐藏自己的内部实现,同时提供了一些接口供其他模块使用</p>
+<p>模块有两个核心要素: <strong>隐藏</strong>和<strong>暴露</strong></p>
+<p>隐藏的是自己的内部实现</p>
+<p>暴露的是希望外部使用的接口</p>
+<p>任何一个正常的模块化标准,都应该默认隐藏模块中的所有实现,而是通过一些语法或 api 调用来暴露接口</p>
+<p><strong>暴露接口的过程即模块的导出</strong></p>
+<h2 id="模块的导入"><a href="#模块的导入" class="headerlink" title="模块的导入"></a>模块的导入</h2><p>当需要使用一个模块时,使用的是该模块暴露的部分(导出的部分), 隐藏的部分是永远无法使用的</p>
+<p><strong>当通过某种语法或 api 去使用一个模块时,这个过程就叫做模块的导入</strong></p>
+<h2 id="CommonJS-规范"><a href="#CommonJS-规范" class="headerlink" title="CommonJS 规范"></a>CommonJS 规范</h2><p>CommonJS 使用<code>exports</code>导出模块,使用<code>require</code>导入模块</p>
+<p>具体规范如下:</p>
+<ol>
+<li>如果一个 JS 文件中存在<code>exports</code>或<code>require</code>,该文件是一个模块</li>
+<li>模块内的所有代码均为隐藏代码,包括全局变量,全局函数,这些全局的内容均不应该对全局变量造成任何污染.</li>
+<li>如果一个模块需要暴露一些 API 提供给外部使用,需要通过<code>exports</code>导出, <code>exports</code>是一个空的对象,你可以为该对象添加任何需要导出的内容</li>
+<li>如果一个模块需要导入其他模块,通过<code>require</code>实现,<code>require</code>是一个函数,其返回值是模块的导出内容,<code>require</code>的参数是模块的路径</li>
+</ol>
+<h2 id="nodejs-对-CommonJS-的实现"><a href="#nodejs-对-CommonJS-的实现" class="headerlink" title="nodejs 对 CommonJS 的实现"></a>nodejs 对 CommonJS 的实现</h2><p>为了实现 CommonJS 规范, nodejs 对模块做出了以下处理</p>
+<ol>
+<li><p>为了保证高效地执行, 仅加载必要的模块. nodejs 只有执行到<code>require</code>函数时才会加载<strong>并执行模块</strong> (模块中的代码会被执行一遍)</p>
+</li>
+<li><p>为了隐藏模块中的代码, nodejs 执行模块时, 会将模块中的所有代码放置到一个函数中执行,以保证不污染全局变量.</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>为了保证顺利地导出模块内容,nodejs 做了以下处理</li>
+</ol>
+<ul>
+<li>在模块开始执行前,初始化一个值<code>module.exports=&#123;&#125;</code></li>
+<li><code>module.exports</code>就是模块的导出值</li>
+<li>为了方便开发者便捷的导出, nodejs 在初始化完<code>module.exports</code>之后,又声明了一个变量<code>exports = module.exports</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> <span class="built_in">exports</span> = <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>为了避免反复加载同一个模块, nodejs 默认开启了模块缓存, 如果加载的模块已经被加载过了,则会自动使用之前的导出结果(不会再次执行模块代码)</li>
+</ol>
+<h1 id="浏览器端模块化的难题"><a href="#浏览器端模块化的难题" class="headerlink" title="浏览器端模块化的难题"></a>浏览器端模块化的难题</h1><h2 id="CommonJS-的工作原理"><a href="#CommonJS-的工作原理" class="headerlink" title="CommonJS 的工作原理"></a>CommonJS 的工作原理</h2><p>当使用<code>require(模块路径)</code>导入一个模块时,node 会做以下两件事情(不考虑模块缓存):</p>
+<ol>
+<li>通过模块路径找到本机文件,并读取文件内容</li>
+<li>将文件中的代码放入到一个函数环境中执行,并将执行后<code>module.exports</code>的值作为<code>require</code>函数的返回结果</li>
+</ol>
+<p>正是这两个步骤,使得 CommonJS 在 node 端可以良好地被支持</p>
+<p>可以认为, <strong>CommonJS 是同步的</strong>, 必须要等到加载完文件并执行完代码后才能继续向后执行</p>
+<h2 id="当浏览器遇到-CommonJS"><a href="#当浏览器遇到-CommonJS" class="headerlink" title="当浏览器遇到 CommonJS"></a>当浏览器遇到 CommonJS</h2><p>当想要把 CommonJS 放到浏览器端时,就遇到了一些挑战</p>
+<ol>
+<li><p>浏览器要加载 JS 文件,需要远程从服务器读取,而网络传输的效率远远低于 node 环境中读取本地文件的效率.由于 CommonJS 是同步的,这会极大地降低运行性能</p>
+</li>
+<li><p>如果需要读取 JS 文件内容并把它放入到一个环境中执行,需要浏览器厂商的支持,可是浏览器厂商不愿意提供支持,最大啊的原因是 CommonJS 属于社区规范,而不是官方标准</p>
+</li>
+</ol>
+<h2 id="新的规范"><a href="#新的规范" class="headerlink" title="新的规范"></a>新的规范</h2><p>基于以上两点原因,浏览器无法支持模块化<br>可这并不代表模块化不能在浏览器中实现<br>要在浏览器中实现模块化,只要能解决上面的两个问题就行了<br>解决办法其实很简单:</p>
+<ol>
+<li>远程加载 JS 浪费了时间? 做成异步即可,加载完成后调用一个回调就行了</li>
+<li>模块中的代码需要放置到函数中执行? 编写模块时,直接放函数中就行了</li>
+</ol>
+<p>基于这种简单有效的思路,出现了<code>AMD</code>和<code>CMD</code>规范,有效地解决了浏览器的模块化问题.</p>
+<h1 id="ES6-模块化简介"><a href="#ES6-模块化简介" class="headerlink" title="ES6 模块化简介"></a>ES6 模块化简介</h1><p>ECMA 组织参考了众多社区模块化标准,终于在 2015 年,随着 ES6 发布了官方的模块化标准,后成为 ES6 模块化标准</p>
+<p>ES6 模块化具有以下的特点</p>
+<ol>
+<li><p>使用依赖<strong>预声明</strong>的方式导入模块</p>
+<ol>
+<li>依赖延迟声明<ol>
+<li>优点: 某些时候可以提高效率</li>
+<li>缺点: 无法在一开始确定模块依赖关系</li>
+</ol>
+</li>
+<li>依赖预声明<ol>
+<li>优点: 可以在编译时确定模块依赖关系</li>
+<li>缺点: 某些时候效率较低</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>灵活的多种导入导出方式</p>
+</li>
+<li><p>规范的路径表示法: 所有路径必须以.&#x2F;或..&#x2F;开头</p>
+</li>
+</ol>
+<h2 id="基本的导入导出"><a href="#基本的导入导出" class="headerlink" title="基本的导入导出"></a>基本的导入导出</h2><h3 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h3><p><strong>注意: 这一部分非模块化标准</strong></p>
+<p>目前,浏览器使用以下方式引入一个 ES6 模块文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span> <span class="attr">src</span>=<span class="string">&quot;入口文件&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="模块的基本导入导出"><a href="#模块的基本导入导出" class="headerlink" title="模块的基本导入导出"></a>模块的基本导入导出</h3><p>ES6 中模块的导入导出分为两种</p>
+<ol>
+<li><p>基本导入导出</p>
+</li>
+<li><p>默认导入导出</p>
+</li>
+</ol>
+<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241223104956888.png" class="" title="image-20241223104956888">
+
+<h3 id="基本导出"><a href="#基本导出" class="headerlink" title="基本导出"></a>基本导出</h3><p>类似于<code>exports.xxx = xxxxx</code></p>
+<p>基本导出可以有多个, 每个必须有名称</p>
+<p>基本导出的语法如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> 声明表达式</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> b;     <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"><span class="keyword">export</span> c = <span class="number">3</span>; <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;b&#125; <span class="comment">// 将b变量的名称作为导出名称,将b变量的值作为导出的值</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 具名符号 &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>由于基本导出必须具有名称,所以要求导出的内容必须跟上<strong>声明表达式</strong>或<strong>具名符号</strong></p>
+<h3 id="基本导入"><a href="#基本导入" class="headerlink" title="基本导入"></a>基本导入</h3><p>由于使用的是<strong>依赖预加载</strong>,因此,导入任何模块,导入代码必须放置到所有代码之前</p>
+<p>对于基本导出, 如果要进行导入,使用下面的代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; 导入的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意以下细节</p>
+<ul>
+<li>导入和导出时,可以通过关键字<code>as</code>对导入的符号进行重命名</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; c <span class="keyword">as</span> a &#125;;</span><br><span class="line"><span class="keyword">import</span> &#123; a <span class="keyword">as</span> a2 &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>导入时使用的符号是常量,不可修改</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">234324</span>;</span><br><span class="line"><span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用<code>*</code>号导入所有的基本导出,形成一个对象(必须使用<code>as</code>重命名)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> obj <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">a</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ESModule 同样具有导入缓存<br>如果只想执行模块中代码,不想导入,可以直接使用<code>import &#39;./a.js&#39;</code></p>
+</blockquote>
+<h2 id="默认导入导出"><a href="#默认导入导出" class="headerlink" title="默认导入导出"></a>默认导入导出</h2><h3 id="默认导出"><a href="#默认导出" class="headerlink" title="默认导出"></a>默认导出</h3><p>每个模块,除了允许有多个基本导出之外,还允许有<strong>一个</strong>默认导出<br>默认导出类似于 CommonJS 中的<code>module.exports</code>,由于只有一个,因此无需具名<br>具体的语法是</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> 默认导出的数据;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 默认导出的数据 <span class="keyword">as</span> <span class="keyword">default</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>; <span class="comment">// 基本导出a = 1</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a; <span class="comment">// 默认导出a的值(即默认导出1)</span></span><br></pre></td></tr></table></figure>
+
+<p>由于每个模块仅允许有一个默认导出,因此,每个模块不能出现多个默认导出语句</p>
+<h3 id="默认导入"><a href="#默认导入" class="headerlink" title="默认导入"></a>默认导入</h3><p>想要导入一个模块的默认导出,需要使用下面的语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 接受变量名 <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> data <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>; <span class="comment">// 将模块默认导出的值赋给data</span></span><br></pre></td></tr></table></figure>
+
+<p>类似于 CommonJS 中的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 接受变量名 = <span class="built_in">require</span>(<span class="string">&#x27;模块路径&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由于默认导入时变量名是自行定义的,因此没有别名一说<br>如果希望同时导入某个模块的默认导出和基本导出,可以使用下面的语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 接收默认导出的变量, &#123; 接收基本导出的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果使用*号,会将所有基本导出和默认导出聚合到一个<strong>对象</strong>中,默认导出会作为属性<code>default</code>存在</p>
+</blockquote>
+<h2 id="ES6-模块化细节"><a href="#ES6-模块化细节" class="headerlink" title="ES6 模块化细节"></a>ES6 模块化细节</h2><ol>
+<li>尽量导出不可变的值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> method, &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 模块a</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">method</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// module a</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  name = <span class="string">&#x27;module a&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可能导致混乱,所以在导出时尽量使用<code>const</code>声明语句</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>可以使用无绑定的导入用于执行一些初始化代码<br>如果我们只是想执行模块中的一些代码,而不需要导入它的任何内容,可以使用无绑定导入</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>可以使用绑定再导出来重新导出来自另一个模块的内容</li>
+</ol>
+<p>有的时候,我们可能需要用一个模块封装多个模块,然后有选择地将多个模块的内容分别导出,可以使用下面的语法轻松完成</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 绑定的表示符 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>模块化</tag>
+      </tags>
   </entry>
   <entry>
     <title>微嵌</title>
@@ -2905,327 +3312,48 @@
       </tags>
   </entry>
   <entry>
-    <title>新机装机流程</title>
-    <url>/2024/12/19/%E6%96%B0%E6%9C%BA%E8%A3%85%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习，想到刚拿到新电脑时候的处理，决定写一个流程，记录拿到一个新电脑后如何快速安装自己的工具链</p>
-<h1 id="梳理所需工具"><a href="#梳理所需工具" class="headerlink" title="梳理所需工具"></a>梳理所需工具</h1><h2 id="即时通讯类"><a href="#即时通讯类" class="headerlink" title="即时通讯类"></a>即时通讯类</h2><ol>
-<li>QQ <a href="https://im.qq.com/index/">下载链接</a></li>
-<li>微信 <a href="https://weixin.qq.com/">下载链接</a></li>
-<li>飞书 <a href="https://www.feishu.cn/">下载链接</a></li>
-</ol>
-<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><ol>
-<li>clash 见 quark 网盘</li>
-</ol>
-<h2 id="日常办公类"><a href="#日常办公类" class="headerlink" title="日常办公类"></a>日常办公类</h2><ol>
-<li><p>Google Chrome <a href="https://www.google.cn/chrome/">下载链接</a></p>
-</li>
-<li><p>夸克 <a href="https://www.quark.cn/">下载链接</a></p>
-</li>
-<li><p>Xmind <a href="https://www.xmind.cn/">下载链接</a></p>
-</li>
-<li><p>Typora <strong>下载方式见后文</strong></p>
-</li>
-<li><p>Office 套件 <a href="https://mp.weixin.qq.com/s/o2WZaEKUaojoD9tASmJGgg">参考链接</a>,安装包见 quark.</p>
-</li>
-<li><p>winRar <a href="https://www.win-rar.com/download.html?&L=0">下载链接</a></p>
-</li>
-</ol>
-<h2 id="实用工具类"><a href="#实用工具类" class="headerlink" title="实用工具类"></a>实用工具类</h2><ol>
-<li><p>Snipaste <a href="https://zh.snipaste.com/">下载链接</a></p>
-</li>
-<li><p>ZoomIt <a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">下载链接</a></p>
-</li>
-<li><p>PowerToys [下载链接] (<a href="https://learn.microsoft.com/zh-tw/windows/powertoys/">https://learn.microsoft.com/zh-tw/windows/powertoys/</a>)</p>
-</li>
-</ol>
-<h2 id="自媒体类"><a href="#自媒体类" class="headerlink" title="自媒体类"></a>自媒体类</h2><ol>
-<li>OBS<a href="https://obsproject.com/">下载链接</a></li>
-<li>Adobe 系列 quark 直接安装</li>
-</ol>
-<h2 id="核心生产力"><a href="#核心生产力" class="headerlink" title="核心生产力"></a>核心生产力</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ol>
-<li><p>VSCode <a href="https://code.visualstudio.com/">下载链接</a></p>
-</li>
-<li><p>JetBrains 全家桶 <strong>下载方式见后文</strong></p>
-</li>
-</ol>
-<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><ol>
-<li>Git <a href="https://git-scm.com/">下载链接</a></li>
-</ol>
-<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><ol>
-<li><p>nvm <a href="https://github.com/coreybutler/nvm-windows/releases">下载链接</a></p>
-</li>
-<li><p>powershell <a href="https://github.com/PowerShell/PowerShell/releases">下载链接</a></p>
-</li>
-</ol>
-<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
-<li><p>WSL <a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">下载链接</a></p>
-</li>
-<li><p>VMware <a href="https://www.vmware.com/">下载链接</a></p>
-</li>
-</ol>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
-<li><p>MySQL <a href="https://dev.mysql.com/downloads/mysql/">下载链接</a></p>
-</li>
-<li><p>Navicate 安装方式同 typora</p>
-</li>
-</ol>
-<h3 id="api-测试"><a href="#api-测试" class="headerlink" title="api 测试"></a>api 测试</h3><ol>
-<li>Apifox <a href="https://www.apifox.cn/">下载链接</a></li>
-</ol>
-<h1 id="Typora-安装教程"><a href="#Typora-安装教程" class="headerlink" title="Typora 安装教程"></a>Typora 安装教程</h1><ol>
-<li><p>从 quark 下载 Typora 安装包到本地</p>
-</li>
-<li><p>解压并以管理员身份运行<code>typora-setup-x64.exe</code></p>
-</li>
-<li><p>打开 Typora 安装位置,将解压文件夹中的 Crack 目录下的<code>wim.dll</code>复制到 typora 安装目录中</p>
-</li>
-</ol>
-<h1 id="JetBrains-全家桶安装"><a href="#JetBrains-全家桶安装" class="headerlink" title="JetBrains 全家桶安装"></a>JetBrains 全家桶安装</h1><p>以 Pycharm 为例</p>
-<ol>
-<li><p>从 quark 下载安装包到本地并解压安装</p>
-</li>
-<li><p>将解压文件夹中的 Crack 文件夹复制到安装目录</p>
-</li>
-<li><p>运行 Crack 文件夹中的<code>安装.bat</code></p>
-</li>
-<li><p>将<code>zcode.txt</code>拖入激活码框中激活</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>新机处理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浏览器</title>
     <url>/2024/12/16/%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>模块化</title>
-    <url>/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="JavaScript-模块化发展史"><a href="#JavaScript-模块化发展史" class="headerlink" title="JavaScript 模块化发展史"></a>JavaScript 模块化发展史</h1><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>在<code>JavaScript</code>语言刚刚诞生的时候，它仅仅用于实现页面中一些小效果，那个时候，一个页面所用到的 JS 可能只有区区几百行的代码<br>在这种情况下，语言本身所存在的一些缺陷往往被大家有意地忽略，因为程序的规模实在太小，只要开发人员小心谨慎，往往不会造成什么问题<br>在这个阶段，也不存在专业的前端工程师，由于前端要做的事情实在太少，因此这一部分工作往往由后端工程师顺带完成<br>第一阶段发生的大事</p>
+    <title>自习岛项目记录</title>
+    <url>/2025/01/04/%E8%87%AA%E4%B9%A0%E5%B2%9B%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h1><p>最近准备做一个无人自习室的项目,先简单写一些想法,以后再慢慢完善.</p>
+<p>总体上分为软硬件两大部分</p>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><ul>
+<li>用户端小程序</li>
+<li>商家端小程序</li>
+<li>商家端PC管理后台</li>
+</ul>
+<p>对于小程序端,采用技术栈:</p>
 <ul>
-<li>1996 年，<code>NetScape</code>将<code>JavaScript</code>语言提交给欧洲的一个标准指定组织 ECMA(欧洲计算机制造商协会)</li>
-<li>1998 年,<code>NetScape</code>在与微软浏览器 IE 的竞争中失利,宣布破产</li>
+<li>UI设计: MasterGo</li>
+<li>框架: Uniapp支持平台微信小程序,支付宝小程序,抖音小程序</li>
+<li>UI组件库: uview-plus</li>
+<li>语言: typescript + scss</li>
 </ul>
-<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p><code>ajax</code>的出现,逐渐改变了<code>JavaScript</code>在浏览器中扮演的角色.现在,它不仅可以实现小的效果,还可以和服务器之间进行交互,以更好的体验来改变数据.<br>JS 代码的数量开始逐渐增长,从最初的几百行,到后来的几万行,前端程序逐渐变得复杂.<br>后端开发者压力逐渐增加,致使一些公司开始招募专业的前端开发者<br>但此时,前端开发者的待遇远不及后端开发者,因为前端开发者承担的开发任务相对于后端来说,还是比较简单的,通过短短一个月的时间集训,就可以成为满足前端开发的需要<br>究其根本原因,是因为前端开发还有几个大的问题没有解决,这些问题严重地制约了前端程序的规模进一步扩大</p>
-<ol>
-<li>浏览器解释执行 JS 的速度太慢</li>
-<li>用户端的电脑配置不足</li>
-<li>更多的代码带来了全局变量污染,依赖关系混乱等问题<br>上面三个问题,就像是阿克琉斯之踵,成为前端开发挥之不去的阴影和原罪<br>在这个阶段,前端开服处在一个非常尴尬的境地,它在传统的开发模式和前后端分离之间无助地徘徊<br>第二阶段的大事件</li>
-<li>IE 浏览器制霸市场后,几乎不再更新</li>
-<li>ES4.0 流产,导致 JS 语言 10 年间几乎毫无变化</li>
-<li>2008 年 ES5 发布,仅解决了一些 JS API 不足的糟糕局面</li>
-</ol>
-<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>时间继续向前推进,到了 2008 年,谷歌的 V8 引擎发布,将 JS 的执行速度推上了一个新的台阶,甚至可以和后端语言媲美.<br>摩尔定律持续发酵,个人电脑的配置开始飞跃<br>突然间,制约前端发展的两大问题得以解决,此时,只剩下最后一个问题还在负隅顽抗,即<strong>全局变量污染和依赖混乱</strong>的问题,解决了它,前端便可以突破一切障碍,未来无可限量.<br>于是,全世界的前端开发者在社区中激烈的讨论,想要为这个问题寻求解决之道<br>2008 年,有一个名叫 Ryan Dahl 的小伙子正在为一件事焦头烂额,他需要在服务端手写一个高性能的 web 服务,该服务对性能要求之高,以至于目前市面上已有的 web 服务产品都满足不了需求.<br>经过分析,他确定,如果要实现高性能,那么必须要尽可能地减少线程,而要减少线程,避免不了使用异步的处理方案<br>一开始,他打算自己使用 C&#x2F;C++语言来编写,可是这一过程实在太痛苦.<br>就在他一筹莫展之际,谷歌的 v8 引擎引起了他的注意,他突然发现,JS 不就是最好的实现 web 服务的语言吗?它天生就是单线程,并且是基于异步的!有了 v8 引擎的支撑,它的执行速度完全可以撑起一个服务器.而且 V8 是大名鼎鼎的谷歌公司发布的,谷歌一定会不断地优化 V8,有这种省钱又省力的好事,我干嘛还要自己去写呢?<br>于是,它基于开源的 V8 引擎,对源代码作了一些修改,便快速的完成了该项目.<br>2009 年,Ryan 推出了该 web 服务项目,命名为 nodejs<br>从此,JS 第一次堂堂正正地入主后端,不再是必须附属于浏览器的”玩具”语言了.<br>也是从此刻开始,人们认识到,JS(ES)是一门真正的语言,它依附于运行环境(运行时)(宿主程序)而执行</p>
-<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241216093151767.png" class="" title="image-20241216093151767">
-
-<p>nodejs 的诞生,便把 JS 中的最后一个问题放到了台前,即<strong>全局变量污染和依赖混乱</strong>问题.</p>
-<p>要知道,nodejs 是服务器端,如果不解决这个问题,分模块开发就无从实现,而模块化开发是所有后端程序必不可少的内容<br>经过社区的激烈讨论,最终,形成了一个模块化的方案,即鼎鼎大名的<code>CommonJS</code>,该方案,彻底解决了全局变量污染和依赖混乱的问题<br>该方案一出,立即被 nodejs 支持,于是,nodejs 成为了第一个为 JS 语言实现模块化的平台,为前端接下来的迅猛发展奠定了实践基础<br>该阶段发生的大事件</p>
+<p>对于PC管理后台,采用技术栈</p>
 <ul>
-<li>2008 年,v8 发布</li>
-<li>IE 的市场逐步被 firfox 和 chrome 蚕食,现已无力回天</li>
-<li>2009 年, nodejs 发布,并附带 commonjs 模块化标准</li>
+<li><p>框架: vue3</p>
+</li>
+<li><p>UI组件库: ElementPlus+ Echarts</p>
+</li>
+<li><p>语言: typescript + scss</p>
+</li>
 </ul>
-<h2 id="第四阶段"><a href="#第四阶段" class="headerlink" title="第四阶段"></a>第四阶段</h2><p><code>CommonJS</code>的出现打开了前端开发者的思路<br>既然后端可以使用模块化的 JS,作为 JS 语言的老东家浏览器为什么不行呢?<br>于是,开始有人想办法把<code>CommonJS</code>运用到浏览器中<br>可是这里面存在诸多的困难<br>办法总比困难多,有些开发者就想,既然 CommonJS 运用到浏览器困难,我们干嘛不自己重新定一个模块化的标准出来,难道就一定要有 CommonJS 标准吗?<br>于是很快,<code>AMD</code>规范出炉,它解决的问题和 CommonJS 一样,但是可以更好地适应浏览器环境.<br>相继地,<code>CMD</code>规范出炉,它对<code>AMD</code>规范进行了改进.<br>这些行为,都受到了 ECMA 官方的密切关注<br>2015 年,ES6 发布,它提出了官方的模块化解决方案 <code>ES Module</code><br>从此以后,模块化成为了 JS 本身特有的性质,这门语言终于有了和其他语言较量的资本,成为了可以编写大型应用的正式语言<br>与此同时,很多开发者,技术厂商早已预见到 JS 的无穷潜力,于是有了下面的故事</p>
+<p>后端统一采用</p>
 <ul>
-<li>既然 JS 也能编写大型应用,那么自然也需要像其他语言那样具有解决复杂问题的开发框架<ul>
-<li><code>Angular</code>,<code>React</code>,<code>Vue</code>等前端开发框架出现</li>
-<li><code>Express</code>,<code>Koa</code>等后端开发框架出现</li>
-<li>各种后端数据库驱动出现</li>
+<li>mysql + nodejs + koa</li>
 </ul>
-</li>
-<li>要开发大型应用，自然少不了各种实用的第三方库的支持<ul>
-<li>npm 包管理器的出现，使用第三方变得极其方便</li>
-<li>webpack 等构建工具出现，专门用于打包和部署</li>
-</ul>
-</li>
-<li>既然 JS 可以放到服务器环境，为什么不能放到其他终端环境呢？<ul>
-<li><code>Electron</code>的发布，可以使用 JS 语言开发桌面应用程序</li>
-<li><code>RN</code>和<code>Weex</code>的发布，可以使用 JS 语言开发移动应用程序</li>
-<li>各种小程序出现，可以使用 JS 编写依附于其他应用的小程序</li>
-<li>目前还有很多厂商致力于将 JS 应用到各种其他的终端设备，最终形成大前端生态</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>可以看到，模块化的出现，是 JS 通向大型应用的最后一堵墙，学习好模块化，便具备了编写大型应用的基本功.</p>
-</blockquote>
-<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>在 nodejs 中,由于有且仅有一个入口文件(启动文件),而开发一个应用肯定会涉及到多个文件的配合,因此,nodejs 对模块化的需求比浏览器端要大的多</p>
-<p>由于 nodejs 刚刚发布的时候,前端没有统一的,官方的模块化规范,因此,它选择使用社区提供的 CommonJS 规范</p>
-<p>在学习 CommonJS 之前,首先认识两个重要概念: <strong>模块的导出和模块的导入</strong></p>
-<h2 id="模块的导出"><a href="#模块的导出" class="headerlink" title="模块的导出"></a>模块的导出</h2><p>要理解模块的导出,首先要理解模块的含义</p>
-<p>什么是模块?</p>
-<p>模块就是一个 JS 文件, 它实现了一部分功能,并隐藏自己的内部实现,同时提供了一些接口供其他模块使用</p>
-<p>模块有两个核心要素: <strong>隐藏</strong>和<strong>暴露</strong></p>
-<p>隐藏的是自己的内部实现</p>
-<p>暴露的是希望外部使用的接口</p>
-<p>任何一个正常的模块化标准,都应该默认隐藏模块中的所有实现,而是通过一些语法或 api 调用来暴露接口</p>
-<p><strong>暴露接口的过程即模块的导出</strong></p>
-<h2 id="模块的导入"><a href="#模块的导入" class="headerlink" title="模块的导入"></a>模块的导入</h2><p>当需要使用一个模块时,使用的是该模块暴露的部分(导出的部分), 隐藏的部分是永远无法使用的</p>
-<p><strong>当通过某种语法或 api 去使用一个模块时,这个过程就叫做模块的导入</strong></p>
-<h2 id="CommonJS-规范"><a href="#CommonJS-规范" class="headerlink" title="CommonJS 规范"></a>CommonJS 规范</h2><p>CommonJS 使用<code>exports</code>导出模块,使用<code>require</code>导入模块</p>
-<p>具体规范如下:</p>
-<ol>
-<li>如果一个 JS 文件中存在<code>exports</code>或<code>require</code>,该文件是一个模块</li>
-<li>模块内的所有代码均为隐藏代码,包括全局变量,全局函数,这些全局的内容均不应该对全局变量造成任何污染.</li>
-<li>如果一个模块需要暴露一些 API 提供给外部使用,需要通过<code>exports</code>导出, <code>exports</code>是一个空的对象,你可以为该对象添加任何需要导出的内容</li>
-<li>如果一个模块需要导入其他模块,通过<code>require</code>实现,<code>require</code>是一个函数,其返回值是模块的导出内容,<code>require</code>的参数是模块的路径</li>
-</ol>
-<h2 id="nodejs-对-CommonJS-的实现"><a href="#nodejs-对-CommonJS-的实现" class="headerlink" title="nodejs 对 CommonJS 的实现"></a>nodejs 对 CommonJS 的实现</h2><p>为了实现 CommonJS 规范, nodejs 对模块做出了以下处理</p>
-<ol>
-<li><p>为了保证高效地执行, 仅加载必要的模块. nodejs 只有执行到<code>require</code>函数时才会加载<strong>并执行模块</strong> (模块中的代码会被执行一遍)</p>
-</li>
-<li><p>为了隐藏模块中的代码, nodejs 执行模块时, 会将模块中的所有代码放置到一个函数中执行,以保证不污染全局变量.</p>
-</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>为了保证顺利地导出模块内容,nodejs 做了以下处理</li>
-</ol>
+<p>调试工具</p>
 <ul>
-<li>在模块开始执行前,初始化一个值<code>module.exports=&#123;&#125;</code></li>
-<li><code>module.exports</code>就是模块的导出值</li>
-<li>为了方便开发者便捷的导出, nodejs 在初始化完<code>module.exports</code>之后,又声明了一个变量<code>exports = module.exports</code></li>
+<li>apifox</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> <span class="built_in">exports</span> = <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">  <span class="comment">// 模块中的代码</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>为了避免反复加载同一个模块, nodejs 默认开启了模块缓存, 如果加载的模块已经被加载过了,则会自动使用之前的导出结果(不会再次执行模块代码)</li>
-</ol>
-<h1 id="浏览器端模块化的难题"><a href="#浏览器端模块化的难题" class="headerlink" title="浏览器端模块化的难题"></a>浏览器端模块化的难题</h1><h2 id="CommonJS-的工作原理"><a href="#CommonJS-的工作原理" class="headerlink" title="CommonJS 的工作原理"></a>CommonJS 的工作原理</h2><p>当使用<code>require(模块路径)</code>导入一个模块时,node 会做以下两件事情(不考虑模块缓存):</p>
-<ol>
-<li>通过模块路径找到本机文件,并读取文件内容</li>
-<li>将文件中的代码放入到一个函数环境中执行,并将执行后<code>module.exports</code>的值作为<code>require</code>函数的返回结果</li>
-</ol>
-<p>正是这两个步骤,使得 CommonJS 在 node 端可以良好地被支持</p>
-<p>可以认为, <strong>CommonJS 是同步的</strong>, 必须要等到加载完文件并执行完代码后才能继续向后执行</p>
-<h2 id="当浏览器遇到-CommonJS"><a href="#当浏览器遇到-CommonJS" class="headerlink" title="当浏览器遇到 CommonJS"></a>当浏览器遇到 CommonJS</h2><p>当想要把 CommonJS 放到浏览器端时,就遇到了一些挑战</p>
-<ol>
-<li><p>浏览器要加载 JS 文件,需要远程从服务器读取,而网络传输的效率远远低于 node 环境中读取本地文件的效率.由于 CommonJS 是同步的,这会极大地降低运行性能</p>
-</li>
-<li><p>如果需要读取 JS 文件内容并把它放入到一个环境中执行,需要浏览器厂商的支持,可是浏览器厂商不愿意提供支持,最大啊的原因是 CommonJS 属于社区规范,而不是官方标准</p>
-</li>
-</ol>
-<h2 id="新的规范"><a href="#新的规范" class="headerlink" title="新的规范"></a>新的规范</h2><p>基于以上两点原因,浏览器无法支持模块化<br>可这并不代表模块化不能在浏览器中实现<br>要在浏览器中实现模块化,只要能解决上面的两个问题就行了<br>解决办法其实很简单:</p>
-<ol>
-<li>远程加载 JS 浪费了时间? 做成异步即可,加载完成后调用一个回调就行了</li>
-<li>模块中的代码需要放置到函数中执行? 编写模块时,直接放函数中就行了</li>
-</ol>
-<p>基于这种简单有效的思路,出现了<code>AMD</code>和<code>CMD</code>规范,有效地解决了浏览器的模块化问题.</p>
-<h1 id="ES6-模块化简介"><a href="#ES6-模块化简介" class="headerlink" title="ES6 模块化简介"></a>ES6 模块化简介</h1><p>ECMA 组织参考了众多社区模块化标准,终于在 2015 年,随着 ES6 发布了官方的模块化标准,后成为 ES6 模块化标准</p>
-<p>ES6 模块化具有以下的特点</p>
-<ol>
-<li><p>使用依赖<strong>预声明</strong>的方式导入模块</p>
-<ol>
-<li>依赖延迟声明<ol>
-<li>优点: 某些时候可以提高效率</li>
-<li>缺点: 无法在一开始确定模块依赖关系</li>
-</ol>
-</li>
-<li>依赖预声明<ol>
-<li>优点: 可以在编译时确定模块依赖关系</li>
-<li>缺点: 某些时候效率较低</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>灵活的多种导入导出方式</p>
-</li>
-<li><p>规范的路径表示法: 所有路径必须以.&#x2F;或..&#x2F;开头</p>
-</li>
-</ol>
-<h2 id="基本的导入导出"><a href="#基本的导入导出" class="headerlink" title="基本的导入导出"></a>基本的导入导出</h2><h3 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h3><p><strong>注意: 这一部分非模块化标准</strong></p>
-<p>目前,浏览器使用以下方式引入一个 ES6 模块文件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span> <span class="attr">src</span>=<span class="string">&quot;入口文件&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="模块的基本导入导出"><a href="#模块的基本导入导出" class="headerlink" title="模块的基本导入导出"></a>模块的基本导入导出</h3><p>ES6 中模块的导入导出分为两种</p>
-<ol>
-<li><p>基本导入导出</p>
-</li>
-<li><p>默认导入导出</p>
-</li>
-</ol>
-<img src="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/image-20241223104956888.png" class="" title="image-20241223104956888">
-
-<h3 id="基本导出"><a href="#基本导出" class="headerlink" title="基本导出"></a>基本导出</h3><p>类似于<code>exports.xxx = xxxxx</code></p>
-<p>基本导出可以有多个, 每个必须有名称</p>
-<p>基本导出的语法如下:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> 声明表达式</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> b;     <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"><span class="keyword">export</span> c = <span class="number">3</span>; <span class="comment">// 错误,export后面必须是声明语句或具名符号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;b&#125; <span class="comment">// 将b变量的名称作为导出名称,将b变量的值作为导出的值</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 具名符号 &#125;;</span><br></pre></td></tr></table></figure>
-
-<p>由于基本导出必须具有名称,所以要求导出的内容必须跟上<strong>声明表达式</strong>或<strong>具名符号</strong></p>
-<h3 id="基本导入"><a href="#基本导入" class="headerlink" title="基本导入"></a>基本导入</h3><p>由于使用的是<strong>依赖预加载</strong>,因此,导入任何模块,导入代码必须放置到所有代码之前</p>
-<p>对于基本导出, 如果要进行导入,使用下面的代码</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; 导入的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>注意以下细节</p>
-<ul>
-<li>导入和导出时,可以通过关键字<code>as</code>对导入的符号进行重命名</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; c <span class="keyword">as</span> a &#125;;</span><br><span class="line"><span class="keyword">import</span> &#123; a <span class="keyword">as</span> a2 &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>导入时使用的符号是常量,不可修改</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">234324</span>;</span><br><span class="line"><span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可以使用<code>*</code>号导入所有的基本导出,形成一个对象(必须使用<code>as</code>重命名)</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> obj <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">a</span>);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>ESModule 同样具有导入缓存<br>如果只想执行模块中代码,不想导入,可以直接使用<code>import &#39;./a.js&#39;</code></p>
-</blockquote>
-<h2 id="默认导入导出"><a href="#默认导入导出" class="headerlink" title="默认导入导出"></a>默认导入导出</h2><h3 id="默认导出"><a href="#默认导出" class="headerlink" title="默认导出"></a>默认导出</h3><p>每个模块,除了允许有多个基本导出之外,还允许有<strong>一个</strong>默认导出<br>默认导出类似于 CommonJS 中的<code>module.exports</code>,由于只有一个,因此无需具名<br>具体的语法是</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> 默认导出的数据;</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 默认导出的数据 <span class="keyword">as</span> <span class="keyword">default</span> &#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>; <span class="comment">// 基本导出a = 1</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a; <span class="comment">// 默认导出a的值(即默认导出1)</span></span><br></pre></td></tr></table></figure>
-
-<p>由于每个模块仅允许有一个默认导出,因此,每个模块不能出现多个默认导出语句</p>
-<h3 id="默认导入"><a href="#默认导入" class="headerlink" title="默认导入"></a>默认导入</h3><p>想要导入一个模块的默认导出,需要使用下面的语法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 接受变量名 <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> data <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>; <span class="comment">// 将模块默认导出的值赋给data</span></span><br></pre></td></tr></table></figure>
-
-<p>类似于 CommonJS 中的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 接受变量名 = <span class="built_in">require</span>(<span class="string">&#x27;模块路径&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>由于默认导入时变量名是自行定义的,因此没有别名一说<br>如果希望同时导入某个模块的默认导出和基本导出,可以使用下面的语法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 接收默认导出的变量, &#123; 接收基本导出的符号列表 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果使用*号,会将所有基本导出和默认导出聚合到一个<strong>对象</strong>中,默认导出会作为属性<code>default</code>存在</p>
-</blockquote>
-<h2 id="ES6-模块化细节"><a href="#ES6-模块化细节" class="headerlink" title="ES6 模块化细节"></a>ES6 模块化细节</h2><ol>
-<li>尽量导出不可变的值</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> method, &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 模块a</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">method</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// module a</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  name = <span class="string">&#x27;module a&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可能导致混乱,所以在导出时尽量使用<code>const</code>声明语句</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;模块a&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>可以使用无绑定的导入用于执行一些初始化代码<br>如果我们只是想执行模块中的一些代码,而不需要导入它的任何内容,可以使用无绑定导入</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>可以使用绑定再导出来重新导出来自另一个模块的内容</li>
-</ol>
-<p>有的时候,我们可能需要用一个模块封装多个模块,然后有选择地将多个模块的内容分别导出,可以使用下面的语法轻松完成</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; 绑定的表示符 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块路径&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><h1 id="初步功能点"><a href="#初步功能点" class="headerlink" title="初步功能点"></a>初步功能点</h1><img src="/2025/01/04/%E8%87%AA%E4%B9%A0%E5%B2%9B%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/image-20250105211551585.png" class="" title="image-20250105211551585">
 ]]></content>
       <tags>
-        <tag>模块化</tag>
+        <tag>项目</tag>
       </tags>
   </entry>
   <entry>
@@ -3296,6 +3424,192 @@
 <li>大 4Pin 供电: 大 4D 供电,外围设备供电,灯条,集线器等.可转换为其他类型供电,也叫万能供电.</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>随笔小记</title>
+    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><h2 id="关于矩阵的创建"><a href="#关于矩阵的创建" class="headerlink" title="关于矩阵的创建"></a>关于矩阵的创建</h2><p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
+<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
+<p>我过去创建矩阵通常使用如下方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
+<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
+<p>错误示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>修改其中一个子数组会影响其他行：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结<br>Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
+</blockquote>
+<h2 id="map-和-parseInt-函数的使用"><a href="#map-和-parseInt-函数的使用" class="headerlink" title="map 和 parseInt 函数的使用"></a>map 和 parseInt 函数的使用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
+
+<p>今天在地铁上刷视频看到一个很有意思的题目，随笔记录一下，和大家分享。<br>乍一看这个题目，感觉非常简单，对一个字符串数组进行<code>map</code>处理,处理函数是<code>parseInt</code>,输出结果应该就是<code>[1, 2, 3]</code>.<br>然而当我们尝试运行这段代码会发现,真实的输出结果是<code>[1, NaN, NaN]</code>.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241212090639182.png" class="" title="image-20241212090639182">
+
+<p>那为什么会出现这么奇怪的现象呢?<br>这里有两个关键点,<code>map</code>和<code>parseInt</code>,我们需要深入且准确地弄清楚这两个函数的工作原理。才能解决这个问题。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>Array 实例的 <code>map()</code> 方法创建一个<strong>新数组</strong>，其中填充了对调用数组中的每个元素调用提供的函数的结果。</p>
+<p>使用语法如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn[, thisArg])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>callbackFn</code>: 要为数组中的每个元素执行的函数。其<strong>返回值</strong>将作为单个元素添加到新数组中。使用以下参数调用该函数：<ul>
+<li><code>element</code>: 数组中正在处理的当前元素</li>
+<li><code>index</code>: 数组中正在处理的当前元素的索引</li>
+<li><code>array</code>: 调用<code>map()</code>的数组</li>
+</ul>
+</li>
+<li><code>thisArg</code>: 可选。执行回调时使用的 this 值。(指定<code>callbackFn</code>函数内使用 this)</li>
+</ul>
+<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h3><p><code>parseInt()</code>函数解析字符串参数并返回指定<strong>基数</strong>(数学数字系统中的基数)的整数.]<br>其实就是返回指定进制的整数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (default base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 123 (explicitly specify base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;   123 &#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (whitespace is ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;077&#x27;</span>));</span><br><span class="line"><span class="comment">// 77 (leading zeros are ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;1.9&#x27;</span>));</span><br><span class="line"><span class="comment">// 1 (decimal part is truncated)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;ff&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (lower-case hexadecimal)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;0xFF&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (upper-case hexadecimal with &quot;0x&quot; prefix)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;xyz&#x27;</span>));</span><br><span class="line"><span class="comment">// NaN (input can&#x27;t be converted to an integer)</span></span><br></pre></td></tr></table></figure>
+
+<p>使用语法如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string[, radix])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>string</code>: 以整数开头的字符串.此参数的<strong>前导空格</strong>将被忽略</p>
+<ul>
+<li>如果第一个非空白字符不能转换为基数范围内的数字,直接返回<code>NaN</code></li>
+<li>对于字符串的符号(<code>+/-</code>),<code>parseInt</code>可以理解,正常输出,不作处理.原来是正数就是正数,原来是负数就是负数.</li>
+<li>如果<code>parseInt</code>遇到不是指定基数中的数字字符,它将<strong>忽略该字符和所有后续字符</strong>,并返回到该点为止解析的整数值.例如,尽管<code>1e3</code>在技术上对整数进行编码(并且将被<code>parseFloat()</code>正确解析为整数<code>1000</code>),但<code>parseInt(&quot;1e3&quot;,10)</code>返回<code>1</code>,因为<code>e</code>不是以10为基数的有效数字.由于<code>.</code>也不是数字,因此返回值将始终为整数(也就是说,如果来解析小数,遇到小数点就会自动停止并返回,所以如果可以成功返回,返回值一定是整数)</li>
+</ul>
+</li>
+<li><p><code>radix</code>: 可选。一个介于<code>2</code>和<code>36</code>之间的整数，表示<code>字符串</code>的<strong>基数(进制)</strong>.</p>
+<ul>
+<li><p>如果**非零且超出[2,36]**的范围,则函数将始终返回<code>NaN</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,-<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">37</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果<strong>未提供,或者值变为<code>0</code>,<code>NaN</code>,或<code>Infinity</code>(<code>undefined</code>被强制转换为<code>NaN</code>)</strong>,则将根据<code>字符串</code>的值推断基数.注意,并<strong>不是默认为10</strong></p>
+<ul>
+<li><p>如果输入的<code>字符串</code>(删除了前导空格和可能的<code>+/-</code>符号)以<code>0x</code>或<code>0X</code>(0,后面跟小写或大写的<code>x</code>)开头,则基数假定为<strong>16</strong>,字符串的其余部分将被解析为16进制数.</p>
+</li>
+<li><p>如果输入<code>字符串</code>以任何其他值开头,则基数为<code>10</code>(十进制)</p>
+<blockquote>
+<p><strong>注意:<strong>其他前缀(如<code>0b</code>)在数字字面量中有效,但是在<code>parseInt()</code>中视为普通数字.<code>parseInt()</code>也</strong>不会</strong>将以<code>0</code>字符开头的字符串视为八进制.<code>parseInt()</code>识别的<strong>唯一前缀</strong>是十六进制值的<code>0x</code>或<code>0X</code>.如果缺少<code>radix</code>,其他所有内容都被解析为十进制值.可以使用<code>Number()</code>或<code>BigInt()</code>来解析这些前缀.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>如果为16,则可以在可选符号字符(<code>+/-</code>)后选择性地为字符串添加<code>0x</code>或<code>0X</code>前缀.</p>
+</li>
+<li><p>对于大于<code>10</code>的基数,英文字母表的字母表示大于<code>9</code>的数字.例如,对于十六进制数,使用<code>A</code>到<code>F</code>.这些字母<strong>不区分大小写</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在非字符串上使用<code>parseInt()</code></p>
+<p><code>parseInt()</code>在处理非字符串和高基数时可以产生有趣的结果;例如,<code>36</code>(使所有字母数字字符都是有效的数字进制,即0-9,和26个字母,总共36个)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">null</span>,<span class="number">36</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">undefined</span>,<span class="number">36</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1112745</span></span><br><span class="line"><span class="comment">// 86464843759093</span></span><br></pre></td></tr></table></figure>
+
+<p>我们应尽可能避免用<code>parseInt</code>处理非整数的字符串</p>
+<p>所以回到我们的题目,为什么会有下面的输出呢?</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
+
+<p>这是因为我们把<code>parseInt</code>作为了<code>map</code>的回调函数.那么传递给<code>parseInt</code>的两个参数就是<code>item</code>和<code>index</code></p>
+<p>所以实际的处理相当于如下所示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr = [<span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>, <span class="number">0</span>),<span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>), <span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>)];</span><br></pre></td></tr></table></figure>
+
+<p>对于第一个元素,传递的<code>radix</code>为0,字符串<code>&#39;1&#39;</code>也不是以<code>0x</code>或<code>0X</code>开头,所以这里采用十进制转换.结果为数字<code>1</code></p>
+<p>对于第二个元素,传递的<code>radix</code>为1,这是一个非法的进制,(因为合法的进制是2-36的一个整数),所以直接返回<code>NaN</code></p>
+<p>对于第三个元素,传递的<code>radix</code>是2,表示解析为二进制.当开始解析后,遇到第一个字符<code>&#39;3&#39;</code>就不是二进制中的一个合法字符(二进制只有<code>0</code>和<code>1</code>),所以直接停止,返回<code>NaN</code>.</p>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h2><p>最近学着学着发现，css才是最难的.CSS的英文全称是<code>Cascading Style Sheets</code>，翻译过来就是层叠样式表.<br>也就是说多种选择器之间会互相影响覆盖,每次莫名其妙地某个元素直接就消失了,所以,如果不能准确透彻地理解CSS样式的计算规则,就会经常出现莫名其妙的bug.<br>比如我们经常写的如下代码</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">70%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请问我们这里的100%和70%是相对于谁的来计算的百分比呢?<br>很多同学可能会想当然的说,当然是父元素了,这还用说吗?<br>然而事实并非如此.</p>
+<p>CSS里面有两大重点.<br><strong>属性计算</strong>和<strong>视觉格式化模型</strong><br>对于视觉格式化模型,我们要清楚,以下内容</p>
+<ul>
+<li>元素的<code>width</code>,<code>height</code>,<code>margin</code>,<code>padding</code>的百分比都是相对于包含块的</li>
+<li>元素的<code>left</code>,<code>right</code>, <code>top</code>, <code>bottom</code>的百分比都是相对于包含块的</li>
+</ul>
+<p>那么如何来确定包含块呢?<br>包含块如何确定,完全取决于元素的<code>position</code>属性的值</p>
+<ol>
+<li>如果<code>position</code>属性是<code>static</code>(默认值),<code>relative</code>,或<code>stick</code>,包含块由<strong>最近的上级元素的内容盒的边缘形成</strong>,该元素可以是<strong>块容器</strong>(例如<code>inline-block</code>,<code>block</code>,<code>list-itme element</code>)或<strong>建立格式上下文</strong>(例如表格,网格,或块容器本身)</li>
+<li>如果<code>position</code>属性是<code>absolute</code>,包含块由最近的上级元素的定位<strong>非</strong><code>static</code>的父元素的<strong>内边距盒的边缘</strong>构成.</li>
+<li>如果<code>position</code>属性是<code>fixed</code>,包含块由<strong>视口(viewport)的边缘</strong>构成(在连续媒体的情况下),如果在分页媒体的情况下,则有页面区域的边缘构成.</li>
+<li>如果<code>position</code>属性是<code>absolute</code>或<code>fixed</code>,则包含块也可能由具有以下任何一项的最近上级元素的<strong>内边距盒边缘</strong>构成.<ul>
+<li><code>filter</code>,<code>backdrop-filter</code>,<code>transform</code>或<code>perspective</code>的值不是<code>none</code></li>
+<li>包含<code>layout</code>,<code>strict</code>,<code>paint</code>,或<code>content</code></li>
+<li><code>container-type</code>的值不是<code>normal</code></li>
+<li><code>will-change</code>的值包含一个属性,其非初始值形成一个包含块(例如<code>filter</code>和<code>transform</code>)</li>
+<li><code>content-visibility</code>的值是<code>auto</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>注意: 根元素<code>&lt;html&gt;</code>所在的包含块是一个被称为<strong>初始包含块</strong>的矩形.它的尺寸是视口(viewport)的尺寸.</p>
+</blockquote>
+<p>我们来看下面的例子</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">70%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中,<code>box</code>的高度是<code>0</code>.因为所有元素的属性默认值是<code>static</code>,所以我们依据第一条规则,<code>box</code>的百分比是相对于最近的上级元素的<code>内容盒</code>边缘形成的.即<code>container</code>.但是<code>container</code>没有明确设置<code>height</code>,所以为默认值<code>auto</code>由子元素撑开.所以这里无从参照,只能为0.</p>
+<p>当我们给<code>container</code>设置一个高度后,即可成功显示</p>
+<h1 id="hexo-个人博客"><a href="#hexo-个人博客" class="headerlink" title="hexo 个人博客"></a>hexo 个人博客</h1><h2 id="关于图片引用问题"><a href="#关于图片引用问题" class="headerlink" title="关于图片引用问题"></a>关于图片引用问题</h2><h3 id="文章图片本地和远程不能同时显示问题"><a href="#文章图片本地和远程不能同时显示问题" class="headerlink" title="文章图片本地和远程不能同时显示问题"></a>文章图片本地和远程不能同时显示问题</h3><p>在本地 typora 中使用绝对路径插入的图片部署到网站中会无法正常显示，解决方式如下</p>
+<ol>
+<li><p>在 Typora 的偏好设置中的图片设置中，设置如下图</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211211639069.png" class="" title="image-20241211211639069">
+
+<p>这样我们在本地只需要直接在 Typora 中粘贴图片，就会将图片复制到当前 markdown 文件同级的同名目录下。</p>
+</li>
+<li><p>在 hexo 项目的根目录的配置文件<code>_config.yml</code>中，把<code>post_asset_folder</code>属性设置为<code>ture</code>.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211212013176.png" class="" title="image-20241211212013176">
+
+<p>这样当我们在 hexo 中使用命令<code>hexo new xxxx</code>的时候,就会同时创建一个同名目录,用来存放静态资源</p>
+</li>
+<li><p>安装<code>hexo-asset-img</code>插件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add hexo-asset-img</span><br></pre></td></tr></table></figure>
+
+<p>安装完这个插件后,使用相对路径引入的图片在部署到站点后也可以显示.</p>
+</li>
+</ol>
+<h3 id="文章的-top-img-和-cover-路径问题"><a href="#文章的-top-img-和-cover-路径问题" class="headerlink" title="文章的 top_img 和 cover 路径问题"></a>文章的 top_img 和 cover 路径问题</h3><p>文章中图片的问题解决了以后，在文章页面中 top_img 和 cover 图片路径的问题就出现了。</p>
+<p>我们看下面这个例子,在经过上一步的设置后,已经在同级目录下有一个同名文件夹用来存放静态资源.这里我们在 OPPO23 秋文件夹中保存了一张<code>top.png</code>图片</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214502730.png" class="" title="image-20241211214502730">
+
+<p>然后在文章页的<code>Front-Formatter</code>中将封面图<code>cover</code>和顶部图<code>top_img</code>均设置为此图.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214653018.png" class="" title="image-20241211214653018">
+
+<p>然后我们在本地使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>命令运行博客</p>
+<p>我们可以看到封面图<code>cover</code>可以成功显示,没有问题.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214825220.png" class="" title="image-20241211214825220">
+
+<p>但是当我们点到文章页时,会发现<code>top_img</code>并没有成功显示</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214905887.png" class="" title="image-20241211214905887">
+
+<p>明明是一样的路径配置,但是一个正常,另一个不正常.很有可能是 hexo 以及我们安装的插件综合作用下,<strong>对<code>cover</code>和<code>top_img</code>的路径处理方式不同</strong>.</p>
+<p>为了验证我们的猜想,我们使用浏览器开发者工具分别查看两图片对应的元素,并对获取图片请求进行抓包分析.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211215143107.png" class="" title="image-20241211215143107">
+
+<p>对于<code>cover</code>我们可以看到,它是一个嵌套在<code>&lt;a&gt;</code>标签里的一个<code>&lt;img&gt;</code>标签.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220138804.png" class="" title="image-20241211220138804">
+
+<p>我们点击当前来源，跳转到图片资源位置，没有问题。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220401618.png" class="" title="image-20241211220401618">
+
+<p>我们再来看一下<code>top_img</code>图片。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220503933.png" class="" title="image-20241211220503933">
+
+<p>我们可以看到它并不是<code>&lt;img&gt;</code>，而是用 CSS 的<code>background-image</code>属性来设置的。这里难以看出问题，我们对网络请求进行抓包。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220746097.png" class="" title="image-20241211220746097">
+
+<p>我们可以看到是一个 404 错误，说明找不到资源，就是路径出错了。观察请求头地址，我们不难发现，<code>2024/12/08/OPPO23秋</code>这一部分内容写了两次.说明 hexo 在处理文章的<code>top_img</code>时,很有可能本来就会加上前面的内容,我们的插件之类的又产生了干扰.具体原因还不得而知,不过问题已经可以解决了.</p>
+<p>通过上述分析,我们可以推测,<code>top_img</code>不显示,很可能是因为我们使用了<strong>相对路径</strong>,框架在此处的路径处理出了一些问题,所以我们尝试改用绝对路径来引入.</p>
+<p>在项目的<code>source</code>文件夹下新建一个<code>img</code>目录,里面复制我们的<code>top.png</code></p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221230694.png" class="" title="image-20241211221230694">
+
+<p>将文章中<code>tom_img</code>路径改为绝对路径<code>/img/top.png</code>(因为 hexo 会把 source 文件当作根目录来建站,所以建站后<code>img</code>文件夹相当于在根目录下,使用<code>/img</code>即可访问)</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221402895.png" class="" title="image-20241211221402895">
+
+<p>清理 hexo,重新生成,发现顶部图成功显示!</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221456484.png" class="" title="image-20241211221456484">
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
   </entry>
   <entry>
     <title>计算机组成原理</title>
@@ -3856,192 +4170,6 @@
       </categories>
       <tags>
         <tag>计组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随笔小记</title>
-    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><h2 id="关于矩阵的创建"><a href="#关于矩阵的创建" class="headerlink" title="关于矩阵的创建"></a>关于矩阵的创建</h2><p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
-<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
-<p>我过去创建矩阵通常使用如下方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
-<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
-<p>错误示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>修改其中一个子数组会影响其他行：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>总结<br>Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
-</blockquote>
-<h2 id="map-和-parseInt-函数的使用"><a href="#map-和-parseInt-函数的使用" class="headerlink" title="map 和 parseInt 函数的使用"></a>map 和 parseInt 函数的使用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
-
-<p>今天在地铁上刷视频看到一个很有意思的题目，随笔记录一下，和大家分享。<br>乍一看这个题目，感觉非常简单，对一个字符串数组进行<code>map</code>处理,处理函数是<code>parseInt</code>,输出结果应该就是<code>[1, 2, 3]</code>.<br>然而当我们尝试运行这段代码会发现,真实的输出结果是<code>[1, NaN, NaN]</code>.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241212090639182.png" class="" title="image-20241212090639182">
-
-<p>那为什么会出现这么奇怪的现象呢?<br>这里有两个关键点,<code>map</code>和<code>parseInt</code>,我们需要深入且准确地弄清楚这两个函数的工作原理。才能解决这个问题。</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>Array 实例的 <code>map()</code> 方法创建一个<strong>新数组</strong>，其中填充了对调用数组中的每个元素调用提供的函数的结果。</p>
-<p>使用语法如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn[, thisArg])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>callbackFn</code>: 要为数组中的每个元素执行的函数。其<strong>返回值</strong>将作为单个元素添加到新数组中。使用以下参数调用该函数：<ul>
-<li><code>element</code>: 数组中正在处理的当前元素</li>
-<li><code>index</code>: 数组中正在处理的当前元素的索引</li>
-<li><code>array</code>: 调用<code>map()</code>的数组</li>
-</ul>
-</li>
-<li><code>thisArg</code>: 可选。执行回调时使用的 this 值。(指定<code>callbackFn</code>函数内使用 this)</li>
-</ul>
-<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h3><p><code>parseInt()</code>函数解析字符串参数并返回指定<strong>基数</strong>(数学数字系统中的基数)的整数.]<br>其实就是返回指定进制的整数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (default base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 123 (explicitly specify base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;   123 &#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (whitespace is ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;077&#x27;</span>));</span><br><span class="line"><span class="comment">// 77 (leading zeros are ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;1.9&#x27;</span>));</span><br><span class="line"><span class="comment">// 1 (decimal part is truncated)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;ff&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (lower-case hexadecimal)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;0xFF&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (upper-case hexadecimal with &quot;0x&quot; prefix)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;xyz&#x27;</span>));</span><br><span class="line"><span class="comment">// NaN (input can&#x27;t be converted to an integer)</span></span><br></pre></td></tr></table></figure>
-
-<p>使用语法如下:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string[, radix])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>string</code>: 以整数开头的字符串.此参数的<strong>前导空格</strong>将被忽略</p>
-<ul>
-<li>如果第一个非空白字符不能转换为基数范围内的数字,直接返回<code>NaN</code></li>
-<li>对于字符串的符号(<code>+/-</code>),<code>parseInt</code>可以理解,正常输出,不作处理.原来是正数就是正数,原来是负数就是负数.</li>
-<li>如果<code>parseInt</code>遇到不是指定基数中的数字字符,它将<strong>忽略该字符和所有后续字符</strong>,并返回到该点为止解析的整数值.例如,尽管<code>1e3</code>在技术上对整数进行编码(并且将被<code>parseFloat()</code>正确解析为整数<code>1000</code>),但<code>parseInt(&quot;1e3&quot;,10)</code>返回<code>1</code>,因为<code>e</code>不是以10为基数的有效数字.由于<code>.</code>也不是数字,因此返回值将始终为整数(也就是说,如果来解析小数,遇到小数点就会自动停止并返回,所以如果可以成功返回,返回值一定是整数)</li>
-</ul>
-</li>
-<li><p><code>radix</code>: 可选。一个介于<code>2</code>和<code>36</code>之间的整数，表示<code>字符串</code>的<strong>基数(进制)</strong>.</p>
-<ul>
-<li><p>如果**非零且超出[2,36]**的范围,则函数将始终返回<code>NaN</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,-<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">37</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果<strong>未提供,或者值变为<code>0</code>,<code>NaN</code>,或<code>Infinity</code>(<code>undefined</code>被强制转换为<code>NaN</code>)</strong>,则将根据<code>字符串</code>的值推断基数.注意,并<strong>不是默认为10</strong></p>
-<ul>
-<li><p>如果输入的<code>字符串</code>(删除了前导空格和可能的<code>+/-</code>符号)以<code>0x</code>或<code>0X</code>(0,后面跟小写或大写的<code>x</code>)开头,则基数假定为<strong>16</strong>,字符串的其余部分将被解析为16进制数.</p>
-</li>
-<li><p>如果输入<code>字符串</code>以任何其他值开头,则基数为<code>10</code>(十进制)</p>
-<blockquote>
-<p><strong>注意:<strong>其他前缀(如<code>0b</code>)在数字字面量中有效,但是在<code>parseInt()</code>中视为普通数字.<code>parseInt()</code>也</strong>不会</strong>将以<code>0</code>字符开头的字符串视为八进制.<code>parseInt()</code>识别的<strong>唯一前缀</strong>是十六进制值的<code>0x</code>或<code>0X</code>.如果缺少<code>radix</code>,其他所有内容都被解析为十进制值.可以使用<code>Number()</code>或<code>BigInt()</code>来解析这些前缀.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>如果为16,则可以在可选符号字符(<code>+/-</code>)后选择性地为字符串添加<code>0x</code>或<code>0X</code>前缀.</p>
-</li>
-<li><p>对于大于<code>10</code>的基数,英文字母表的字母表示大于<code>9</code>的数字.例如,对于十六进制数,使用<code>A</code>到<code>F</code>.这些字母<strong>不区分大小写</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>在非字符串上使用<code>parseInt()</code></p>
-<p><code>parseInt()</code>在处理非字符串和高基数时可以产生有趣的结果;例如,<code>36</code>(使所有字母数字字符都是有效的数字进制,即0-9,和26个字母,总共36个)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">null</span>,<span class="number">36</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">undefined</span>,<span class="number">36</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1112745</span></span><br><span class="line"><span class="comment">// 86464843759093</span></span><br></pre></td></tr></table></figure>
-
-<p>我们应尽可能避免用<code>parseInt</code>处理非整数的字符串</p>
-<p>所以回到我们的题目,为什么会有下面的输出呢?</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
-
-<p>这是因为我们把<code>parseInt</code>作为了<code>map</code>的回调函数.那么传递给<code>parseInt</code>的两个参数就是<code>item</code>和<code>index</code></p>
-<p>所以实际的处理相当于如下所示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr = [<span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>, <span class="number">0</span>),<span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>), <span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>)];</span><br></pre></td></tr></table></figure>
-
-<p>对于第一个元素,传递的<code>radix</code>为0,字符串<code>&#39;1&#39;</code>也不是以<code>0x</code>或<code>0X</code>开头,所以这里采用十进制转换.结果为数字<code>1</code></p>
-<p>对于第二个元素,传递的<code>radix</code>为1,这是一个非法的进制,(因为合法的进制是2-36的一个整数),所以直接返回<code>NaN</code></p>
-<p>对于第三个元素,传递的<code>radix</code>是2,表示解析为二进制.当开始解析后,遇到第一个字符<code>&#39;3&#39;</code>就不是二进制中的一个合法字符(二进制只有<code>0</code>和<code>1</code>),所以直接停止,返回<code>NaN</code>.</p>
-<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h2><p>最近学着学着发现，css才是最难的.CSS的英文全称是<code>Cascading Style Sheets</code>，翻译过来就是层叠样式表.<br>也就是说多种选择器之间会互相影响覆盖,每次莫名其妙地某个元素直接就消失了,所以,如果不能准确透彻地理解CSS样式的计算规则,就会经常出现莫名其妙的bug.<br>比如我们经常写的如下代码</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">70%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>请问我们这里的100%和70%是相对于谁的来计算的百分比呢?<br>很多同学可能会想当然的说,当然是父元素了,这还用说吗?<br>然而事实并非如此.</p>
-<p>CSS里面有两大重点.<br><strong>属性计算</strong>和<strong>视觉格式化模型</strong><br>对于视觉格式化模型,我们要清楚,以下内容</p>
-<ul>
-<li>元素的<code>width</code>,<code>height</code>,<code>margin</code>,<code>padding</code>的百分比都是相对于包含块的</li>
-<li>元素的<code>left</code>,<code>right</code>, <code>top</code>, <code>bottom</code>的百分比都是相对于包含块的</li>
-</ul>
-<p>那么如何来确定包含块呢?<br>包含块如何确定,完全取决于元素的<code>position</code>属性的值</p>
-<ol>
-<li>如果<code>position</code>属性是<code>static</code>(默认值),<code>relative</code>,或<code>stick</code>,包含块由<strong>最近的上级元素的内容盒的边缘形成</strong>,该元素可以是<strong>块容器</strong>(例如<code>inline-block</code>,<code>block</code>,<code>list-itme element</code>)或<strong>建立格式上下文</strong>(例如表格,网格,或块容器本身)</li>
-<li>如果<code>position</code>属性是<code>absolute</code>,包含块由最近的上级元素的定位<strong>非</strong><code>static</code>的父元素的<strong>内边距盒的边缘</strong>构成.</li>
-<li>如果<code>position</code>属性是<code>fixed</code>,包含块由<strong>视口(viewport)的边缘</strong>构成(在连续媒体的情况下),如果在分页媒体的情况下,则有页面区域的边缘构成.</li>
-<li>如果<code>position</code>属性是<code>absolute</code>或<code>fixed</code>,则包含块也可能由具有以下任何一项的最近上级元素的<strong>内边距盒边缘</strong>构成.<ul>
-<li><code>filter</code>,<code>backdrop-filter</code>,<code>transform</code>或<code>perspective</code>的值不是<code>none</code></li>
-<li>包含<code>layout</code>,<code>strict</code>,<code>paint</code>,或<code>content</code></li>
-<li><code>container-type</code>的值不是<code>normal</code></li>
-<li><code>will-change</code>的值包含一个属性,其非初始值形成一个包含块(例如<code>filter</code>和<code>transform</code>)</li>
-<li><code>content-visibility</code>的值是<code>auto</code></li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>注意: 根元素<code>&lt;html&gt;</code>所在的包含块是一个被称为<strong>初始包含块</strong>的矩形.它的尺寸是视口(viewport)的尺寸.</p>
-</blockquote>
-<p>我们来看下面的例子</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">70%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中,<code>box</code>的高度是<code>0</code>.因为所有元素的属性默认值是<code>static</code>,所以我们依据第一条规则,<code>box</code>的百分比是相对于最近的上级元素的<code>内容盒</code>边缘形成的.即<code>container</code>.但是<code>container</code>没有明确设置<code>height</code>,所以为默认值<code>auto</code>由子元素撑开.所以这里无从参照,只能为0.</p>
-<p>当我们给<code>container</code>设置一个高度后,即可成功显示</p>
-<h1 id="hexo-个人博客"><a href="#hexo-个人博客" class="headerlink" title="hexo 个人博客"></a>hexo 个人博客</h1><h2 id="关于图片引用问题"><a href="#关于图片引用问题" class="headerlink" title="关于图片引用问题"></a>关于图片引用问题</h2><h3 id="文章图片本地和远程不能同时显示问题"><a href="#文章图片本地和远程不能同时显示问题" class="headerlink" title="文章图片本地和远程不能同时显示问题"></a>文章图片本地和远程不能同时显示问题</h3><p>在本地 typora 中使用绝对路径插入的图片部署到网站中会无法正常显示，解决方式如下</p>
-<ol>
-<li><p>在 Typora 的偏好设置中的图片设置中，设置如下图</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211211639069.png" class="" title="image-20241211211639069">
-
-<p>这样我们在本地只需要直接在 Typora 中粘贴图片，就会将图片复制到当前 markdown 文件同级的同名目录下。</p>
-</li>
-<li><p>在 hexo 项目的根目录的配置文件<code>_config.yml</code>中，把<code>post_asset_folder</code>属性设置为<code>ture</code>.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211212013176.png" class="" title="image-20241211212013176">
-
-<p>这样当我们在 hexo 中使用命令<code>hexo new xxxx</code>的时候,就会同时创建一个同名目录,用来存放静态资源</p>
-</li>
-<li><p>安装<code>hexo-asset-img</code>插件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add hexo-asset-img</span><br></pre></td></tr></table></figure>
-
-<p>安装完这个插件后,使用相对路径引入的图片在部署到站点后也可以显示.</p>
-</li>
-</ol>
-<h3 id="文章的-top-img-和-cover-路径问题"><a href="#文章的-top-img-和-cover-路径问题" class="headerlink" title="文章的 top_img 和 cover 路径问题"></a>文章的 top_img 和 cover 路径问题</h3><p>文章中图片的问题解决了以后，在文章页面中 top_img 和 cover 图片路径的问题就出现了。</p>
-<p>我们看下面这个例子,在经过上一步的设置后,已经在同级目录下有一个同名文件夹用来存放静态资源.这里我们在 OPPO23 秋文件夹中保存了一张<code>top.png</code>图片</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214502730.png" class="" title="image-20241211214502730">
-
-<p>然后在文章页的<code>Front-Formatter</code>中将封面图<code>cover</code>和顶部图<code>top_img</code>均设置为此图.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214653018.png" class="" title="image-20241211214653018">
-
-<p>然后我们在本地使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>命令运行博客</p>
-<p>我们可以看到封面图<code>cover</code>可以成功显示,没有问题.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214825220.png" class="" title="image-20241211214825220">
-
-<p>但是当我们点到文章页时,会发现<code>top_img</code>并没有成功显示</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214905887.png" class="" title="image-20241211214905887">
-
-<p>明明是一样的路径配置,但是一个正常,另一个不正常.很有可能是 hexo 以及我们安装的插件综合作用下,<strong>对<code>cover</code>和<code>top_img</code>的路径处理方式不同</strong>.</p>
-<p>为了验证我们的猜想,我们使用浏览器开发者工具分别查看两图片对应的元素,并对获取图片请求进行抓包分析.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211215143107.png" class="" title="image-20241211215143107">
-
-<p>对于<code>cover</code>我们可以看到,它是一个嵌套在<code>&lt;a&gt;</code>标签里的一个<code>&lt;img&gt;</code>标签.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220138804.png" class="" title="image-20241211220138804">
-
-<p>我们点击当前来源，跳转到图片资源位置，没有问题。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220401618.png" class="" title="image-20241211220401618">
-
-<p>我们再来看一下<code>top_img</code>图片。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220503933.png" class="" title="image-20241211220503933">
-
-<p>我们可以看到它并不是<code>&lt;img&gt;</code>，而是用 CSS 的<code>background-image</code>属性来设置的。这里难以看出问题，我们对网络请求进行抓包。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220746097.png" class="" title="image-20241211220746097">
-
-<p>我们可以看到是一个 404 错误，说明找不到资源，就是路径出错了。观察请求头地址，我们不难发现，<code>2024/12/08/OPPO23秋</code>这一部分内容写了两次.说明 hexo 在处理文章的<code>top_img</code>时,很有可能本来就会加上前面的内容,我们的插件之类的又产生了干扰.具体原因还不得而知,不过问题已经可以解决了.</p>
-<p>通过上述分析,我们可以推测,<code>top_img</code>不显示,很可能是因为我们使用了<strong>相对路径</strong>,框架在此处的路径处理出了一些问题,所以我们尝试改用绝对路径来引入.</p>
-<p>在项目的<code>source</code>文件夹下新建一个<code>img</code>目录,里面复制我们的<code>top.png</code></p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221230694.png" class="" title="image-20241211221230694">
-
-<p>将文章中<code>tom_img</code>路径改为绝对路径<code>/img/top.png</code>(因为 hexo 会把 source 文件当作根目录来建站,所以建站后<code>img</code>文件夹相当于在根目录下,使用<code>/img</code>即可访问)</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221402895.png" class="" title="image-20241211221402895">
-
-<p>清理 hexo,重新生成,发现顶部图成功显示!</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221456484.png" class="" title="image-20241211221456484">
-]]></content>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
