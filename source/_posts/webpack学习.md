@@ -1247,10 +1247,22 @@ _.drop([1,2,3],2);;	//起作用
 即提供一种命名的标准,来解决冲突,常见的标准有:
 
 - BEM
+
+全称是**B**lock **E**lement **M**odifier
+
+一个完整的BEM类名:block\_\_element\_\_modifier,例如`banner__dot__selected`,可以表示: 轮播图中,处于选中状态的小圆点
+
 - OOCSS
 - AMCSS
 - SMACSS
 - 其他
+
+在某些大型工程中,还可能会加一个前缀,表示类名的用途
+
+- l: layout,表示这个类是用于布局的
+- c: component, 表示这个样式是一个组件,即一个功能区域
+- u: util,表示工具性样式
+- j: javascript,表示这个样式没有实际意义,是专门提供给js获取元素使用的
 
 **css in js**
 
@@ -1266,6 +1278,54 @@ _.drop([1,2,3],2);;	//起作用
 **css module**
 
 非常有趣和好用的css模块化方案,编写简单,绝对不重名
+
+css module 遵循以下思路解决类名冲突
+
+1. css的类名冲突往往发生在大型项目中
+2. 大型项目往往会使用构建工具(wepack等)搭建工程
+3. 构建工具允许将css样式切分为更加精细的模块
+4. 同JS变量一样,每个css模块文件中难以出现冲突的类名,冲突的类名往往发生在不同的css模块文件中
+5. 只需要保证构建工具在合并样式代码后不会出现类名冲突即可.
+
+**实现原理**
+
+在webpack中,作为处理css的css-loader,它实现了`css module`的思想,要启用`css module`,需要将css-loader的配置`modules`设置为`true`
+
+开启后类名转换为唯一的hash值
+
+**如何应用样式**
+
+`css module`带来了一个新的问题,源代码的类名和最终生成的类名是不一样的,而开发者只知道自己写的源代码中的类名,并不知道最终的类名是什么,那如何应用类名到元素上呢?
+
+为了解决这个问题,css-loader会导出原类名和最终类名的对应关系,该关系是通过一个对象描述的
+
+![image-20250105221011563](webpack学习/image-20250105221011563.png)
+
+**其他操作**
+
+**全局类名**
+
+某些类名是全局的,静态的,不需要进行转换,仅需要再类名位置使用一个特殊的语法即可
+
+```css
+:global(.main) {
+    ...
+}
+```
+
+使用了global的类名不会进行转换,相反的,没有使用global的类名,表示默认使用了local
+
+```css
+:local(.main) {
+    ...
+}
+```
+
+使用了local的类名表示局部类名,是可能会造成冲突的类名,会被`css module`进行转换
+
+- 往往配合构建工具使用
+- 仅处理顶级类名,不处理嵌套类名
+- 仅处理类名,不处理其他选择器
 
 ### 解决重复样式问题
 
@@ -1373,11 +1433,94 @@ var import2 = require("./bg.png");
 
 ## style-loader
 
+由于css-loader仅提供了将css转换为字符串导出的能力,剩余的事情要交给其他loader或plugin来处理.
 
+style-loader可以将css-loader转换后的代码进一步处理,将css-loader导出的字符串加入到页面的style元素中
 
+```css
+.red {
+    color: "#f40";
+}
+```
 
+经过css-loader转换后成为js代码
 
+```js
+module.exports = `.red{
+	color: "#f40";
+} `
+```
 
+经过style-loader转换后变成
 
+```js
+module.exports = `.red{
+	color: "#f40";
+} `
+var style = module.exports;
+var styleElem = documents.createElement("style");
+styleElem.innerHTML = style;
+document.head.appendChild(styleElem);
+module.exports = {};
+```
 
+>以上均为简化后的代码,不代表真实的代码
+>
+>style-loader可以避免元素重复导入
 
+# css预编译器
+
+编写css时, 受限于css语言本身,尝尝难以处理一些问题
+
+- 重复的样式值
+- 重复的代码段
+- 重复的嵌套书写
+
+由于官方迟迟不对css语言本身做出改进,一些第三方的机构开始想办法来解决这些问题
+
+其中一种方案,便是预编译器
+
+预编译器的原理很简单,即使用一种更加优雅的方式来书写样式代码,通过一个编译器,将其转换为可被浏览器识别的传统css代码
+
+目前,最流行的预编译器有`less`和`sass`,由于他们两者特别相似,因此仅学习一种即可.
+
+```powershell
+pnpm add less -D
+```
+
+```less
+// less代码
+@red:#f40
+
+    .redcolor {
+        color: @red;
+        }
+    
+```
+
+less基本使用
+
+- 变量
+- 混合
+- 嵌套
+- 运算
+- 函数
+- 作用域
+- 注释
+- 导入
+
+# PostCss
+
+>本节课内容与webpack无关
+
+## 什么是PostCss
+
+如果把css单独拎出来看,光是样式本身,就有很多事情要处理.
+
+既然有这么多的事情要处理,为什么不把这些事情集中到一起处理呢?
+
+PostCss就是基于这样的理念出现的.
+
+PostCss类似于一个编译器,可以把样式的源码,编译为最终的代码
+
+但是PostCss和less,Sass的思路不同,它其实
