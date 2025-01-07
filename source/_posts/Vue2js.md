@@ -2,6 +2,8 @@
 title: Vue2js
 date: 2025-01-07 11:05:58
 tags: vue
+top_img: /img/vue.png
+cover: /img/vue.png
 ---
 
 # 核心概念
@@ -149,12 +151,10 @@ var myComp = {
 // 参数1: 组件名称,将来在模板中使用组件时,会使用该名称
 // 参数2: 组件配置对象
 // 该代码运行后,即可在模板中使用组件
-Vue.component('my-comp', myComp)
+Vue.component('my-comp', myComp);
 ```
 
 在模板中,就可以使用组件了
-
-
 
 #### 局部注册
 
