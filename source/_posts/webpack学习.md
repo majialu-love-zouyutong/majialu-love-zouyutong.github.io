@@ -2028,6 +2028,12 @@ module.exports = {
                 // 属性值是缓存组的配置,缓存组继承所有的全局配置,也有自己的特殊配置
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,	// 当匹配到相应模块是,将这些模块进行单独打包
+                    priority: -10 // 缓存组优先级,优先级越高,该策略越先处理,默认值为0
+                },
+                default: {
+                    minChunks: 2, // 覆盖全局配置,将最小chunk引用数改为2
+                    priority: -20, // 优先级
+                    reuseExistingChunk: true // 重用已经被分离出去的chunk
                 }
             }
         }
@@ -2035,19 +2041,293 @@ module.exports = {
 }
 ```
 
+## 原理
 
+自动分包的原理其实并不复杂,主要经过以下步骤
+
+1. 检查每个chunk的编译结果
+2. 根据分包策略,找到那些满足策略的模块
+3. 根据分包策略,生成新的chunk打包这些模块(代码有所变化)
+4. 把打包出去的模块从原始包中移除,并修正原始包代码
+
+在代码层面,有以下变动
+
+1. 分包的代码中,加入一个全局变量,类型为数组,其中包含公共模块的代码
+2. 原始包的代码中,使用数组中的公共代码
 
 # 代码压缩
 
+## 前言
+
+1. **为什么要进行代码压缩**
+
+减少代码体积;破坏代码的可读性,提升破解成本
+
+2. **什么时候进行代码压缩**
+
+生产环境
+
+3. **使用什么压缩工具**
+
+目前最流行的代码压缩工具主要有两个`Uglifyjs`和`Terser`
+
+`Uglifyjs`是一个传统的代码压缩工具,已存在多年,曾经是前端应用的必备工具,但是由于它不支持`ES6`语法,所以目前流行度已有所下降
+
+`Terser`是一个新的代码压缩工具,支持`ES6+`语法,因此被很多构建工具内置使用.`webpack`安装后会内置`Terser`,当启用生产环境后即可用其进行代码压缩.
+
+因此,我们选择`Terser`
+
+## Terser
+
+在`Terser`的官网可以尝试它的压缩效果
+
+> Terser官网: https://terser.org/
+
+## webpack+Terser
+
+webpack自动集成了Terser
+
 # tree-shaking
+
+## 背景
+
+某些模块导出的代码并不一定会用到
+
+```js
+// myMath.js
+export function add(a,b) {
+    console.log("add");
+    return a + b;
+}
+
+export function sub(a, b) {
+    console.log("sub");
+    return a - b;
+}
+```
+
+```js
+// index.js
+import { add } from "./myMath.js"
+console.log(add(1,2));
+```
+
+`tree shaking`用于移除不会用到的导出
+
+## 使用
+
+`webapck2`开始支持了`tree shaking`
+
+只要是生产环境,`tree shaking`自动开启
+
+## 原理
+
+webpack会从入口模块出发寻找依赖关系
+
+当解析一个模块时,webpack会根据ES6的导入模块来判断,该模块依赖了另一个模块的哪个导出
+
+webpack之所以选择ES6的模块导入语句,是因为ES6模块具有以下特点
+
+1. 导入导出语句只能是顶层语句
+2. import的模块名只能是字符串常量
+3. import绑定的变量是不可变的
+
+这些特征都非常有利于分析出稳定的依赖
+
+在具体分析依赖时,webpack坚持的原则是: **保证代码正常运行,然后再尽量tree shaking**
+
+所以,如果你依赖的是一个导出的对象,由于JS语言的动态特性,以及`webpack`还不够智能,为了保证代码正常运行,它不会移除对象中的任何信息.
+
+因此,我们在编写代码的时候,**尽量**
+
+- 使用`export xxx`导出,而不使用`export default {xxx}`导出
+- 使用`import { xxx} from "xxx" 或 import * as xxx from "xxx"导入,而不使用import xxx from "xxx"`导入
+
+依赖分析完毕后,`webpack`会根据每个模块每个导出是否被使用,标记其他导出为`dead code`,然后交给代码压缩工具处理.
+
+代码压缩工具最终移除掉哪些`dead code`代码
+
+## 使用第三方库
+
+某些第三方库可能使用`commonjs`的方式导出,比如`lodash`
+
+又或者没有提供普通的ES6方式导出
+
+对于这些库, `tree shaking`是无法发挥作用的
+
+因此要寻找这些库的`es6`版本,好在很多流行但没有使用`ES6`的第三方库,都发布它的`ES6`版本,比如`lodash-es`
+
+**作用域分析**
+
+`tree shaking`本身并没有完善的作用域分析,可能导致在一些`dead code`函数中的依赖仍然会被视为依赖.
+
+插件`webpack-deep-scope-plugin`提供了作用域分析,可解决这些问题
+
+## 副作用问题
+
+webpack在`tree shaking`的使用,有一个原则: **一定要保证代码的正确运行**
+
+在满足该原则的基础上,再来决定如何`tree shaking`
+
+因此,当`webpack`无法确定某个模块是否有副作用时,往往将其视为有副作用.
+
+因此,某些情况可能并不是我们所想要的
+
+```js
+// common.js
+var n = Math.random();;
+
+// index.js
+import "./common.js"
+```
+
+虽然我们根本没有使用`common.js`的导出,但`webpack`担心`common.js`有副作用,如果去掉会影响某些功能.
+
+如果要解决该问题,就需要标记该文件是没有副作用的
+
+在`package.json`中加入`sideEffects`
+
+```json
+{
+    "sideEffects": false
+}
+```
+
+有两种配置方式:
+
+- false: 当前工程中,所有模块都没有副作用.注意,这种写法会影响到某些css文件的导入
+- 数组: 设置哪些文件拥有副作用,例如: `["!src/common.js"]`,表示只要不是`src/commonjs`的文件,都有副作用
+
+> 这种方式我们一般不处理,通常是一些第三方库在他们自己的`package.json`中标注
+
+## CSS tree shaking
+
+`webpack`无法对`css`完成`tree shaking`,因为`css`和`es6`没有半毛钱关系.
+
+因此对`css`的`tree shaking`需要其他插件的完成
+
+例如: `purgecss-webpack-plugin`
+
+> 注意: `purgcss-webpack-plugin`对`css module`无能为力
 
 # lazy-loading
 
+```js
+btn.onclick = async function () {
+    const _ = await import("loadash-es")
+    // import()会返回一个promise
+}
+```
+
 # ESLint
+
+ESLint是一个针对JS的代码风格**检查工具**
+
+## 配置
+
+### env
+
+配置代码的运行环境
+
+- browser: 代码是否在浏览器环境中运行
+- es6: 是否启用ES6的全局API, 例如`Promise`等
+
+### parserOptions
+
+该配置制定`eslint`对哪些语法的支持
+
+- `ecmaVersion`: 支持的ES语法版本
+- `sourceType`: 
+  - script: 传统脚本
+  - module: 模块化脚本
+
+### parser
+
+`eslint`的工作原理是先将代码进行解析,然后按照规则进行分析
+
+`eslint`默认使用`Espree`作为其解析器,你可以在配置文件中指定一个不同的解析器
+
+### globals
+
+配置可以使用的额外的全局变量
+
+```js
+{
+    "globals": {
+        "var1": "readonly",
+         "var2": "writable"
+    }
+}
+```
+
+`eslint`支持注释形式的配置,在代码中使用下面的注释也可以完成配置
+
+```js
+/* gloabal var1, var2 */
+/* global var3:writable, var4: writable */ 
+```
+
+### extends
+
+该配置继承自哪里
+
+它的值可以是字符串或者数组
+
+比如: 
+
+```js
+{
+    "extends": "eslint:recommended"
+}
+```
+
+表示,该配置缺失的位置,使用`eslint`推荐的规则
+
+### `ignoreFiles`
+
+排除掉某些不需要验证的文件
+
+`.eslintignore`
+
+### rules
+
+`eslint`规则集
+
+每条规则影响某个方面的代码风格
+
+每条规则都有下面几个取值
+
+- off 或 0 或 false: 关闭该规则的检查
+- warn 或 1 或 true: 警告,不会导致程序退出
+- error 或 2: 错误,当被触发的时候,程序会退出
+
+除了在配置文件中使用规则外,还可以在注释中使用
+
+```js
+/* eslint eqeqeq: "off", curly: "error" */
+```
 
 # bundle-analyzer
 
+分析各个bundle的相对大小
+
 # gzip
+
+gzip是一种压缩文件的算法
+
+## B/S结构中的压缩传输
+
+![image-20250107105744430](webpack学习/image-20250107105744430.png)
+
+优点: 传输效率可能得到大幅提升
+
+缺点: 服务器的压缩需要时间,客户端的解压需要时间
+
+## 使用webpack进行预压缩
+
+使用`compression-webpack-plugin`插件对打包结果进行预压缩,可以移除服务器的压缩时间.
+
+![image-20250107105923510](webpack学习/image-20250107105923510.png)
 
 # 不确定的动态依赖 
 
