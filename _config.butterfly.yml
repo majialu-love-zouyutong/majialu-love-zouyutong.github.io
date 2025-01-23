@@ -119,7 +119,7 @@ post_meta:
   # Home Page
   page:
     # Choose: created / updated / both
-    date_type: created
+    date_type: updated
     # Choose: date / relative
     date_format: date
     categories: true
@@ -196,7 +196,7 @@ toc:
   post: true
   page: true
   number: false
-  expand: false
+  expand: true
   # Only for post
   style_simple: false
   scroll_percent: true
@@ -238,7 +238,7 @@ related_post:
   # Number of posts displayed
   limit: 6
   # Choose: created / updated
-  date_type: created
+  date_type: updated
 
 # Choose: 1 / 2 / false
 # 1: The 'next post' will link to old post
@@ -301,7 +301,7 @@ aside:
     # If set 0 will show all
     limit: 5
     # Sort: date / updated
-    sort: date
+    sort: updated
     sort_order:
   card_newest_comments:
     enable: true
@@ -781,7 +781,7 @@ mask:
 
 # Loading Animation
 preloader:
-  enable: false
+  enable: true
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
