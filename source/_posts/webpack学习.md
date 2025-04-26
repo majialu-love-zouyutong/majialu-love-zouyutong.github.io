@@ -2341,3 +2341,124 @@ gzip是一种压缩文件的算法
 
 # 搭建全栈应用
 
+# 官网学习
+
+## 概念
+
+`webpack`的核心是一个用于现代`JavaScript`应用的静态模块打包器.当`webpack`处理您的应用时,它会从一个或多个入口点内部构建一个依赖图,然后将您的项目需要的每个模块组合成一个或多个包(`bundle`),这些包是静态资源,用于从服务器提供内容.
+
+从4.0.0版本开始,`webpack`打包项目不再需要配置文件.尽管如此,它具有极高的可配置性,以更好地满足您的要求.
+
+要开始,您只需要了解核心概念.
+
+- `Entry`:入口
+- `Output`:输出
+- `Loaders`: 加载器
+- `Plugins`:插件
+- `Mode`: 模式
+- `Browser Compatibility`: 浏览器兼容性
+
+### Entry
+
+入口指示`webpack`应该使用哪个模块开始构建其内部的依赖图.`Webpack`将确定入口点直接和间接依赖的其他数据模块和库.
+
+默认情况下其值为`./src/index.js`,但您可以通过在`webpack`中设置一个`entry`属性来指定不同的(或多个)入口点,例如:
+
+```js
+module.exports = {
+  entry: './path/to/my/entry/file.js',
+}
+```
+
+### Output
+
+输出属性告诉`webpack`它创建的包应该输出到哪里以及如何命名这些文件.它默认为`./dist/main.js`用于主输出文件,以及`./dist/`文件夹用于任何其他生成的文件.
+
+您可以通过在配置中指定一个`output`字段来配置此过程的部分:
+
+```js
+const path = require('path');
+
+module.exports = {
+  entry: './path/to/my/entry/file.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'my-first-webpack.bundle.js'
+  }
+}
+```
+
+在上述示例中，我们使用 `output.filename` 和 `output.path` 属性来告诉 webpack 我们打包的名称以及我们希望它输出的位置。如果你对顶部导入的路径模块感到好奇，它是一个用于操作文件路径的核心 Node.js 模块。
+
+### Loadres
+
+`webpack`默认只能理解`JavaScript`和`JSON`文件.加载器允许`webpack`处理其他类型的文件,并将他们转换为可以被您的应用程序消费并添加到依赖图中的有效模块.
+
+> `webpack`的一个特定功能是能够 `import` 任何类型的模块，例如 `.css` 文件，这可能不被其他打包器或任务运行器支持。我们认为这种语言的扩展是合理的，因为它允许开发者构建更准确的依赖图。
+
+在较高的层面,`loader`在你的`webpack`配置中有两个属性:
+
+1. `test`属性标识应转换哪些文件.
+2. `use`属性指示应该使用哪个加载器来进行转换
+
+```js
+const path = require('path');
+
+module.exports = {
+  output: {
+    filename: 'my-first-webpack.bundle.js'
+  },
+  module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader'}],
+  },
+};
+```
+
+上面的配置为单个模块定义了`rules`属性,该属性包含两个必要的属性: `test`和`use`.这告诉`webpack`编译器以下内容.
+
+> *嘿 webpack 编译器，当你遇到一个解析为* `require()` */* `import` *语句内部 '.txt' 文件的路径时，请在将其添加到包中之前使用* `raw-loader` *转换它。*
+
+> 重要的是要记住，在定义 webpack 配置中的规则时，您是在 `module.rules` 下定义它们，而不是 `rules` 。为了对您有利，如果配置的不正确,webapck将警告您.
+
+> 请注意，在使用正则表达式匹配文件时，您可能不需要对其进行引号处理。例如， `/\.txt$/` 与 `'/\.txt$/'` 或 `"/\.txt$/"` 不相同。前者指示 webpack 匹配以.txt 结尾的任何文件，而后者指示 webpack 匹配一个具有绝对路径'.txt'的单个文件；这很可能不是您的意图。
+
+### Plugins
+
+加载器用于转换某些类型的模块,而插件可以用来执行更广泛的任务,如包优化(bundle optimization),静态资源管理以及环境变量注入.
+
+为了使用插件,您需要`require()`它,并将它添加到`plugins`数组中.大多数插件可以通过选项进行自定义.由于您可以在配置中多次使用插件以实现不同的目的,您需要通过使用`new`运算符来创建实例.
+
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');			// to access built-in plugins
+
+module.exports = {
+  module: {
+    rules: [{test: /.txt$/, use: 'raw-loader'}],
+  },
+  plugins: [new HtmlWebpackPlugin({ tempalte: './src/index.html' })],
+}
+```
+
+在上述示例中,`html-webpack-plugin`为您的应用程序生成一个HTML文件,并自动将所有生成的包注入到该文件中.
+
+### Mode
+
+通过将`mode`参数设置为`development`,`production`,或`none`,您可以使用与每个环境对应的webpack内置优化.默认值为`production`
+
+```js
+module.exports = {
+  mode: 'production',
+}
+```
+
+### Browser Compaatibility
+
+Webpack支持所有符合ES5规范的浏览器(IE8及以下的版本不受支持). `webpack`需要`Promise`来支持`import`和`require.ensure()`.如果您想支持旧版浏览器,在使用这些表达式之前需要加载`polyfill`.
+
+### Environment
+
+Webpack5运行在`Node.js`版本10.13.0+
+
+
+

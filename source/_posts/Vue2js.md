@@ -271,6 +271,86 @@ const OtherComp = {
 
 ## 工程结构
 
+## 组件混入
+
+有的时候,许多组件有着类似的功能,这些功能代码分散在组件不同的配置中.
+
+![image-20250124172832874](Vue2js/image-20250124172832874.png)
+
+于是,我们可以把这些配置代码抽离出来,利用**混入**融合到组件中.
+
+![image-20250124172947254](Vue2js/image-20250124172947254.png)
+
+```js
+// 抽离的公共代码
+const common = {
+    data() {
+        return {
+            a: 1,
+            b: 2
+        }
+    },
+    created() {
+        console.log('common created');
+    },
+    methods: {
+        sum() {
+            return this.a + this.b;
+        }
+    }
+}
+
+/**
+* 使用comp1,将会得到:
+* common created
+* comp1 created 1 2 3
+*/
+
+const comp1 = {
+    mixins: [common],		// 之所以是数组,是因为可以混入多个配置代码
+    created() {
+        console.log('comp1 created', this.a, this.b, this.sum)
+    }
+}
+```
+
+混入并不复杂,更多细节参见官网.
+
+## 组件递归
+
+```vue
+<template>
+  <ul class="right-list-container">
+    <li
+      v-for="(item, index) in list"
+      :class="{ active: item.isSelected }"
+      :key="index"
+    >
+      {{ item.name }}
+      <!-- 递归调用自身 -->
+      <RightList v-if="item.children" :list="item.children" />
+    </li>
+  </ul>
+</template>
+
+<script>
+export default {
+  // 给组件定义name,方便递归使用组件
+  name: 'RightList',
+  props: {
+    list: {
+      type: Array,
+      default: () => [],
+    },
+  },
+};
+</script>
+
+<style></style>
+```
+
+ 
+
 # 搭建工程
 
 ## vue-cli
@@ -609,7 +689,41 @@ const router = new VueRouter({
 </template>
 ```
 
-# 使用css module
+## 动态路由
+
+### 动态路由的导航
+
+```vue
+<template>
+	<RouterLink to="/article/cate/3">to article </RouterLink>
+	<RouterLink to="{
+                    	name: 'CategoryBlog',
+                    	params: {
+							categoryId: 3                    	
+                    	}
+                    }" ></RouterLink>
+</template>
+```
+
+### 编程式导航
+
+除了使用`<RouterLink>`超链接导航外,`vue-router`还允许在代码中跳转页面.
+
+```js
+this.$router.push('跳转地址');		// 普通跳转
+this.$router.push({
+    // 命名路由跳转
+    name: "Blog"
+})
+
+this.$router.go(-1);	// 回退,类似于 history.go
+```
+
+
+
+# 弹窗
+
+## 使用css module
 
  需要将样式文件命名为: `xx.module.ooo`
 
@@ -617,7 +731,7 @@ const router = new VueRouter({
 
 `ooo`为样式文件后缀名,可以是`css`,`less`,`scss`等
 
-# 得到组件渲染的DOM
+## 得到组件渲染的DOM
 
 ```js
 /**
@@ -634,3 +748,694 @@ function getComponentRootDom(comp, props) {
 
 ## 扩展Vue实例
 
+![image-20250124093645647](Vue2js/image-20250124093645647.png)
+
+## ref
+
+```vue
+<template>
+	<div>
+        <p ref="para">
+          some paragraph  
+    	</p>
+        <ChildComp ref="comp" />
+        <button @click="handleClick">
+        	查看所有引用    
+    	</button>
+    </div>
+</template>
+<script>
+	import ChildComp from './ChildComp';
+    export default {
+        components: {
+            ChildComp
+        },
+        methods: {
+            handleClick() {
+                console.log(this.$refs);
+            }
+            /*
+            * 输出 para: p元素(原生DOM)
+            *     comp: ChildComp的组件实例
+            */
+        }
+    }
+</script>
+```
+
+通过`ref`可以直接操作DOM,但是不符合Vue的设计理念,尽量不要使用.
+
+
+
+# 获取远程数据
+
+![image-20250124102616802](Vue2js/image-20250124102616802.png)
+
+## 开发环境有跨域问题
+
+![image-20250124102818003](Vue2js/image-20250124102818003.png)
+
+## 生产环境一般没有跨域问题
+
+![image-20250124102901955](Vue2js/image-20250124102901955.png)
+
+![image-20250124102934870](Vue2js/image-20250124102934870.png)
+
+## 解决开发环境的跨域问题
+
+![image-20250124103448646](Vue2js/image-20250124103448646.png)
+
+## 为什么要Mock数据
+
+![image-20250124103834407](Vue2js/image-20250124103834407.png)
+
+![image-20250124103856758](Vue2js/image-20250124103856758.png)
+
+# 组件的生命周期
+
+![image-20250124104347309](Vue2js/image-20250124104347309.png)
+
+![image-20250124104514611](Vue2js/image-20250124104514611.png)
+
+## 常见应用
+
+> 不要死记硬背,根据具体情况灵活处理
+
+### 加载远程数据
+
+```js
+export default {
+    data() {
+        return {
+            news: [];
+        }
+    },
+    async created() {
+        this.news = await getNews();
+    }
+}
+```
+
+### 直接操作DOM
+
+```js
+export default {
+    data() {
+        return {
+            containerWidth: 0,
+            containerHeight: 0
+        }
+    },
+    mounted() {
+        this.containerWidth = this.$refs.container.clientWidth;
+        this.containerHeight = this.$refs.container.clientHeight;
+    }
+}
+```
+
+### 启动和清除计时器
+
+```js
+export default {
+    data() {
+        return {
+            timer: null
+        }
+    },
+    created() {
+        this.timer = setInterval(()=>{
+            //...
+        },1000)
+    },
+    destoryed() {
+        clearInterval(this.timer);
+    }                             
+}
+```
+
+# 自定义指令
+
+## 定义指令
+
+### 全局指令
+
+```js
+// 指令名称为: mydirec1
+Vue.directive('mydirec1', {
+    // 指令配置
+})
+
+// 指令名称为: mydirec2
+Vue.directive('mydirec2', {
+    // 指令配置
+})
+```
+
+之后,所有的组件都可以使用`mydirec1`和`mydirec2`指令
+
+```vue
+<template>
+	<!-- 某个组件代码 -->
+	<MyComp v-mydirec1="js表达式" />
+	<div v-mydirec2="js表达式">
+        <!-- ... -->
+    </div>
+</template>
+```
+
+### 局部指令
+
+局部定义是指在某个组件中定义的指令,和局部注册的组件类似.
+
+定义的指令仅在该组件中有效.
+
+```vue
+<template>
+	<!-- 某个组件代码 -->
+	<div>
+        <MyComp v-mydirec1="js表达式" />
+        <div v-mydirec2="js表达式">
+            <!-- ... -->
+    	</div>
+        <img v-mydirec1="js表达式"/>
+    </div>
+</template>
+
+
+<script>
+export default {
+    // 定义指令
+    directives: {
+        // 指令名称: mydirec1
+        mydirec1: {
+            // 指令配置
+            
+        },
+        // 指令名称: mydirec2
+        mydirec2: {
+            // 指令配置
+        }
+    }
+}
+</script>
+```
+
+## 指令配置对象
+
+没有配置的指令,就像没有配置的组件一样,毫无意义.
+
+`vue`支持在指令中配置一些**钩子函数**,在适当的时机,`vue`会调用这些钩子函数并传入适当的参数,以便开发者完成自己想做的事情.
+
+常用的钩子函数
+
+```js
+// 指令配置对象
+{
+    bind() {
+        // 只调用一次,指令第一次绑定到元素时调用.在这里可以进行一次初始化设置.
+    },
+    inserted() {
+        // 被绑定元素插入父节点时调用
+    },
+    update() {
+        // 所在组件的VNode更新时调用
+    }
+}
+```
+
+每个钩子函数在调用时,`vue`都会向其传递一些参数,其中最重要的是前两个参数.
+
+```js
+// 指令配置对象
+{
+    bind(el, binding) {
+        // el: 被绑定元素对应的真实DOM
+        // binding: 是一个对象,描述了指令中提供的信息
+    }
+}
+```
+
+### binding对象
+
+![image-20250124171351915](Vue2js/image-20250124171351915.png)
+
+## 配置简化
+
+比较多的时候,在配置自定义指令时,我们都会配置两个钩子函数
+
+```js
+{
+    bind(el, binding) {
+        
+    },
+    update(el, binding) {
+        
+    }
+}
+```
+
+这样,在元素绑定和更新时,都能运行到钩子函数.
+
+如果这两个钩子函数实现功能相同,可以直接把指令配置简化为一个单独的函数:
+
+```js
+function(el, binding) {
+    // 该函数会被同时设置到bind和update中
+}
+```
+
+> 利用上述知识,可以满足大部分自定义指令的要求.
+
+# watch
+
+利用watch配置,可以直接观察某个数据的变化,变化时可以做一些处理.
+
+```js
+export default {
+    // ... 其他配置
+    watch: {
+        // 观察 this.$route 的变化,变化后,会调用该函数
+        $route(newVal, oldVal) {
+            // newVal: this.$route 新的值,等同 this.$route
+            // oldVal: this.$route 旧的值
+        },
+        // 完整写法
+        $route: {
+            handler(newVal, oldVal){},
+            deep: false, // 是否监听该数据内部属性的变化,默认 false
+            immediate: false	// 是否立即执行一次 handler 默认 false
+        }
+        // 观察 this.$route.params 的变化,变化后, 会调用该函数
+        ["$route.params"]:(newVal, oldVal) {
+    	
+		},
+    }
+}
+```
+
+# $listeners
+
+`$listeners`是`vue`的一个实例属性,它用于获取父组件传递过来的所有时间事件函数
+
+```vue
+<template>
+	<!-- 父组件 -->
+	<Child @event1="handleEvent1" @event2="handleEvent2" />
+</template>
+```
+
+```vue
+// 子组件
+this.$listeners 		// {event1: handleEvent1, event2: handleEvent2}
+```
+
+> `$emit`和`$listener`通信的异同
+>
+> 相同点: 都可以实现父组件向子组件传递消息
+>
+> 差异点: 
+>
+> - `$emit`更加符合单向数据流,子组件仅发出通知,由父组件监听做出改变,而`$listener`则是在子组件中直接使用了父组件的方法
+> - 调试工具可以监听到子组件`$emit`事件,但无法监听到`$listener`中的方法调用(想一想为什么?因为相当于调用了一个普通函数)
+> - 由于`$listener`可以获得父组件传递过来的方法,因此调用方法可以得到其返回值.但`$emit`仅仅是向父组件发出通知,无法知晓父组件处理的结果.
+
+# 事件总线
+
+![image-20250124211400648](Vue2js/image-20250124211400648.png)
+
+## 功能
+
+1. 提供监听某个事件的接口
+2. 提供取消监听的接口
+3. 触发事件的接口(可传递数据)
+4. 触发事件后会自动通知监听者
+
+```js
+// 事件总线
+const listeners = [];
+
+export default {
+  // 监听某一个事件
+  $on(eventName, handler) {
+    if(!listeners[eventName]) {
+      listeners[eventName] = new Set();
+    }
+    listeners[eventName].add(handler);
+  },
+  // 取消监听
+  $off(eventName, handler) {
+    if(!listeners[eventName]) {
+      return;
+    }
+    listeners[eventName].delete(handler);
+  },
+  // 触发事件
+  $emit(eventName, ...args) {
+    if(!listeners[eventName]) {
+      return;
+    }
+    listeners[eventName].forEach(handler => {
+      handler(...args);
+    })
+  }
+}
+```
+
+# 数据共享
+
+![image-20250124215205132](Vue2js/image-20250124215205132.png)
+
+在vue中遇到**共享数据**,会带来以下问题.
+
+- 如何保证数据的唯一性?
+  - 如果数据不唯一,则会浪费大量的内存空间
+  - 如果数据不唯一,可能会出现数据不一致的情况
+- 某个组件改动数据后,如何让其他用到该数据的组件知道组件变化了?
+  - 事件总线貌似可以解决该问题,但是需要再组件中手动维护监听,极其不方便,而且数据总线的目的在于**通知**,而不是**数据共享**
+
+一种比较容易想到的方案,就是把所有的共享数据**全部**提升到根组件,然后通过属性不断下发,当某个组件需要修改数据时,又不断向上抛出事件,直到根组件完成对数据的修改.
+
+![image-20250124215632712](Vue2js/image-20250124215632712.png)
+
+这种方案的缺陷也非常明显:
+
+- 需要编写大量的代码层层下发数据,很多组件被迫拥有了自己根本不需要的数据.
+- 需要编写大量的代码层层上抛数据,很多组件注册了自己根本处理不了的事件
+
+
+
+基于上面的问题,我们可以简单设置一个**独立的数据仓库**
+
+![image-20250124221027862](Vue2js/image-20250124221027862.png)
+
+- 组件需要什么共享数据,可以自由地从仓库中获取,需要什么拿什么.
+- 组件可以自由的改变仓库中的数据,仓库的数据变化后,会自动通知到相应数据的组件更新
+
+要实现这一切,可以选择`vuex`
+
+## 创建仓库
+
+安装`vuex`后,可以通过下面的代码创建一个数据仓库,在大部分情况下,一个工程仅需创建一个数据仓库.
+
+```js
+import Vuex from 'vuex';
+import Vue from 'vue';
+
+Vue.use(Vuex); 
+
+const store = new Vuex.Store({
+    // 仓库的配置
+    state: {
+        // 仓库的初始状态(数据)
+        count: 0
+    }
+})
+
+export default store;
+```
+
+```js
+// main.js
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store.js';
+
+new Vue({
+    store,	// 向vue中注入仓库
+    render: h => h(App)
+}).$mount("#app");
+```
+
+之后,在`vue`的组件中,可以通过实例的`$store`属性访问的仓库.
+
+`Vuex`会自动将配置的状态数据设置为响应式数据,当数据变化时,依赖该数据的组件会自动渲染.
+
+
+
+## 数据的变更
+
+尽管可以利用数据响应式的特点直接变更数据,但这样的做法在大型项目中会遇到问题.
+
+> 如果有一天,你发现某个共享数据是错误的,而有一百多个组件都有可能变更过这块数据,你该如何知道是哪一步变更出了问题?
+
+为了能够更好的跟踪数据的变化,`vuex`强烈推荐使用`mutation`来更改数据.
+
+```js
+const store = new Vuex.Store({
+    // 仓库的配置
+    state: {
+        // 仓库的出示状态(数据)
+        count: 0
+    },
+    mutations: {
+        /**
+        * 每个mutation是一个方法,它描述了数据在某种场景下的变化
+        * increase mutation描述了数据在增加时应该发生的变化
+        * 参数state为当前的仓库数据
+        */
+        increase(state) {
+            state.count++;
+        },
+        decrease(state) {
+            state.count--;
+        },
+        /** 
+        * 求n次幂
+        * 该mutation需要一个额外的参数来提供指数
+        * 我们把让数据产生变化是的附加信息称之为负荷(负载)payload
+        * payload可以是任何类型,数字,字符串,对象均可
+        * 在该mutation中,我们约定payload为一个数字,表示指数
+        */
+        power(state, payload) {
+            state.count **= payload;
+        }
+    } 
+})
+```
+
+当我们有了`mutation`后,就不应该直接去改动仓库的数据了
+
+而是通过`store.commit`方法提交一个`mutation`,具体的做法是
+
+```js
+store.commit("mutation的名字", payload);
+```
+
+现在,我们可以通过`vue devtools`观测到数据的变化了.
+
+**特别注意**
+
+1. `mutation`操作中**不得出现异步操作**
+
+> 在实际开发规范中,甚至要求不得有副作用的操作.
+>
+> 副作用操作包括
+>
+> - 异步
+> - 更改或读取外部环境的信息,例如`localStorage`,`location`,`DOM`等.
+
+2. 提交`mutation`是数据改变的**唯一原因**
+
+## 异步处理
+
+如果在`vuex`中要进行异步操作,需要使用`action`
+
+```js
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increase(state) {
+            state.count++;
+        },
+        decrease(state) {
+            state.count--;
+        },
+        power(state, payload) {
+            state.count **= payload;
+        }
+    },
+    actions: {
+        /**
+        * ctx: 类似于store的对象
+        * payload: 本次异步操作的额外信息
+        */
+        asyncPower(ctx, payload) {
+        	setTimeout(function(){
+        		ctx.commit('power',payload);
+        	},1000)
+        }
+    }
+})
+```
+
+![image-20250125090220369](Vue2js/image-20250125090220369.png)
+
+# 项目优化
+
+## 分析打包结果
+
+由于`vue-cli`是利用`webpack`进行打包,我们仅需要加入一个`webpack`插件`webpack-bundle-analyzer`即可分析打包结果.
+
+为了避免在开发环境中启动`webpack-bundle-analyzer`,我们仅需要使用以下代码即可.
+
+```js
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+// vue.config.js
+module.exports = {
+    // 通过 configureWebpack 选项,可对webpack进行额外的配置
+    // 该配置最终会和 vue-cli` 的默认配置进行合并 (webpack-merge)
+    configureWebpack: {
+        plugins: [new BundleAnalyzerPlugin()]
+    }
+}
+```
+
+## 优化公共库打包体积
+
+### 使用CDN
+
+CDN(Content Delivery Network), 内容分发网络
+
+它的基本原理:架设多台服务器,这些服务器定期从源站拿取资源保存到本地,让不同地域的用户能够通过访问最近的服务器获得资源
+
+![image-20250125133949331](Vue2js/image-20250125133949331.png)
+
+我们可以把项目中所有的静态资源都放到CDN上(收费),也可以利用现成免费的CDN获取公共库资源.
+
+首先,我们需要告诉`webpack`不要对公共库进行打包.
+
+```js
+// vue.config.js
+module.exports = {
+    configureWebpack: {
+        externals: {
+            vue: "Vue",
+            vuex: "vuex",
+            "vue-router": "VueRouter"
+        }
+    }
+}
+```
+
+然后,在页面中手动加入cdn连接,这里使用`bootcdn`
+
+### 启用现代模式
+
+为了兼容各种浏览器,`vue-cli`在内部使用了`@babel/present-env`对代码进行降级,你可以通过`.browserlistrc`配置来设置需要兼容的目标浏览器.
+
+这是一种比较偷懒的方法,因为对于那些使用现代浏览器的用户,他们也被迫使用了降级之后的代码,而降低的代码中包含了大量的`polyfill`,从而提升了包的体积.
+
+因此,我们希望提供两种打包结果:
+
+1. 降级后的包(大),提供给旧浏览器用户使用
+2. 未降级的包(小),提供给现代浏览器用户使用.
+
+除了应用`webpack`进行多次打包外,还可以利用`vue-cli`给我们提供命令.
+
+```powershell
+vue-cli-service build --modern
+```
+
+## 优化项目包体积
+
+这里的项目包是指`src`目录中的打包结果
+
+### 页面分包
+
+默认情况下,`vue-cli`会利用`webpack`将`src`目录中的所有代码打包成一个`bundle`,这样就导致访问一个页面时,需要加载所有页面的js代码.
+
+我们可以利用`webapck`对动态`import`的支持,从而达到把不同的页面的代码打包到不同的文件中.
+
+```js
+// routes
+export default {
+    {
+    	name: "Home",
+    	path: "/",
+    	component: ()=>import(/* webpackChunkName: "home" */ "@/views/Home")
+	},
+    {
+    	name: "About",
+    	path: "/about",
+    	component: ()=>import(/* webpackChunkName: "about" */ "@/views/about")
+	},
+}
+```
+
+## 优化首屏响应
+
+> 首页白屏受到很多因素的影响
+
+`vue`页面需要js构建,因此在js下载到本地之前,页面上什么也没有.
+
+一个非常简单有效的办法,即在页面中先渲染一个小的加载中效果,等到js下载到本地并运行后,即会自动替换.
+
+```html
+<div id="app">
+    <img src="loading.gif" />
+</div>
+```
+
+# 异步组件
+
+在代码层面,`vue`组件本质上是一个配置对象.
+
+```js
+const comp = {
+    props: xxx,
+    data: xxx,
+    computed: xxx,
+    methods: xxx
+}
+```
+
+但有的时候,要得到某个组件配置对象需要一个异步的加载过程,比如:
+
+- 需要使用`ajax`获得某个数据之后才能加载该组件.
+- 为了合理的分包,组件配置对象需要通过`import(xxx)`动态加载
+
+如果一个组件**需要通过异步的方式得到组件配置对象**,该组件可以把它做成一个异步组件
+
+```js
+/**
+* 异步组件本质上是一个函数
+* 该函数调用后返回一个Promise,Promise成功的结果是一个组件配置对象
+*/
+const AsyncComponent = () => import('./MyComp');
+
+const App = {
+    components: {
+        /***
+        * 你可以把该函数当做一个组件使用(异步组件)
+        */
+        AsyncComponent
+    }
+}
+```
+
+> 异步组件的函数不仅可以返回一个Promise,还支持返回一个对象.
+
+## 应用
+
+异步组件通常应用在路由懒加载中,以达到更好的分包.
+
+为了提高用户体验,可以在组件配置对象加载完成之前给用户显示一些提示信息
+
+```js
+const routes = [
+    {
+        path: "/",
+        component: async() => {
+            console.log('组件开始加载');
+            const HomeComp = await import("./Views/Home.vue");
+            console.log('组件加载完毕');
+            return HomeComp;
+        }
+    }
+]
+```
+
+推荐使用==NProgress==展现一个进度条.
