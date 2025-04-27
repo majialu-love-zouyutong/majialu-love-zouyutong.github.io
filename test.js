@@ -1,21 +1,48 @@
-const inputs = document.querySelectorAll('#evaIndex');
-inputs.forEach((input) => {
-  input.click();
-});
+function TreeNode(left, right, val) {
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
+}
 
-const arr = [
-  '爱国守法、敬业爱生、教书育人、为人师表、以德施教',
-  '坚持正确的政治方向和价值引领，杜绝损害国家利益和不利于学生健康成长的错误言行',
-  '教学态度	 认真投入、备课充分、内容娴熟',
-  '教学设计由浅入深、循序渐进',
-  '提供在线学习资源及课后阅读材料充实教学信息量',
-  '教学内容	 课程内容与教学目标一致',
-  '教学方法	 条理清晰、讲解生动、重点突出，深入浅出',
-  '注重实践能力与创新意识、科学思想与思维、表达能力培养',
-  '理论与应用相结合，学以致用',
-  '善于启发、引导学生研究性学习，注重师生互动',
-  '学习获得感	 对科学思想与研究性思维、表达、创新意识的形成有帮助',
-];
+// 生成一棵树
+const root = new TreeNode(
+  new TreeNode(
+    new TreeNode(
+      new TreeNode(null, null, 4),
+      new TreeNode(null, null, 5),
+      2,
+    ),
+    new TreeNode(null, null, 6),
+    3,
+  ),
+  new TreeNode(null, null, 7),
+  1,
+);
 
-const textarea = document.querySelector('#evaText');
-textarea.value = arr[0];
+const inorderTraversal = (root) => {
+  // 结果数组
+  const res = [];
+
+  // 模拟栈
+  const stack = [];
+
+  // 当前指针
+  let cur = root;
+
+  // 当栈非空或者当前指针非空时
+  while (stack.length || cur) {
+    // 如果当前指针非空，则将当前指针入栈，并将当前指针指向左子节点
+    if (cur) {
+      stack.push(cur);
+      cur = cur.left;
+    } else {
+      // 如果当前指针为空，则取出栈顶元素，将当前指针指向栈顶元素的右子节点
+      cur = stack.pop();
+      res.push(cur.val);
+      cur = cur.right;
+    }
+  }
+  return res;
+}
+
+console.log(inorderTraversal(root));
