@@ -2,7 +2,7 @@
 title: react
 date: 2025-04-26 19:23:30
 tags: react 框架
-couver: /img/react.png
+cover: /img/react.png
 top_img: /img/react.png
 ---
 # 快速入门
