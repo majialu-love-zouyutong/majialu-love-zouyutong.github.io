@@ -146,5 +146,114 @@ export default function Profile() {
 
 ```
 
-在上面的示例中，`style={{}}` 并不是一个特殊的语法，而是 `style={ }` JSX 大括号内的一个普通 `{} `对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。
+在上面的示例中，`style={{}}` 并不是一个特殊的语法，而是 `style={ }` JSX 大括号内的一个普通 `{}`对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。
+
+## 条件渲染
+
+React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的`if`语句
+
+```jsx
+let content;
+if (isLoggedIn) {
+  content = <AdminPanel />;
+} else {
+  content = <LoginForm />;
+}
+return (
+  <div>
+    { content }
+  </div>
+)
+```
+
+如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：
+
+```jsx
+<div>
+  {isLoggedIn ? (
+    <AdminPanel />
+  ) : (
+    <LoginForm />
+  )}
+</div>
+```
+
+当你不需要 else 分支时，你也可以使用更简短的 逻辑 && 语法：
+
+```jsx
+<div>
+  {isLoggedIn && <AdminPanel />}
+</div>
+```
+
+## 渲染列表
+
+你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。
+
+假设你有一个产品数组：
+
+```jsx
+const products = [
+  { title: 'Cabbage', id: 1 },
+  { title: 'Garlic', id: 2 },
+  { title: 'Apple', id: 3 },
+];
+```
+在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:
+
+```jsx
+const listItems = products.map(product => 
+  <li key={product.id}>
+    {product.title}
+  </li>
+);
+
+return (
+  <ul>{listItems}</ul>
+)
+```
+
+注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。
+
+```jsx
+const products = [
+  { title: '卷心菜', isFruit: false, id: 1 },
+  { title: '大蒜', isFruit: false, id: 2 },
+  { title: '苹果', isFruit: true, id: 3 },
+];
+
+export default function ShoppingList() {
+  const listItems = products.map(product =>
+    <li
+      key={product.id}
+      style={{
+        color: product.isFruit ? 'magenta' : 'darkgreen'
+      }}
+    >
+      {product.title}
+    </li>
+  );
+
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
+```
+
+## 响应事件
+
+```jsx
+function MyButton() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      点我
+    </button>
+  );
+}
+```
 
