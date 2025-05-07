@@ -96,3 +96,38 @@ tags: PPT
 
 ![20250505222950](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222950.png)
 
+# 如何制作创意的曲线时间轴
+
+![20250507191808](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507191808.png)
+
+## 曲线使用
+
+两个端点间隔越大，曲线越平滑。
+
+**快速双击鼠标左键**结束绘制
+
+利用合并形状可以实现剪除
+
+![20250507193640](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193640.png)
+
+# 怎么三维立体图表样式
+
+![20250507193806](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193806.png)
+
+三维旋转决定样式
+
+三维深度决定厚度
+
+光源调整决定明暗
+
+![20250507193929](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193929.png)
+
+在三维旋转中**选择预设样式即可**
+
+![20250507194041](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507194041.png)
+
+![20250507194550](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507194550.png)
+
+![20250507195050](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195050.png)
+
+![20250507195855](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195855.png)
