@@ -61,6 +61,10 @@ tags: PPT
 - 便于后期统一修改
 - 避免重复相同的操作
 
+设计->颜色
+
+![20250508215256](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508215256.png)
+
 ![20250505221337](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221337.png)
 
 ![20250505221834](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221834.png)
@@ -183,4 +187,65 @@ tags: PPT
 - 变化不大：利用缩放功能
 
 ![20250508163807](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163807.png)
+
+# 如何打造更清晰的页面结构
+
+## 幻灯片的节的作用
+
+- 对页面进行分类，**让页面更具结构**
+- 基于**幻灯片结构**分类，便于快速调整页面结构
+
+![20250508164826](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508164826.png)
+
+![20250508165041](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508165041.png)
+
+![20250508165138](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508165138.png)
+
+## 结合缩放定位功能，实现**页面快速跳转**
+
+![20250508165357](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508165357.png)
+
+- 节缩放定位：**跳转到某章节第一页**，讲解完对应板块内容后，会**自动返回至目录页面**
+
+可以新建一个页面来插入节缩放的内容。
+
+![20250508204010](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508204010.png)
+
+鼠标滚轮上滚会回到导航页。
+
+# 如何为页面添加自动变化的页码
+
+![20250508211121](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508211121.png)
+
+在母版中设计页码样式，**在插入->页眉页脚**中应用。
+
+![20250508211258](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508211258.png)
+
+# 如何制作一个创意的太极图形
+
+## 合并形状（布尔运算）
+
+![20250508213122](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508213122.png)
+
+![20250508213511](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508213511.png)
+
+有一些情况不能激活布尔运算：
+- 同时选中两张图片
+- 页面元素存在组合/线条
+
+在进行布尔运算时，会变成先选择的元素。
+
+可以利用拆分来做金字塔图形。
+
+利用相交制作文字图片效果
+
+![20250508220216](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508220216.png)
+
+利用剪除可以实现镂空字的效果
+
+![20250508220435](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508220435.png)
+
+利用剪除还可以实现文字矢量化处理，**让文字变成形状**。
+
+这样可以解决一些神奇的字体在别人电脑上未安装无法显示的问题。
 
