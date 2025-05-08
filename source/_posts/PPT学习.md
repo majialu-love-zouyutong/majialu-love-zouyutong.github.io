@@ -131,3 +131,34 @@ tags: PPT
 ![20250507195050](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195050.png)
 
 ![20250507195855](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195855.png)
+
+# 如何制作高级感折线组合图表
+
+![20250508135351](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508135351.png)
+
+- 插入图表，选择组合图表
+- 选择折线图和面积图
+- 将二者数据修改为相同
+
+![20250508142144](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142144.png)
+
+> Microsoft365中，没有办法直接插入面积和折线的组合图，需要插入别的后手动选中然后修改
+
+![20250508142722](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142722.png)
+
+# 如何制作更美观的表格
+
+## 表格样式的调整
+
+![20250508142855](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142855.png)
+
+![20250508142932](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142932.png)
+
+- 对齐方式
+  - 文字型：左对齐，垂直居中（文字少的时候也可以居中对齐）
+  - 数据型：右对齐，垂直居中（数据右对齐主要是为了方便读数，如果存在小数点，一定要统一小数点位数）
+- 视觉节奏：对不同行使用不同的色块来进行区分（提前设计主题色来与整体色彩匹配）
+- 层级结构：区分重点和非重点
+  - 更大的字号
+  - 彩色的底纹
+  - 更粗的线条
