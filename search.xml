@@ -2511,131 +2511,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PPT学习</title>
-    <url>/2025/05/05/PPT%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="课程学习框架"><a href="#课程学习框架" class="headerlink" title="课程学习框架"></a>课程学习框架</h1><blockquote>
-<p>在<strong>页面</strong>上，按照<strong>风格统一性</strong>的原则，把信息<strong>可视化</strong>、<strong>结构化</strong>地<strong>呈现</strong>出来</p>
-<ul>
-<li>页面：页面结构，页面尺寸</li>
-<li>风格统一性：素材风格，母版设计，文字风格，设计主题，形状效果，三维样式</li>
-<li>可视化：数据图表，表格设计，图标使用</li>
-<li>结构化：参考线，排版效率，图文排版</li>
-<li>呈现：页面导出，动画设计</li>
-</ul>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505215532.png" alt="20250505215532"></p>
-<ul>
-<li>页面创建</li>
-<li>视觉风格</li>
-<li>信息可视化</li>
-<li>排版布局</li>
-<li>动画添加</li>
-<li>创意效果</li>
-</ul>
-<h1 id="如何快速设计一份PPT的模板样式"><a href="#如何快速设计一份PPT的模板样式" class="headerlink" title="如何快速设计一份PPT的模板样式"></a>如何快速设计一份PPT的模板样式</h1><p>构成PPT版面样式统一的4大要素</p>
-<ul>
-<li>标题栏</li>
-<li>Logo</li>
-<li>注释</li>
-<li>页码</li>
-</ul>
-<h2 id="母版和版式的区别"><a href="#母版和版式的区别" class="headerlink" title="母版和版式的区别"></a>母版和版式的区别</h2><p>母版决定了版式样式，版式决定页面的样式。</p>
-<p>在母版上添加的元素在所有版式都会出现。</p>
-<p>在版式上勾选隐藏背景图形，就可以使得版式不受母版影响。</p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221526.png" alt="20250505221526"></p>
-<h2 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h2><p>占位符会先占住一个固定的位置，等你往里面添加内容。</p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221557.png" alt="20250505221557"></p>
-<h1 id="如何快速调整PPT设计风格"><a href="#如何快速调整PPT设计风格" class="headerlink" title="如何快速调整PPT设计风格"></a>如何快速调整PPT设计风格</h1><p>构成PPt视觉风格样式统一的3大要素</p>
-<ul>
-<li>背景</li>
-<li>色彩</li>
-<li>字体</li>
-</ul>
-<h2 id="设计主题的设置"><a href="#设计主题的设置" class="headerlink" title="设计主题的设置"></a>设计主题的设置</h2><p>提前确定设计主题的好处</p>
-<ul>
-<li>便于后期统一修改</li>
-<li>避免重复相同的操作</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221337.png" alt="20250505221337"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221834.png" alt="20250505221834"></p>
-<blockquote>
-<p>要想实现一键换色，必须使用主题色，不能自己乱用。</p>
-</blockquote>
-<h1 id="如何设计更高级的渐变形状"><a href="#如何设计更高级的渐变形状" class="headerlink" title="如何设计更高级的渐变形状"></a>如何设计更高级的渐变形状</h1><h2 id="为什么使用渐变"><a href="#为什么使用渐变" class="headerlink" title="为什么使用渐变"></a>为什么使用渐变</h2><p>提升色彩丰富层次</p>
-<h2 id="形状渐变的效果设置"><a href="#形状渐变的效果设置" class="headerlink" title="形状渐变的效果设置"></a>形状渐变的效果设置</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222219.png" alt="20250505222219"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222340.png" alt="20250505222340"></p>
-<p>渐变光圈上下拖拽就可以删除。</p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222508.png" alt="20250505222508"></p>
-<ul>
-<li>只保留两个光圈</li>
-<li>设置相同颜色</li>
-<li>其中一个U值上调或者下调30</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222620.png" alt="20250505222620"></p>
-<h2 id="利于渐变透明度实现局部遮挡"><a href="#利于渐变透明度实现局部遮挡" class="headerlink" title="利于渐变透明度实现局部遮挡"></a>利于渐变透明度实现局部遮挡</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222851.png" alt="20250505222851"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222950.png" alt="20250505222950"></p>
-<h1 id="如何制作创意的曲线时间轴"><a href="#如何制作创意的曲线时间轴" class="headerlink" title="如何制作创意的曲线时间轴"></a>如何制作创意的曲线时间轴</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507191808.png" alt="20250507191808"></p>
-<h2 id="曲线使用"><a href="#曲线使用" class="headerlink" title="曲线使用"></a>曲线使用</h2><p>两个端点间隔越大，曲线越平滑。</p>
-<p><strong>快速双击鼠标左键</strong>结束绘制</p>
-<p>利用合并形状可以实现剪除</p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193640.png" alt="20250507193640"></p>
-<h1 id="怎么三维立体图表样式"><a href="#怎么三维立体图表样式" class="headerlink" title="怎么三维立体图表样式"></a>怎么三维立体图表样式</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193806.png" alt="20250507193806"></p>
-<p>三维旋转决定样式</p>
-<p>三维深度决定厚度</p>
-<p>光源调整决定明暗</p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193929.png" alt="20250507193929"></p>
-<p>在三维旋转中<strong>选择预设样式即可</strong></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507194041.png" alt="20250507194041"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507194550.png" alt="20250507194550"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195050.png" alt="20250507195050"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195855.png" alt="20250507195855"></p>
-<h1 id="如何制作高级感折线组合图表"><a href="#如何制作高级感折线组合图表" class="headerlink" title="如何制作高级感折线组合图表"></a>如何制作高级感折线组合图表</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508135351.png" alt="20250508135351"></p>
-<ul>
-<li>插入图表，选择组合图表</li>
-<li>选择折线图和面积图</li>
-<li>将二者数据修改为相同</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142144.png" alt="20250508142144"></p>
-<blockquote>
-<p>Microsoft365中，没有办法直接插入面积和折线的组合图，需要插入别的后手动选中然后修改</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142722.png" alt="20250508142722"></p>
-<h1 id="如何制作更美观的表格"><a href="#如何制作更美观的表格" class="headerlink" title="如何制作更美观的表格"></a>如何制作更美观的表格</h1><h2 id="表格样式的调整"><a href="#表格样式的调整" class="headerlink" title="表格样式的调整"></a>表格样式的调整</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142855.png" alt="20250508142855"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142932.png" alt="20250508142932"></p>
-<ul>
-<li>对齐方式<ul>
-<li>文字型：左对齐，垂直居中（文字少的时候也可以居中对齐）</li>
-<li>数据型：右对齐，垂直居中（数据右对齐主要是为了方便读数，如果存在小数点，一定要统一小数点位数）</li>
-</ul>
-</li>
-<li>视觉节奏：对不同行使用不同的色块来进行区分（提前设计主题色来与整体色彩匹配）</li>
-<li>层级结构：区分重点和非重点<ul>
-<li>更大的字号</li>
-<li>彩色的底纹</li>
-<li>更粗的线条</li>
-</ul>
-</li>
-</ul>
-<h1 id="如何做宽-竖屏PPT，怎么设置页面尺寸"><a href="#如何做宽-竖屏PPT，怎么设置页面尺寸" class="headerlink" title="如何做宽&#x2F;竖屏PPT，怎么设置页面尺寸"></a>如何做宽&#x2F;竖屏PPT，怎么设置页面尺寸</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508162846.png" alt="20250508162846"></p>
-<p>以放映端设备尺寸为准，<strong>遵循页面尺寸等比例</strong>原则</p>
-<ul>
-<li>手机端：9:16或9:18</li>
-<li>电脑端：16：9</li>
-<li>投影机：4:3</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163309.png" alt="20250508163309"></p>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163359.png" alt="20250508163359"></p>
-<h2 id="PPT做一半，改尺寸怎么办？"><a href="#PPT做一半，改尺寸怎么办？" class="headerlink" title="PPT做一半，改尺寸怎么办？"></a>PPT做一半，改尺寸怎么办？</h2><ul>
-<li>变化太大直接重做</li>
-<li>变化不大：利用缩放功能</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163807.png" alt="20250508163807"></p>
-]]></content>
-      <tags>
-        <tag>PPT</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OPPO24秋</title>
     <url>/2025/03/11/OPPO24%E7%A7%8B/</url>
     <content><![CDATA[<h1 id="考情分析"><a href="#考情分析" class="headerlink" title="考情分析"></a>考情分析</h1><h1 id="逐题解析"><a href="#逐题解析" class="headerlink" title="逐题解析"></a>逐题解析</h1><h2 id="1-执行以下程序-对于①②式能否在a标签上实现效果-下列说法正确的是"><a href="#1-执行以下程序-对于①②式能否在a标签上实现效果-下列说法正确的是" class="headerlink" title="1. 执行以下程序,对于①②式能否在a标签上实现效果,下列说法正确的是"></a>1. 执行以下程序,对于①②式能否在a标签上实现效果,下列说法正确的是</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">text-decoration</span>: none;</span></span><br><span class="line"><span class="language-css">      <span class="comment">/* ① */</span></span></span><br><span class="line"><span class="language-css">      <span class="attribute">font-size</span>: <span class="number">12px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="comment">/* ② */</span></span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>跳转<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -3087,6 +2962,165 @@
 ]]></content>
       <tags>
         <tag>OPPO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PPT学习</title>
+    <url>/2025/05/05/PPT%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="课程学习框架"><a href="#课程学习框架" class="headerlink" title="课程学习框架"></a>课程学习框架</h1><blockquote>
+<p>在<strong>页面</strong>上，按照<strong>风格统一性</strong>的原则，把信息<strong>可视化</strong>、<strong>结构化</strong>地<strong>呈现</strong>出来</p>
+<ul>
+<li>页面：页面结构，页面尺寸</li>
+<li>风格统一性：素材风格，母版设计，文字风格，设计主题，形状效果，三维样式</li>
+<li>可视化：数据图表，表格设计，图标使用</li>
+<li>结构化：参考线，排版效率，图文排版</li>
+<li>呈现：页面导出，动画设计</li>
+</ul>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505215532.png" alt="20250505215532"></p>
+<ul>
+<li>页面创建</li>
+<li>视觉风格</li>
+<li>信息可视化</li>
+<li>排版布局</li>
+<li>动画添加</li>
+<li>创意效果</li>
+</ul>
+<h1 id="如何快速设计一份PPT的模板样式"><a href="#如何快速设计一份PPT的模板样式" class="headerlink" title="如何快速设计一份PPT的模板样式"></a>如何快速设计一份PPT的模板样式</h1><p>构成PPT版面样式统一的4大要素</p>
+<ul>
+<li>标题栏</li>
+<li>Logo</li>
+<li>注释</li>
+<li>页码</li>
+</ul>
+<h2 id="母版和版式的区别"><a href="#母版和版式的区别" class="headerlink" title="母版和版式的区别"></a>母版和版式的区别</h2><p>母版决定了版式样式，版式决定页面的样式。</p>
+<p>在母版上添加的元素在所有版式都会出现。</p>
+<p>在版式上勾选隐藏背景图形，就可以使得版式不受母版影响。</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221526.png" alt="20250505221526"></p>
+<h2 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h2><p>占位符会先占住一个固定的位置，等你往里面添加内容。</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221557.png" alt="20250505221557"></p>
+<h1 id="如何快速调整PPT设计风格"><a href="#如何快速调整PPT设计风格" class="headerlink" title="如何快速调整PPT设计风格"></a>如何快速调整PPT设计风格</h1><p>构成PPt视觉风格样式统一的3大要素</p>
+<ul>
+<li>背景</li>
+<li>色彩</li>
+<li>字体</li>
+</ul>
+<h2 id="设计主题的设置"><a href="#设计主题的设置" class="headerlink" title="设计主题的设置"></a>设计主题的设置</h2><p>提前确定设计主题的好处</p>
+<ul>
+<li>便于后期统一修改</li>
+<li>避免重复相同的操作</li>
+</ul>
+<p>设计-&gt;颜色</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508215256.png" alt="20250508215256"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221337.png" alt="20250505221337"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505221834.png" alt="20250505221834"></p>
+<blockquote>
+<p>要想实现一键换色，必须使用主题色，不能自己乱用。</p>
+</blockquote>
+<h1 id="如何设计更高级的渐变形状"><a href="#如何设计更高级的渐变形状" class="headerlink" title="如何设计更高级的渐变形状"></a>如何设计更高级的渐变形状</h1><h2 id="为什么使用渐变"><a href="#为什么使用渐变" class="headerlink" title="为什么使用渐变"></a>为什么使用渐变</h2><p>提升色彩丰富层次</p>
+<h2 id="形状渐变的效果设置"><a href="#形状渐变的效果设置" class="headerlink" title="形状渐变的效果设置"></a>形状渐变的效果设置</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222219.png" alt="20250505222219"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222340.png" alt="20250505222340"></p>
+<p>渐变光圈上下拖拽就可以删除。</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222508.png" alt="20250505222508"></p>
+<ul>
+<li>只保留两个光圈</li>
+<li>设置相同颜色</li>
+<li>其中一个U值上调或者下调30</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222620.png" alt="20250505222620"></p>
+<h2 id="利于渐变透明度实现局部遮挡"><a href="#利于渐变透明度实现局部遮挡" class="headerlink" title="利于渐变透明度实现局部遮挡"></a>利于渐变透明度实现局部遮挡</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222851.png" alt="20250505222851"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250505222950.png" alt="20250505222950"></p>
+<h1 id="如何制作创意的曲线时间轴"><a href="#如何制作创意的曲线时间轴" class="headerlink" title="如何制作创意的曲线时间轴"></a>如何制作创意的曲线时间轴</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507191808.png" alt="20250507191808"></p>
+<h2 id="曲线使用"><a href="#曲线使用" class="headerlink" title="曲线使用"></a>曲线使用</h2><p>两个端点间隔越大，曲线越平滑。</p>
+<p><strong>快速双击鼠标左键</strong>结束绘制</p>
+<p>利用合并形状可以实现剪除</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193640.png" alt="20250507193640"></p>
+<h1 id="怎么三维立体图表样式"><a href="#怎么三维立体图表样式" class="headerlink" title="怎么三维立体图表样式"></a>怎么三维立体图表样式</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193806.png" alt="20250507193806"></p>
+<p>三维旋转决定样式</p>
+<p>三维深度决定厚度</p>
+<p>光源调整决定明暗</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507193929.png" alt="20250507193929"></p>
+<p>在三维旋转中<strong>选择预设样式即可</strong></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507194041.png" alt="20250507194041"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507194550.png" alt="20250507194550"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195050.png" alt="20250507195050"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250507195855.png" alt="20250507195855"></p>
+<h1 id="如何制作高级感折线组合图表"><a href="#如何制作高级感折线组合图表" class="headerlink" title="如何制作高级感折线组合图表"></a>如何制作高级感折线组合图表</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508135351.png" alt="20250508135351"></p>
+<ul>
+<li>插入图表，选择组合图表</li>
+<li>选择折线图和面积图</li>
+<li>将二者数据修改为相同</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142144.png" alt="20250508142144"></p>
+<blockquote>
+<p>Microsoft365中，没有办法直接插入面积和折线的组合图，需要插入别的后手动选中然后修改</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142722.png" alt="20250508142722"></p>
+<h1 id="如何制作更美观的表格"><a href="#如何制作更美观的表格" class="headerlink" title="如何制作更美观的表格"></a>如何制作更美观的表格</h1><h2 id="表格样式的调整"><a href="#表格样式的调整" class="headerlink" title="表格样式的调整"></a>表格样式的调整</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142855.png" alt="20250508142855"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508142932.png" alt="20250508142932"></p>
+<ul>
+<li>对齐方式<ul>
+<li>文字型：左对齐，垂直居中（文字少的时候也可以居中对齐）</li>
+<li>数据型：右对齐，垂直居中（数据右对齐主要是为了方便读数，如果存在小数点，一定要统一小数点位数）</li>
+</ul>
+</li>
+<li>视觉节奏：对不同行使用不同的色块来进行区分（提前设计主题色来与整体色彩匹配）</li>
+<li>层级结构：区分重点和非重点<ul>
+<li>更大的字号</li>
+<li>彩色的底纹</li>
+<li>更粗的线条</li>
+</ul>
+</li>
+</ul>
+<h1 id="如何做宽-竖屏PPT，怎么设置页面尺寸"><a href="#如何做宽-竖屏PPT，怎么设置页面尺寸" class="headerlink" title="如何做宽&#x2F;竖屏PPT，怎么设置页面尺寸"></a>如何做宽&#x2F;竖屏PPT，怎么设置页面尺寸</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508162846.png" alt="20250508162846"></p>
+<p>以放映端设备尺寸为准，<strong>遵循页面尺寸等比例</strong>原则</p>
+<ul>
+<li>手机端：9:16或9:18</li>
+<li>电脑端：16：9</li>
+<li>投影机：4:3</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163309.png" alt="20250508163309"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163359.png" alt="20250508163359"></p>
+<h2 id="PPT做一半，改尺寸怎么办？"><a href="#PPT做一半，改尺寸怎么办？" class="headerlink" title="PPT做一半，改尺寸怎么办？"></a>PPT做一半，改尺寸怎么办？</h2><ul>
+<li>变化太大直接重做</li>
+<li>变化不大：利用缩放功能</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163807.png" alt="20250508163807"></p>
+<h1 id="如何打造更清晰的页面结构"><a href="#如何打造更清晰的页面结构" class="headerlink" title="如何打造更清晰的页面结构"></a>如何打造更清晰的页面结构</h1><h2 id="幻灯片的节的作用"><a href="#幻灯片的节的作用" class="headerlink" title="幻灯片的节的作用"></a>幻灯片的节的作用</h2><ul>
+<li>对页面进行分类，<strong>让页面更具结构</strong></li>
+<li>基于<strong>幻灯片结构</strong>分类，便于快速调整页面结构</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508164826.png" alt="20250508164826"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508165041.png" alt="20250508165041"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508165138.png" alt="20250508165138"></p>
+<h2 id="结合缩放定位功能，实现页面快速跳转"><a href="#结合缩放定位功能，实现页面快速跳转" class="headerlink" title="结合缩放定位功能，实现页面快速跳转"></a>结合缩放定位功能，实现<strong>页面快速跳转</strong></h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508165357.png" alt="20250508165357"></p>
+<ul>
+<li>节缩放定位：<strong>跳转到某章节第一页</strong>，讲解完对应板块内容后，会<strong>自动返回至目录页面</strong></li>
+</ul>
+<p>可以新建一个页面来插入节缩放的内容。</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508204010.png" alt="20250508204010"></p>
+<p>鼠标滚轮上滚会回到导航页。</p>
+<h1 id="如何为页面添加自动变化的页码"><a href="#如何为页面添加自动变化的页码" class="headerlink" title="如何为页面添加自动变化的页码"></a>如何为页面添加自动变化的页码</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508211121.png" alt="20250508211121"></p>
+<p>在母版中设计页码样式，<strong>在插入-&gt;页眉页脚</strong>中应用。</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508211258.png" alt="20250508211258"></p>
+<h1 id="如何制作一个创意的太极图形"><a href="#如何制作一个创意的太极图形" class="headerlink" title="如何制作一个创意的太极图形"></a>如何制作一个创意的太极图形</h1><h2 id="合并形状（布尔运算）"><a href="#合并形状（布尔运算）" class="headerlink" title="合并形状（布尔运算）"></a>合并形状（布尔运算）</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508213122.png" alt="20250508213122"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508213511.png" alt="20250508213511"></p>
+<p>有一些情况不能激活布尔运算：</p>
+<ul>
+<li>同时选中两张图片</li>
+<li>页面元素存在组合&#x2F;线条</li>
+</ul>
+<p>在进行布尔运算时，会变成先选择的元素。</p>
+<p>可以利用拆分来做金字塔图形。</p>
+<p>利用相交制作文字图片效果</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508220216.png" alt="20250508220216"></p>
+<p>利用剪除可以实现镂空字的效果</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508220435.png" alt="20250508220435"></p>
+<p>利用剪除还可以实现文字矢量化处理，<strong>让文字变成形状</strong>。</p>
+<p>这样可以解决一些神奇的字体在别人电脑上未安装无法显示的问题。</p>
+]]></content>
+      <tags>
+        <tag>PPT</tag>
       </tags>
   </entry>
   <entry>
@@ -7063,73 +7097,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>react</title>
-    <url>/2025/04/26/react/</url>
-    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
-<h3 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h3><ul>
-<li>如何创建和嵌套组件</li>
-<li>如何添加标签和样式 </li>
-<li>如何显示数据</li>
-<li>如何渲染条件和列表</li>
-<li>如何对事件做出响应并更新界面</li>
-<li>如何在组件间共享数据</li>
-</ul>
-</blockquote>
-<h2 id="创建和嵌套组件"><a href="#创建和嵌套组件" class="headerlink" title="创建和嵌套组件"></a>创建和嵌套组件</h2><p>React应用程序是由<strong>组件</strong>组成的。一个组件是UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。</p>
-<p>React组件是返回标签的JavaScript函数：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  )；</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-<p>至此，你已经声明了<code>MyButton</code>,现在你可以把它嵌套到另一个组件中：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>你可能已经注意到<code>&lt;MyButton /&gt;</code>是以大写字母开头的。你可以据此识别React组件。React组件必须以大写字母开头，而HTML标签则必须是小写字母。</p>
-<p>来看下效果：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      我是一个按钮</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="使用JSX编写标签"><a href="#使用JSX编写标签" class="headerlink" title="使用JSX编写标签"></a>使用JSX编写标签</h2><p>上面所使用的标签语法是JSX。它是可选的，但大多数React项目会使用JSX，主要是它很方便。所有 我们推荐的本地开发工具 都开箱即用地支持 JSX。</p>
-<p>JSX比HTML更加严格。你必须闭合标签，如<code>&lt;br /&gt;</code>。你的组件也不能反悔多个JSX标签。你必须将他们包裹到一个共享的父级中，比如<code>&lt;div&gt;...&lt;/div&gt;</code>或使用空的<code>&lt;&gt;...&lt;/&gt;</code>包裹：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">AboutPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>你好。<span class="tag">&lt;<span class="name">br</span> /&gt;</span>最近怎么样？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>在React中，你可以使用<code>className</code>来指定一个CSS的class。它与HTML的<code>class</code>属性的工作方式相同。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后，你可以在一个单独的CSS文件中为它编写CSS规则：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>-raduis: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>JSX会让你把标签放到JavaScript中。而大括号会让你“回到”JavaScript中，这样你就可以从你的代码中嵌入一些变量并展示给用户。例如，这将显示<code>user.name</code>:</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;user.name&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>你还可以将JSX属性“转义到JavaScript”，但你必须使用大括号而非引号。例如，<code>className=&quot;avatar&quot;</code>是将<code>&quot;avatar&quot;</code>字符串传递给<code>className</code>。作为CSS的class。但<code>src=&#123;user.imageUrl&#125;</code>会读取JavaScript的<code>user.imageUrl</code>变量，然后将该值作为<code>src</code>属性传递：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">src</span>=<span class="string">&#123;user.imgeUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>你也可以把更为复杂的表达式放入JSX的大括号内，例如字符串拼接：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Hedy Lamarr&#x27;</span>,</span><br><span class="line">  <span class="attr">imageUrl</span>: <span class="string">&#x27;http://i.imgur.com/yXovdOSss.jpb&#x27;</span>,</span><br><span class="line">  <span class="attr">imageSize</span>: <span class="number">90</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Profile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;user.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">src</span>=<span class="string">&#123;user.imageUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">alt</span>=<span class="string">&#123;</span>&#x27;<span class="attr">Photo</span> <span class="attr">of</span>&#x27; + <span class="attr">user.name</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">width:</span> <span class="attr">user.imageSize</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">height:</span> <span class="attr">user.imageSize</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
-
-<p>在上面的示例中，<code>style=&#123;&#123;&#125;&#125;</code> 并不是一个特殊的语法，而是 <code>style=&#123; &#125;</code> JSX 大括号内的一个普通 <code>&#123;&#125;</code>对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。</p>
-<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的<code>if</code>语句</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> content;</span><br><span class="line"><span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123; content &#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn ? (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span></span><br><span class="line">  ) : (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span></span><br><span class="line">  )&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>当你不需要 else 分支时，你也可以使用更简短的 逻辑 &amp;&amp; 语法：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="渲染列表"><a href="#渲染列表" class="headerlink" title="渲染列表"></a>渲染列表</h2><p>你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。</p>
-<p>假设你有一个产品数组：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Cabbage&#x27;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Garlic&#x27;</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Apple&#x27;</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<p>在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span> </span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;卷心菜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;大蒜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;苹果&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">true</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">ShoppingList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">li</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">color:</span> <span class="attr">product.isFruit</span> ? &#x27;<span class="attr">magenta</span>&#x27; <span class="attr">:</span> &#x27;<span class="attr">darkgreen</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;You clicked me!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      点我</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>react 框架</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue3官网学习</title>
     <url>/2025/02/20/Vue3%E5%AE%98%E7%BD%91%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h4 id="什么是Vue"><a href="#什么是Vue" class="headerlink" title="什么是Vue?"></a>什么是Vue?</h4><p>Vue是一款用于构建用户界面的<code>JavaScript</code>框架.它基于标准的<code>HTML</code>,<code>CSS</code>,和<code>JavaScript</code>构建,并提供了一套声明式的,组件化的编程模型,帮助你高效地开发用户界面.无论是简单还是复杂的界面,Vue都可以胜任.</p>
@@ -8402,71 +8369,70 @@
       </tags>
   </entry>
   <entry>
-    <title>《从白屏到丝滑体验：深入解析骨架屏技术》</title>
-    <url>/2025/01/06/skeleton-screen/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习,有一个新的需求,需要把我们的 APP 的遮罩加载 loading 效果替换为骨架屏(<code>skeleton screen</code>)以提升用户体验.</p>
-<p>原来在学习 uniapp 小程序开发的时候曾经使用过骨架屏这一技术,当时是利用微信小程序开发者工具直接生成的.</p>
-<p>但是公司的 APP 的技术栈是 Flutter, 开发的是 Android 和 IOS 的应用,所以在技术实现上可能会略有不同.</p>
-<p>为了总结记录骨架屏的相关知识和最佳实践,决定开一篇文章记录一下.</p>
-<h1 id="骨架屏的背景与意义"><a href="#骨架屏的背景与意义" class="headerlink" title="骨架屏的背景与意义"></a>骨架屏的背景与意义</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>骨架屏(<code>skeleton screen</code>)是指当网络较慢时，在页面真实数据加载之前，给用户展示出页面的<strong>大致结构</strong>。 一方面让用户对页面有一定的心理预期，另一方面可以改善长期停留在空白屏给用户带来的枯燥和不适感。它可以为用户提供更好<strong>视觉效果</strong>和<strong>使用体验</strong>。</p>
-<img src="/2025/01/06/skeleton-screen/image-20250106105023197.png" class="" title="image-20250106105023197">
+    <title>react</title>
+    <url>/2025/04/26/react/</url>
+    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
+<h3 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h3><ul>
+<li>如何创建和嵌套组件</li>
+<li>如何添加标签和样式 </li>
+<li>如何显示数据</li>
+<li>如何渲染条件和列表</li>
+<li>如何对事件做出响应并更新界面</li>
+<li>如何在组件间共享数据</li>
+</ul>
+</blockquote>
+<h2 id="创建和嵌套组件"><a href="#创建和嵌套组件" class="headerlink" title="创建和嵌套组件"></a>创建和嵌套组件</h2><p>React应用程序是由<strong>组件</strong>组成的。一个组件是UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。</p>
+<p>React组件是返回标签的JavaScript函数：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  )；</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
 
-<h2 id="技术边界"><a href="#技术边界" class="headerlink" title="技术边界"></a>技术边界</h2><p>在学习新技术时,我们需要明确<strong>技术是为了解决问题的</strong>.所以在学习过程中,切不可盲目,必须要有明确的方向.</p>
-<p>首先,便是<strong>划定技术的边界</strong>,也就是说,这个技术<strong>到底是用来干什么的</strong>.一旦明确了技术的边界,我们学习的过程就像有了前进的灯塔,不会迷茫而混乱.</p>
-<p>在当前背景下,前端开发并没有类似<code>Java Spring</code>那样一统天下的最佳实践,所以导致前端的技术纷繁复杂,同样一个问题,解决的方案可能有非常多.这个时候更需要我们<strong>划定技术的边界</strong>.</p>
-<p>比如在 css 工程化过程中遇到的问题: 类名冲突.随着工程越来越大,样式越来越多,类名经常会出现冲突的情况.为了解决这个问题,提出了很多方案,比如</p>
-<ul>
-<li>BEM,OOCSS,AMCSSD 等命名规范</li>
-<li>css in js 方案,用 js 的对象来表示 css 样式</li>
-<li>css module, 利用模块化处理</li>
-</ul>
-<p>这些技术我可能很多没有学过,或者学过又忘了,但是无伤大雅.因为我一旦知道了这些技术到底在解决什么问题,他的所有技术实现细节跑不出如来佛的手掌心.技术具体的实现细节,当我们需要使用时,查阅相关文档即可解决.</p>
-<p>回到骨架屏技术,它到底为了解决什么问题呢?</p>
-<p><strong>页面加载时用户体验不佳</strong></p>
-<p>在目前激烈的市场竞争环境下,用户体验的重要性在此不在赘述.造成页面加载体验不好的原因也有很多,用户设备,网速,前端页面处理等等.</p>
-<p>为了解决这个问题,之前业界也使用过很多方案</p>
-<ul>
-<li>白屏: 最开始就是直接白屏,用户体验非常糟糕</li>
-<li>空内容站位: 显示一个空白框或”加载中”文字占位<ul>
-<li>优点: 实现简单,占用资源少,无需复杂逻辑</li>
-<li>缺点: 空白框或文字与内容本身无直接关联,无法让用户直观感受到加载进度</li>
-</ul>
-</li>
-<li>Loading 动画(Spinner 或进度条):显示一个旋转的圆圈之类的,告诉用户内容正在加载<ul>
-<li>优点: 简单易实现,用户反馈明确,用户知道没有卡住,正在加载内容</li>
-<li>缺点: 缺乏页面结构感,无法让用户预期页面布局或内容结构,体验较生硬</li>
-</ul>
-</li>
-</ul>
-<p>于是,骨架屏技术应运而生.</p>
-<h1 id="骨架屏的设计与实现"><a href="#骨架屏的设计与实现" class="headerlink" title="骨架屏的设计与实现"></a>骨架屏的设计与实现</h1><p>由于公司技术栈原因,所以首先研究Flutter框架下骨架屏的使用.</p>
-<p>至于Web端的骨架屏,三大公司的组件库(<code>T Design</code>,<code>Arco Design</code> <code>Ant Design</code>)都有封装好的最佳实践.</p>
-<p>对于Flutter, T Design 有相关设计,可惜还没有更新骨架屏组件.</p>
-<p>查阅相关资料文档可知,目前Flutter实现骨架屏主要有两个包<code>shimmer</code>和<code>skeletonizer</code></p>
-<p><a href="https://pub.dev/packages/shimmer">shimmer</a></p>
-<p><a href="https://pub.dev/packages/skeletonizer">skeletonizer</a></p>
-<p>详细内容见后面 <a href="#5">案例分享与实践经验</a></p>
-<h1 id="骨架屏的最佳实践"><a href="#骨架屏的最佳实践" class="headerlink" title="骨架屏的最佳实践"></a>骨架屏的最佳实践</h1><h2 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h2><ul>
-<li>网络较慢,需要长时间等待加载处理的情况下</li>
-<li>图文信息内容较多的列表&#x2F;卡片中</li>
-<li>只在第一次加载数据的时候使用</li>
-</ul>
-<h2 id="何时不适用"><a href="#何时不适用" class="headerlink" title="何时不适用"></a>何时不适用</h2><ul>
-<li>当内容布局和排版<strong>不固定</strong>时,轮廓和内容布局之间会有<strong>巨大差异</strong>,使用骨架屏不仅不能给用户流畅体验和期待感,反而会造成落差</li>
-<li>当内容区域有<strong>空页面</strong>时,不建议使用骨架屏,因为用户很容易误认为<strong>空白页</strong>是正在加载,从而造成困惑.</li>
-<li>当加载时长低于1s时,不建议使用骨架屏,因为没有必要反而增加负担.当加载市场高于10s时,建议给出加载失败反馈和出口.</li>
-</ul>
-<h1 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h1><p>待更新</p>
-<h1 id="案例分享与实践经验"><a href="#案例分享与实践经验" class="headerlink" title="案例分享与实践经验"></a><span id="5">案例分享与实践经验</span></h1><h2 id="shimmer-Demo"><a href="#shimmer-Demo" class="headerlink" title="shimmer Demo"></a>shimmer Demo</h2><h2 id="skeletonizer-Demo"><a href="#skeletonizer-Demo" class="headerlink" title="skeletonizer Demo"></a>skeletonizer Demo</h2><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://ant.design/components/skeleton-cn">Ant Design 官网</a></p>
-<p><a href="https://arco.design/docs/spec/skeleton">Arco Design 官网</a></p>
-<p><a href="https://tdesign.tencent.com/vue/components/skeleton?tab=design">T Design 官网</a></p>
-<p><a href="https://juejin.cn/post/6844903893525069838">掘金文章:网页骨架屏自动生成方案（dps） </a></p>
-<p><a href="https://blog.csdn.net/weixin_41897680/article/details/132066134">CSDN文章: flutter：占位视图（骨架屏、shimmer）</a></p>
-<p><a href="https://bbs.huaweicloud.com/blogs/415235">华为云文章: 骨架化加载器</a></p>
-<p><a href="https://www.cnblogs.com/hhsk/p/18442178">博客园文章: Flutter 实现骨架屏</a></p>
+<p>至此，你已经声明了<code>MyButton</code>,现在你可以把它嵌套到另一个组件中：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>你可能已经注意到<code>&lt;MyButton /&gt;</code>是以大写字母开头的。你可以据此识别React组件。React组件必须以大写字母开头，而HTML标签则必须是小写字母。</p>
+<p>来看下效果：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      我是一个按钮</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="使用JSX编写标签"><a href="#使用JSX编写标签" class="headerlink" title="使用JSX编写标签"></a>使用JSX编写标签</h2><p>上面所使用的标签语法是JSX。它是可选的，但大多数React项目会使用JSX，主要是它很方便。所有 我们推荐的本地开发工具 都开箱即用地支持 JSX。</p>
+<p>JSX比HTML更加严格。你必须闭合标签，如<code>&lt;br /&gt;</code>。你的组件也不能反悔多个JSX标签。你必须将他们包裹到一个共享的父级中，比如<code>&lt;div&gt;...&lt;/div&gt;</code>或使用空的<code>&lt;&gt;...&lt;/&gt;</code>包裹：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">AboutPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>你好。<span class="tag">&lt;<span class="name">br</span> /&gt;</span>最近怎么样？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>在React中，你可以使用<code>className</code>来指定一个CSS的class。它与HTML的<code>class</code>属性的工作方式相同。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，你可以在一个单独的CSS文件中为它编写CSS规则：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>-raduis: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>JSX会让你把标签放到JavaScript中。而大括号会让你“回到”JavaScript中，这样你就可以从你的代码中嵌入一些变量并展示给用户。例如，这将显示<code>user.name</code>:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;user.name&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>你还可以将JSX属性“转义到JavaScript”，但你必须使用大括号而非引号。例如，<code>className=&quot;avatar&quot;</code>是将<code>&quot;avatar&quot;</code>字符串传递给<code>className</code>。作为CSS的class。但<code>src=&#123;user.imageUrl&#125;</code>会读取JavaScript的<code>user.imageUrl</code>变量，然后将该值作为<code>src</code>属性传递：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">src</span>=<span class="string">&#123;user.imgeUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>你也可以把更为复杂的表达式放入JSX的大括号内，例如字符串拼接：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Hedy Lamarr&#x27;</span>,</span><br><span class="line">  <span class="attr">imageUrl</span>: <span class="string">&#x27;http://i.imgur.com/yXovdOSss.jpb&#x27;</span>,</span><br><span class="line">  <span class="attr">imageSize</span>: <span class="number">90</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Profile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;user.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">src</span>=<span class="string">&#123;user.imageUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">alt</span>=<span class="string">&#123;</span>&#x27;<span class="attr">Photo</span> <span class="attr">of</span>&#x27; + <span class="attr">user.name</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">width:</span> <span class="attr">user.imageSize</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">height:</span> <span class="attr">user.imageSize</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，<code>style=&#123;&#123;&#125;&#125;</code> 并不是一个特殊的语法，而是 <code>style=&#123; &#125;</code> JSX 大括号内的一个普通 <code>&#123;&#125;</code>对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。</p>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的<code>if</code>语句</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> content;</span><br><span class="line"><span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123; content &#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn ? (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span></span><br><span class="line">  ) : (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span></span><br><span class="line">  )&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当你不需要 else 分支时，你也可以使用更简短的 逻辑 &amp;&amp; 语法：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染列表"><a href="#渲染列表" class="headerlink" title="渲染列表"></a>渲染列表</h2><p>你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。</p>
+<p>假设你有一个产品数组：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Cabbage&#x27;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Garlic&#x27;</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Apple&#x27;</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span> </span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;卷心菜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;大蒜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;苹果&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">true</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">ShoppingList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">li</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">color:</span> <span class="attr">product.isFruit</span> ? &#x27;<span class="attr">magenta</span>&#x27; <span class="attr">:</span> &#x27;<span class="attr">darkgreen</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;You clicked me!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      点我</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
-        <tag>骨架屏</tag>
+        <tag>react 框架</tag>
       </tags>
   </entry>
   <entry>
@@ -9826,6 +9792,74 @@
 ]]></content>
       <tags>
         <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《从白屏到丝滑体验：深入解析骨架屏技术》</title>
+    <url>/2025/01/06/skeleton-screen/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习,有一个新的需求,需要把我们的 APP 的遮罩加载 loading 效果替换为骨架屏(<code>skeleton screen</code>)以提升用户体验.</p>
+<p>原来在学习 uniapp 小程序开发的时候曾经使用过骨架屏这一技术,当时是利用微信小程序开发者工具直接生成的.</p>
+<p>但是公司的 APP 的技术栈是 Flutter, 开发的是 Android 和 IOS 的应用,所以在技术实现上可能会略有不同.</p>
+<p>为了总结记录骨架屏的相关知识和最佳实践,决定开一篇文章记录一下.</p>
+<h1 id="骨架屏的背景与意义"><a href="#骨架屏的背景与意义" class="headerlink" title="骨架屏的背景与意义"></a>骨架屏的背景与意义</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>骨架屏(<code>skeleton screen</code>)是指当网络较慢时，在页面真实数据加载之前，给用户展示出页面的<strong>大致结构</strong>。 一方面让用户对页面有一定的心理预期，另一方面可以改善长期停留在空白屏给用户带来的枯燥和不适感。它可以为用户提供更好<strong>视觉效果</strong>和<strong>使用体验</strong>。</p>
+<img src="/2025/01/06/skeleton-screen/image-20250106105023197.png" class="" title="image-20250106105023197">
+
+<h2 id="技术边界"><a href="#技术边界" class="headerlink" title="技术边界"></a>技术边界</h2><p>在学习新技术时,我们需要明确<strong>技术是为了解决问题的</strong>.所以在学习过程中,切不可盲目,必须要有明确的方向.</p>
+<p>首先,便是<strong>划定技术的边界</strong>,也就是说,这个技术<strong>到底是用来干什么的</strong>.一旦明确了技术的边界,我们学习的过程就像有了前进的灯塔,不会迷茫而混乱.</p>
+<p>在当前背景下,前端开发并没有类似<code>Java Spring</code>那样一统天下的最佳实践,所以导致前端的技术纷繁复杂,同样一个问题,解决的方案可能有非常多.这个时候更需要我们<strong>划定技术的边界</strong>.</p>
+<p>比如在 css 工程化过程中遇到的问题: 类名冲突.随着工程越来越大,样式越来越多,类名经常会出现冲突的情况.为了解决这个问题,提出了很多方案,比如</p>
+<ul>
+<li>BEM,OOCSS,AMCSSD 等命名规范</li>
+<li>css in js 方案,用 js 的对象来表示 css 样式</li>
+<li>css module, 利用模块化处理</li>
+</ul>
+<p>这些技术我可能很多没有学过,或者学过又忘了,但是无伤大雅.因为我一旦知道了这些技术到底在解决什么问题,他的所有技术实现细节跑不出如来佛的手掌心.技术具体的实现细节,当我们需要使用时,查阅相关文档即可解决.</p>
+<p>回到骨架屏技术,它到底为了解决什么问题呢?</p>
+<p><strong>页面加载时用户体验不佳</strong></p>
+<p>在目前激烈的市场竞争环境下,用户体验的重要性在此不在赘述.造成页面加载体验不好的原因也有很多,用户设备,网速,前端页面处理等等.</p>
+<p>为了解决这个问题,之前业界也使用过很多方案</p>
+<ul>
+<li>白屏: 最开始就是直接白屏,用户体验非常糟糕</li>
+<li>空内容站位: 显示一个空白框或”加载中”文字占位<ul>
+<li>优点: 实现简单,占用资源少,无需复杂逻辑</li>
+<li>缺点: 空白框或文字与内容本身无直接关联,无法让用户直观感受到加载进度</li>
+</ul>
+</li>
+<li>Loading 动画(Spinner 或进度条):显示一个旋转的圆圈之类的,告诉用户内容正在加载<ul>
+<li>优点: 简单易实现,用户反馈明确,用户知道没有卡住,正在加载内容</li>
+<li>缺点: 缺乏页面结构感,无法让用户预期页面布局或内容结构,体验较生硬</li>
+</ul>
+</li>
+</ul>
+<p>于是,骨架屏技术应运而生.</p>
+<h1 id="骨架屏的设计与实现"><a href="#骨架屏的设计与实现" class="headerlink" title="骨架屏的设计与实现"></a>骨架屏的设计与实现</h1><p>由于公司技术栈原因,所以首先研究Flutter框架下骨架屏的使用.</p>
+<p>至于Web端的骨架屏,三大公司的组件库(<code>T Design</code>,<code>Arco Design</code> <code>Ant Design</code>)都有封装好的最佳实践.</p>
+<p>对于Flutter, T Design 有相关设计,可惜还没有更新骨架屏组件.</p>
+<p>查阅相关资料文档可知,目前Flutter实现骨架屏主要有两个包<code>shimmer</code>和<code>skeletonizer</code></p>
+<p><a href="https://pub.dev/packages/shimmer">shimmer</a></p>
+<p><a href="https://pub.dev/packages/skeletonizer">skeletonizer</a></p>
+<p>详细内容见后面 <a href="#5">案例分享与实践经验</a></p>
+<h1 id="骨架屏的最佳实践"><a href="#骨架屏的最佳实践" class="headerlink" title="骨架屏的最佳实践"></a>骨架屏的最佳实践</h1><h2 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h2><ul>
+<li>网络较慢,需要长时间等待加载处理的情况下</li>
+<li>图文信息内容较多的列表&#x2F;卡片中</li>
+<li>只在第一次加载数据的时候使用</li>
+</ul>
+<h2 id="何时不适用"><a href="#何时不适用" class="headerlink" title="何时不适用"></a>何时不适用</h2><ul>
+<li>当内容布局和排版<strong>不固定</strong>时,轮廓和内容布局之间会有<strong>巨大差异</strong>,使用骨架屏不仅不能给用户流畅体验和期待感,反而会造成落差</li>
+<li>当内容区域有<strong>空页面</strong>时,不建议使用骨架屏,因为用户很容易误认为<strong>空白页</strong>是正在加载,从而造成困惑.</li>
+<li>当加载时长低于1s时,不建议使用骨架屏,因为没有必要反而增加负担.当加载市场高于10s时,建议给出加载失败反馈和出口.</li>
+</ul>
+<h1 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h1><p>待更新</p>
+<h1 id="案例分享与实践经验"><a href="#案例分享与实践经验" class="headerlink" title="案例分享与实践经验"></a><span id="5">案例分享与实践经验</span></h1><h2 id="shimmer-Demo"><a href="#shimmer-Demo" class="headerlink" title="shimmer Demo"></a>shimmer Demo</h2><h2 id="skeletonizer-Demo"><a href="#skeletonizer-Demo" class="headerlink" title="skeletonizer Demo"></a>skeletonizer Demo</h2><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://ant.design/components/skeleton-cn">Ant Design 官网</a></p>
+<p><a href="https://arco.design/docs/spec/skeleton">Arco Design 官网</a></p>
+<p><a href="https://tdesign.tencent.com/vue/components/skeleton?tab=design">T Design 官网</a></p>
+<p><a href="https://juejin.cn/post/6844903893525069838">掘金文章:网页骨架屏自动生成方案（dps） </a></p>
+<p><a href="https://blog.csdn.net/weixin_41897680/article/details/132066134">CSDN文章: flutter：占位视图（骨架屏、shimmer）</a></p>
+<p><a href="https://bbs.huaweicloud.com/blogs/415235">华为云文章: 骨架化加载器</a></p>
+<p><a href="https://www.cnblogs.com/hhsk/p/18442178">博客园文章: Flutter 实现骨架屏</a></p>
+]]></content>
+      <tags>
+        <tag>骨架屏</tag>
       </tags>
   </entry>
   <entry>
