@@ -162,3 +162,25 @@ tags: PPT
   - 更大的字号
   - 彩色的底纹
   - 更粗的线条
+
+# 如何做宽/竖屏PPT，怎么设置页面尺寸
+
+![20250508162846](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508162846.png)
+
+以放映端设备尺寸为准，**遵循页面尺寸等比例**原则
+
+- 手机端：9:16或9:18
+- 电脑端：16：9
+- 投影机：4:3
+
+![20250508163309](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163309.png)
+
+![20250508163359](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163359.png)
+
+## PPT做一半，改尺寸怎么办？
+
+- 变化太大直接重做
+- 变化不大：利用缩放功能
+
+![20250508163807](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163807.png)
+
