@@ -2616,6 +2616,20 @@
 </ul>
 </li>
 </ul>
+<h1 id="如何做宽-竖屏PPT，怎么设置页面尺寸"><a href="#如何做宽-竖屏PPT，怎么设置页面尺寸" class="headerlink" title="如何做宽&#x2F;竖屏PPT，怎么设置页面尺寸"></a>如何做宽&#x2F;竖屏PPT，怎么设置页面尺寸</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508162846.png" alt="20250508162846"></p>
+<p>以放映端设备尺寸为准，<strong>遵循页面尺寸等比例</strong>原则</p>
+<ul>
+<li>手机端：9:16或9:18</li>
+<li>电脑端：16：9</li>
+<li>投影机：4:3</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163309.png" alt="20250508163309"></p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163359.png" alt="20250508163359"></p>
+<h2 id="PPT做一半，改尺寸怎么办？"><a href="#PPT做一半，改尺寸怎么办？" class="headerlink" title="PPT做一半，改尺寸怎么办？"></a>PPT做一半，改尺寸怎么办？</h2><ul>
+<li>变化太大直接重做</li>
+<li>变化不大：利用缩放功能</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250508163807.png" alt="20250508163807"></p>
 ]]></content>
       <tags>
         <tag>PPT</tag>
@@ -4404,6 +4418,446 @@
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue3.js</title>
+    <url>/2025/01/25/Vue3-js/</url>
+    <content><![CDATA[<h1 id="Vue3的重大变化"><a href="#Vue3的重大变化" class="headerlink" title="Vue3的重大变化"></a>Vue3的重大变化</h1><img src="/2025/01/25/Vue3-js/image-20250125152103815.png" class="" title="image-20250125152103815">
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// console.log(&#x27;所有生命周期钩子函数之前调用&#x27;)</span></span><br><span class="line">        <span class="comment">// console.log(this);   this -&gt; undefined</span></span><br><span class="line">        <span class="keyword">let</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">const</span> <span class="title function_">increase</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">            <span class="comment">// 不具有响应式</span></span><br><span class="line">            count.<span class="property">value</span>++;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            count,</span><br><span class="line">            increase</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2025/01/25/Vue3-js/image-20250125153113396.png" class="" title="image-20250125153113396">
+
+<h1 id="vite原理"><a href="#vite原理" class="headerlink" title="vite原理"></a>vite原理</h1><p>webpack原理图</p>
+<img src="/2025/01/25/Vue3-js/image-20250125161926085.png" class="" title="image-20250125161926085">
+
+<p>vite原理图</p>
+<img src="/2025/01/25/Vue3-js/image-20250125162134420.png" class="" title="image-20250125162134420">
+
+<blockquote>
+<p>面试题:说说<code>webpack</code>和<code>vite</code>的区别</p>
+<p><code>webpack</code>会先打包,然后启动开发服务器,请求服务器时,直接给予打包结果.</p>
+<p>而<code>vite</code>是直接启动开发服务器,请求哪个模块再对该模块进行实时编译.</p>
+<p>由于现代浏览器本身支持<code>ES Module</code>,会自动向依赖的Module发出请求.<code>vite</code>充分利用这一点,将开发环境下的模块文件,就作为浏览器要执行的文件,而不是像<code>webpack</code>那样进行打包合并.</p>
+<p>由于<code>vite</code>在启动的时候不需要打包,也就意味着不需要分析模块依赖,不需要编译,因此,启动速度非常快.</p>
+<p>当浏览器请求某个模块时,再根据需要对模块内容进行编译.这种按需动态编译的方式,极大的缩减了编译时间,项目越复杂,模块越多,<code>vite</code>的优势越明显.</p>
+<p>在HMR(Hot Module Replace)方面,当改动了一个模块后,仅需让浏览器重新请求该模块即可,不像<code>webpack</code>那样需要把该模块的相关依赖全部编译一次,效率更高.</p>
+<p>当需要打包到生产环境时,<code>vite</code>使用传统的<code>rollup</code>进行打包,因此,<code>vite</code>的主要优势在开发阶段.另外,由于<code>vite</code>利用的是<code>ES Module</code>,因此代码中<strong>不能使用<code>CommonJS</code></strong></p>
+</blockquote>
+<h2 id="效率提升"><a href="#效率提升" class="headerlink" title="效率提升"></a>效率提升</h2><blockquote>
+<p>CSR效率提高了1.3到2倍</p>
+<p>SSR效率提高了2-3倍</p>
+</blockquote>
+<h3 id="静态提升"><a href="#静态提升" class="headerlink" title="静态提升"></a>静态提升</h3><p>下面的静态节点会被提升</p>
+<ul>
+<li>元素节点</li>
+<li>没有绑定动态内容</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vue2的静态节点</span></span><br><span class="line"><span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">createVNode</span>(<span class="string">&quot;h1&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// vue3的静态节点</span></span><br><span class="line"><span class="keyword">const</span> hoisted = <span class="title function_">createVNode</span>(<span class="string">&quot;h1&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 直接使用 hoisted 即可.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>静态属性会被提升</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;user&quot;&gt;</span><br><span class="line">    &#123;&#123; user.name &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> hoisted = &#123; <span class="attr">class</span>: <span class="string">&quot;user&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">createVNode</span>(<span class="string">&quot;div&quot;</span>, hoisted, user.<span class="property">name</span>)</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="预字符串化"><a href="#预字符串化" class="headerlink" title="预字符串化"></a>预字符串化</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;menu-bar-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;logo&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>logo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;nav&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span> &#123;&#123;user.name&#125;&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当编译器遇到大量连续的静态内容,会直接将其编译为一个普通字符串节点.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const _hoisted_2 = _createStaticVNode(&quot;x &lt;div class=&quot;menu-bar-container&quot;&gt;    &lt;div class=&quot;logo&quot;&gt;        &lt;h1&gt;logo&lt;/h1&gt;    &lt;/div&gt;    &lt;ul class=&quot;nav&quot;&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;    &lt;/ul&gt;    &lt;div class=&quot;user&quot;&gt;        &lt;span&gt; &#123;&#123;user.name&#125;&#125; &lt;/span&gt;    &lt;/div&gt;&lt;/div&gt;&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2025/01/25/Vue3-js/image-20250125171233369.png" class="" title="image-20250125171233369">
+
+<img src="/2025/01/25/Vue3-js/image-20250125171251690.png" class="" title="image-20250125171251690">
+
+<h3 id="缓存事件处理函数"><a href="#缓存事件处理函数" class="headerlink" title="缓存事件处理函数"></a>缓存事件处理函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button @click=&quot;count++&quot;&gt;</span><br><span class="line">    plus</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vue2</span></span><br><span class="line"><span class="title function_">render</span>(<span class="params">ctx</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">createVNode</span>(<span class="string">&quot;button&quot;</span>, &#123;</span><br><span class="line">        <span class="attr">onClick</span>: <span class="keyword">function</span>(<span class="params">$event</span>) &#123;</span><br><span class="line">            ctx.<span class="property">count</span>++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// vue3</span></span><br><span class="line"><span class="title function_">render</span>(<span class="params">ctx, _cache</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">createVNode</span>(<span class="string">&quot;button&quot;</span>, &#123;</span><br><span class="line">        <span class="attr">onClick</span>: cache[<span class="number">0</span>] || (cache[<span class="number">0</span>] = <span class="function">(<span class="params">$event</span>) =&gt;</span> (ctx.<span class="property">count</span>++))</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Block-Tree"><a href="#Block-Tree" class="headerlink" title="Block Tree"></a>Block Tree</h3><p>vue2在对比新旧树的时候,并不知道哪些节点是静态的,哪些是动态的,因此只能一层一层的比较,这就浪费了大部分的时间在对比静态节点上</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;label&gt;账号: &lt;/label&gt;</span><br><span class="line">        &lt;input v-model=&quot;user.loginId&quot;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;label&gt;密码: &lt;/label&gt;</span><br><span class="line">        &lt;input v-model=&quot;user.loginPwd&quot;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="/2025/01/25/Vue3-js/image-20250125172137837.png" class="" title="image-20250125172137837">
+
+<img src="/2025/01/25/Vue3-js/image-20250125172154019.png" class="" title="image-20250125172154019">
+
+<h3 id="PatchFlag"><a href="#PatchFlag" class="headerlink" title="PatchFlag"></a>PatchFlag</h3><p>vue2在对比每一个节点时,并不知道这个节点哪些相关信息回发生变化,因此只能将所有信息依次对比</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;user&quot; data-id=&quot;1&quot; title=&quot;user name&quot;&gt;</span><br><span class="line">    &#123;&#123;user.name&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="/2025/01/25/Vue3-js/image-20250125172516998.png" class="" title="image-20250125172516998">
+
+<h1 id="API和数据响应式的变化"><a href="#API和数据响应式的变化" class="headerlink" title="API和数据响应式的变化"></a>API和数据响应式的变化</h1><blockquote>
+<p>面试题1: 为什么vue3中去掉了vue构造函数</p>
+<p>面试题2: 谈谈你对vue3数据响应式的理解</p>
+</blockquote>
+<h2 id="去掉了Vue的构造函数"><a href="#去掉了Vue的构造函数" class="headerlink" title="去掉了Vue的构造函数"></a>去掉了Vue的构造函数</h2><p>在过去,如果遇到一个页面有多个<code>vue</code>应用,往往会遇到一些问题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue2 --&gt;</span><br><span class="line">&lt;div id=&quot;app1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;app2&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	Vue.use(...);	// 此代码会影响所有的vue应用</span><br><span class="line">	Vue.mixin(...);	// 此代码会影响所有的vue应用</span><br><span class="line">    Vue.component(...);	// 此代码会影响所有的vue应用</span><br><span class="line">                  </span><br><span class="line">                  </span><br><span class="line">   	new Vue(&#123;</span><br><span class="line">                  // 配置</span><br><span class="line">                  &#125;).$mount(&quot;#app1&quot;);</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        // 配置</span><br><span class="line">        </span><br><span class="line">    &#125;).$mount(&quot;#app2&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>vue3</code>中,去掉了<code>Vue</code>构造函数,转而使用<code>createApp</code>创建<code>vue</code>应用.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue3 --&gt;</span><br><span class="line">&lt;div id=&quot;app1&quot;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;app2&quot;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	createApp(根组件).use(...).mixin(...).component(...).mount(&quot;#app1&quot;);</span><br><span class="line">    createApp(根组件).mount(&quot;#app2&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>面试题1: 为什么<code>vue3</code>中去掉了<code>vue</code>构造函数</p>
+<ol>
+<li>调用构造函数的静态方法会对所有<code>vue</code>应用都生效,不利于隔离不同应用.</li>
+<li><code>vue2</code>的构造函数集成了太多功能,不利于<code>tree shaking</code>,<code>vue3</code>把这些功能使用普通函数导出,能够充分利用<code>tree shaking</code>优化打包体积.</li>
+<li><code>vue2</code>没有把&#x3D;&#x3D;组件实例&#x3D;&#x3D;和&#x3D;&#x3D;vue应用&#x3D;&#x3D;两个概念区分开来,在<code>vue2</code>中,通过<code>new Vue</code>创建的对象,既是一个vue应用,同时又是一个特殊的vue组件.<code>vue3</code>中,把两个概念区分开来,通过createApp创建对象,是一个vue应用,它内部提供的方法是针对整个应用的,而不再是一个特殊的组件.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>面试题2: 谈谈你对vue3数据响应式的理解</p>
+<p>vue3不再使用<code>Object.defineProperty</code>的方式定义完成数据响应式,而是使用<code>Proxy</code>.</p>
+<p>除了<code>Proxy</code>本身效率比<code>Object.defineProperty</code>更高之外,由于不必递归遍历所有属性,而是直接得到一个<code>Proxy</code>.所以在<code>vue3</code>中,对数据的访问是动态的,当访问某个属性的时候,再动态的获取和设置,这就极大地提升了在组件初始阶段的效率.</p>
+<p>同时,由于<code>Proxy</code>可以监控到成员的新增和删除,因此,在<code>vue3</code>中新增成员,删除成员,索引访问等均可以触发重新渲染,而这些在<code>vue2</code>中是难以做到的.</p>
+</blockquote>
+<h2 id="组件实例中的API"><a href="#组件实例中的API" class="headerlink" title="组件实例中的API"></a>组件实例中的API</h2><p>在<code>vue3</code>中,组件实例是一个<code>Proxy</code>,它仅仅提供了下列成员,功能和<code>vue2</code>一样</p>
+<h2 id="对比数据响应式"><a href="#对比数据响应式" class="headerlink" title="对比数据响应式"></a>对比数据响应式</h2><p><code>vue2</code>和<code>vue3</code>均在相同的生命周期完成数据响应式,但做法不一样.</p>
+<img src="/2025/01/25/Vue3-js/image-20250125174427284.png" class="" title="image-20250125174427284">
+
+<img src="/2025/01/25/Vue3-js/image-20250125174515582.png" class="" title="image-20250125174515582">
+
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>为了让<code>v-model</code>更好的针对多个属性进行双向绑定,<code>vue3</code>作出了以下修改.</p>
+<ul>
+<li><p>当对自定义组件使用<code>v-model</code>指令时,绑定的属性名由原来的<code>value</code>变为<code>modelValue</code>,事件名由原来的<code>input</code>变为<code>update:modelValue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue2 --&gt;</span><br><span class="line">&lt;ChildComponent :value=&quot;pageTitle&quot; @input=&quot;pageTitle=$event&quot; /&gt;</span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent v-model=&quot;pageTitle&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- vue3 --&gt;</span><br><span class="line">&lt;ChildComponent</span><br><span class="line">  :modelValue=&quot;pageTitle&quot;</span><br><span class="line">  @input:modelValue=&quot;pageTitle = $event&quot;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent v-model=&quot;pageTitle&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>去掉了<code>.sync</code>修饰符,它原本的功能由<code>v-model</code>的参数替代</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue2 --&gt;</span><br><span class="line">&lt;ChildComponent :title=&quot;pageTitle&quot; @update:title=&quot;pageTitle = $event&quot; /&gt;</span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent :title.sync=&quot;pageTitle&quot; /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- vue3 --&gt;</span><br><span class="line">&lt;ChildComponent :title=&quot;pageTitle&quot; @update:title=&quot;pageTitle = $event&quot; /&gt;</span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent v-model:title=&quot;pageTitle&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>model</code>配置被移除</p>
+</li>
+<li><p>允许自定义<code>v-model</code>修饰符</p>
+</li>
+</ul>
+<p>vue2无此功能</p>
+<img src="/2025/01/25/Vue3-js/image-20250125180441772.png" class="" title="image-20250125180441772">
+
+<h2 id="v-if-和-v-for"><a href="#v-if-和-v-for" class="headerlink" title="v-if 和 v-for"></a>v-if 和 v-for</h2><p><code>v-if</code>的优先级高于<code>v-for</code></p>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>当使用<code>&lt;template&gt;</code>进行<code>v-for</code>循环的时候,需要把<code>key</code>值放到<code>&lt;template&gt;</code>中,而不是它的子元素中.</p>
+<p>当使用<code>v-if v-else-if v-else</code>分支的时候,不再需要指定<code>key</code>值,因为<code>vue3</code>会自动给予每个分支一个唯一的<code>key</code></p>
+<p>即便要手工给予<code>key</code>值,也必须给予每个分支唯一的<code>key</code>,<strong>不能因为要重用分支而给予相同的key</strong></p>
+<h2 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h2><h1 id="组件的变化"><a href="#组件的变化" class="headerlink" title="组件的变化"></a>组件的变化</h1><h1 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h1><h2 id="获取响应式数据"><a href="#获取响应式数据" class="headerlink" title="获取响应式数据"></a>获取响应式数据</h2><table>
+<thead>
+<tr>
+<th>API</th>
+<th>传入</th>
+<th>返回</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>reactive</code></td>
+<td><code>plain-object</code></td>
+<td>对象代理</td>
+<td>深度代理对象中的所有成员</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>plain-object</code> OR <code>proxy</code></td>
+<td>对象代理</td>
+<td>只能读取代理对象中的成员,不可修改</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td><code>any</code></td>
+<td><code>&#123;value: ...&#125;</code></td>
+<td>对value的访问是响应式的,如果给value的值是一个对象,则会通过<code>reactive</code>函数进行代理,如果已经是代理,则直接使用代理</td>
+</tr>
+<tr>
+<td><code>computed</code></td>
+<td>&#96;function&#96;&#96;</td>
+<td><code>&#123;value: ...&#125;</code></td>
+<td>当读取value值时,会<strong>根据情况</strong>决定是否要运行函数</td>
+</tr>
+</tbody></table>
+<p>应用: </p>
+<ul>
+<li>如果想要让一个对象变为响应式数据,可以使用<code>reactive</code>或<code>ref</code></li>
+<li>如果想要让一个对象的所有属性只读,使用<code>readonly</code></li>
+<li>如果想要让一个非对象数据变为响应式数据,使用<code>ref</code></li>
+<li>如果想要根据已知的响应式数据得到一个新的响应式数据,使用<code>computed</code></li>
+</ul>
+<p>笔试题1: 下面代码的输出结果是什么</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; computed, reactive, readonly, ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">  <span class="attr">firstName</span>: <span class="string">&#x27;Xu Ming&#x27;</span>,</span><br><span class="line">  <span class="attr">lastName</span>: <span class="string">&#x27;Deng&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fullName = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 当调用full.Name时才会执行;而且如果值相较于上一次没有变,则使用缓存,不会执行</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;changed&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;state.firstName&#125;</span> <span class="subst">$&#123;state.lastName&#125;</span>`</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;state ready&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"><span class="keyword">const</span> imState = <span class="title function_">readonly</span>(state)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(imState === state)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stateRef = <span class="title function_">ref</span>(state)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stateRef.<span class="property">value</span> === state)</span><br><span class="line"></span><br><span class="line">state.<span class="property">firstName</span> = <span class="string">&#x27;Cheng&#x27;</span></span><br><span class="line">state.<span class="property">lastName</span> = <span class="string">&#x27;Ji&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(imState.<span class="property">firstName</span>, imState.<span class="property">lastName</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> imState2 = <span class="title function_">readonly</span>(stateRef)</span><br><span class="line"><span class="comment">// 前者不能修改属性值,后者可以,不是一个内存地址的内容</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(imState2.<span class="property">value</span> === stateRef.<span class="property">value</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// state ready</span></span><br><span class="line"><span class="comment">// changed</span></span><br><span class="line"><span class="comment">// fullname is Xu Ming Deng</span></span><br><span class="line"><span class="comment">// fullname is Xu Ming Deng</span></span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Cheng Ji</span></span><br><span class="line"><span class="comment">// changed </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fullname is Cheng ji</span></span><br><span class="line"><span class="comment">// fullname is Cheng ji</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>笔试题2: 按照下面的要求完成函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; computed, reactive, readonly, ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useUser</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 在这里补全函数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> userOrigin = <span class="title function_">reactive</span>(&#123;</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> user = <span class="title function_">readonly</span>(userOrigin)</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">setUserName</span> = (<span class="params">name: string</span>) =&gt; &#123;</span><br><span class="line">    userOrigin.<span class="property">name</span> = name</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">setUserage</span> = (<span class="params">age: number</span>) =&gt; &#123;</span><br><span class="line">    userOrigin.<span class="property">age</span> = age</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">      user, <span class="comment">// 这是一个只读的用户对象,响应式数据,默认为一个空对象</span></span><br><span class="line">      setUserName, <span class="comment">// 这是一个函数,传入用户姓名,用于修改用户的名称</span></span><br><span class="line">      setUserage,  <span class="comment">// 这是一个函数,传入用户年龄,用于修改用户年龄.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>笔试题3: 按照下面的要求完成函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;reactive, readonly&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounceGenerator</span>(<span class="params">func, duration</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      func.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">    &#125;, duration);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useDebounce</span>(<span class="params">obj, duration</span>) &#123;</span><br><span class="line">  <span class="comment">// 在这里补全函数</span></span><br><span class="line">  <span class="keyword">const</span> valueOrigin = <span class="title function_">reactive</span>(&#123; ...obj &#125;);</span><br><span class="line">  <span class="keyword">const</span> value = <span class="title function_">readonly</span>(valueOrigin);</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">setValueOrigin</span>(<span class="params">newObj</span>) &#123;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">assign</span>(valueOrigin, newObj);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> setValue = <span class="title function_">debounceGenerator</span>(setValueOrigin, duration);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    value, <span class="comment">// 这里是一个只读对象,响应式数据,默认值为参数值</span></span><br><span class="line">    setValue, <span class="comment">// 这里是一个函数,传入一个新的对象,需要把新对象中的属性混合到原始对象中,混合操作需要再duration时间内防抖</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="监听数据变化"><a href="#监听数据变化" class="headerlink" title="监听数据变化"></a>监听数据变化</h2><p><strong>watchEffect</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> stop = <span class="title function_">watchEffect</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// 该函数会立即执行,然后追踪函数中用到的响应式数据,响应式数据变化后会再次执行</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 通过调用stop函数,会停止监听</span></span><br><span class="line"><span class="title function_">stop</span>();	<span class="comment">// 停止监听</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, ref, watchEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;);</span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">const</span> stop = <span class="title function_">watchEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 注册后立即运行一次,输出 1 0</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">a</span>, count.<span class="property">value</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进入微队列,这一次时间循环结束后才会输出</span></span><br><span class="line">state.<span class="property">b</span>++; </span><br><span class="line">state.<span class="property">a</span>++;  </span><br><span class="line">state.<span class="property">a</span>++; </span><br><span class="line">state.<span class="property">a</span>++; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">state.<span class="property">a</span>++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 5 0</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>watch</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 等效于vue2的$watch</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听单个数据的变化</span></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;)</span><br><span class="line"><span class="title function_">watch</span>(<span class="function">() =&gt;</span> state.<span class="property">count</span>, <span class="function">(<span class="params">newvalue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;,options)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> countRef = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_">watch</span>(countRef, <span class="function">(<span class="params">newValue, oldValue</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;,options)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听多个数据的变化</span></span><br><span class="line"><span class="title function_">watch</span>([<span class="function">()=&gt;</span>state.<span class="property">count</span>, countRef], <span class="function">(<span class="params">[new1, new2],[old1, old2]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, ref, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(count, <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`count changed from <span class="subst">$&#123;oldValue&#125;</span> to <span class="subst">$&#123;newValue&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">count.<span class="property">value</span>++;</span><br><span class="line">count.<span class="property">value</span>++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// count changed from 0 to 2</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> state.<span class="property">a</span>,</span><br><span class="line">  <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`state.a changed from <span class="subst">$&#123;oldValue&#125;</span> to <span class="subst">$&#123;newValue&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">state.<span class="property">a</span>++;</span><br><span class="line"></span><br><span class="line"><span class="comment">//state.a changed from 1 to 2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">watch</span>([<span class="function">()=&gt;</span> state.<span class="property">a</span>, count], <span class="function">(<span class="params">[new1, new2], [old1, old2]</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`a changed from <span class="subst">$&#123;old1&#125;</span> to <span class="subst">$&#123;new1&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`count changed from <span class="subst">$&#123;old2&#125;</span> to <span class="subst">$&#123;new2&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">state.<span class="property">a</span> = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// a changed from 1 to 2</span></span><br><span class="line"><span class="comment">// count changed from 0 to 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只要watch的监听条件中有一个变了,就会触发回调</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意: 无论是<code>watchEffect</code>还是<code>watch</code>,当依赖项变化时,回调函数的执行都是<strong>异步</strong>的(微队列)</p>
+</blockquote>
+<p>应用: 除非遇到下面的场景,否则均建议选择选择<code>watchEffect</code></p>
+<ul>
+<li>不希望回调函数一开始就执行</li>
+<li>数据改变时,需要参考旧值</li>
+<li>需要监控一些回调函数中不会用到的数据</li>
+</ul>
+<p>笔试题: 下面的代码的输出结果是什么?</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, watchEffect, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">watchEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;count:&#x27;</span>, state.<span class="property">count</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> state.<span class="property">count</span>,</span><br><span class="line">  <span class="function">(<span class="params">count, oldCount</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;watch&#x27;</span>, count, oldCount);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;time out&#x27;</span>);</span><br><span class="line">  state.<span class="property">count</span>++;</span><br><span class="line">  state.<span class="property">count</span>++;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">state.<span class="property">count</span>++;</span><br><span class="line">state.<span class="property">count</span>++;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;end&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// count: 0</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// cout: 2</span></span><br><span class="line"><span class="comment">// watch 2 0</span></span><br><span class="line"><span class="comment">// time out</span></span><br><span class="line"><span class="comment">// count: 4</span></span><br><span class="line"><span class="comment">// watch 4 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>isProxy</code></td>
+<td>判断某个数据是否是由<code>reactive</code>或<code>readonly</code>创建的</td>
+</tr>
+<tr>
+<td><code>isReactive</code></td>
+<td>判断某个数据是否是通过<code>reactive</code>创建的</td>
+</tr>
+<tr>
+<td><code>isReadonly</code></td>
+<td>判断某个数据是否是通过<code>readonly</code>创建的</td>
+</tr>
+<tr>
+<td><code>isRef</code></td>
+<td>判断某个数据是否是一个<code>ref</code>对象</td>
+</tr>
+</tbody></table>
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p><strong>unref</strong></p>
+<p>等同于<code>isRef(val) ? val.value : val</code></p>
+<p>应用:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">useNewTodo</span>(<span class="params">todos</span>) &#123;</span><br><span class="line">    todos = <span class="title function_">unref</span>(todos);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>toRef</strong></p>
+<p>得到一个响应式对象&#x3D;&#x3D;某个属性&#x3D;&#x3D;的ref格式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fooRef = <span class="title function_">toRef</span>(state, <span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fooRef.<span class="property">value</span>++;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">foo</span>) 			<span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">state.<span class="property">foo</span>++;		</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(fooRef.<span class="property">value</span>)		<span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>toRefs</strong></p>
+<p>把一个响应式对象的所有属性转换为<code>ref</code>格式,然后包装到一个<code>plain-object</code>中返回</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stateAsRefs = <span class="title function_">toRefs</span>(state)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">stateAsRefs: not a proxy</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	foo: &#123;value: ...&#125;,</span></span><br><span class="line"><span class="comment">	bar: &#123;value: ...&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>应用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> state1 = <span class="title function_">reactive</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;);</span><br><span class="line">    <span class="keyword">const</span> state2 = <span class="title function_">reactive</span>(&#123;<span class="attr">c</span>:<span class="number">3</span>, <span class="attr">d</span>:<span class="number">4</span>&#125;);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state1,  <span class="comment">// 失去响应式 lost reactivity</span></span><br><span class="line">        ...state2	<span class="comment">// 失去响应式 lost reactivity</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> state1 = <span class="title function_">reactive</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;);</span><br><span class="line">    <span class="keyword">const</span> state2 = <span class="title function_">reactive</span>(&#123;<span class="attr">c</span>:<span class="number">3</span>, <span class="attr">d</span>:<span class="number">4</span>&#125;);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ...<span class="title function_">toRefs</span>(state1), <span class="comment">// reactivity</span></span><br><span class="line">        ...<span class="title function_">toRefs</span>(state2)  <span class="comment">// reactivity</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">usePos</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> pos = <span class="title function_">reactive</span>(&#123;<span class="attr">x</span>:<span class="number">0</span>, <span class="attr">y</span>:<span class="number">0</span>&#125;);</span><br><span class="line">    <span class="keyword">return</span> pos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;x, y&#125; = <span class="title function_">usePos</span>(); <span class="comment">// lost reactivity</span></span><br><span class="line">    <span class="keyword">const</span> &#123;x, y&#125; = <span class="title function_">toRefs</span>(<span class="title function_">usePos</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="降低心智负担"><a href="#降低心智负担" class="headerlink" title="降低心智负担"></a>降低心智负担</h2><p>所有的<code>composition function</code>均以<code>ref</code>的结果返回,以保证<code>setup</code>函数的返回结果中不包含<code>reactive</code>或<code>readonly</code>直接产生的数据.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, toRefs, ref, readonly &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">usePos</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> pos = <span class="title function_">reactive</span>(&#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>&#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">toRefs</span>(pos);   <span class="comment">// &#123;x: refObj, y: refObj&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useBooks</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> books = <span class="title function_">ref</span>([]);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    books   <span class="comment">// book is refObj</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useLoginUser</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> user = <span class="title function_">readonly</span>(&#123;</span><br><span class="line">    <span class="attr">isLogin</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;guest&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">toRefs</span>(user);  <span class="comment">// &#123;isLogin: refObj, name: refObj&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setup</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// 在setup函数中,尽量保证解构,展开出来的所有响应式数据都是ref</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    ...<span class="title function_">usePos</span>(),</span><br><span class="line">    ...<span class="title function_">useBooks</span>(),</span><br><span class="line">    ...<span class="title function_">useLoginUser</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="组合式API"><a href="#组合式API" class="headerlink" title="组合式API"></a>组合式API</h1><blockquote>
+<p>面试题: composition api相比于 option api 有哪些优势?</p>
+</blockquote>
+<p>不同于<code>reactivity api</code>,<code>composition api</code>提供的函数很多都是与组件深度绑定的,不能脱离组件而存在.</p>
+<h2 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// component</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="title function_">setup</span>(<span class="params">props, context</span>) &#123;</span><br><span class="line">        <span class="comment">// 该函数在组件属性被赋值后立即执行,早于所有生命周期钩子函数</span></span><br><span class="line">        <span class="comment">// pros是一个对象,包含了所有的组件属性值.</span></span><br><span class="line">        <span class="comment">// context是一个对象,提供了组件所需的上下文信息</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>context</code>对象的成员</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>attrs</td>
+<td>对象</td>
+<td>同<code>vue2</code>的<code>this.$attrs</code></td>
+</tr>
+<tr>
+<td>slots</td>
+<td>对象</td>
+<td>同<code>vue2</code>的<code>this.$slots</code></td>
+</tr>
+<tr>
+<td>emit</td>
+<td>方法</td>
+<td>同<code>vue2</code>的<code>this.$emit</code></td>
+</tr>
+</tbody></table>
+<h2 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h2><table>
+<thead>
+<tr>
+<th>vue2 option api</th>
+<th>vue3 option api</th>
+<th>vue3 composition api</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beforeCreate</td>
+<td>beforeCreate</td>
+<td>不再需要,代码可直接置于setup中,因为数据响应式API被单独抽离</td>
+</tr>
+<tr>
+<td>created</td>
+<td>created</td>
+<td>不再需要,代码可直接置于setup中</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>beforeMount</td>
+<td>onBeforeMount</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>mounted</td>
+<td>onMounted</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>beforeUpdate</td>
+<td>onBeforeUpdate</td>
+</tr>
+<tr>
+<td>upodated</td>
+<td>updated</td>
+<td>onUpdated</td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>&#x3D;&#x3D;beforeUnmount&#x3D;&#x3D;</td>
+<td>onBeforeUnmount</td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td>&#x3D;&#x3D;unmounted&#x3D;&#x3D;</td>
+<td>onUnmounted</td>
+</tr>
+<tr>
+<td>errorCaptured</td>
+<td>errorCaptured</td>
+<td>onErrorCaptured</td>
+</tr>
+<tr>
+<td>-</td>
+<td>&#x3D;&#x3D;renderTracked&#x3D;&#x3D;</td>
+<td>onRenderTracked</td>
+</tr>
+<tr>
+<td>-</td>
+<td>&#x3D;&#x3D;renderTriggered&#x3D;&#x3D;</td>
+<td>onRenderTriggered</td>
+</tr>
+</tbody></table>
+<p>新增钩子函数说明</p>
+<table>
+<thead>
+<tr>
+<th>钩子函数</th>
+<th>参数</th>
+<th>执行时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>renderTracked</td>
+<td>DebuggerEvent</td>
+<td>渲染vdom收集到的每一次依赖时</td>
+</tr>
+<tr>
+<td>renderTriggered</td>
+<td>DebuggerEvent</td>
+<td>某个依赖变化导致组件重新渲染时</td>
+</tr>
+</tbody></table>
+<p>DebuggerEvent</p>
+<ul>
+<li>target: 跟踪或触发渲染的对象</li>
+<li>key: 跟踪或触发渲染的属性</li>
+<li>type: 跟踪或触发渲染的方式</li>
+</ul>
+<h2 id="面试题参考答案"><a href="#面试题参考答案" class="headerlink" title="面试题参考答案"></a>面试题参考答案</h2><p>面试题: <code>composition api</code>相比于<code>option api</code>有哪些优势</p>
+<blockquote>
+<p>从两个方面回答:</p>
+<ol>
+<li>为了更好的逻辑复用和代码组织</li>
+<li>更好的类型推导</li>
+</ol>
+<p>有了<code>composition api</code>,配合<code>reactivity api</code>,可以在组件内部进行更加细粒度的控制,使得组件中不同的功能高度聚合,提升了代码的可维护性.对于不同组件的相同功能,也能够更好的复用</p>
+<p>相比于<code>option api</code>,<code>composition api</code>中没有了奇怪的<code>this</code>,所有的<code>api</code>变得更加的函数式,这有利于和类型推导系统比如TS的深度配合.</p>
+</blockquote>
+<h1 id="共享数据"><a href="#共享数据" class="headerlink" title="共享数据"></a>共享数据</h1><h2 id="vuex方案"><a href="#vuex方案" class="headerlink" title="vuex方案"></a>vuex方案</h2><ul>
+<li>去掉了构造函数<code>Vuex</code>,而使用<code>createStore</code>创建仓库</li>
+<li>为了配合<code>composition api</code>,新增<code>useStore</code>函数获得仓库对象</li>
+</ul>
+<h2 id="global-state"><a href="#global-state" class="headerlink" title="global state"></a>global state</h2><p>由于<code>vue3</code>的响应式系统本身可以脱离组件而存在,因此可以充分利用这一点,轻松制造多个全局响应式数据.</p>
+<img src="/2025/01/25/Vue3-js/image-20250126113020895.png" class="" title="image-20250126113020895">
+
+<h2 id="Provide-Inject"><a href="#Provide-Inject" class="headerlink" title="Provide&amp;Inject"></a>Provide&amp;Inject</h2><p>在<code>vue2</code>中,提供了<code>provide</code>和<code>inject</code>配置,可以让开发者在高层组件中注入数据,然后在后代组件中使用.</p>
+<img src="/2025/01/25/Vue3-js/image-20250126113155296.png" class="" title="image-20250126113155296">
+
+<p>除了兼容<code>vue2</code>的配置式注入,<code>vue3</code>在组合式API中,添加了<code>provide</code>和<code>inject</code>方法,可以在<code>setup</code>函数中注入和使用数据</p>
+<img src="/2025/01/25/Vue3-js/image-20250126113258261.png" class="" title="image-20250126113258261">
+
+<p>考虑到有些数据需要在整个<code>vue</code>应用中使用,<code>vue3</code>还在应用实例中加入了<code>provied</code>方法,用于提供整个应用的共享数据.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">	.<span class="title function_">provide</span>(<span class="string">&#x27;foo&#x27;</span>, <span class="title function_">ref</span>(<span class="number">1</span>))</span><br><span class="line">	.<span class="title function_">provide</span>(<span class="string">&#x27;bar&#x27;</span>, <span class="title function_">ref</span>(<span class="number">2</span>))</span><br><span class="line">	.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<img src="/2025/01/25/Vue3-js/image-20250126113436380.png" class="" title="image-20250126113436380">
+
+<p>因此,我们可以利用这一点,在整个<code>vue</code>应用中提供共享数据.</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>vuex</th>
+<th>global state</th>
+<th>Provide&amp;Inject</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组件数据共享</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>可否脱离组件</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>调试工具</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>状态树</td>
+<td>√</td>
+<td>自行决定</td>
+<td>自行决定</td>
+</tr>
+<tr>
+<td>量级</td>
+<td>重</td>
+<td>轻</td>
+<td>轻</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>canvas</title>
+    <url>/2025/05/03/canvas/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>canvas</tag>
       </tags>
   </entry>
   <entry>
@@ -6609,435 +7063,70 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Vue3.js</title>
-    <url>/2025/01/25/Vue3-js/</url>
-    <content><![CDATA[<h1 id="Vue3的重大变化"><a href="#Vue3的重大变化" class="headerlink" title="Vue3的重大变化"></a>Vue3的重大变化</h1><img src="/2025/01/25/Vue3-js/image-20250125152103815.png" class="" title="image-20250125152103815">
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// console.log(&#x27;所有生命周期钩子函数之前调用&#x27;)</span></span><br><span class="line">        <span class="comment">// console.log(this);   this -&gt; undefined</span></span><br><span class="line">        <span class="keyword">let</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">const</span> <span class="title function_">increase</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">            <span class="comment">// 不具有响应式</span></span><br><span class="line">            count.<span class="property">value</span>++;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            count,</span><br><span class="line">            increase</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="/2025/01/25/Vue3-js/image-20250125153113396.png" class="" title="image-20250125153113396">
-
-<h1 id="vite原理"><a href="#vite原理" class="headerlink" title="vite原理"></a>vite原理</h1><p>webpack原理图</p>
-<img src="/2025/01/25/Vue3-js/image-20250125161926085.png" class="" title="image-20250125161926085">
-
-<p>vite原理图</p>
-<img src="/2025/01/25/Vue3-js/image-20250125162134420.png" class="" title="image-20250125162134420">
-
-<blockquote>
-<p>面试题:说说<code>webpack</code>和<code>vite</code>的区别</p>
-<p><code>webpack</code>会先打包,然后启动开发服务器,请求服务器时,直接给予打包结果.</p>
-<p>而<code>vite</code>是直接启动开发服务器,请求哪个模块再对该模块进行实时编译.</p>
-<p>由于现代浏览器本身支持<code>ES Module</code>,会自动向依赖的Module发出请求.<code>vite</code>充分利用这一点,将开发环境下的模块文件,就作为浏览器要执行的文件,而不是像<code>webpack</code>那样进行打包合并.</p>
-<p>由于<code>vite</code>在启动的时候不需要打包,也就意味着不需要分析模块依赖,不需要编译,因此,启动速度非常快.</p>
-<p>当浏览器请求某个模块时,再根据需要对模块内容进行编译.这种按需动态编译的方式,极大的缩减了编译时间,项目越复杂,模块越多,<code>vite</code>的优势越明显.</p>
-<p>在HMR(Hot Module Replace)方面,当改动了一个模块后,仅需让浏览器重新请求该模块即可,不像<code>webpack</code>那样需要把该模块的相关依赖全部编译一次,效率更高.</p>
-<p>当需要打包到生产环境时,<code>vite</code>使用传统的<code>rollup</code>进行打包,因此,<code>vite</code>的主要优势在开发阶段.另外,由于<code>vite</code>利用的是<code>ES Module</code>,因此代码中<strong>不能使用<code>CommonJS</code></strong></p>
-</blockquote>
-<h2 id="效率提升"><a href="#效率提升" class="headerlink" title="效率提升"></a>效率提升</h2><blockquote>
-<p>CSR效率提高了1.3到2倍</p>
-<p>SSR效率提高了2-3倍</p>
-</blockquote>
-<h3 id="静态提升"><a href="#静态提升" class="headerlink" title="静态提升"></a>静态提升</h3><p>下面的静态节点会被提升</p>
-<ul>
-<li>元素节点</li>
-<li>没有绑定动态内容</li>
+    <title>react</title>
+    <url>/2025/04/26/react/</url>
+    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
+<h3 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h3><ul>
+<li>如何创建和嵌套组件</li>
+<li>如何添加标签和样式 </li>
+<li>如何显示数据</li>
+<li>如何渲染条件和列表</li>
+<li>如何对事件做出响应并更新界面</li>
+<li>如何在组件间共享数据</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vue2的静态节点</span></span><br><span class="line"><span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">createVNode</span>(<span class="string">&quot;h1&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// vue3的静态节点</span></span><br><span class="line"><span class="keyword">const</span> hoisted = <span class="title function_">createVNode</span>(<span class="string">&quot;h1&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 直接使用 hoisted 即可.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>静态属性会被提升</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;user&quot;&gt;</span><br><span class="line">    &#123;&#123; user.name &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> hoisted = &#123; <span class="attr">class</span>: <span class="string">&quot;user&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">createVNode</span>(<span class="string">&quot;div&quot;</span>, hoisted, user.<span class="property">name</span>)</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="预字符串化"><a href="#预字符串化" class="headerlink" title="预字符串化"></a>预字符串化</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;menu-bar-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;logo&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>logo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;nav&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span> &#123;&#123;user.name&#125;&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>当编译器遇到大量连续的静态内容,会直接将其编译为一个普通字符串节点.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const _hoisted_2 = _createStaticVNode(&quot;x &lt;div class=&quot;menu-bar-container&quot;&gt;    &lt;div class=&quot;logo&quot;&gt;        &lt;h1&gt;logo&lt;/h1&gt;    &lt;/div&gt;    &lt;ul class=&quot;nav&quot;&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;        &lt;li&gt;&lt;/li&gt;    &lt;/ul&gt;    &lt;div class=&quot;user&quot;&gt;        &lt;span&gt; &#123;&#123;user.name&#125;&#125; &lt;/span&gt;    &lt;/div&gt;&lt;/div&gt;&quot;)</span><br></pre></td></tr></table></figure>
-
-<img src="/2025/01/25/Vue3-js/image-20250125171233369.png" class="" title="image-20250125171233369">
-
-<img src="/2025/01/25/Vue3-js/image-20250125171251690.png" class="" title="image-20250125171251690">
-
-<h3 id="缓存事件处理函数"><a href="#缓存事件处理函数" class="headerlink" title="缓存事件处理函数"></a>缓存事件处理函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button @click=&quot;count++&quot;&gt;</span><br><span class="line">    plus</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vue2</span></span><br><span class="line"><span class="title function_">render</span>(<span class="params">ctx</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">createVNode</span>(<span class="string">&quot;button&quot;</span>, &#123;</span><br><span class="line">        <span class="attr">onClick</span>: <span class="keyword">function</span>(<span class="params">$event</span>) &#123;</span><br><span class="line">            ctx.<span class="property">count</span>++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// vue3</span></span><br><span class="line"><span class="title function_">render</span>(<span class="params">ctx, _cache</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">createVNode</span>(<span class="string">&quot;button&quot;</span>, &#123;</span><br><span class="line">        <span class="attr">onClick</span>: cache[<span class="number">0</span>] || (cache[<span class="number">0</span>] = <span class="function">(<span class="params">$event</span>) =&gt;</span> (ctx.<span class="property">count</span>++))</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Block-Tree"><a href="#Block-Tree" class="headerlink" title="Block Tree"></a>Block Tree</h3><p>vue2在对比新旧树的时候,并不知道哪些节点是静态的,哪些是动态的,因此只能一层一层的比较,这就浪费了大部分的时间在对比静态节点上</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;label&gt;账号: &lt;/label&gt;</span><br><span class="line">        &lt;input v-model=&quot;user.loginId&quot;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;label&gt;密码: &lt;/label&gt;</span><br><span class="line">        &lt;input v-model=&quot;user.loginPwd&quot;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-
-<img src="/2025/01/25/Vue3-js/image-20250125172137837.png" class="" title="image-20250125172137837">
-
-<img src="/2025/01/25/Vue3-js/image-20250125172154019.png" class="" title="image-20250125172154019">
-
-<h3 id="PatchFlag"><a href="#PatchFlag" class="headerlink" title="PatchFlag"></a>PatchFlag</h3><p>vue2在对比每一个节点时,并不知道这个节点哪些相关信息回发生变化,因此只能将所有信息依次对比</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;user&quot; data-id=&quot;1&quot; title=&quot;user name&quot;&gt;</span><br><span class="line">    &#123;&#123;user.name&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<img src="/2025/01/25/Vue3-js/image-20250125172516998.png" class="" title="image-20250125172516998">
-
-<h1 id="API和数据响应式的变化"><a href="#API和数据响应式的变化" class="headerlink" title="API和数据响应式的变化"></a>API和数据响应式的变化</h1><blockquote>
-<p>面试题1: 为什么vue3中去掉了vue构造函数</p>
-<p>面试题2: 谈谈你对vue3数据响应式的理解</p>
 </blockquote>
-<h2 id="去掉了Vue的构造函数"><a href="#去掉了Vue的构造函数" class="headerlink" title="去掉了Vue的构造函数"></a>去掉了Vue的构造函数</h2><p>在过去,如果遇到一个页面有多个<code>vue</code>应用,往往会遇到一些问题</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue2 --&gt;</span><br><span class="line">&lt;div id=&quot;app1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;app2&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	Vue.use(...);	// 此代码会影响所有的vue应用</span><br><span class="line">	Vue.mixin(...);	// 此代码会影响所有的vue应用</span><br><span class="line">    Vue.component(...);	// 此代码会影响所有的vue应用</span><br><span class="line">                  </span><br><span class="line">                  </span><br><span class="line">   	new Vue(&#123;</span><br><span class="line">                  // 配置</span><br><span class="line">                  &#125;).$mount(&quot;#app1&quot;);</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        // 配置</span><br><span class="line">        </span><br><span class="line">    &#125;).$mount(&quot;#app2&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="创建和嵌套组件"><a href="#创建和嵌套组件" class="headerlink" title="创建和嵌套组件"></a>创建和嵌套组件</h2><p>React应用程序是由<strong>组件</strong>组成的。一个组件是UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。</p>
+<p>React组件是返回标签的JavaScript函数：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  )；</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
 
-<p>在<code>vue3</code>中,去掉了<code>Vue</code>构造函数,转而使用<code>createApp</code>创建<code>vue</code>应用.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue3 --&gt;</span><br><span class="line">&lt;div id=&quot;app1&quot;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;app2&quot;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	createApp(根组件).use(...).mixin(...).component(...).mount(&quot;#app1&quot;);</span><br><span class="line">    createApp(根组件).mount(&quot;#app2&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>至此，你已经声明了<code>MyButton</code>,现在你可以把它嵌套到另一个组件中：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>你可能已经注意到<code>&lt;MyButton /&gt;</code>是以大写字母开头的。你可以据此识别React组件。React组件必须以大写字母开头，而HTML标签则必须是小写字母。</p>
+<p>来看下效果：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      我是一个按钮</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="使用JSX编写标签"><a href="#使用JSX编写标签" class="headerlink" title="使用JSX编写标签"></a>使用JSX编写标签</h2><p>上面所使用的标签语法是JSX。它是可选的，但大多数React项目会使用JSX，主要是它很方便。所有 我们推荐的本地开发工具 都开箱即用地支持 JSX。</p>
+<p>JSX比HTML更加严格。你必须闭合标签，如<code>&lt;br /&gt;</code>。你的组件也不能反悔多个JSX标签。你必须将他们包裹到一个共享的父级中，比如<code>&lt;div&gt;...&lt;/div&gt;</code>或使用空的<code>&lt;&gt;...&lt;/&gt;</code>包裹：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">AboutPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>你好。<span class="tag">&lt;<span class="name">br</span> /&gt;</span>最近怎么样？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>面试题1: 为什么<code>vue3</code>中去掉了<code>vue</code>构造函数</p>
-<ol>
-<li>调用构造函数的静态方法会对所有<code>vue</code>应用都生效,不利于隔离不同应用.</li>
-<li><code>vue2</code>的构造函数集成了太多功能,不利于<code>tree shaking</code>,<code>vue3</code>把这些功能使用普通函数导出,能够充分利用<code>tree shaking</code>优化打包体积.</li>
-<li><code>vue2</code>没有把&#x3D;&#x3D;组件实例&#x3D;&#x3D;和&#x3D;&#x3D;vue应用&#x3D;&#x3D;两个概念区分开来,在<code>vue2</code>中,通过<code>new Vue</code>创建的对象,既是一个vue应用,同时又是一个特殊的vue组件.<code>vue3</code>中,把两个概念区分开来,通过createApp创建对象,是一个vue应用,它内部提供的方法是针对整个应用的,而不再是一个特殊的组件.</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>面试题2: 谈谈你对vue3数据响应式的理解</p>
-<p>vue3不再使用<code>Object.defineProperty</code>的方式定义完成数据响应式,而是使用<code>Proxy</code>.</p>
-<p>除了<code>Proxy</code>本身效率比<code>Object.defineProperty</code>更高之外,由于不必递归遍历所有属性,而是直接得到一个<code>Proxy</code>.所以在<code>vue3</code>中,对数据的访问是动态的,当访问某个属性的时候,再动态的获取和设置,这就极大地提升了在组件初始阶段的效率.</p>
-<p>同时,由于<code>Proxy</code>可以监控到成员的新增和删除,因此,在<code>vue3</code>中新增成员,删除成员,索引访问等均可以触发重新渲染,而这些在<code>vue2</code>中是难以做到的.</p>
-</blockquote>
-<h2 id="组件实例中的API"><a href="#组件实例中的API" class="headerlink" title="组件实例中的API"></a>组件实例中的API</h2><p>在<code>vue3</code>中,组件实例是一个<code>Proxy</code>,它仅仅提供了下列成员,功能和<code>vue2</code>一样</p>
-<h2 id="对比数据响应式"><a href="#对比数据响应式" class="headerlink" title="对比数据响应式"></a>对比数据响应式</h2><p><code>vue2</code>和<code>vue3</code>均在相同的生命周期完成数据响应式,但做法不一样.</p>
-<img src="/2025/01/25/Vue3-js/image-20250125174427284.png" class="" title="image-20250125174427284">
+<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>在React中，你可以使用<code>className</code>来指定一个CSS的class。它与HTML的<code>class</code>属性的工作方式相同。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2025/01/25/Vue3-js/image-20250125174515582.png" class="" title="image-20250125174515582">
+<p>然后，你可以在一个单独的CSS文件中为它编写CSS规则：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>-raduis: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>为了让<code>v-model</code>更好的针对多个属性进行双向绑定,<code>vue3</code>作出了以下修改.</p>
-<ul>
-<li><p>当对自定义组件使用<code>v-model</code>指令时,绑定的属性名由原来的<code>value</code>变为<code>modelValue</code>,事件名由原来的<code>input</code>变为<code>update:modelValue</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue2 --&gt;</span><br><span class="line">&lt;ChildComponent :value=&quot;pageTitle&quot; @input=&quot;pageTitle=$event&quot; /&gt;</span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent v-model=&quot;pageTitle&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- vue3 --&gt;</span><br><span class="line">&lt;ChildComponent</span><br><span class="line">  :modelValue=&quot;pageTitle&quot;</span><br><span class="line">  @input:modelValue=&quot;pageTitle = $event&quot;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent v-model=&quot;pageTitle&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>JSX会让你把标签放到JavaScript中。而大括号会让你“回到”JavaScript中，这样你就可以从你的代码中嵌入一些变量并展示给用户。例如，这将显示<code>user.name</code>:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;user.name&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
+<p>你还可以将JSX属性“转义到JavaScript”，但你必须使用大括号而非引号。例如，<code>className=&quot;avatar&quot;</code>是将<code>&quot;avatar&quot;</code>字符串传递给<code>className</code>。作为CSS的class。但<code>src=&#123;user.imageUrl&#125;</code>会读取JavaScript的<code>user.imageUrl</code>变量，然后将该值作为<code>src</code>属性传递：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">src</span>=<span class="string">&#123;user.imgeUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-</li>
-<li><p>去掉了<code>.sync</code>修饰符,它原本的功能由<code>v-model</code>的参数替代</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- vue2 --&gt;</span><br><span class="line">&lt;ChildComponent :title=&quot;pageTitle&quot; @update:title=&quot;pageTitle = $event&quot; /&gt;</span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent :title.sync=&quot;pageTitle&quot; /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- vue3 --&gt;</span><br><span class="line">&lt;ChildComponent :title=&quot;pageTitle&quot; @update:title=&quot;pageTitle = $event&quot; /&gt;</span><br><span class="line">&lt;!-- 简写为 --&gt;</span><br><span class="line">&lt;ChildComponent v-model:title=&quot;pageTitle&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>model</code>配置被移除</p>
-</li>
-<li><p>允许自定义<code>v-model</code>修饰符</p>
-</li>
-</ul>
-<p>vue2无此功能</p>
-<img src="/2025/01/25/Vue3-js/image-20250125180441772.png" class="" title="image-20250125180441772">
+<p>你也可以把更为复杂的表达式放入JSX的大括号内，例如字符串拼接：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Hedy Lamarr&#x27;</span>,</span><br><span class="line">  <span class="attr">imageUrl</span>: <span class="string">&#x27;http://i.imgur.com/yXovdOSss.jpb&#x27;</span>,</span><br><span class="line">  <span class="attr">imageSize</span>: <span class="number">90</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Profile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;user.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">src</span>=<span class="string">&#123;user.imageUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">alt</span>=<span class="string">&#123;</span>&#x27;<span class="attr">Photo</span> <span class="attr">of</span>&#x27; + <span class="attr">user.name</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">width:</span> <span class="attr">user.imageSize</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">height:</span> <span class="attr">user.imageSize</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
 
-<h2 id="v-if-和-v-for"><a href="#v-if-和-v-for" class="headerlink" title="v-if 和 v-for"></a>v-if 和 v-for</h2><p><code>v-if</code>的优先级高于<code>v-for</code></p>
-<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>当使用<code>&lt;template&gt;</code>进行<code>v-for</code>循环的时候,需要把<code>key</code>值放到<code>&lt;template&gt;</code>中,而不是它的子元素中.</p>
-<p>当使用<code>v-if v-else-if v-else</code>分支的时候,不再需要指定<code>key</code>值,因为<code>vue3</code>会自动给予每个分支一个唯一的<code>key</code></p>
-<p>即便要手工给予<code>key</code>值,也必须给予每个分支唯一的<code>key</code>,<strong>不能因为要重用分支而给予相同的key</strong></p>
-<h2 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h2><h1 id="组件的变化"><a href="#组件的变化" class="headerlink" title="组件的变化"></a>组件的变化</h1><h1 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h1><h2 id="获取响应式数据"><a href="#获取响应式数据" class="headerlink" title="获取响应式数据"></a>获取响应式数据</h2><table>
-<thead>
-<tr>
-<th>API</th>
-<th>传入</th>
-<th>返回</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>reactive</code></td>
-<td><code>plain-object</code></td>
-<td>对象代理</td>
-<td>深度代理对象中的所有成员</td>
-</tr>
-<tr>
-<td><code>readonly</code></td>
-<td><code>plain-object</code> OR <code>proxy</code></td>
-<td>对象代理</td>
-<td>只能读取代理对象中的成员,不可修改</td>
-</tr>
-<tr>
-<td><code>ref</code></td>
-<td><code>any</code></td>
-<td><code>&#123;value: ...&#125;</code></td>
-<td>对value的访问是响应式的,如果给value的值是一个对象,则会通过<code>reactive</code>函数进行代理,如果已经是代理,则直接使用代理</td>
-</tr>
-<tr>
-<td><code>computed</code></td>
-<td>&#96;function&#96;&#96;</td>
-<td><code>&#123;value: ...&#125;</code></td>
-<td>当读取value值时,会<strong>根据情况</strong>决定是否要运行函数</td>
-</tr>
-</tbody></table>
-<p>应用: </p>
-<ul>
-<li>如果想要让一个对象变为响应式数据,可以使用<code>reactive</code>或<code>ref</code></li>
-<li>如果想要让一个对象的所有属性只读,使用<code>readonly</code></li>
-<li>如果想要让一个非对象数据变为响应式数据,使用<code>ref</code></li>
-<li>如果想要根据已知的响应式数据得到一个新的响应式数据,使用<code>computed</code></li>
-</ul>
-<p>笔试题1: 下面代码的输出结果是什么</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; computed, reactive, readonly, ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">  <span class="attr">firstName</span>: <span class="string">&#x27;Xu Ming&#x27;</span>,</span><br><span class="line">  <span class="attr">lastName</span>: <span class="string">&#x27;Deng&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fullName = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 当调用full.Name时才会执行;而且如果值相较于上一次没有变,则使用缓存,不会执行</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;changed&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;state.firstName&#125;</span> <span class="subst">$&#123;state.lastName&#125;</span>`</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;state ready&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"><span class="keyword">const</span> imState = <span class="title function_">readonly</span>(state)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(imState === state)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stateRef = <span class="title function_">ref</span>(state)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stateRef.<span class="property">value</span> === state)</span><br><span class="line"></span><br><span class="line">state.<span class="property">firstName</span> = <span class="string">&#x27;Cheng&#x27;</span></span><br><span class="line">state.<span class="property">lastName</span> = <span class="string">&#x27;Ji&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(imState.<span class="property">firstName</span>, imState.<span class="property">lastName</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;fullname is&#x27;</span>, fullName.<span class="property">value</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> imState2 = <span class="title function_">readonly</span>(stateRef)</span><br><span class="line"><span class="comment">// 前者不能修改属性值,后者可以,不是一个内存地址的内容</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(imState2.<span class="property">value</span> === stateRef.<span class="property">value</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// state ready</span></span><br><span class="line"><span class="comment">// changed</span></span><br><span class="line"><span class="comment">// fullname is Xu Ming Deng</span></span><br><span class="line"><span class="comment">// fullname is Xu Ming Deng</span></span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Cheng Ji</span></span><br><span class="line"><span class="comment">// changed </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fullname is Cheng ji</span></span><br><span class="line"><span class="comment">// fullname is Cheng ji</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，<code>style=&#123;&#123;&#125;&#125;</code> 并不是一个特殊的语法，而是 <code>style=&#123; &#125;</code> JSX 大括号内的一个普通 <code>&#123;&#125;</code>对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。</p>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的<code>if</code>语句</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> content;</span><br><span class="line"><span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123; content &#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<p>笔试题2: 按照下面的要求完成函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; computed, reactive, readonly, ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useUser</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 在这里补全函数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> userOrigin = <span class="title function_">reactive</span>(&#123;</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> user = <span class="title function_">readonly</span>(userOrigin)</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">setUserName</span> = (<span class="params">name: string</span>) =&gt; &#123;</span><br><span class="line">    userOrigin.<span class="property">name</span> = name</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">setUserage</span> = (<span class="params">age: number</span>) =&gt; &#123;</span><br><span class="line">    userOrigin.<span class="property">age</span> = age</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">      user, <span class="comment">// 这是一个只读的用户对象,响应式数据,默认为一个空对象</span></span><br><span class="line">      setUserName, <span class="comment">// 这是一个函数,传入用户姓名,用于修改用户的名称</span></span><br><span class="line">      setUserage,  <span class="comment">// 这是一个函数,传入用户年龄,用于修改用户年龄.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn ? (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span></span><br><span class="line">  ) : (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span></span><br><span class="line">  )&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>笔试题3: 按照下面的要求完成函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;reactive, readonly&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounceGenerator</span>(<span class="params">func, duration</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      func.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">    &#125;, duration);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useDebounce</span>(<span class="params">obj, duration</span>) &#123;</span><br><span class="line">  <span class="comment">// 在这里补全函数</span></span><br><span class="line">  <span class="keyword">const</span> valueOrigin = <span class="title function_">reactive</span>(&#123; ...obj &#125;);</span><br><span class="line">  <span class="keyword">const</span> value = <span class="title function_">readonly</span>(valueOrigin);</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">setValueOrigin</span>(<span class="params">newObj</span>) &#123;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">assign</span>(valueOrigin, newObj);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> setValue = <span class="title function_">debounceGenerator</span>(setValueOrigin, duration);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    value, <span class="comment">// 这里是一个只读对象,响应式数据,默认值为参数值</span></span><br><span class="line">    setValue, <span class="comment">// 这里是一个函数,传入一个新的对象,需要把新对象中的属性混合到原始对象中,混合操作需要再duration时间内防抖</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当你不需要 else 分支时，你也可以使用更简短的 逻辑 &amp;&amp; 语法：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="监听数据变化"><a href="#监听数据变化" class="headerlink" title="监听数据变化"></a>监听数据变化</h2><p><strong>watchEffect</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> stop = <span class="title function_">watchEffect</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// 该函数会立即执行,然后追踪函数中用到的响应式数据,响应式数据变化后会再次执行</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 通过调用stop函数,会停止监听</span></span><br><span class="line"><span class="title function_">stop</span>();	<span class="comment">// 停止监听</span></span><br></pre></td></tr></table></figure>
+<h2 id="渲染列表"><a href="#渲染列表" class="headerlink" title="渲染列表"></a>渲染列表</h2><p>你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。</p>
+<p>假设你有一个产品数组：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Cabbage&#x27;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Garlic&#x27;</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Apple&#x27;</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span> </span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, ref, watchEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;);</span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">const</span> stop = <span class="title function_">watchEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 注册后立即运行一次,输出 1 0</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">a</span>, count.<span class="property">value</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进入微队列,这一次时间循环结束后才会输出</span></span><br><span class="line">state.<span class="property">b</span>++; </span><br><span class="line">state.<span class="property">a</span>++;  </span><br><span class="line">state.<span class="property">a</span>++; </span><br><span class="line">state.<span class="property">a</span>++; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">state.<span class="property">a</span>++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 5 0</span></span><br></pre></td></tr></table></figure>
+<p>注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;卷心菜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;大蒜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;苹果&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">true</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">ShoppingList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">li</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">color:</span> <span class="attr">product.isFruit</span> ? &#x27;<span class="attr">magenta</span>&#x27; <span class="attr">:</span> &#x27;<span class="attr">darkgreen</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>watch</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 等效于vue2的$watch</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听单个数据的变化</span></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;)</span><br><span class="line"><span class="title function_">watch</span>(<span class="function">() =&gt;</span> state.<span class="property">count</span>, <span class="function">(<span class="params">newvalue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;,options)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> countRef = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_">watch</span>(countRef, <span class="function">(<span class="params">newValue, oldValue</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;,options)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听多个数据的变化</span></span><br><span class="line"><span class="title function_">watch</span>([<span class="function">()=&gt;</span>state.<span class="property">count</span>, countRef], <span class="function">(<span class="params">[new1, new2],[old1, old2]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;You clicked me!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      点我</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, ref, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(count, <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`count changed from <span class="subst">$&#123;oldValue&#125;</span> to <span class="subst">$&#123;newValue&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">count.<span class="property">value</span>++;</span><br><span class="line">count.<span class="property">value</span>++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// count changed from 0 to 2</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> state.<span class="property">a</span>,</span><br><span class="line">  <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`state.a changed from <span class="subst">$&#123;oldValue&#125;</span> to <span class="subst">$&#123;newValue&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">state.<span class="property">a</span>++;</span><br><span class="line"></span><br><span class="line"><span class="comment">//state.a changed from 1 to 2</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">watch</span>([<span class="function">()=&gt;</span> state.<span class="property">a</span>, count], <span class="function">(<span class="params">[new1, new2], [old1, old2]</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`a changed from <span class="subst">$&#123;old1&#125;</span> to <span class="subst">$&#123;new1&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`count changed from <span class="subst">$&#123;old2&#125;</span> to <span class="subst">$&#123;new2&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">state.<span class="property">a</span> = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// a changed from 1 to 2</span></span><br><span class="line"><span class="comment">// count changed from 0 to 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只要watch的监听条件中有一个变了,就会触发回调</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意: 无论是<code>watchEffect</code>还是<code>watch</code>,当依赖项变化时,回调函数的执行都是<strong>异步</strong>的(微队列)</p>
-</blockquote>
-<p>应用: 除非遇到下面的场景,否则均建议选择选择<code>watchEffect</code></p>
-<ul>
-<li>不希望回调函数一开始就执行</li>
-<li>数据改变时,需要参考旧值</li>
-<li>需要监控一些回调函数中不会用到的数据</li>
-</ul>
-<p>笔试题: 下面的代码的输出结果是什么?</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, watchEffect, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">watchEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;count:&#x27;</span>, state.<span class="property">count</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> state.<span class="property">count</span>,</span><br><span class="line">  <span class="function">(<span class="params">count, oldCount</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;watch&#x27;</span>, count, oldCount);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;time out&#x27;</span>);</span><br><span class="line">  state.<span class="property">count</span>++;</span><br><span class="line">  state.<span class="property">count</span>++;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">state.<span class="property">count</span>++;</span><br><span class="line">state.<span class="property">count</span>++;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;end&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// count: 0</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// cout: 2</span></span><br><span class="line"><span class="comment">// watch 2 0</span></span><br><span class="line"><span class="comment">// time out</span></span><br><span class="line"><span class="comment">// count: 4</span></span><br><span class="line"><span class="comment">// watch 4 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><table>
-<thead>
-<tr>
-<th>API</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>isProxy</code></td>
-<td>判断某个数据是否是由<code>reactive</code>或<code>readonly</code>创建的</td>
-</tr>
-<tr>
-<td><code>isReactive</code></td>
-<td>判断某个数据是否是通过<code>reactive</code>创建的</td>
-</tr>
-<tr>
-<td><code>isReadonly</code></td>
-<td>判断某个数据是否是通过<code>readonly</code>创建的</td>
-</tr>
-<tr>
-<td><code>isRef</code></td>
-<td>判断某个数据是否是一个<code>ref</code>对象</td>
-</tr>
-</tbody></table>
-<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p><strong>unref</strong></p>
-<p>等同于<code>isRef(val) ? val.value : val</code></p>
-<p>应用:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">useNewTodo</span>(<span class="params">todos</span>) &#123;</span><br><span class="line">    todos = <span class="title function_">unref</span>(todos);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>toRef</strong></p>
-<p>得到一个响应式对象&#x3D;&#x3D;某个属性&#x3D;&#x3D;的ref格式</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fooRef = <span class="title function_">toRef</span>(state, <span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fooRef.<span class="property">value</span>++;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">foo</span>) 			<span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">state.<span class="property">foo</span>++;		</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(fooRef.<span class="property">value</span>)		<span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>toRefs</strong></p>
-<p>把一个响应式对象的所有属性转换为<code>ref</code>格式,然后包装到一个<code>plain-object</code>中返回</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stateAsRefs = <span class="title function_">toRefs</span>(state)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">stateAsRefs: not a proxy</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	foo: &#123;value: ...&#125;,</span></span><br><span class="line"><span class="comment">	bar: &#123;value: ...&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>应用</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> state1 = <span class="title function_">reactive</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;);</span><br><span class="line">    <span class="keyword">const</span> state2 = <span class="title function_">reactive</span>(&#123;<span class="attr">c</span>:<span class="number">3</span>, <span class="attr">d</span>:<span class="number">4</span>&#125;);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state1,  <span class="comment">// 失去响应式 lost reactivity</span></span><br><span class="line">        ...state2	<span class="comment">// 失去响应式 lost reactivity</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> state1 = <span class="title function_">reactive</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;);</span><br><span class="line">    <span class="keyword">const</span> state2 = <span class="title function_">reactive</span>(&#123;<span class="attr">c</span>:<span class="number">3</span>, <span class="attr">d</span>:<span class="number">4</span>&#125;);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ...<span class="title function_">toRefs</span>(state1), <span class="comment">// reactivity</span></span><br><span class="line">        ...<span class="title function_">toRefs</span>(state2)  <span class="comment">// reactivity</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">usePos</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> pos = <span class="title function_">reactive</span>(&#123;<span class="attr">x</span>:<span class="number">0</span>, <span class="attr">y</span>:<span class="number">0</span>&#125;);</span><br><span class="line">    <span class="keyword">return</span> pos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;x, y&#125; = <span class="title function_">usePos</span>(); <span class="comment">// lost reactivity</span></span><br><span class="line">    <span class="keyword">const</span> &#123;x, y&#125; = <span class="title function_">toRefs</span>(<span class="title function_">usePos</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="降低心智负担"><a href="#降低心智负担" class="headerlink" title="降低心智负担"></a>降低心智负担</h2><p>所有的<code>composition function</code>均以<code>ref</code>的结果返回,以保证<code>setup</code>函数的返回结果中不包含<code>reactive</code>或<code>readonly</code>直接产生的数据.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive, toRefs, ref, readonly &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">usePos</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> pos = <span class="title function_">reactive</span>(&#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>&#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">toRefs</span>(pos);   <span class="comment">// &#123;x: refObj, y: refObj&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useBooks</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> books = <span class="title function_">ref</span>([]);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    books   <span class="comment">// book is refObj</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useLoginUser</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> user = <span class="title function_">readonly</span>(&#123;</span><br><span class="line">    <span class="attr">isLogin</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;guest&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">toRefs</span>(user);  <span class="comment">// &#123;isLogin: refObj, name: refObj&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setup</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// 在setup函数中,尽量保证解构,展开出来的所有响应式数据都是ref</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    ...<span class="title function_">usePos</span>(),</span><br><span class="line">    ...<span class="title function_">useBooks</span>(),</span><br><span class="line">    ...<span class="title function_">useLoginUser</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="组合式API"><a href="#组合式API" class="headerlink" title="组合式API"></a>组合式API</h1><blockquote>
-<p>面试题: composition api相比于 option api 有哪些优势?</p>
-</blockquote>
-<p>不同于<code>reactivity api</code>,<code>composition api</code>提供的函数很多都是与组件深度绑定的,不能脱离组件而存在.</p>
-<h2 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// component</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="title function_">setup</span>(<span class="params">props, context</span>) &#123;</span><br><span class="line">        <span class="comment">// 该函数在组件属性被赋值后立即执行,早于所有生命周期钩子函数</span></span><br><span class="line">        <span class="comment">// pros是一个对象,包含了所有的组件属性值.</span></span><br><span class="line">        <span class="comment">// context是一个对象,提供了组件所需的上下文信息</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>context</code>对象的成员</p>
-<table>
-<thead>
-<tr>
-<th>成员</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>attrs</td>
-<td>对象</td>
-<td>同<code>vue2</code>的<code>this.$attrs</code></td>
-</tr>
-<tr>
-<td>slots</td>
-<td>对象</td>
-<td>同<code>vue2</code>的<code>this.$slots</code></td>
-</tr>
-<tr>
-<td>emit</td>
-<td>方法</td>
-<td>同<code>vue2</code>的<code>this.$emit</code></td>
-</tr>
-</tbody></table>
-<h2 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h2><table>
-<thead>
-<tr>
-<th>vue2 option api</th>
-<th>vue3 option api</th>
-<th>vue3 composition api</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>beforeCreate</td>
-<td>beforeCreate</td>
-<td>不再需要,代码可直接置于setup中,因为数据响应式API被单独抽离</td>
-</tr>
-<tr>
-<td>created</td>
-<td>created</td>
-<td>不再需要,代码可直接置于setup中</td>
-</tr>
-<tr>
-<td>beforeMount</td>
-<td>beforeMount</td>
-<td>onBeforeMount</td>
-</tr>
-<tr>
-<td>mounted</td>
-<td>mounted</td>
-<td>onMounted</td>
-</tr>
-<tr>
-<td>beforeUpdate</td>
-<td>beforeUpdate</td>
-<td>onBeforeUpdate</td>
-</tr>
-<tr>
-<td>upodated</td>
-<td>updated</td>
-<td>onUpdated</td>
-</tr>
-<tr>
-<td>beforeDestroy</td>
-<td>&#x3D;&#x3D;beforeUnmount&#x3D;&#x3D;</td>
-<td>onBeforeUnmount</td>
-</tr>
-<tr>
-<td>destroyed</td>
-<td>&#x3D;&#x3D;unmounted&#x3D;&#x3D;</td>
-<td>onUnmounted</td>
-</tr>
-<tr>
-<td>errorCaptured</td>
-<td>errorCaptured</td>
-<td>onErrorCaptured</td>
-</tr>
-<tr>
-<td>-</td>
-<td>&#x3D;&#x3D;renderTracked&#x3D;&#x3D;</td>
-<td>onRenderTracked</td>
-</tr>
-<tr>
-<td>-</td>
-<td>&#x3D;&#x3D;renderTriggered&#x3D;&#x3D;</td>
-<td>onRenderTriggered</td>
-</tr>
-</tbody></table>
-<p>新增钩子函数说明</p>
-<table>
-<thead>
-<tr>
-<th>钩子函数</th>
-<th>参数</th>
-<th>执行时机</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>renderTracked</td>
-<td>DebuggerEvent</td>
-<td>渲染vdom收集到的每一次依赖时</td>
-</tr>
-<tr>
-<td>renderTriggered</td>
-<td>DebuggerEvent</td>
-<td>某个依赖变化导致组件重新渲染时</td>
-</tr>
-</tbody></table>
-<p>DebuggerEvent</p>
-<ul>
-<li>target: 跟踪或触发渲染的对象</li>
-<li>key: 跟踪或触发渲染的属性</li>
-<li>type: 跟踪或触发渲染的方式</li>
-</ul>
-<h2 id="面试题参考答案"><a href="#面试题参考答案" class="headerlink" title="面试题参考答案"></a>面试题参考答案</h2><p>面试题: <code>composition api</code>相比于<code>option api</code>有哪些优势</p>
-<blockquote>
-<p>从两个方面回答:</p>
-<ol>
-<li>为了更好的逻辑复用和代码组织</li>
-<li>更好的类型推导</li>
-</ol>
-<p>有了<code>composition api</code>,配合<code>reactivity api</code>,可以在组件内部进行更加细粒度的控制,使得组件中不同的功能高度聚合,提升了代码的可维护性.对于不同组件的相同功能,也能够更好的复用</p>
-<p>相比于<code>option api</code>,<code>composition api</code>中没有了奇怪的<code>this</code>,所有的<code>api</code>变得更加的函数式,这有利于和类型推导系统比如TS的深度配合.</p>
-</blockquote>
-<h1 id="共享数据"><a href="#共享数据" class="headerlink" title="共享数据"></a>共享数据</h1><h2 id="vuex方案"><a href="#vuex方案" class="headerlink" title="vuex方案"></a>vuex方案</h2><ul>
-<li>去掉了构造函数<code>Vuex</code>,而使用<code>createStore</code>创建仓库</li>
-<li>为了配合<code>composition api</code>,新增<code>useStore</code>函数获得仓库对象</li>
-</ul>
-<h2 id="global-state"><a href="#global-state" class="headerlink" title="global state"></a>global state</h2><p>由于<code>vue3</code>的响应式系统本身可以脱离组件而存在,因此可以充分利用这一点,轻松制造多个全局响应式数据.</p>
-<img src="/2025/01/25/Vue3-js/image-20250126113020895.png" class="" title="image-20250126113020895">
-
-<h2 id="Provide-Inject"><a href="#Provide-Inject" class="headerlink" title="Provide&amp;Inject"></a>Provide&amp;Inject</h2><p>在<code>vue2</code>中,提供了<code>provide</code>和<code>inject</code>配置,可以让开发者在高层组件中注入数据,然后在后代组件中使用.</p>
-<img src="/2025/01/25/Vue3-js/image-20250126113155296.png" class="" title="image-20250126113155296">
-
-<p>除了兼容<code>vue2</code>的配置式注入,<code>vue3</code>在组合式API中,添加了<code>provide</code>和<code>inject</code>方法,可以在<code>setup</code>函数中注入和使用数据</p>
-<img src="/2025/01/25/Vue3-js/image-20250126113258261.png" class="" title="image-20250126113258261">
-
-<p>考虑到有些数据需要在整个<code>vue</code>应用中使用,<code>vue3</code>还在应用实例中加入了<code>provied</code>方法,用于提供整个应用的共享数据.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">	.<span class="title function_">provide</span>(<span class="string">&#x27;foo&#x27;</span>, <span class="title function_">ref</span>(<span class="number">1</span>))</span><br><span class="line">	.<span class="title function_">provide</span>(<span class="string">&#x27;bar&#x27;</span>, <span class="title function_">ref</span>(<span class="number">2</span>))</span><br><span class="line">	.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<img src="/2025/01/25/Vue3-js/image-20250126113436380.png" class="" title="image-20250126113436380">
-
-<p>因此,我们可以利用这一点,在整个<code>vue</code>应用中提供共享数据.</p>
-<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>vuex</th>
-<th>global state</th>
-<th>Provide&amp;Inject</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>组件数据共享</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>可否脱离组件</td>
-<td>√</td>
-<td>√</td>
-<td>×</td>
-</tr>
-<tr>
-<td>调试工具</td>
-<td>√</td>
-<td>×</td>
-<td>√</td>
-</tr>
-<tr>
-<td>状态树</td>
-<td>√</td>
-<td>自行决定</td>
-<td>自行决定</td>
-</tr>
-<tr>
-<td>量级</td>
-<td>重</td>
-<td>轻</td>
-<td>轻</td>
-</tr>
-</tbody></table>
 ]]></content>
       <tags>
-        <tag>vue</tag>
+        <tag>react 框架</tag>
       </tags>
   </entry>
   <entry>
@@ -8313,11 +8402,71 @@
       </tags>
   </entry>
   <entry>
-    <title>canvas</title>
-    <url>/2025/05/03/canvas/</url>
-    <content><![CDATA[]]></content>
+    <title>《从白屏到丝滑体验：深入解析骨架屏技术》</title>
+    <url>/2025/01/06/skeleton-screen/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习,有一个新的需求,需要把我们的 APP 的遮罩加载 loading 效果替换为骨架屏(<code>skeleton screen</code>)以提升用户体验.</p>
+<p>原来在学习 uniapp 小程序开发的时候曾经使用过骨架屏这一技术,当时是利用微信小程序开发者工具直接生成的.</p>
+<p>但是公司的 APP 的技术栈是 Flutter, 开发的是 Android 和 IOS 的应用,所以在技术实现上可能会略有不同.</p>
+<p>为了总结记录骨架屏的相关知识和最佳实践,决定开一篇文章记录一下.</p>
+<h1 id="骨架屏的背景与意义"><a href="#骨架屏的背景与意义" class="headerlink" title="骨架屏的背景与意义"></a>骨架屏的背景与意义</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>骨架屏(<code>skeleton screen</code>)是指当网络较慢时，在页面真实数据加载之前，给用户展示出页面的<strong>大致结构</strong>。 一方面让用户对页面有一定的心理预期，另一方面可以改善长期停留在空白屏给用户带来的枯燥和不适感。它可以为用户提供更好<strong>视觉效果</strong>和<strong>使用体验</strong>。</p>
+<img src="/2025/01/06/skeleton-screen/image-20250106105023197.png" class="" title="image-20250106105023197">
+
+<h2 id="技术边界"><a href="#技术边界" class="headerlink" title="技术边界"></a>技术边界</h2><p>在学习新技术时,我们需要明确<strong>技术是为了解决问题的</strong>.所以在学习过程中,切不可盲目,必须要有明确的方向.</p>
+<p>首先,便是<strong>划定技术的边界</strong>,也就是说,这个技术<strong>到底是用来干什么的</strong>.一旦明确了技术的边界,我们学习的过程就像有了前进的灯塔,不会迷茫而混乱.</p>
+<p>在当前背景下,前端开发并没有类似<code>Java Spring</code>那样一统天下的最佳实践,所以导致前端的技术纷繁复杂,同样一个问题,解决的方案可能有非常多.这个时候更需要我们<strong>划定技术的边界</strong>.</p>
+<p>比如在 css 工程化过程中遇到的问题: 类名冲突.随着工程越来越大,样式越来越多,类名经常会出现冲突的情况.为了解决这个问题,提出了很多方案,比如</p>
+<ul>
+<li>BEM,OOCSS,AMCSSD 等命名规范</li>
+<li>css in js 方案,用 js 的对象来表示 css 样式</li>
+<li>css module, 利用模块化处理</li>
+</ul>
+<p>这些技术我可能很多没有学过,或者学过又忘了,但是无伤大雅.因为我一旦知道了这些技术到底在解决什么问题,他的所有技术实现细节跑不出如来佛的手掌心.技术具体的实现细节,当我们需要使用时,查阅相关文档即可解决.</p>
+<p>回到骨架屏技术,它到底为了解决什么问题呢?</p>
+<p><strong>页面加载时用户体验不佳</strong></p>
+<p>在目前激烈的市场竞争环境下,用户体验的重要性在此不在赘述.造成页面加载体验不好的原因也有很多,用户设备,网速,前端页面处理等等.</p>
+<p>为了解决这个问题,之前业界也使用过很多方案</p>
+<ul>
+<li>白屏: 最开始就是直接白屏,用户体验非常糟糕</li>
+<li>空内容站位: 显示一个空白框或”加载中”文字占位<ul>
+<li>优点: 实现简单,占用资源少,无需复杂逻辑</li>
+<li>缺点: 空白框或文字与内容本身无直接关联,无法让用户直观感受到加载进度</li>
+</ul>
+</li>
+<li>Loading 动画(Spinner 或进度条):显示一个旋转的圆圈之类的,告诉用户内容正在加载<ul>
+<li>优点: 简单易实现,用户反馈明确,用户知道没有卡住,正在加载内容</li>
+<li>缺点: 缺乏页面结构感,无法让用户预期页面布局或内容结构,体验较生硬</li>
+</ul>
+</li>
+</ul>
+<p>于是,骨架屏技术应运而生.</p>
+<h1 id="骨架屏的设计与实现"><a href="#骨架屏的设计与实现" class="headerlink" title="骨架屏的设计与实现"></a>骨架屏的设计与实现</h1><p>由于公司技术栈原因,所以首先研究Flutter框架下骨架屏的使用.</p>
+<p>至于Web端的骨架屏,三大公司的组件库(<code>T Design</code>,<code>Arco Design</code> <code>Ant Design</code>)都有封装好的最佳实践.</p>
+<p>对于Flutter, T Design 有相关设计,可惜还没有更新骨架屏组件.</p>
+<p>查阅相关资料文档可知,目前Flutter实现骨架屏主要有两个包<code>shimmer</code>和<code>skeletonizer</code></p>
+<p><a href="https://pub.dev/packages/shimmer">shimmer</a></p>
+<p><a href="https://pub.dev/packages/skeletonizer">skeletonizer</a></p>
+<p>详细内容见后面 <a href="#5">案例分享与实践经验</a></p>
+<h1 id="骨架屏的最佳实践"><a href="#骨架屏的最佳实践" class="headerlink" title="骨架屏的最佳实践"></a>骨架屏的最佳实践</h1><h2 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h2><ul>
+<li>网络较慢,需要长时间等待加载处理的情况下</li>
+<li>图文信息内容较多的列表&#x2F;卡片中</li>
+<li>只在第一次加载数据的时候使用</li>
+</ul>
+<h2 id="何时不适用"><a href="#何时不适用" class="headerlink" title="何时不适用"></a>何时不适用</h2><ul>
+<li>当内容布局和排版<strong>不固定</strong>时,轮廓和内容布局之间会有<strong>巨大差异</strong>,使用骨架屏不仅不能给用户流畅体验和期待感,反而会造成落差</li>
+<li>当内容区域有<strong>空页面</strong>时,不建议使用骨架屏,因为用户很容易误认为<strong>空白页</strong>是正在加载,从而造成困惑.</li>
+<li>当加载时长低于1s时,不建议使用骨架屏,因为没有必要反而增加负担.当加载市场高于10s时,建议给出加载失败反馈和出口.</li>
+</ul>
+<h1 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h1><p>待更新</p>
+<h1 id="案例分享与实践经验"><a href="#案例分享与实践经验" class="headerlink" title="案例分享与实践经验"></a><span id="5">案例分享与实践经验</span></h1><h2 id="shimmer-Demo"><a href="#shimmer-Demo" class="headerlink" title="shimmer Demo"></a>shimmer Demo</h2><h2 id="skeletonizer-Demo"><a href="#skeletonizer-Demo" class="headerlink" title="skeletonizer Demo"></a>skeletonizer Demo</h2><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://ant.design/components/skeleton-cn">Ant Design 官网</a></p>
+<p><a href="https://arco.design/docs/spec/skeleton">Arco Design 官网</a></p>
+<p><a href="https://tdesign.tencent.com/vue/components/skeleton?tab=design">T Design 官网</a></p>
+<p><a href="https://juejin.cn/post/6844903893525069838">掘金文章:网页骨架屏自动生成方案（dps） </a></p>
+<p><a href="https://blog.csdn.net/weixin_41897680/article/details/132066134">CSDN文章: flutter：占位视图（骨架屏、shimmer）</a></p>
+<p><a href="https://bbs.huaweicloud.com/blogs/415235">华为云文章: 骨架化加载器</a></p>
+<p><a href="https://www.cnblogs.com/hhsk/p/18442178">博客园文章: Flutter 实现骨架屏</a></p>
+]]></content>
       <tags>
-        <tag>canvas</tag>
+        <tag>骨架屏</tag>
       </tags>
   </entry>
   <entry>
@@ -9680,139 +9829,60 @@
       </tags>
   </entry>
   <entry>
-    <title>react</title>
-    <url>/2025/04/26/react/</url>
-    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
-<h3 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h3><ul>
-<li>如何创建和嵌套组件</li>
-<li>如何添加标签和样式 </li>
-<li>如何显示数据</li>
-<li>如何渲染条件和列表</li>
-<li>如何对事件做出响应并更新界面</li>
-<li>如何在组件间共享数据</li>
+    <title>个人简历书写指南</title>
+    <url>/2024/12/23/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E4%B9%A6%E5%86%99%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
+<li>姓名</li>
+<li>性别</li>
+<li>邮箱：使用 gmail 邮箱，表明自己具备科学上网的能力</li>
+<li>年龄</li>
 </ul>
-</blockquote>
-<h2 id="创建和嵌套组件"><a href="#创建和嵌套组件" class="headerlink" title="创建和嵌套组件"></a>创建和嵌套组件</h2><p>React应用程序是由<strong>组件</strong>组成的。一个组件是UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。</p>
-<p>React组件是返回标签的JavaScript函数：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  )；</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-<p>至此，你已经声明了<code>MyButton</code>,现在你可以把它嵌套到另一个组件中：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>你可能已经注意到<code>&lt;MyButton /&gt;</code>是以大写字母开头的。你可以据此识别React组件。React组件必须以大写字母开头，而HTML标签则必须是小写字母。</p>
-<p>来看下效果：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      我是一个按钮</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="使用JSX编写标签"><a href="#使用JSX编写标签" class="headerlink" title="使用JSX编写标签"></a>使用JSX编写标签</h2><p>上面所使用的标签语法是JSX。它是可选的，但大多数React项目会使用JSX，主要是它很方便。所有 我们推荐的本地开发工具 都开箱即用地支持 JSX。</p>
-<p>JSX比HTML更加严格。你必须闭合标签，如<code>&lt;br /&gt;</code>。你的组件也不能反悔多个JSX标签。你必须将他们包裹到一个共享的父级中，比如<code>&lt;div&gt;...&lt;/div&gt;</code>或使用空的<code>&lt;&gt;...&lt;/&gt;</code>包裹：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">AboutPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>你好。<span class="tag">&lt;<span class="name">br</span> /&gt;</span>最近怎么样？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>在React中，你可以使用<code>className</code>来指定一个CSS的class。它与HTML的<code>class</code>属性的工作方式相同。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后，你可以在一个单独的CSS文件中为它编写CSS规则：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>-raduis: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>JSX会让你把标签放到JavaScript中。而大括号会让你“回到”JavaScript中，这样你就可以从你的代码中嵌入一些变量并展示给用户。例如，这将显示<code>user.name</code>:</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;user.name&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>你还可以将JSX属性“转义到JavaScript”，但你必须使用大括号而非引号。例如，<code>className=&quot;avatar&quot;</code>是将<code>&quot;avatar&quot;</code>字符串传递给<code>className</code>。作为CSS的class。但<code>src=&#123;user.imageUrl&#125;</code>会读取JavaScript的<code>user.imageUrl</code>变量，然后将该值作为<code>src</code>属性传递：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">src</span>=<span class="string">&#123;user.imgeUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>你也可以把更为复杂的表达式放入JSX的大括号内，例如字符串拼接：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Hedy Lamarr&#x27;</span>,</span><br><span class="line">  <span class="attr">imageUrl</span>: <span class="string">&#x27;http://i.imgur.com/yXovdOSss.jpb&#x27;</span>,</span><br><span class="line">  <span class="attr">imageSize</span>: <span class="number">90</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Profile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;user.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">src</span>=<span class="string">&#123;user.imageUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">alt</span>=<span class="string">&#123;</span>&#x27;<span class="attr">Photo</span> <span class="attr">of</span>&#x27; + <span class="attr">user.name</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">width:</span> <span class="attr">user.imageSize</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">height:</span> <span class="attr">user.imageSize</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
-
-<p>在上面的示例中，<code>style=&#123;&#123;&#125;&#125;</code> 并不是一个特殊的语法，而是 <code>style=&#123; &#125;</code> JSX 大括号内的一个普通 <code>&#123;&#125;</code>对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。</p>
-<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的<code>if</code>语句</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> content;</span><br><span class="line"><span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123; content &#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn ? (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span></span><br><span class="line">  ) : (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span></span><br><span class="line">  )&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>当你不需要 else 分支时，你也可以使用更简短的 逻辑 &amp;&amp; 语法：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="渲染列表"><a href="#渲染列表" class="headerlink" title="渲染列表"></a>渲染列表</h2><p>你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。</p>
-<p>假设你有一个产品数组：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Cabbage&#x27;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Garlic&#x27;</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Apple&#x27;</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<p>在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span> </span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;卷心菜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;大蒜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;苹果&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">true</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">ShoppingList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">li</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">color:</span> <span class="attr">product.isFruit</span> ? &#x27;<span class="attr">magenta</span>&#x27; <span class="attr">:</span> &#x27;<span class="attr">darkgreen</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;You clicked me!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      点我</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>react 框架</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《从白屏到丝滑体验：深入解析骨架屏技术》</title>
-    <url>/2025/01/06/skeleton-screen/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在公司实习,有一个新的需求,需要把我们的 APP 的遮罩加载 loading 效果替换为骨架屏(<code>skeleton screen</code>)以提升用户体验.</p>
-<p>原来在学习 uniapp 小程序开发的时候曾经使用过骨架屏这一技术,当时是利用微信小程序开发者工具直接生成的.</p>
-<p>但是公司的 APP 的技术栈是 Flutter, 开发的是 Android 和 IOS 的应用,所以在技术实现上可能会略有不同.</p>
-<p>为了总结记录骨架屏的相关知识和最佳实践,决定开一篇文章记录一下.</p>
-<h1 id="骨架屏的背景与意义"><a href="#骨架屏的背景与意义" class="headerlink" title="骨架屏的背景与意义"></a>骨架屏的背景与意义</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>骨架屏(<code>skeleton screen</code>)是指当网络较慢时，在页面真实数据加载之前，给用户展示出页面的<strong>大致结构</strong>。 一方面让用户对页面有一定的心理预期，另一方面可以改善长期停留在空白屏给用户带来的枯燥和不适感。它可以为用户提供更好<strong>视觉效果</strong>和<strong>使用体验</strong>。</p>
-<img src="/2025/01/06/skeleton-screen/image-20250106105023197.png" class="" title="image-20250106105023197">
-
-<h2 id="技术边界"><a href="#技术边界" class="headerlink" title="技术边界"></a>技术边界</h2><p>在学习新技术时,我们需要明确<strong>技术是为了解决问题的</strong>.所以在学习过程中,切不可盲目,必须要有明确的方向.</p>
-<p>首先,便是<strong>划定技术的边界</strong>,也就是说,这个技术<strong>到底是用来干什么的</strong>.一旦明确了技术的边界,我们学习的过程就像有了前进的灯塔,不会迷茫而混乱.</p>
-<p>在当前背景下,前端开发并没有类似<code>Java Spring</code>那样一统天下的最佳实践,所以导致前端的技术纷繁复杂,同样一个问题,解决的方案可能有非常多.这个时候更需要我们<strong>划定技术的边界</strong>.</p>
-<p>比如在 css 工程化过程中遇到的问题: 类名冲突.随着工程越来越大,样式越来越多,类名经常会出现冲突的情况.为了解决这个问题,提出了很多方案,比如</p>
-<ul>
-<li>BEM,OOCSS,AMCSSD 等命名规范</li>
-<li>css in js 方案,用 js 的对象来表示 css 样式</li>
-<li>css module, 利用模块化处理</li>
+<h1 id="教育经历"><a href="#教育经历" class="headerlink" title="教育经历"></a>教育经历</h1><p>入学-毕业时间</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="前端基础能力"><a href="#前端基础能力" class="headerlink" title="前端基础能力"></a>前端基础能力</h2><ul>
+<li>熟练掌握 HTML5, CSS3, JavaScript(ES6+), TypeScript, less, sass.</li>
+<li>熟练使用原生 H5 完成 WebApp</li>
+<li>熟练使用 CSS3 的媒介查询完成响应式布局</li>
+<li>深入理解原型原型链，异步，作用域链，this 指向，闭包，垃圾回收，事件循环等 JS 相关知识</li>
+<li>深入理解浏览器的工作原理</li>
 </ul>
-<p>这些技术我可能很多没有学过,或者学过又忘了,但是无伤大雅.因为我一旦知道了这些技术到底在解决什么问题,他的所有技术实现细节跑不出如来佛的手掌心.技术具体的实现细节,当我们需要使用时,查阅相关文档即可解决.</p>
-<p>回到骨架屏技术,它到底为了解决什么问题呢?</p>
-<p><strong>页面加载时用户体验不佳</strong></p>
-<p>在目前激烈的市场竞争环境下,用户体验的重要性在此不在赘述.造成页面加载体验不好的原因也有很多,用户设备,网速,前端页面处理等等.</p>
-<p>为了解决这个问题,之前业界也使用过很多方案</p>
-<ul>
-<li>白屏: 最开始就是直接白屏,用户体验非常糟糕</li>
-<li>空内容站位: 显示一个空白框或”加载中”文字占位<ul>
-<li>优点: 实现简单,占用资源少,无需复杂逻辑</li>
-<li>缺点: 空白框或文字与内容本身无直接关联,无法让用户直观感受到加载进度</li>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
+<li>熟悉网络通信，并深入理解 HTTP, HTTP2, HTTPS, WebSocket 等常见应用层协议</li>
+<li>熟练使用 apifox 进行接口测试等</li>
+<li>熟练使用 AJAX 的 XHR 和 Fetch API 完成前后端通信</li>
+<li>熟悉 JWT, CORS, HTTP Cache, cookie, XSS, CSRF 等网络中常见的应用和安全相关知识</li>
+<li>能利用网络实现文件上传，分片，鉴权，缓存等各种网络应用需求</li>
 </ul>
-</li>
-<li>Loading 动画(Spinner 或进度条):显示一个旋转的圆圈之类的,告诉用户内容正在加载<ul>
-<li>优点: 简单易实现,用户反馈明确,用户知道没有卡住,正在加载内容</li>
-<li>缺点: 缺乏页面结构感,无法让用户预期页面布局或内容结构,体验较生硬</li>
+<h2 id="效率和工具"><a href="#效率和工具" class="headerlink" title="效率和工具"></a>效率和工具</h2><ul>
+<li>熟练掌握诸多常用第三方库，包括: JQuery, layui, esyui,loadash,mockjs,axios,moment,echart,threejs,animate.css, validata.js 等</li>
+<li>熟练使用 git 版本控制工具, github, gitlab 等代码托管平台</li>
+<li>熟练使用 vscode,能够熟练利用 AI 辅助编程，提高开发效率</li>
 </ul>
-</li>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><ul>
+<li>深入理解模块化，能熟练使用 CommonJS, ES Module 模块化标准完成分模块开发</li>
+<li>熟练使用 npm, pnpm 等包管理工具</li>
+<li>深入理解 webpack 原理</li>
+<li>熟练配置 babel, postcss, eslint, prettier 等前端常见工具链</li>
 </ul>
-<p>于是,骨架屏技术应运而生.</p>
-<h1 id="骨架屏的设计与实现"><a href="#骨架屏的设计与实现" class="headerlink" title="骨架屏的设计与实现"></a>骨架屏的设计与实现</h1><p>由于公司技术栈原因,所以首先研究Flutter框架下骨架屏的使用.</p>
-<p>至于Web端的骨架屏,三大公司的组件库(<code>T Design</code>,<code>Arco Design</code> <code>Ant Design</code>)都有封装好的最佳实践.</p>
-<p>对于Flutter, T Design 有相关设计,可惜还没有更新骨架屏组件.</p>
-<p>查阅相关资料文档可知,目前Flutter实现骨架屏主要有两个包<code>shimmer</code>和<code>skeletonizer</code></p>
-<p><a href="https://pub.dev/packages/shimmer">shimmer</a></p>
-<p><a href="https://pub.dev/packages/skeletonizer">skeletonizer</a></p>
-<p>详细内容见后面 <a href="#5">案例分享与实践经验</a></p>
-<h1 id="骨架屏的最佳实践"><a href="#骨架屏的最佳实践" class="headerlink" title="骨架屏的最佳实践"></a>骨架屏的最佳实践</h1><h2 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h2><ul>
-<li>网络较慢,需要长时间等待加载处理的情况下</li>
-<li>图文信息内容较多的列表&#x2F;卡片中</li>
-<li>只在第一次加载数据的时候使用</li>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
+<li>熟练使用 Vue3 全家桶， 深入理解 Vue 原理</li>
+<li>熟练使用 element-plus，echarts 等组件库</li>
+<li>熟练使用 uniapp</li>
+<li>了解 flutter</li>
 </ul>
-<h2 id="何时不适用"><a href="#何时不适用" class="headerlink" title="何时不适用"></a>何时不适用</h2><ul>
-<li>当内容布局和排版<strong>不固定</strong>时,轮廓和内容布局之间会有<strong>巨大差异</strong>,使用骨架屏不仅不能给用户流畅体验和期待感,反而会造成落差</li>
-<li>当内容区域有<strong>空页面</strong>时,不建议使用骨架屏,因为用户很容易误认为<strong>空白页</strong>是正在加载,从而造成困惑.</li>
-<li>当加载时长低于1s时,不建议使用骨架屏,因为没有必要反而增加负担.当加载市场高于10s时,建议给出加载失败反馈和出口.</li>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><ul>
+<li>熟练使用 node, express, koa 等技术开发服务器程序</li>
+<li>熟练使用 mysql, mongodb, redis 等数据库</li>
+<li>能利用服务器完成诸如图片水印，防盗链，验证码，token 生成等常见功能</li>
+<li>能够熟练使用 nginx 等服务器代理工具</li>
+<li>能够熟练使用 docker, k8s 等容器编排工具</li>
+<li>能够熟练使用 pm2 等进程管理工具</li>
+<li>熟悉 CI&#x2F;CD 等自动化构建工具</li>
 </ul>
-<h1 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h1><p>待更新</p>
-<h1 id="案例分享与实践经验"><a href="#案例分享与实践经验" class="headerlink" title="案例分享与实践经验"></a><span id="5">案例分享与实践经验</span></h1><h2 id="shimmer-Demo"><a href="#shimmer-Demo" class="headerlink" title="shimmer Demo"></a>shimmer Demo</h2><h2 id="skeletonizer-Demo"><a href="#skeletonizer-Demo" class="headerlink" title="skeletonizer Demo"></a>skeletonizer Demo</h2><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://ant.design/components/skeleton-cn">Ant Design 官网</a></p>
-<p><a href="https://arco.design/docs/spec/skeleton">Arco Design 官网</a></p>
-<p><a href="https://tdesign.tencent.com/vue/components/skeleton?tab=design">T Design 官网</a></p>
-<p><a href="https://juejin.cn/post/6844903893525069838">掘金文章:网页骨架屏自动生成方案（dps） </a></p>
-<p><a href="https://blog.csdn.net/weixin_41897680/article/details/132066134">CSDN文章: flutter：占位视图（骨架屏、shimmer）</a></p>
-<p><a href="https://bbs.huaweicloud.com/blogs/415235">华为云文章: 骨架化加载器</a></p>
-<p><a href="https://www.cnblogs.com/hhsk/p/18442178">博客园文章: Flutter 实现骨架屏</a></p>
-]]></content>
-      <tags>
-        <tag>骨架屏</tag>
-      </tags>
+<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><ul>
+<li>时间 公司 职位</li>
+<li>分点描述岗位职责和成果</li>
+</ul>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h1 id="证书和奖项"><a href="#证书和奖项" class="headerlink" title="证书和奖项"></a>证书和奖项</h1>]]></content>
   </entry>
   <entry>
     <title>webpack学习</title>
@@ -10878,62 +10948,6 @@
       </tags>
   </entry>
   <entry>
-    <title>个人简历书写指南</title>
-    <url>/2024/12/23/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E4%B9%A6%E5%86%99%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
-<li>姓名</li>
-<li>性别</li>
-<li>邮箱：使用 gmail 邮箱，表明自己具备科学上网的能力</li>
-<li>年龄</li>
-</ul>
-<h1 id="教育经历"><a href="#教育经历" class="headerlink" title="教育经历"></a>教育经历</h1><p>入学-毕业时间</p>
-<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="前端基础能力"><a href="#前端基础能力" class="headerlink" title="前端基础能力"></a>前端基础能力</h2><ul>
-<li>熟练掌握 HTML5, CSS3, JavaScript(ES6+), TypeScript, less, sass.</li>
-<li>熟练使用原生 H5 完成 WebApp</li>
-<li>熟练使用 CSS3 的媒介查询完成响应式布局</li>
-<li>深入理解原型原型链，异步，作用域链，this 指向，闭包，垃圾回收，事件循环等 JS 相关知识</li>
-<li>深入理解浏览器的工作原理</li>
-</ul>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
-<li>熟悉网络通信，并深入理解 HTTP, HTTP2, HTTPS, WebSocket 等常见应用层协议</li>
-<li>熟练使用 apifox 进行接口测试等</li>
-<li>熟练使用 AJAX 的 XHR 和 Fetch API 完成前后端通信</li>
-<li>熟悉 JWT, CORS, HTTP Cache, cookie, XSS, CSRF 等网络中常见的应用和安全相关知识</li>
-<li>能利用网络实现文件上传，分片，鉴权，缓存等各种网络应用需求</li>
-</ul>
-<h2 id="效率和工具"><a href="#效率和工具" class="headerlink" title="效率和工具"></a>效率和工具</h2><ul>
-<li>熟练掌握诸多常用第三方库，包括: JQuery, layui, esyui,loadash,mockjs,axios,moment,echart,threejs,animate.css, validata.js 等</li>
-<li>熟练使用 git 版本控制工具, github, gitlab 等代码托管平台</li>
-<li>熟练使用 vscode,能够熟练利用 AI 辅助编程，提高开发效率</li>
-</ul>
-<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><ul>
-<li>深入理解模块化，能熟练使用 CommonJS, ES Module 模块化标准完成分模块开发</li>
-<li>熟练使用 npm, pnpm 等包管理工具</li>
-<li>深入理解 webpack 原理</li>
-<li>熟练配置 babel, postcss, eslint, prettier 等前端常见工具链</li>
-</ul>
-<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
-<li>熟练使用 Vue3 全家桶， 深入理解 Vue 原理</li>
-<li>熟练使用 element-plus，echarts 等组件库</li>
-<li>熟练使用 uniapp</li>
-<li>了解 flutter</li>
-</ul>
-<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><ul>
-<li>熟练使用 node, express, koa 等技术开发服务器程序</li>
-<li>熟练使用 mysql, mongodb, redis 等数据库</li>
-<li>能利用服务器完成诸如图片水印，防盗链，验证码，token 生成等常见功能</li>
-<li>能够熟练使用 nginx 等服务器代理工具</li>
-<li>能够熟练使用 docker, k8s 等容器编排工具</li>
-<li>能够熟练使用 pm2 等进程管理工具</li>
-<li>熟悉 CI&#x2F;CD 等自动化构建工具</li>
-</ul>
-<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><ul>
-<li>时间 公司 职位</li>
-<li>分点描述岗位职责和成果</li>
-</ul>
-<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h1 id="证书和奖项"><a href="#证书和奖项" class="headerlink" title="证书和奖项"></a>证书和奖项</h1>]]></content>
-  </entry>
-  <entry>
     <title>关于Vue2中使用devtoolsV6的bug</title>
     <url>/2025/01/22/%E5%85%B3%E4%BA%8EVue2%E4%B8%AD%E4%BD%BF%E7%94%A8devtoolsV6%E7%9A%84bug/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在学习Vue2项目使用devtools时,需要安装legacy版本V5或V6,安装好插件后,插件能够正常检测,但是开发者工具面板就没有Vue选项卡.</p>
@@ -11722,6 +11736,171 @@
 <h2 id="2-Uniapp如何实现跨平台"><a href="#2-Uniapp如何实现跨平台" class="headerlink" title="2. Uniapp如何实现跨平台"></a>2. Uniapp如何实现跨平台</h2>]]></content>
       <tags>
         <tag>原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排序算法和查找算法</title>
+    <url>/2025/03/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%92%8C%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="什么是排序"><a href="#什么是排序" class="headerlink" title="什么是排序"></a>什么是排序</h2><p>排序(<code>Sort</code>), 就是重新排列表中的元素,使表中的元素满足<strong>按关键字有序</strong>的过程.</p>
+<p>输入: n各记录$R_1, R2, … R_n$,对应的关键字为$k_1, k_2, … , k_n$</p>
+<p>输出: 输入序列的一个重排$R_1^{‘},R_2^{‘},…,R_n^{‘},$,使得有$k_1^{‘}&lt;k_2^{‘}&lt;,,,&lt;k_n^{‘}$(也可以递减)</p>
+<h2 id="算法的稳定性"><a href="#算法的稳定性" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><p>关键字相同的元素相对位置排序后不变,称之为稳定.</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>内部排序: 数据都在内存中–&gt;关注<strong>时间复杂度,空间复杂度</strong></li>
+<li>外部排序: 数据太多,无法全部被存入内存–&gt; 关注I&#x2F;O次数</li>
+</ul>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><table>
+<thead>
+<tr>
+<th align="center">排序算法</th>
+<th align="center">最好时间复杂度</th>
+<th align="center">最坏时间复杂度</th>
+<th align="center">平均时间复杂度</th>
+<th align="center">空间复杂度</th>
+<th align="center">稳定</th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+<th align="center">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">冒泡排序</td>
+<td align="center">O(n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(1)</td>
+<td align="center">是</td>
+<td align="center">简单，稳定；可检测有序性优化</td>
+<td align="center">效率低，交换次数多</td>
+<td align="center">小数据或接近有序的数据</td>
+</tr>
+<tr>
+<td align="center">选择排序</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(1)</td>
+<td align="center">否</td>
+<td align="center">原地排序，交换次数少</td>
+<td align="center">比较次数多，不稳定</td>
+<td align="center">数据量小，交换成本高</td>
+</tr>
+<tr>
+<td align="center">插入排序</td>
+<td align="center">O(n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(1)</td>
+<td align="center">是</td>
+<td align="center">稳定，适合小数据或部分有序</td>
+<td align="center">数据量大时效率低</td>
+<td align="center">小数据或基本有序的数据</td>
+</tr>
+<tr>
+<td align="center">希尔排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n^1.3)</td>
+<td align="center">O(1)</td>
+<td align="center">否</td>
+<td align="center">改进的插入排序，中等规模高效</td>
+<td align="center">时间复杂度依赖步长序列</td>
+<td align="center">中等规模数据，权衡时间与空间</td>
+</tr>
+<tr>
+<td align="center">快速排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(log n)（平均）</td>
+<td align="center">否</td>
+<td align="center">平均最快，原地排序</td>
+<td align="center">最坏情况差，不稳定</td>
+<td align="center">通用大规模数据，需优化基准选择</td>
+</tr>
+<tr>
+<td align="center">归并排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n)</td>
+<td align="center">是</td>
+<td align="center">稳定，时间复杂度可靠</td>
+<td align="center">需额外空间</td>
+<td align="center">大数据，需稳定排序且内存足够</td>
+</tr>
+<tr>
+<td align="center">堆排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(1)</td>
+<td align="center">否</td>
+<td align="center">原地排序，时间复杂度稳定</td>
+<td align="center">缓存不友好，不稳定</td>
+<td align="center">需原地排序且避免快排最坏情况</td>
+</tr>
+<tr>
+<td align="center"><strong>计数排序</strong></td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">是</td>
+<td align="center">非比较排序，数据范围小时极快</td>
+<td align="center">依赖数据范围，仅适用于整数&#x2F;有限类型</td>
+<td align="center">小范围整数（如年龄、成绩排序）</td>
+</tr>
+<tr>
+<td align="center">基数排序</td>
+<td align="center">O(nk)</td>
+<td align="center">O(nk)</td>
+<td align="center">O(nk)</td>
+<td align="center">O(n + k)</td>
+<td align="center">是</td>
+<td align="center">稳定，适合整数&#x2F;字符串</td>
+<td align="center">需额外空间，对数据类型有要求</td>
+<td align="center">非比较排序，元素有固定基数（如数字、字符）</td>
+</tr>
+<tr>
+<td align="center">桶排序</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">是*</td>
+<td align="center">数据均匀分布时高效</td>
+<td align="center">依赖数据分布，否则效率低</td>
+<td align="center">数据分布均匀且范围已知</td>
+</tr>
+</tbody></table>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>算法思想: 每次将一个待排序的记录按其关键字的大小插入到前面已排好的子序列中,直到全部记录插入完成.(已经排好的子序列中<strong>大于</strong>待排序记录的右移,等于的不移动,保证算法的稳定性)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="comment">// 第一个记录已经排好,因为只有它一个</span></span><br><span class="line">  <span class="comment">// 从第二个开始</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 记录当前值,方式被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 从当前值的前一位开始,如果大于当前值,则后移一位</span></span><br><span class="line">    <span class="keyword">let</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 边界条件是数组开头</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; current) &#123;</span><br><span class="line">      <span class="comment">// 将大于当前值的记录后移一位</span></span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      <span class="comment">// 指针前移一位</span></span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 插入当前值</span></span><br><span class="line">    arr[j + <span class="number">1</span>] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 1.196s</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空间复杂度: <code>O(1)</code></li>
+<li>时间复杂度:<ul>
+<li>最好情况:本来是有序的,共n-1趟处理,每次处理只需对比当前值和前一位的值,发现前一位的值小于当前值后,便不再对比.即每趟对比一次.所以共需要对比<code>n-1</code>此,时间复杂度为$O(n)$</li>
+<li>最坏情况:$O(n^2)$</li>
+<li>平均复杂度: $O(n^2)$</li>
+</ul>
+</li>
+<li>稳定性: 稳定</li>
+</ul>
+<p>C语言版本:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="优化-折半插入排序"><a href="#优化-折半插入排序" class="headerlink" title="优化: 折半插入排序"></a>优化: 折半插入排序</h3><p>思路: 先用折半查找找到应该插入的位置,再移动元素.</p>
+<blockquote>
+<p>当low &gt; high时,折半查找停止,应将[low, i-1]内的元素全部右移一位,并将current复制到low所指的位置,当<code>arr[mid] === current</code>时,为了保证排序算法的稳定性,应该把它当做<code>arr[mid] &lt; current</code>,即要继续让low&#x3D;mid+1;去右半区间查找.</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertPlusSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 从下标为1开始遍历</span></span><br><span class="line">    <span class="comment">// 保存当前值防止被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 折半查找插入位置</span></span><br><span class="line">    <span class="keyword">let</span> low = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">let</span> high = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">      <span class="keyword">let</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (arr[mid] &lt;= current) &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// [low,i-1]的所有数都右移一位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i - <span class="number">1</span>; j &gt;= low; j--) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将当前值插入low位置</span></span><br><span class="line">    arr[low] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertPlusSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Debugger attached.</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 6.676ms</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>排序,查找</tag>
       </tags>
   </entry>
   <entry>
@@ -13030,171 +13209,6 @@
       </tags>
   </entry>
   <entry>
-    <title>排序算法和查找算法</title>
-    <url>/2025/03/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%92%8C%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="什么是排序"><a href="#什么是排序" class="headerlink" title="什么是排序"></a>什么是排序</h2><p>排序(<code>Sort</code>), 就是重新排列表中的元素,使表中的元素满足<strong>按关键字有序</strong>的过程.</p>
-<p>输入: n各记录$R_1, R2, … R_n$,对应的关键字为$k_1, k_2, … , k_n$</p>
-<p>输出: 输入序列的一个重排$R_1^{‘},R_2^{‘},…,R_n^{‘},$,使得有$k_1^{‘}&lt;k_2^{‘}&lt;,,,&lt;k_n^{‘}$(也可以递减)</p>
-<h2 id="算法的稳定性"><a href="#算法的稳定性" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><p>关键字相同的元素相对位置排序后不变,称之为稳定.</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
-<li>内部排序: 数据都在内存中–&gt;关注<strong>时间复杂度,空间复杂度</strong></li>
-<li>外部排序: 数据太多,无法全部被存入内存–&gt; 关注I&#x2F;O次数</li>
-</ul>
-<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><table>
-<thead>
-<tr>
-<th align="center">排序算法</th>
-<th align="center">最好时间复杂度</th>
-<th align="center">最坏时间复杂度</th>
-<th align="center">平均时间复杂度</th>
-<th align="center">空间复杂度</th>
-<th align="center">稳定</th>
-<th align="center">优点</th>
-<th align="center">缺点</th>
-<th align="center">适用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">冒泡排序</td>
-<td align="center">O(n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(1)</td>
-<td align="center">是</td>
-<td align="center">简单，稳定；可检测有序性优化</td>
-<td align="center">效率低，交换次数多</td>
-<td align="center">小数据或接近有序的数据</td>
-</tr>
-<tr>
-<td align="center">选择排序</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(1)</td>
-<td align="center">否</td>
-<td align="center">原地排序，交换次数少</td>
-<td align="center">比较次数多，不稳定</td>
-<td align="center">数据量小，交换成本高</td>
-</tr>
-<tr>
-<td align="center">插入排序</td>
-<td align="center">O(n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(1)</td>
-<td align="center">是</td>
-<td align="center">稳定，适合小数据或部分有序</td>
-<td align="center">数据量大时效率低</td>
-<td align="center">小数据或基本有序的数据</td>
-</tr>
-<tr>
-<td align="center">希尔排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n^1.3)</td>
-<td align="center">O(1)</td>
-<td align="center">否</td>
-<td align="center">改进的插入排序，中等规模高效</td>
-<td align="center">时间复杂度依赖步长序列</td>
-<td align="center">中等规模数据，权衡时间与空间</td>
-</tr>
-<tr>
-<td align="center">快速排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(log n)（平均）</td>
-<td align="center">否</td>
-<td align="center">平均最快，原地排序</td>
-<td align="center">最坏情况差，不稳定</td>
-<td align="center">通用大规模数据，需优化基准选择</td>
-</tr>
-<tr>
-<td align="center">归并排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n)</td>
-<td align="center">是</td>
-<td align="center">稳定，时间复杂度可靠</td>
-<td align="center">需额外空间</td>
-<td align="center">大数据，需稳定排序且内存足够</td>
-</tr>
-<tr>
-<td align="center">堆排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(1)</td>
-<td align="center">否</td>
-<td align="center">原地排序，时间复杂度稳定</td>
-<td align="center">缓存不友好，不稳定</td>
-<td align="center">需原地排序且避免快排最坏情况</td>
-</tr>
-<tr>
-<td align="center"><strong>计数排序</strong></td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">是</td>
-<td align="center">非比较排序，数据范围小时极快</td>
-<td align="center">依赖数据范围，仅适用于整数&#x2F;有限类型</td>
-<td align="center">小范围整数（如年龄、成绩排序）</td>
-</tr>
-<tr>
-<td align="center">基数排序</td>
-<td align="center">O(nk)</td>
-<td align="center">O(nk)</td>
-<td align="center">O(nk)</td>
-<td align="center">O(n + k)</td>
-<td align="center">是</td>
-<td align="center">稳定，适合整数&#x2F;字符串</td>
-<td align="center">需额外空间，对数据类型有要求</td>
-<td align="center">非比较排序，元素有固定基数（如数字、字符）</td>
-</tr>
-<tr>
-<td align="center">桶排序</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">是*</td>
-<td align="center">数据均匀分布时高效</td>
-<td align="center">依赖数据分布，否则效率低</td>
-<td align="center">数据分布均匀且范围已知</td>
-</tr>
-</tbody></table>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>算法思想: 每次将一个待排序的记录按其关键字的大小插入到前面已排好的子序列中,直到全部记录插入完成.(已经排好的子序列中<strong>大于</strong>待排序记录的右移,等于的不移动,保证算法的稳定性)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="comment">// 第一个记录已经排好,因为只有它一个</span></span><br><span class="line">  <span class="comment">// 从第二个开始</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 记录当前值,方式被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 从当前值的前一位开始,如果大于当前值,则后移一位</span></span><br><span class="line">    <span class="keyword">let</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 边界条件是数组开头</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; current) &#123;</span><br><span class="line">      <span class="comment">// 将大于当前值的记录后移一位</span></span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      <span class="comment">// 指针前移一位</span></span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 插入当前值</span></span><br><span class="line">    arr[j + <span class="number">1</span>] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 1.196s</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>空间复杂度: <code>O(1)</code></li>
-<li>时间复杂度:<ul>
-<li>最好情况:本来是有序的,共n-1趟处理,每次处理只需对比当前值和前一位的值,发现前一位的值小于当前值后,便不再对比.即每趟对比一次.所以共需要对比<code>n-1</code>此,时间复杂度为$O(n)$</li>
-<li>最坏情况:$O(n^2)$</li>
-<li>平均复杂度: $O(n^2)$</li>
-</ul>
-</li>
-<li>稳定性: 稳定</li>
-</ul>
-<p>C语言版本:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="优化-折半插入排序"><a href="#优化-折半插入排序" class="headerlink" title="优化: 折半插入排序"></a>优化: 折半插入排序</h3><p>思路: 先用折半查找找到应该插入的位置,再移动元素.</p>
-<blockquote>
-<p>当low &gt; high时,折半查找停止,应将[low, i-1]内的元素全部右移一位,并将current复制到low所指的位置,当<code>arr[mid] === current</code>时,为了保证排序算法的稳定性,应该把它当做<code>arr[mid] &lt; current</code>,即要继续让low&#x3D;mid+1;去右半区间查找.</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertPlusSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 从下标为1开始遍历</span></span><br><span class="line">    <span class="comment">// 保存当前值防止被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 折半查找插入位置</span></span><br><span class="line">    <span class="keyword">let</span> low = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">let</span> high = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">      <span class="keyword">let</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (arr[mid] &lt;= current) &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// [low,i-1]的所有数都右移一位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i - <span class="number">1</span>; j &gt;= low; j--) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将当前值插入low位置</span></span><br><span class="line">    arr[low] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertPlusSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Debugger attached.</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 6.676ms</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>排序,查找</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>操作系统</title>
     <url>/2025/02/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="操作系统的概念-功能"><a href="#操作系统的概念-功能" class="headerlink" title="操作系统的概念,功能"></a>操作系统的概念,功能</h1><h2 id="操作系统的概念-定义"><a href="#操作系统的概念-定义" class="headerlink" title="操作系统的概念(定义)"></a>操作系统的概念(定义)</h2><p>操作系统(Operating System, OS)是指控制和<strong>管理</strong>整个计算机系统的<strong>硬件和软件</strong>资源,并合理地组织调度计算机的工作和资源的分配;以<strong>提供给用户和其他软件方便的接口环境</strong>;它是计算机中最基本的<strong>系统软件</strong></p>
@@ -14097,11 +14111,6 @@
       </tags>
   </entry>
   <entry>
-    <title>浅谈Symbol数据类型</title>
-    <url>/2025/02/27/%E6%B5%85%E8%B0%88Symbol%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>浅析webpack和vite</title>
     <url>/2025/02/27/%E6%B5%85%E6%9E%90webpack%E5%92%8Cvite/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>webpack</code>和<code>vite</code>使我们在前端工程化中最常使用的两个工具.</p>
@@ -14315,6 +14324,11 @@
       <tags>
         <tag>webpack vite</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>浅谈Symbol数据类型</title>
+    <url>/2025/02/27/%E6%B5%85%E8%B0%88Symbol%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>浏览器</title>
