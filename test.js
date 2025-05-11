@@ -1,48 +1,31 @@
-function TreeNode(left, right, val) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
+const romanToInt = (s) => {
+  // 哈希表存储罗马数字和阿拉伯数字的映射关系
+  const map = new Map(
+    [
+      ['I', 1],
+      ['V', 5],
+      ['X', 10],
+      ['L', 50],
+      ['C', 100],
+      ['D', 500],
+      ['M', 1000],
+    ]
+  );
 
-// 生成一棵树
-const root = new TreeNode(
-  new TreeNode(
-    new TreeNode(
-      new TreeNode(null, null, 4),
-      new TreeNode(null, null, 5),
-      2,
-    ),
-    new TreeNode(null, null, 6),
-    3,
-  ),
-  new TreeNode(null, null, 7),
-  1,
-);
+  let sum = 0;
 
-const inorderTraversal = (root) => {
-  // 结果数组
-  const res = [];
-
-  // 模拟栈
-  const stack = [];
-
-  // 当前指针
-  let cur = root;
-
-  // 当栈非空或者当前指针非空时
-  while (stack.length || cur) {
-    // 如果当前指针非空，则将当前指针入栈，并将当前指针指向左子节点
-    if (cur) {
-      stack.push(cur);
-      cur = cur.left;
+  // 只需要遍历一次，如果当前数字小于后一个数字，则减去当前数字，否则加上当前数字
+  for (let i = 0; i < s.length; i++) {
+    if (i < s.length - 1 && map.get(s[i]) < map.get(s[i + 1])) {
+      sum -= map.get(s[i]);
     } else {
-      // 如果当前指针为空，则取出栈顶元素，将当前指针指向栈顶元素的右子节点
-      cur = stack.pop();
-      res.push(cur.val);
-      cur = cur.right;
+      sum += map.get(s[i]);
     }
   }
-  return res;
+  return sum;
 }
 
-console.log(inorderTraversal(root));
+// 测试
+console.log(romanToInt('III')); // 3
+console.log(romanToInt('LVIII')); // 58
+console.log(romanToInt('MCMXCIV')); // 1994

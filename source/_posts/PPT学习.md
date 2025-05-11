@@ -249,3 +249,94 @@ tags: PPT
 
 这样可以解决一些神奇的字体在别人电脑上未安装无法显示的问题。
 
+首先先用字体打一个字，然后随便插入一个形状，先点字体，再点形状，再点击剪除，文字就变成了一个形状，完成了矢量化。
+
+![20250509192614](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509192614.png)
+
+![20250509194053](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509194053.png)
+
+
+# 如何制作创意的断点文字效果
+
+## 编辑顶点&开放路径
+
+用来进行**形状和线条**的裁剪
+
+![20250509194839](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509194839.png)
+
+开放路径是顺时针开放
+
+![20250509195243](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509195243.png)
+
+![20250509195617](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509195617.png)
+
+![20250509195741](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509195741.png)
+
+![20250509200104](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509200104.png)
+
+# 如何制作创意的心跳线条
+
+## 任意多边形
+
+![20250509200744](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509200744.png)
+
+![20250509200950](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509200950.png)
+
+# 如何调整图片的色调
+
+![20250509201141](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509201141.png)
+
+![20250509201227](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509201227.png)
+
+![20250509201331](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509201331.png)
+
+![20250509201517](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509201517.png)
+
+![20250509232220](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509232220.png)
+
+调整图片为渐变色是为了和主题色保持一致。
+
+## 图片透明效果设置
+
+![20250509232258](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509232258.png)
+
+![20250509232557](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509232557.png)
+
+将图片饱和度设置为0，然后制作一个形状，渐变颜色填充，再把图片放在它上面，然后调整图片透明度。
+
+# 如何制作更高级的文字渐变效果
+
+![20250509234819](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509234819.png)
+
+# 如何打造更有质感的烫金字效果
+
+## 文字图片填充的设置
+
+![20250509235228](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250509235228.png)
+
+# 如何打造更有创意的环绕字效果
+
+![20250510000249](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510000249.png)
+
+![20250510000441](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510000441.png)
+
+# 如何设置港风描边
+
+## 文本轮廓的设置
+
+![20250510000624](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510000624.png)
+
+双层描边，先复制2份
+
+![20250510000914](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510000914.png)
+
+描边宽度从底层向上逐层递减
+
+![20250510001034](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510001034.png)
+
+一起选中以后通过排列对齐来让它对齐
+
+![20250510001430](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510001430.png)
+
+![20250510001444](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510001444.png)
+
