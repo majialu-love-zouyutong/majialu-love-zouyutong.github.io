@@ -3245,6 +3245,13 @@
 <p>一起选中以后通过排列对齐来让它对齐</p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510001430.png" alt="20250510001430"></p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510001444.png" alt="20250510001444"></p>
+<h1 id="如何快速合并多份PPT"><a href="#如何快速合并多份PPT" class="headerlink" title="如何快速合并多份PPT"></a>如何快速合并多份PPT</h1><h2 id="重用幻灯片"><a href="#重用幻灯片" class="headerlink" title="重用幻灯片"></a>重用幻灯片</h2><h2 id="保留源格式"><a href="#保留源格式" class="headerlink" title="保留源格式"></a>保留源格式</h2><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250513153501.png" alt="20250513153501"></p>
+<h1 id="如何使用小图标打造可视化页面"><a href="#如何使用小图标打造可视化页面" class="headerlink" title="如何使用小图标打造可视化页面"></a>如何使用小图标打造可视化页面</h1><h2 id="图标下载"><a href="#图标下载" class="headerlink" title="图标下载"></a>图标下载</h2><p>iconfont</p>
+<p>选择<strong>面性图标</strong>，格式为<strong>svg或png</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250513153657.png" alt="20250513153657"></p>
+<p>面性图标更容易使风格一致。因为线形需要考虑线的宽度，折角等。</p>
+<p>svg是矢量图，可以自行更改颜色等。</p>
+<h1 id="如何利用参考线让整份PPT版式更加规整"><a href="#如何利用参考线让整份PPT版式更加规整" class="headerlink" title="如何利用参考线让整份PPT版式更加规整"></a>如何利用参考线让整份PPT版式更加规整</h1><p>母版添加参考线，则编辑页无法调整。</p>
 ]]></content>
       <tags>
         <tag>PPT</tag>
@@ -7224,6 +7231,73 @@
 ]]></content>
   </entry>
   <entry>
+    <title>react</title>
+    <url>/2025/04/26/react/</url>
+    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
+<h3 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h3><ul>
+<li>如何创建和嵌套组件</li>
+<li>如何添加标签和样式 </li>
+<li>如何显示数据</li>
+<li>如何渲染条件和列表</li>
+<li>如何对事件做出响应并更新界面</li>
+<li>如何在组件间共享数据</li>
+</ul>
+</blockquote>
+<h2 id="创建和嵌套组件"><a href="#创建和嵌套组件" class="headerlink" title="创建和嵌套组件"></a>创建和嵌套组件</h2><p>React应用程序是由<strong>组件</strong>组成的。一个组件是UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。</p>
+<p>React组件是返回标签的JavaScript函数：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  )；</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
+
+<p>至此，你已经声明了<code>MyButton</code>,现在你可以把它嵌套到另一个组件中：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>你可能已经注意到<code>&lt;MyButton /&gt;</code>是以大写字母开头的。你可以据此识别React组件。React组件必须以大写字母开头，而HTML标签则必须是小写字母。</p>
+<p>来看下效果：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      我是一个按钮</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="使用JSX编写标签"><a href="#使用JSX编写标签" class="headerlink" title="使用JSX编写标签"></a>使用JSX编写标签</h2><p>上面所使用的标签语法是JSX。它是可选的，但大多数React项目会使用JSX，主要是它很方便。所有 我们推荐的本地开发工具 都开箱即用地支持 JSX。</p>
+<p>JSX比HTML更加严格。你必须闭合标签，如<code>&lt;br /&gt;</code>。你的组件也不能反悔多个JSX标签。你必须将他们包裹到一个共享的父级中，比如<code>&lt;div&gt;...&lt;/div&gt;</code>或使用空的<code>&lt;&gt;...&lt;/&gt;</code>包裹：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">AboutPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>你好。<span class="tag">&lt;<span class="name">br</span> /&gt;</span>最近怎么样？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>在React中，你可以使用<code>className</code>来指定一个CSS的class。它与HTML的<code>class</code>属性的工作方式相同。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，你可以在一个单独的CSS文件中为它编写CSS规则：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>-raduis: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>JSX会让你把标签放到JavaScript中。而大括号会让你“回到”JavaScript中，这样你就可以从你的代码中嵌入一些变量并展示给用户。例如，这将显示<code>user.name</code>:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;user.name&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>你还可以将JSX属性“转义到JavaScript”，但你必须使用大括号而非引号。例如，<code>className=&quot;avatar&quot;</code>是将<code>&quot;avatar&quot;</code>字符串传递给<code>className</code>。作为CSS的class。但<code>src=&#123;user.imageUrl&#125;</code>会读取JavaScript的<code>user.imageUrl</code>变量，然后将该值作为<code>src</code>属性传递：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">src</span>=<span class="string">&#123;user.imgeUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>你也可以把更为复杂的表达式放入JSX的大括号内，例如字符串拼接：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Hedy Lamarr&#x27;</span>,</span><br><span class="line">  <span class="attr">imageUrl</span>: <span class="string">&#x27;http://i.imgur.com/yXovdOSss.jpb&#x27;</span>,</span><br><span class="line">  <span class="attr">imageSize</span>: <span class="number">90</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Profile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;user.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">src</span>=<span class="string">&#123;user.imageUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">alt</span>=<span class="string">&#123;</span>&#x27;<span class="attr">Photo</span> <span class="attr">of</span>&#x27; + <span class="attr">user.name</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">width:</span> <span class="attr">user.imageSize</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">height:</span> <span class="attr">user.imageSize</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，<code>style=&#123;&#123;&#125;&#125;</code> 并不是一个特殊的语法，而是 <code>style=&#123; &#125;</code> JSX 大括号内的一个普通 <code>&#123;&#125;</code>对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。</p>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的<code>if</code>语句</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> content;</span><br><span class="line"><span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123; content &#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn ? (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span></span><br><span class="line">  ) : (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span></span><br><span class="line">  )&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当你不需要 else 分支时，你也可以使用更简短的 逻辑 &amp;&amp; 语法：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染列表"><a href="#渲染列表" class="headerlink" title="渲染列表"></a>渲染列表</h2><p>你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。</p>
+<p>假设你有一个产品数组：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Cabbage&#x27;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Garlic&#x27;</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Apple&#x27;</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span> </span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;卷心菜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;大蒜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;苹果&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">true</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">ShoppingList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">li</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">color:</span> <span class="attr">product.isFruit</span> ? &#x27;<span class="attr">magenta</span>&#x27; <span class="attr">:</span> &#x27;<span class="attr">darkgreen</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;You clicked me!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      点我</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>react 框架</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue3官网学习</title>
     <url>/2025/02/20/Vue3%E5%AE%98%E7%BD%91%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h4 id="什么是Vue"><a href="#什么是Vue" class="headerlink" title="什么是Vue?"></a>什么是Vue?</h4><p>Vue是一款用于构建用户界面的<code>JavaScript</code>框架.它基于标准的<code>HTML</code>,<code>CSS</code>,和<code>JavaScript</code>构建,并提供了一套声明式的,组件化的编程模型,帮助你高效地开发用户界面.无论是简单还是复杂的界面,Vue都可以胜任.</p>
@@ -8493,73 +8567,6 @@
 <h2 id="透传Attributes"><a href="#透传Attributes" class="headerlink" title="透传Attributes"></a>透传Attributes</h2><h2 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h2><h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><h2 id="异步组件"><a href="#异步组件" class="headerlink" title="异步组件"></a>异步组件</h2><h1 id="逻辑复用"><a href="#逻辑复用" class="headerlink" title="逻辑复用"></a>逻辑复用</h1><h2 id="组合式函数"><a href="#组合式函数" class="headerlink" title="组合式函数"></a>组合式函数</h2><h2 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h2><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h1 id="内置插件"><a href="#内置插件" class="headerlink" title="内置插件"></a>内置插件</h1>]]></content>
       <tags>
         <tag>Vue 笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>react</title>
-    <url>/2025/04/26/react/</url>
-    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
-<h3 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h3><ul>
-<li>如何创建和嵌套组件</li>
-<li>如何添加标签和样式 </li>
-<li>如何显示数据</li>
-<li>如何渲染条件和列表</li>
-<li>如何对事件做出响应并更新界面</li>
-<li>如何在组件间共享数据</li>
-</ul>
-</blockquote>
-<h2 id="创建和嵌套组件"><a href="#创建和嵌套组件" class="headerlink" title="创建和嵌套组件"></a>创建和嵌套组件</h2><p>React应用程序是由<strong>组件</strong>组成的。一个组件是UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。</p>
-<p>React组件是返回标签的JavaScript函数：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  )；</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-<p>至此，你已经声明了<code>MyButton</code>,现在你可以把它嵌套到另一个组件中：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>你可能已经注意到<code>&lt;MyButton /&gt;</code>是以大写字母开头的。你可以据此识别React组件。React组件必须以大写字母开头，而HTML标签则必须是小写字母。</p>
-<p>来看下效果：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      我是一个按钮</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎来到我的应用<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MyButton</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="使用JSX编写标签"><a href="#使用JSX编写标签" class="headerlink" title="使用JSX编写标签"></a>使用JSX编写标签</h2><p>上面所使用的标签语法是JSX。它是可选的，但大多数React项目会使用JSX，主要是它很方便。所有 我们推荐的本地开发工具 都开箱即用地支持 JSX。</p>
-<p>JSX比HTML更加严格。你必须闭合标签，如<code>&lt;br /&gt;</code>。你的组件也不能反悔多个JSX标签。你必须将他们包裹到一个共享的父级中，比如<code>&lt;div&gt;...&lt;/div&gt;</code>或使用空的<code>&lt;&gt;...&lt;/&gt;</code>包裹：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">AboutPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>关于<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>你好。<span class="tag">&lt;<span class="name">br</span> /&gt;</span>最近怎么样？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>在React中，你可以使用<code>className</code>来指定一个CSS的class。它与HTML的<code>class</code>属性的工作方式相同。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后，你可以在一个单独的CSS文件中为它编写CSS规则：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>-raduis: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><p>JSX会让你把标签放到JavaScript中。而大括号会让你“回到”JavaScript中，这样你就可以从你的代码中嵌入一些变量并展示给用户。例如，这将显示<code>user.name</code>:</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;user.name&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>你还可以将JSX属性“转义到JavaScript”，但你必须使用大括号而非引号。例如，<code>className=&quot;avatar&quot;</code>是将<code>&quot;avatar&quot;</code>字符串传递给<code>className</code>。作为CSS的class。但<code>src=&#123;user.imageUrl&#125;</code>会读取JavaScript的<code>user.imageUrl</code>变量，然后将该值作为<code>src</code>属性传递：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">src</span>=<span class="string">&#123;user.imgeUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>你也可以把更为复杂的表达式放入JSX的大括号内，例如字符串拼接：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Hedy Lamarr&#x27;</span>,</span><br><span class="line">  <span class="attr">imageUrl</span>: <span class="string">&#x27;http://i.imgur.com/yXovdOSss.jpb&#x27;</span>,</span><br><span class="line">  <span class="attr">imageSize</span>: <span class="number">90</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Profile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;user.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">img</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">className</span>=<span class="string">&quot;avatar&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">src</span>=<span class="string">&#123;user.imageUrl&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">alt</span>=<span class="string">&#123;</span>&#x27;<span class="attr">Photo</span> <span class="attr">of</span>&#x27; + <span class="attr">user.name</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">width:</span> <span class="attr">user.imageSize</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">height:</span> <span class="attr">user.imageSize</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">  )</span></span><br><span class="line"><span class="language-xml">&#125;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
-
-<p>在上面的示例中，<code>style=&#123;&#123;&#125;&#125;</code> 并不是一个特殊的语法，而是 <code>style=&#123; &#125;</code> JSX 大括号内的一个普通 <code>&#123;&#125;</code>对象。当你的样式依赖于 JavaScript 变量时，你可以使用 style 属性。</p>
-<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>React没有特殊的语法来编写条件语句,就是使用普通JavaScript代码的<code>if</code>语句</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> content;</span><br><span class="line"><span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  content = <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123; content &#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>如果你喜欢更为紧凑的代码，可以使用 条件 ? 运算符。与 if 不同的是，它工作于 JSX 内部：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn ? (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span></span><br><span class="line">  ) : (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LoginForm</span> /&gt;</span></span></span><br><span class="line">  )&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>当你不需要 else 分支时，你也可以使用更简短的 逻辑 &amp;&amp; 语法：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;isLoggedIn &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">AdminPanel</span> /&gt;</span></span>&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="渲染列表"><a href="#渲染列表" class="headerlink" title="渲染列表"></a>渲染列表</h2><p>你将依赖 JavaScript 的特性，例如 for 循环 和 array 的 map() 函数 来渲染组件列表。</p>
-<p>假设你有一个产品数组：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Cabbage&#x27;</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Garlic&#x27;</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Apple&#x27;</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<p>在你的组件中，使用 map() 函数将这个数组转换为 <li> 标签构成的列表:</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span> </span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>注意， <li> 有一个 key 属性。对于列表中的每一个元素，你都应该传递一个字符串或者数字给 key，用于在其兄弟节点中唯一标识该元素。通常 key 来自你的数据，比如数据库中的 ID。如果你在后续插入、删除或重新排序这些项目，React 将依靠你提供的 key 来思考发生了什么。</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> products = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;卷心菜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;大蒜&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">false</span>, <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;苹果&#x27;</span>, <span class="attr">isFruit</span>: <span class="literal">true</span>, <span class="attr">id</span>: <span class="number">3</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">ShoppingList</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> listItems = products.<span class="title function_">map</span>(<span class="function"><span class="params">product</span> =&gt;</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">li</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">key</span>=<span class="string">&#123;product.id&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">color:</span> <span class="attr">product.isFruit</span> ? &#x27;<span class="attr">magenta</span>&#x27; <span class="attr">:</span> &#x27;<span class="attr">darkgreen</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;product.title&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;listItems&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;You clicked me!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      点我</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>react 框架</tag>
       </tags>
   </entry>
   <entry>
@@ -9990,6 +9997,62 @@
       </tags>
   </entry>
   <entry>
+    <title>个人简历书写指南</title>
+    <url>/2024/12/23/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E4%B9%A6%E5%86%99%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
+<li>姓名</li>
+<li>性别</li>
+<li>邮箱：使用 gmail 邮箱，表明自己具备科学上网的能力</li>
+<li>年龄</li>
+</ul>
+<h1 id="教育经历"><a href="#教育经历" class="headerlink" title="教育经历"></a>教育经历</h1><p>入学-毕业时间</p>
+<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="前端基础能力"><a href="#前端基础能力" class="headerlink" title="前端基础能力"></a>前端基础能力</h2><ul>
+<li>熟练掌握 HTML5, CSS3, JavaScript(ES6+), TypeScript, less, sass.</li>
+<li>熟练使用原生 H5 完成 WebApp</li>
+<li>熟练使用 CSS3 的媒介查询完成响应式布局</li>
+<li>深入理解原型原型链，异步，作用域链，this 指向，闭包，垃圾回收，事件循环等 JS 相关知识</li>
+<li>深入理解浏览器的工作原理</li>
+</ul>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
+<li>熟悉网络通信，并深入理解 HTTP, HTTP2, HTTPS, WebSocket 等常见应用层协议</li>
+<li>熟练使用 apifox 进行接口测试等</li>
+<li>熟练使用 AJAX 的 XHR 和 Fetch API 完成前后端通信</li>
+<li>熟悉 JWT, CORS, HTTP Cache, cookie, XSS, CSRF 等网络中常见的应用和安全相关知识</li>
+<li>能利用网络实现文件上传，分片，鉴权，缓存等各种网络应用需求</li>
+</ul>
+<h2 id="效率和工具"><a href="#效率和工具" class="headerlink" title="效率和工具"></a>效率和工具</h2><ul>
+<li>熟练掌握诸多常用第三方库，包括: JQuery, layui, esyui,loadash,mockjs,axios,moment,echart,threejs,animate.css, validata.js 等</li>
+<li>熟练使用 git 版本控制工具, github, gitlab 等代码托管平台</li>
+<li>熟练使用 vscode,能够熟练利用 AI 辅助编程，提高开发效率</li>
+</ul>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><ul>
+<li>深入理解模块化，能熟练使用 CommonJS, ES Module 模块化标准完成分模块开发</li>
+<li>熟练使用 npm, pnpm 等包管理工具</li>
+<li>深入理解 webpack 原理</li>
+<li>熟练配置 babel, postcss, eslint, prettier 等前端常见工具链</li>
+</ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
+<li>熟练使用 Vue3 全家桶， 深入理解 Vue 原理</li>
+<li>熟练使用 element-plus，echarts 等组件库</li>
+<li>熟练使用 uniapp</li>
+<li>了解 flutter</li>
+</ul>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><ul>
+<li>熟练使用 node, express, koa 等技术开发服务器程序</li>
+<li>熟练使用 mysql, mongodb, redis 等数据库</li>
+<li>能利用服务器完成诸如图片水印，防盗链，验证码，token 生成等常见功能</li>
+<li>能够熟练使用 nginx 等服务器代理工具</li>
+<li>能够熟练使用 docker, k8s 等容器编排工具</li>
+<li>能够熟练使用 pm2 等进程管理工具</li>
+<li>熟悉 CI&#x2F;CD 等自动化构建工具</li>
+</ul>
+<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><ul>
+<li>时间 公司 职位</li>
+<li>分点描述岗位职责和成果</li>
+</ul>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h1 id="证书和奖项"><a href="#证书和奖项" class="headerlink" title="证书和奖项"></a>证书和奖项</h1>]]></content>
+  </entry>
+  <entry>
     <title>webpack学习</title>
     <url>/2024/12/16/webpack%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="课程简介"><a href="#课程简介" class="headerlink" title="课程简介"></a>课程简介</h1><p>本门课需要的前置知识: ES6, 模块化, 包管理器, git</p>
@@ -11053,60 +11116,164 @@
       </tags>
   </entry>
   <entry>
-    <title>个人简历书写指南</title>
-    <url>/2024/12/23/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E4%B9%A6%E5%86%99%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
-<li>姓名</li>
-<li>性别</li>
-<li>邮箱：使用 gmail 邮箱，表明自己具备科学上网的能力</li>
-<li>年龄</li>
+    <title>信号与系统</title>
+    <url>/2025/05/17/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><ul>
+<li>信号(Signal): 表达传递<strong>信息</strong>的符号<ul>
+<li>长城的烽火</li>
+<li>书信</li>
+<li>表情，肢体语言</li>
 </ul>
-<h1 id="教育经历"><a href="#教育经历" class="headerlink" title="教育经历"></a>教育经历</h1><p>入学-毕业时间</p>
-<h1 id="技术能力"><a href="#技术能力" class="headerlink" title="技术能力"></a>技术能力</h1><h2 id="前端基础能力"><a href="#前端基础能力" class="headerlink" title="前端基础能力"></a>前端基础能力</h2><ul>
-<li>熟练掌握 HTML5, CSS3, JavaScript(ES6+), TypeScript, less, sass.</li>
-<li>熟练使用原生 H5 完成 WebApp</li>
-<li>熟练使用 CSS3 的媒介查询完成响应式布局</li>
-<li>深入理解原型原型链，异步，作用域链，this 指向，闭包，垃圾回收，事件循环等 JS 相关知识</li>
-<li>深入理解浏览器的工作原理</li>
+</li>
 </ul>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
-<li>熟悉网络通信，并深入理解 HTTP, HTTP2, HTTPS, WebSocket 等常见应用层协议</li>
-<li>熟练使用 apifox 进行接口测试等</li>
-<li>熟练使用 AJAX 的 XHR 和 Fetch API 完成前后端通信</li>
-<li>熟悉 JWT, CORS, HTTP Cache, cookie, XSS, CSRF 等网络中常见的应用和安全相关知识</li>
-<li>能利用网络实现文件上传，分片，鉴权，缓存等各种网络应用需求</li>
+<blockquote>
+<p>什么是信息<br>1948年，美国著名数学家，<strong>控制论</strong>的创始人<strong>维纳</strong>在《控制论》一书中，指出“信息就是信息，既非物质，也非能量”。<br>1948年，美国数学家，信息论的创始人香农在题为“通讯的数学理论”的论文中指出：“信息是用来消除随机不定性的东西”。<br>对香农观点的直观化解释:信息就是这样一种东西，我们有了它以后，对某件事情的<strong>不确定度</strong>降低。<br>一般来说：我们倾向于不需要媒介，成本低，简洁，传输速度快，传输可靠的信号。</p>
+</blockquote>
+<ul>
+<li>系统(System): 有输入，有输出（input, output）<ul>
+<li>输入的是某个信号，输出的是另外的信号</li>
+<li>系统就是接受输入的信号，并把输入的信号转换为另外的信号的实体。</li>
 </ul>
-<h2 id="效率和工具"><a href="#效率和工具" class="headerlink" title="效率和工具"></a>效率和工具</h2><ul>
-<li>熟练掌握诸多常用第三方库，包括: JQuery, layui, esyui,loadash,mockjs,axios,moment,echart,threejs,animate.css, validata.js 等</li>
-<li>熟练使用 git 版本控制工具, github, gitlab 等代码托管平台</li>
-<li>熟练使用 vscode,能够熟练利用 AI 辅助编程，提高开发效率</li>
+</li>
 </ul>
-<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><ul>
-<li>深入理解模块化，能熟练使用 CommonJS, ES Module 模块化标准完成分模块开发</li>
-<li>熟练使用 npm, pnpm 等包管理工具</li>
-<li>深入理解 webpack 原理</li>
-<li>熟练配置 babel, postcss, eslint, prettier 等前端常见工具链</li>
+<blockquote>
+<p>可以将一个复杂的系统分解为若干基本系统<br>设计这些基本系统<br>几把呢系统级联起来构成复杂的系统</p>
+</blockquote>
+<h1 id="典型的信号"><a href="#典型的信号" class="headerlink" title="典型的信号"></a>典型的信号</h1><h2 id="信号的描述和信号的分类"><a href="#信号的描述和信号的分类" class="headerlink" title="信号的描述和信号的分类"></a>信号的描述和信号的分类</h2><ol>
+<li>基于信号维度的分类</li>
+</ol>
+<ul>
+<li>一维信号：电话</li>
+<li>二维信号：图像</li>
+<li>三维信号：电视的视频信号，深度图</li>
+<li>四维信号：VR眼镜</li>
 </ul>
-<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
-<li>熟练使用 Vue3 全家桶， 深入理解 Vue 原理</li>
-<li>熟练使用 element-plus，echarts 等组件库</li>
-<li>熟练使用 uniapp</li>
-<li>了解 flutter</li>
+<blockquote>
+<p>在本门课程中，主要讨论<strong>一维</strong>信号。</p>
+</blockquote>
+<ol start="2">
+<li>基于连续性分类</li>
+</ol>
+<ul>
+<li>连续信号：x(t), t∈R</li>
+<li>离散信号：x[n], n∈Z</li>
 </ul>
-<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><ul>
-<li>熟练使用 node, express, koa 等技术开发服务器程序</li>
-<li>熟练使用 mysql, mongodb, redis 等数据库</li>
-<li>能利用服务器完成诸如图片水印，防盗链，验证码，token 生成等常见功能</li>
-<li>能够熟练使用 nginx 等服务器代理工具</li>
-<li>能够熟练使用 docker, k8s 等容器编排工具</li>
-<li>能够熟练使用 pm2 等进程管理工具</li>
-<li>熟悉 CI&#x2F;CD 等自动化构建工具</li>
+<ol start="3">
+<li>周期信号与非周期信号</li>
+</ol>
+<ul>
+<li>x(t) &#x3D; x(t + mT)</li>
+<li>x[n] &#x3D; x[n + mN]</li>
 </ul>
-<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><ul>
-<li>时间 公司 职位</li>
-<li>分点描述岗位职责和成果</li>
+<ol start="4">
+<li>奇信号与偶信号</li>
+</ol>
+<p>任何信号都可以分解为奇信号和偶信号的叠加</p>
+<p>$$<br>x(t) &#x3D; [\frac{x(t)+x(-t)}{2}] + [\frac{x(t)-x(-t)}{2}] &#x3D; x_e(t) + x_o(t)<br>$$</p>
+<blockquote>
+<p>e:even，偶<br>o:odd，奇</p>
+</blockquote>
+<h2 id="功率信号和能量信号"><a href="#功率信号和能量信号" class="headerlink" title="功率信号和能量信号"></a>功率信号和能量信号</h2><p>一个信号的能量和功率是这样定义的：<br>设信号$x(t)$为电压或电流。<br>则它在1Ω电阻上的瞬时功率为$p(t) &#x3D; |x(t)|^2$<br>在$t_1 \leq t \leq t_2$内消耗的能量为: $E &#x3D; \int_{t_1}^{t_2}|x(t)|^2dt$<br>当$T &#x3D; (t_2 - t_1) \rightarrow \infin$时，总能量E和平均功率P分别定义为：<br>$$<br>E &#x3D; \lim_{t_2 - t_1 \to \infin} \int_{t_1}^{t_2}|x(t)|^2dt<br>$$</p>
+<p>$$<br>P &#x3D; \lim_{t_2 - t_1 \to \infin} \frac{1}{t_2 - t_1} \int_{t_1}^{t_2}|x(t)|^2dt<br>$$</p>
+<p>能量信号（能量有限信号）</p>
+<p>如果信号x(t)的能量E满足: $0 &lt; E &lt; \infin, 而P &#x3D; 0$;</p>
+<p>功率信号（功率有限信号）</p>
+<p>如果信号x(t)的功率满足: $0 &lt; P &lt; \infin，而 E &#x3D; \infin$</p>
+<h2 id="连续信号"><a href="#连续信号" class="headerlink" title="连续信号"></a>连续信号</h2><ol>
+<li>单位阶跃信号</li>
+</ol>
+<p>$$<br>u(t) &#x3D;<br>\begin{cases}<br>  1, t &gt; 0 时 \<br>  0, t &lt; 0 时<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>u(0)可以等于任何值,无定义</p>
+</blockquote>
+<ol start="2">
+<li>冲击信号</li>
+</ol>
+<p>用于表示一种物理现象：发生的时间极短，而物理量的取值又极大，如雷电，冲击力，电容经小电阻充电等。</p>
+<p>$$<br>\delta(t) &#x3D; \begin{cases}<br>  +\infin ,t&#x3D;0 \<br>  0, 其他<br>\end{cases}<br>$$</p>
+<p>$$<br>\int_{-\infin} ^{+\infin} \delta(t)dt &#x3D; 1<br>$$</p>
+<p>与u(t)的关系<br>$$<br>u(t) &#x3D; \int_{-\infin} ^t \delta(t)dt\<br>\delta(t) &#x3D; \frac{du(t)}{dt}<br>$$</p>
+<p>由于u(t)在t &#x3D; 0处无定义，所以上式不能作为定义式。</p>
+<ol start="3">
+<li>抽样函数</li>
+</ol>
+<p>$$<br>Sa(t) &#x3D; \begin{cases}<br>  1, t&#x3D;0 \<br>  \frac{sin(t)}{t}, 其他<br>\end{cases}<br>$$</p>
+<p>$$<br>\int_{-\infin}^{+\infin} Sa(t) &#x3D; \pi \<br>\int_{-\infin}^{0} Sa(t) &#x3D; \frac{\pi}{2}<br>$$</p>
+<h2 id="离散信号"><a href="#离散信号" class="headerlink" title="离散信号"></a>离散信号</h2><ol>
+<li>单位脉冲序列</li>
+</ol>
+<p>$$<br>\delta[n] &#x3D; \begin{cases}<br>  1, n &#x3D; 0, \<br>  0, 其他<br>\end{cases}<br>$$</p>
+<ol start="2">
+<li>单位阶跃序列</li>
+</ol>
+<p>$$<br>u[n] &#x3D; \begin{cases}<br>  0, n &lt; 0 \<br>  1, n \geq 0<br>\end{cases}<br>$$</p>
+<h1 id="信号的自变量变换"><a href="#信号的自变量变换" class="headerlink" title="信号的自变量变换"></a>信号的自变量变换</h1><ol>
+<li>化成标准形式</li>
+<li>前有负号翻转</li>
+<li>系数大于1压缩，系数小于1拉伸</li>
+<li>加号左移，减号右移</li>
+</ol>
+<p>$$<br>X[n] &#x3D; \Sigma_{k &#x3D; -\infin}^{+ \infin} X[k] \delta[n - k]<br>$$</p>
+<h1 id="典型的系统"><a href="#典型的系统" class="headerlink" title="典型的系统"></a>典型的系统</h1><h2 id="线性系统"><a href="#线性系统" class="headerlink" title="线性系统"></a>线性系统</h2><ul>
+<li>齐次性：假设任意的经过系统$x(t) \to y(t)$,则$ax(t) \to ay(t)$</li>
+<li>叠加性：假设任意的经过系统$x_1(t) \to y_1(t), x_2(t) \to y_2(t)$,则$x_1(t) + x_2(t) \to y_1(t) + y_2(t)$</li>
 </ul>
-<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h1 id="证书和奖项"><a href="#证书和奖项" class="headerlink" title="证书和奖项"></a>证书和奖项</h1>]]></content>
+<p>常见线性系统：</p>
+<ul>
+<li>放大器</li>
+<li>微分器</li>
+<li>积分器</li>
+</ul>
+<p>判定小技巧：</p>
+<ol>
+<li>每一项都有x</li>
+<li>每一项的x都是1次</li>
+</ol>
+<h2 id="时不变系统"><a href="#时不变系统" class="headerlink" title="时不变系统"></a>时不变系统</h2><p>$$<br>若 \forall x(t) \overset{系统}{\longrightarrow} y(t)<br>则有 \forall t_0 \in R，有<br>x(t - t_0) \overset{系统}{\longrightarrow} y(t - t_0),<br>$$<br>则是时不变系统，否则是时变系统。</p>
+<p>时不变系统：</p>
+<ul>
+<li>$y(t) &#x3D; x(t-1)$</li>
+<li>$y(t) &#x3D; e^{x(t+1)}$</li>
+</ul>
+<p>判据：</p>
+<ol>
+<li>t只在x的括号里</li>
+<li>t只能是t，不能是2t, -2t, t^2等</li>
+</ol>
+<h2 id="因果系统"><a href="#因果系统" class="headerlink" title="因果系统"></a>因果系统</h2><p>如果一个系统任何时刻输出只取决于现在和过去的输入，就称该系统为因果系统。</p>
+<blockquote>
+<p>简单来说，就是输出y(t)在输入x(t)之后发生。<br>因果系统在物理上难以实现。</p>
+</blockquote>
+<p>因果系统</p>
+<ul>
+<li>y(t) &#x3D; x(t - 1)</li>
+</ul>
+<p>判据</p>
+<p>x括号里面的数恒小于y括号里面的数。</p>
+<h2 id="无记忆系统"><a href="#无记忆系统" class="headerlink" title="无记忆系统"></a>无记忆系统</h2><p>一个系统无记忆，是指y(t)的值，<strong>仅仅只</strong>依赖于x(t)的值。</p>
+<p>无记忆系统</p>
+<ul>
+<li>$y(t) &#x3D; x(t)^2 + e^{x(t)}$</li>
+</ul>
+<p>判据：</p>
+<p>x与y括号里的数完全一样。</p>
+<blockquote>
+<p>无记忆系统一定是因果系统</p>
+</blockquote>
+<h2 id="可逆系统"><a href="#可逆系统" class="headerlink" title="可逆系统"></a>可逆系统</h2><p>x(t)能唯一写成y(t)的形式</p>
+<p>可逆系统</p>
+<ul>
+<li>y(t) &#x3D; x(t - 1) $\to$ x(t) &#x3D; y(t + 1)</li>
+<li>$y[n] &#x3D; \Sigma_{k &#x3D; -\infin}^n x[k]$</li>
+</ul>
+<p>积分器可逆，微分器不可逆，因为微分的逆是积分，会有一个常数。</p>
+<h2 id="稳定系统"><a href="#稳定系统" class="headerlink" title="稳定系统"></a>稳定系统</h2><p>稳定系统指，若x(t)有界，则y(t)有界</p>
+<p>稳定系统</p>
+<ul>
+<li>$y(t) &#x3D; e^{x(t)}$</li>
+</ul>
+<p>不稳定系统</p>
+]]></content>
   </entry>
   <entry>
     <title>关于Vue2中使用devtoolsV6的bug</title>
@@ -11902,7 +12069,9 @@
   <entry>
     <title>小米24秋招</title>
     <url>/2025/05/10/%E5%B0%8F%E7%B1%B324%E7%A7%8B%E6%8B%9B/</url>
-    <content><![CDATA[<h1 id="试卷分析"><a href="#试卷分析" class="headerlink" title="试卷分析"></a>试卷分析</h1><h1 id="逐题讲解"><a href="#逐题讲解" class="headerlink" title="逐题讲解"></a>逐题讲解</h1><h2 id="题目1"><a href="#题目1" class="headerlink" title="题目1"></a>题目1</h2><p>Git暂存操作的API是什么？</p>
+    <content><![CDATA[<h1 id="试卷分析"><a href="#试卷分析" class="headerlink" title="试卷分析"></a>试卷分析</h1><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250511220205.png" alt="20250511220205"></p>
+<p>试题地址：<a href="https://www.nowcoder.com/exam/test/88101600/detail?pid=39932170&examPageSource=Company&subTabName=written_page&testCallback=https://www.nowcoder.com/exam/company?currentTab=recommand&jobId=100&tagIds=11022&testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91">点击跳转</a></p>
+<h1 id="逐题讲解"><a href="#逐题讲解" class="headerlink" title="逐题讲解"></a>逐题讲解</h1><h2 id="题目1"><a href="#题目1" class="headerlink" title="题目1"></a>题目1</h2><p>Git暂存操作的API是什么？</p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510120500.png" alt="20250510120500"></p>
 <blockquote>
 <p>git命令<br><a href="https://learngitbranching.js.org/?locale=zh_CN">学习git小游戏</a></p>
@@ -12213,171 +12382,6 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">romanToInt</span> = (<span class="params">s</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 哈希表存储罗马数字和阿拉伯数字的映射关系</span></span><br><span class="line">  <span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>(</span><br><span class="line">    [</span><br><span class="line">      [<span class="string">&#x27;I&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">      [<span class="string">&#x27;V&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">      [<span class="string">&#x27;X&#x27;</span>, <span class="number">10</span>],</span><br><span class="line">      [<span class="string">&#x27;L&#x27;</span>, <span class="number">50</span>],</span><br><span class="line">      [<span class="string">&#x27;C&#x27;</span>, <span class="number">100</span>],</span><br><span class="line">      [<span class="string">&#x27;D&#x27;</span>, <span class="number">500</span>],</span><br><span class="line">      [<span class="string">&#x27;M&#x27;</span>, <span class="number">1000</span>],</span><br><span class="line">    ]</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 只需要遍历一次，如果当前数字小于后一个数字，则减去当前数字，否则加上当前数字</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; s.<span class="property">length</span> - <span class="number">1</span> &amp;&amp; map.<span class="title function_">get</span>(s[i]) &lt; map.<span class="title function_">get</span>(s[i + <span class="number">1</span>])) &#123;</span><br><span class="line">      sum -= map.<span class="title function_">get</span>(s[i]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sum += map.<span class="title function_">get</span>(s[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>小米 笔试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>排序算法和查找算法</title>
-    <url>/2025/03/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%92%8C%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="什么是排序"><a href="#什么是排序" class="headerlink" title="什么是排序"></a>什么是排序</h2><p>排序(<code>Sort</code>), 就是重新排列表中的元素,使表中的元素满足<strong>按关键字有序</strong>的过程.</p>
-<p>输入: n各记录$R_1, R2, … R_n$,对应的关键字为$k_1, k_2, … , k_n$</p>
-<p>输出: 输入序列的一个重排$R_1^{‘},R_2^{‘},…,R_n^{‘},$,使得有$k_1^{‘}&lt;k_2^{‘}&lt;,,,&lt;k_n^{‘}$(也可以递减)</p>
-<h2 id="算法的稳定性"><a href="#算法的稳定性" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><p>关键字相同的元素相对位置排序后不变,称之为稳定.</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
-<li>内部排序: 数据都在内存中–&gt;关注<strong>时间复杂度,空间复杂度</strong></li>
-<li>外部排序: 数据太多,无法全部被存入内存–&gt; 关注I&#x2F;O次数</li>
-</ul>
-<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><table>
-<thead>
-<tr>
-<th align="center">排序算法</th>
-<th align="center">最好时间复杂度</th>
-<th align="center">最坏时间复杂度</th>
-<th align="center">平均时间复杂度</th>
-<th align="center">空间复杂度</th>
-<th align="center">稳定</th>
-<th align="center">优点</th>
-<th align="center">缺点</th>
-<th align="center">适用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">冒泡排序</td>
-<td align="center">O(n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(1)</td>
-<td align="center">是</td>
-<td align="center">简单，稳定；可检测有序性优化</td>
-<td align="center">效率低，交换次数多</td>
-<td align="center">小数据或接近有序的数据</td>
-</tr>
-<tr>
-<td align="center">选择排序</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(1)</td>
-<td align="center">否</td>
-<td align="center">原地排序，交换次数少</td>
-<td align="center">比较次数多，不稳定</td>
-<td align="center">数据量小，交换成本高</td>
-</tr>
-<tr>
-<td align="center">插入排序</td>
-<td align="center">O(n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(1)</td>
-<td align="center">是</td>
-<td align="center">稳定，适合小数据或部分有序</td>
-<td align="center">数据量大时效率低</td>
-<td align="center">小数据或基本有序的数据</td>
-</tr>
-<tr>
-<td align="center">希尔排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n^1.3)</td>
-<td align="center">O(1)</td>
-<td align="center">否</td>
-<td align="center">改进的插入排序，中等规模高效</td>
-<td align="center">时间复杂度依赖步长序列</td>
-<td align="center">中等规模数据，权衡时间与空间</td>
-</tr>
-<tr>
-<td align="center">快速排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(log n)（平均）</td>
-<td align="center">否</td>
-<td align="center">平均最快，原地排序</td>
-<td align="center">最坏情况差，不稳定</td>
-<td align="center">通用大规模数据，需优化基准选择</td>
-</tr>
-<tr>
-<td align="center">归并排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n)</td>
-<td align="center">是</td>
-<td align="center">稳定，时间复杂度可靠</td>
-<td align="center">需额外空间</td>
-<td align="center">大数据，需稳定排序且内存足够</td>
-</tr>
-<tr>
-<td align="center">堆排序</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(n log n)</td>
-<td align="center">O(1)</td>
-<td align="center">否</td>
-<td align="center">原地排序，时间复杂度稳定</td>
-<td align="center">缓存不友好，不稳定</td>
-<td align="center">需原地排序且避免快排最坏情况</td>
-</tr>
-<tr>
-<td align="center"><strong>计数排序</strong></td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">是</td>
-<td align="center">非比较排序，数据范围小时极快</td>
-<td align="center">依赖数据范围，仅适用于整数&#x2F;有限类型</td>
-<td align="center">小范围整数（如年龄、成绩排序）</td>
-</tr>
-<tr>
-<td align="center">基数排序</td>
-<td align="center">O(nk)</td>
-<td align="center">O(nk)</td>
-<td align="center">O(nk)</td>
-<td align="center">O(n + k)</td>
-<td align="center">是</td>
-<td align="center">稳定，适合整数&#x2F;字符串</td>
-<td align="center">需额外空间，对数据类型有要求</td>
-<td align="center">非比较排序，元素有固定基数（如数字、字符）</td>
-</tr>
-<tr>
-<td align="center">桶排序</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n²)</td>
-<td align="center">O(n + k)</td>
-<td align="center">O(n + k)</td>
-<td align="center">是*</td>
-<td align="center">数据均匀分布时高效</td>
-<td align="center">依赖数据分布，否则效率低</td>
-<td align="center">数据分布均匀且范围已知</td>
-</tr>
-</tbody></table>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>算法思想: 每次将一个待排序的记录按其关键字的大小插入到前面已排好的子序列中,直到全部记录插入完成.(已经排好的子序列中<strong>大于</strong>待排序记录的右移,等于的不移动,保证算法的稳定性)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="comment">// 第一个记录已经排好,因为只有它一个</span></span><br><span class="line">  <span class="comment">// 从第二个开始</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 记录当前值,方式被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 从当前值的前一位开始,如果大于当前值,则后移一位</span></span><br><span class="line">    <span class="keyword">let</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 边界条件是数组开头</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; current) &#123;</span><br><span class="line">      <span class="comment">// 将大于当前值的记录后移一位</span></span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      <span class="comment">// 指针前移一位</span></span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 插入当前值</span></span><br><span class="line">    arr[j + <span class="number">1</span>] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 1.196s</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>空间复杂度: <code>O(1)</code></li>
-<li>时间复杂度:<ul>
-<li>最好情况:本来是有序的,共n-1趟处理,每次处理只需对比当前值和前一位的值,发现前一位的值小于当前值后,便不再对比.即每趟对比一次.所以共需要对比<code>n-1</code>此,时间复杂度为$O(n)$</li>
-<li>最坏情况:$O(n^2)$</li>
-<li>平均复杂度: $O(n^2)$</li>
-</ul>
-</li>
-<li>稳定性: 稳定</li>
-</ul>
-<p>C语言版本:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="优化-折半插入排序"><a href="#优化-折半插入排序" class="headerlink" title="优化: 折半插入排序"></a>优化: 折半插入排序</h3><p>思路: 先用折半查找找到应该插入的位置,再移动元素.</p>
-<blockquote>
-<p>当low &gt; high时,折半查找停止,应将[low, i-1]内的元素全部右移一位,并将current复制到low所指的位置,当<code>arr[mid] === current</code>时,为了保证排序算法的稳定性,应该把它当做<code>arr[mid] &lt; current</code>,即要继续让low&#x3D;mid+1;去右半区间查找.</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertPlusSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 从下标为1开始遍历</span></span><br><span class="line">    <span class="comment">// 保存当前值防止被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 折半查找插入位置</span></span><br><span class="line">    <span class="keyword">let</span> low = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">let</span> high = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">      <span class="keyword">let</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (arr[mid] &lt;= current) &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// [low,i-1]的所有数都右移一位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i - <span class="number">1</span>; j &gt;= low; j--) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将当前值插入low位置</span></span><br><span class="line">    arr[low] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertPlusSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Debugger attached.</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 6.676ms</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>排序,查找</tag>
       </tags>
   </entry>
   <entry>
@@ -13686,6 +13690,171 @@
       </tags>
   </entry>
   <entry>
+    <title>排序算法和查找算法</title>
+    <url>/2025/03/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%92%8C%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="什么是排序"><a href="#什么是排序" class="headerlink" title="什么是排序"></a>什么是排序</h2><p>排序(<code>Sort</code>), 就是重新排列表中的元素,使表中的元素满足<strong>按关键字有序</strong>的过程.</p>
+<p>输入: n各记录$R_1, R2, … R_n$,对应的关键字为$k_1, k_2, … , k_n$</p>
+<p>输出: 输入序列的一个重排$R_1^{‘},R_2^{‘},…,R_n^{‘},$,使得有$k_1^{‘}&lt;k_2^{‘}&lt;,,,&lt;k_n^{‘}$(也可以递减)</p>
+<h2 id="算法的稳定性"><a href="#算法的稳定性" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><p>关键字相同的元素相对位置排序后不变,称之为稳定.</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>内部排序: 数据都在内存中–&gt;关注<strong>时间复杂度,空间复杂度</strong></li>
+<li>外部排序: 数据太多,无法全部被存入内存–&gt; 关注I&#x2F;O次数</li>
+</ul>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><table>
+<thead>
+<tr>
+<th align="center">排序算法</th>
+<th align="center">最好时间复杂度</th>
+<th align="center">最坏时间复杂度</th>
+<th align="center">平均时间复杂度</th>
+<th align="center">空间复杂度</th>
+<th align="center">稳定</th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+<th align="center">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">冒泡排序</td>
+<td align="center">O(n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(1)</td>
+<td align="center">是</td>
+<td align="center">简单，稳定；可检测有序性优化</td>
+<td align="center">效率低，交换次数多</td>
+<td align="center">小数据或接近有序的数据</td>
+</tr>
+<tr>
+<td align="center">选择排序</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(1)</td>
+<td align="center">否</td>
+<td align="center">原地排序，交换次数少</td>
+<td align="center">比较次数多，不稳定</td>
+<td align="center">数据量小，交换成本高</td>
+</tr>
+<tr>
+<td align="center">插入排序</td>
+<td align="center">O(n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(1)</td>
+<td align="center">是</td>
+<td align="center">稳定，适合小数据或部分有序</td>
+<td align="center">数据量大时效率低</td>
+<td align="center">小数据或基本有序的数据</td>
+</tr>
+<tr>
+<td align="center">希尔排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n^1.3)</td>
+<td align="center">O(1)</td>
+<td align="center">否</td>
+<td align="center">改进的插入排序，中等规模高效</td>
+<td align="center">时间复杂度依赖步长序列</td>
+<td align="center">中等规模数据，权衡时间与空间</td>
+</tr>
+<tr>
+<td align="center">快速排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(log n)（平均）</td>
+<td align="center">否</td>
+<td align="center">平均最快，原地排序</td>
+<td align="center">最坏情况差，不稳定</td>
+<td align="center">通用大规模数据，需优化基准选择</td>
+</tr>
+<tr>
+<td align="center">归并排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n)</td>
+<td align="center">是</td>
+<td align="center">稳定，时间复杂度可靠</td>
+<td align="center">需额外空间</td>
+<td align="center">大数据，需稳定排序且内存足够</td>
+</tr>
+<tr>
+<td align="center">堆排序</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(n log n)</td>
+<td align="center">O(1)</td>
+<td align="center">否</td>
+<td align="center">原地排序，时间复杂度稳定</td>
+<td align="center">缓存不友好，不稳定</td>
+<td align="center">需原地排序且避免快排最坏情况</td>
+</tr>
+<tr>
+<td align="center"><strong>计数排序</strong></td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">是</td>
+<td align="center">非比较排序，数据范围小时极快</td>
+<td align="center">依赖数据范围，仅适用于整数&#x2F;有限类型</td>
+<td align="center">小范围整数（如年龄、成绩排序）</td>
+</tr>
+<tr>
+<td align="center">基数排序</td>
+<td align="center">O(nk)</td>
+<td align="center">O(nk)</td>
+<td align="center">O(nk)</td>
+<td align="center">O(n + k)</td>
+<td align="center">是</td>
+<td align="center">稳定，适合整数&#x2F;字符串</td>
+<td align="center">需额外空间，对数据类型有要求</td>
+<td align="center">非比较排序，元素有固定基数（如数字、字符）</td>
+</tr>
+<tr>
+<td align="center">桶排序</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n²)</td>
+<td align="center">O(n + k)</td>
+<td align="center">O(n + k)</td>
+<td align="center">是*</td>
+<td align="center">数据均匀分布时高效</td>
+<td align="center">依赖数据分布，否则效率低</td>
+<td align="center">数据分布均匀且范围已知</td>
+</tr>
+</tbody></table>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>算法思想: 每次将一个待排序的记录按其关键字的大小插入到前面已排好的子序列中,直到全部记录插入完成.(已经排好的子序列中<strong>大于</strong>待排序记录的右移,等于的不移动,保证算法的稳定性)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="comment">// 第一个记录已经排好,因为只有它一个</span></span><br><span class="line">  <span class="comment">// 从第二个开始</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 记录当前值,方式被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 从当前值的前一位开始,如果大于当前值,则后移一位</span></span><br><span class="line">    <span class="keyword">let</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 边界条件是数组开头</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; current) &#123;</span><br><span class="line">      <span class="comment">// 将大于当前值的记录后移一位</span></span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">      <span class="comment">// 指针前移一位</span></span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 插入当前值</span></span><br><span class="line">    arr[j + <span class="number">1</span>] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 1.196s</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空间复杂度: <code>O(1)</code></li>
+<li>时间复杂度:<ul>
+<li>最好情况:本来是有序的,共n-1趟处理,每次处理只需对比当前值和前一位的值,发现前一位的值小于当前值后,便不再对比.即每趟对比一次.所以共需要对比<code>n-1</code>此,时间复杂度为$O(n)$</li>
+<li>最坏情况:$O(n^2)$</li>
+<li>平均复杂度: $O(n^2)$</li>
+</ul>
+</li>
+<li>稳定性: 稳定</li>
+</ul>
+<p>C语言版本:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="优化-折半插入排序"><a href="#优化-折半插入排序" class="headerlink" title="优化: 折半插入排序"></a>优化: 折半插入排序</h3><p>思路: 先用折半查找找到应该插入的位置,再移动元素.</p>
+<blockquote>
+<p>当low &gt; high时,折半查找停止,应将[low, i-1]内的元素全部右移一位,并将current复制到low所指的位置,当<code>arr[mid] === current</code>时,为了保证排序算法的稳定性,应该把它当做<code>arr[mid] &lt; current</code>,即要继续让low&#x3D;mid+1;去右半区间查找.</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertPlusSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 从下标为1开始遍历</span></span><br><span class="line">    <span class="comment">// 保存当前值防止被覆盖</span></span><br><span class="line">    <span class="keyword">const</span> current = arr[i];</span><br><span class="line">    <span class="comment">// 折半查找插入位置</span></span><br><span class="line">    <span class="keyword">let</span> low = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">let</span> high = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">      <span class="keyword">let</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (arr[mid] &lt;= current) &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// [low,i-1]的所有数都右移一位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i - <span class="number">1</span>; j &gt;= low; j--) &#123;</span><br><span class="line">      arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将当前值插入low位置</span></span><br><span class="line">    arr[low] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>();</span><br><span class="line"><span class="title function_">insertPlusSort</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Debugger attached.</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   1, 2, 3, 4,</span></span><br><span class="line"><span class="comment">//   5, 6, 7, 8</span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"><span class="comment">// default: 6.676ms</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>排序,查找</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>操作系统</title>
     <url>/2025/02/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="操作系统的概念-功能"><a href="#操作系统的概念-功能" class="headerlink" title="操作系统的概念,功能"></a>操作系统的概念,功能</h1><h2 id="操作系统的概念-定义"><a href="#操作系统的概念-定义" class="headerlink" title="操作系统的概念(定义)"></a>操作系统的概念(定义)</h2><p>操作系统(Operating System, OS)是指控制和<strong>管理</strong>整个计算机系统的<strong>硬件和软件</strong>资源,并合理地组织调度计算机的工作和资源的分配;以<strong>提供给用户和其他软件方便的接口环境</strong>;它是计算机中最基本的<strong>系统软件</strong></p>
@@ -14588,6 +14757,11 @@
       </tags>
   </entry>
   <entry>
+    <title>浅谈Symbol数据类型</title>
+    <url>/2025/02/27/%E6%B5%85%E8%B0%88Symbol%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>浅析webpack和vite</title>
     <url>/2025/02/27/%E6%B5%85%E6%9E%90webpack%E5%92%8Cvite/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>webpack</code>和<code>vite</code>使我们在前端工程化中最常使用的两个工具.</p>
@@ -14801,11 +14975,6 @@
       <tags>
         <tag>webpack vite</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>浅谈Symbol数据类型</title>
-    <url>/2025/02/27/%E6%B5%85%E8%B0%88Symbol%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>浏览器</title>
@@ -16868,207 +17037,6 @@
       </tags>
   </entry>
   <entry>
-    <title>随笔小记</title>
-    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><h2 id="关于矩阵的创建"><a href="#关于矩阵的创建" class="headerlink" title="关于矩阵的创建"></a>关于矩阵的创建</h2><p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
-<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
-<p>我过去创建矩阵通常使用如下方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
-<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
-<p>错误示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>修改其中一个子数组会影响其他行：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>总结<br>Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
-</blockquote>
-<h2 id="map-和-parseInt-函数的使用"><a href="#map-和-parseInt-函数的使用" class="headerlink" title="map 和 parseInt 函数的使用"></a>map 和 parseInt 函数的使用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
-
-<p>今天在地铁上刷视频看到一个很有意思的题目，随笔记录一下，和大家分享。<br>乍一看这个题目，感觉非常简单，对一个字符串数组进行<code>map</code>处理,处理函数是<code>parseInt</code>,输出结果应该就是<code>[1, 2, 3]</code>.<br>然而当我们尝试运行这段代码会发现,真实的输出结果是<code>[1, NaN, NaN]</code>.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241212090639182.png" class="" title="image-20241212090639182">
-
-<p>那为什么会出现这么奇怪的现象呢?<br>这里有两个关键点,<code>map</code>和<code>parseInt</code>,我们需要深入且准确地弄清楚这两个函数的工作原理。才能解决这个问题。</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>Array 实例的 <code>map()</code> 方法创建一个<strong>新数组</strong>，其中填充了对调用数组中的每个元素调用提供的函数的结果。</p>
-<p>使用语法如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn[, thisArg])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>callbackFn</code>: 要为数组中的每个元素执行的函数。其<strong>返回值</strong>将作为单个元素添加到新数组中。使用以下参数调用该函数：<ul>
-<li><code>element</code>: 数组中正在处理的当前元素</li>
-<li><code>index</code>: 数组中正在处理的当前元素的索引</li>
-<li><code>array</code>: 调用<code>map()</code>的数组</li>
-</ul>
-</li>
-<li><code>thisArg</code>: 可选。执行回调时使用的 this 值。(指定<code>callbackFn</code>函数内使用 this)</li>
-</ul>
-<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h3><p><code>parseInt()</code>函数解析字符串参数并返回指定<strong>基数</strong>(数学数字系统中的基数)的整数.]<br>其实就是返回指定进制的整数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (default base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 123 (explicitly specify base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;   123 &#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (whitespace is ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;077&#x27;</span>));</span><br><span class="line"><span class="comment">// 77 (leading zeros are ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;1.9&#x27;</span>));</span><br><span class="line"><span class="comment">// 1 (decimal part is truncated)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;ff&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (lower-case hexadecimal)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;0xFF&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (upper-case hexadecimal with &quot;0x&quot; prefix)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;xyz&#x27;</span>));</span><br><span class="line"><span class="comment">// NaN (input can&#x27;t be converted to an integer)</span></span><br></pre></td></tr></table></figure>
-
-<p>使用语法如下:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string[, radix])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>string</code>: 以整数开头的字符串.此参数的<strong>前导空格</strong>将被忽略</p>
-<ul>
-<li>如果第一个非空白字符不能转换为基数范围内的数字,直接返回<code>NaN</code></li>
-<li>对于字符串的符号(<code>+/-</code>),<code>parseInt</code>可以理解,正常输出,不作处理.原来是正数就是正数,原来是负数就是负数.</li>
-<li>如果<code>parseInt</code>遇到不是指定基数中的数字字符,它将<strong>忽略该字符和所有后续字符</strong>,并返回到该点为止解析的整数值.例如,尽管<code>1e3</code>在技术上对整数进行编码(并且将被<code>parseFloat()</code>正确解析为整数<code>1000</code>),但<code>parseInt(&quot;1e3&quot;,10)</code>返回<code>1</code>,因为<code>e</code>不是以10为基数的有效数字.由于<code>.</code>也不是数字,因此返回值将始终为整数(也就是说,如果来解析小数,遇到小数点就会自动停止并返回,所以如果可以成功返回,返回值一定是整数)</li>
-</ul>
-</li>
-<li><p><code>radix</code>: 可选。一个介于<code>2</code>和<code>36</code>之间的整数，表示<code>字符串</code>的<strong>基数(进制)</strong>.</p>
-<ul>
-<li><p>如果**非零且超出[2,36]**的范围,则函数将始终返回<code>NaN</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,-<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">37</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果<strong>未提供,或者值变为<code>0</code>,<code>NaN</code>,或<code>Infinity</code>(<code>undefined</code>被强制转换为<code>NaN</code>)</strong>,则将根据<code>字符串</code>的值推断基数.注意,并<strong>不是默认为10</strong></p>
-<ul>
-<li><p>如果输入的<code>字符串</code>(删除了前导空格和可能的<code>+/-</code>符号)以<code>0x</code>或<code>0X</code>(0,后面跟小写或大写的<code>x</code>)开头,则基数假定为<strong>16</strong>,字符串的其余部分将被解析为16进制数.</p>
-</li>
-<li><p>如果输入<code>字符串</code>以任何其他值开头,则基数为<code>10</code>(十进制)</p>
-<blockquote>
-<p><strong>注意:<strong>其他前缀(如<code>0b</code>)在数字字面量中有效,但是在<code>parseInt()</code>中视为普通数字.<code>parseInt()</code>也</strong>不会</strong>将以<code>0</code>字符开头的字符串视为八进制.<code>parseInt()</code>识别的<strong>唯一前缀</strong>是十六进制值的<code>0x</code>或<code>0X</code>.如果缺少<code>radix</code>,其他所有内容都被解析为十进制值.可以使用<code>Number()</code>或<code>BigInt()</code>来解析这些前缀.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>如果为16,则可以在可选符号字符(<code>+/-</code>)后选择性地为字符串添加<code>0x</code>或<code>0X</code>前缀.</p>
-</li>
-<li><p>对于大于<code>10</code>的基数,英文字母表的字母表示大于<code>9</code>的数字.例如,对于十六进制数,使用<code>A</code>到<code>F</code>.这些字母<strong>不区分大小写</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>在非字符串上使用<code>parseInt()</code></p>
-<p><code>parseInt()</code>在处理非字符串和高基数时可以产生有趣的结果;例如,<code>36</code>(使所有字母数字字符都是有效的数字进制,即0-9,和26个字母,总共36个)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">null</span>,<span class="number">36</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">undefined</span>,<span class="number">36</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1112745</span></span><br><span class="line"><span class="comment">// 86464843759093</span></span><br></pre></td></tr></table></figure>
-
-<p>我们应尽可能避免用<code>parseInt</code>处理非整数的字符串</p>
-<p>所以回到我们的题目,为什么会有下面的输出呢?</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
-
-<p>这是因为我们把<code>parseInt</code>作为了<code>map</code>的回调函数.那么传递给<code>parseInt</code>的两个参数就是<code>item</code>和<code>index</code></p>
-<p>所以实际的处理相当于如下所示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr = [<span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>, <span class="number">0</span>),<span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>), <span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>)];</span><br></pre></td></tr></table></figure>
-
-<p>对于第一个元素,传递的<code>radix</code>为0,字符串<code>&#39;1&#39;</code>也不是以<code>0x</code>或<code>0X</code>开头,所以这里采用十进制转换.结果为数字<code>1</code></p>
-<p>对于第二个元素,传递的<code>radix</code>为1,这是一个非法的进制,(因为合法的进制是2-36的一个整数),所以直接返回<code>NaN</code></p>
-<p>对于第三个元素,传递的<code>radix</code>是2,表示解析为二进制.当开始解析后,遇到第一个字符<code>&#39;3&#39;</code>就不是二进制中的一个合法字符(二进制只有<code>0</code>和<code>1</code>),所以直接停止,返回<code>NaN</code>.</p>
-<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h2><p>最近学着学着发现，css才是最难的.CSS的英文全称是<code>Cascading Style Sheets</code>，翻译过来就是层叠样式表.<br>也就是说多种选择器之间会互相影响覆盖,每次莫名其妙地某个元素直接就消失了,所以,如果不能准确透彻地理解CSS样式的计算规则,就会经常出现莫名其妙的bug.<br>比如我们经常写的如下代码</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">70%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>请问我们这里的100%和70%是相对于谁的来计算的百分比呢?<br>很多同学可能会想当然的说,当然是父元素了,这还用说吗?<br>然而事实并非如此.</p>
-<p>CSS里面有两大重点.<br><strong>属性计算</strong>和<strong>视觉格式化模型</strong><br>对于视觉格式化模型,我们要清楚,以下内容</p>
-<ul>
-<li>元素的<code>width</code>,<code>height</code>,<code>margin</code>,<code>padding</code>的百分比都是相对于包含块的</li>
-<li>元素的<code>left</code>,<code>right</code>, <code>top</code>, <code>bottom</code>的百分比都是相对于包含块的</li>
-</ul>
-<p>那么如何来确定包含块呢?<br>包含块如何确定,完全取决于元素的<code>position</code>属性的值</p>
-<ol>
-<li>如果<code>position</code>属性是<code>static</code>(默认值),<code>relative</code>,或<code>stick</code>,包含块由<strong>最近的上级元素的内容盒的边缘形成</strong>,该元素可以是<strong>块容器</strong>(例如<code>inline-block</code>,<code>block</code>,<code>list-itme element</code>)或<strong>建立格式上下文</strong>(例如表格,网格,或块容器本身)</li>
-<li>如果<code>position</code>属性是<code>absolute</code>,包含块由最近的上级元素的定位<strong>非</strong><code>static</code>的父元素的<strong>内边距盒的边缘</strong>构成.</li>
-<li>如果<code>position</code>属性是<code>fixed</code>,包含块由<strong>视口(viewport)的边缘</strong>构成(在连续媒体的情况下),如果在分页媒体的情况下,则有页面区域的边缘构成.</li>
-<li>如果<code>position</code>属性是<code>absolute</code>或<code>fixed</code>,则包含块也可能由具有以下任何一项的最近上级元素的<strong>内边距盒边缘</strong>构成.<ul>
-<li><code>filter</code>,<code>backdrop-filter</code>,<code>transform</code>或<code>perspective</code>的值不是<code>none</code></li>
-<li>包含<code>layout</code>,<code>strict</code>,<code>paint</code>,或<code>content</code></li>
-<li><code>container-type</code>的值不是<code>normal</code></li>
-<li><code>will-change</code>的值包含一个属性,其非初始值形成一个包含块(例如<code>filter</code>和<code>transform</code>)</li>
-<li><code>content-visibility</code>的值是<code>auto</code></li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>注意: 根元素<code>&lt;html&gt;</code>所在的包含块是一个被称为<strong>初始包含块</strong>的矩形.它的尺寸是视口(viewport)的尺寸.</p>
-</blockquote>
-<p>我们来看下面的例子</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">70%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中,<code>box</code>的高度是<code>0</code>.因为所有元素的属性默认值是<code>static</code>,所以我们依据第一条规则,<code>box</code>的百分比是相对于最近的上级元素的<code>内容盒</code>边缘形成的.即<code>container</code>.但是<code>container</code>没有明确设置<code>height</code>,所以为默认值<code>auto</code>由子元素撑开.所以这里无从参照,只能为0.</p>
-<p>当我们给<code>container</code>设置一个高度后,即可成功显示</p>
-<h1 id="hexo-个人博客"><a href="#hexo-个人博客" class="headerlink" title="hexo 个人博客"></a>hexo 个人博客</h1><h2 id="关于图片引用问题"><a href="#关于图片引用问题" class="headerlink" title="关于图片引用问题"></a>关于图片引用问题</h2><h3 id="文章图片本地和远程不能同时显示问题"><a href="#文章图片本地和远程不能同时显示问题" class="headerlink" title="文章图片本地和远程不能同时显示问题"></a>文章图片本地和远程不能同时显示问题</h3><p>在本地 typora 中使用绝对路径插入的图片部署到网站中会无法正常显示，解决方式如下</p>
-<ol>
-<li><p>在 Typora 的偏好设置中的图片设置中，设置如下图</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211211639069.png" class="" title="image-20241211211639069">
-
-<p>这样我们在本地只需要直接在 Typora 中粘贴图片，就会将图片复制到当前 markdown 文件同级的同名目录下。</p>
-</li>
-<li><p>在 hexo 项目的根目录的配置文件<code>_config.yml</code>中，把<code>post_asset_folder</code>属性设置为<code>ture</code>.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211212013176.png" class="" title="image-20241211212013176">
-
-<p>这样当我们在 hexo 中使用命令<code>hexo new xxxx</code>的时候,就会同时创建一个同名目录,用来存放静态资源</p>
-</li>
-<li><p>安装<code>hexo-asset-img</code>插件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add hexo-asset-img</span><br></pre></td></tr></table></figure>
-
-<p>安装完这个插件后,使用相对路径引入的图片在部署到站点后也可以显示.</p>
-</li>
-</ol>
-<h3 id="文章的-top-img-和-cover-路径问题"><a href="#文章的-top-img-和-cover-路径问题" class="headerlink" title="文章的 top_img 和 cover 路径问题"></a>文章的 top_img 和 cover 路径问题</h3><p>文章中图片的问题解决了以后，在文章页面中 top_img 和 cover 图片路径的问题就出现了。</p>
-<p>我们看下面这个例子,在经过上一步的设置后,已经在同级目录下有一个同名文件夹用来存放静态资源.这里我们在 OPPO23 秋文件夹中保存了一张<code>top.png</code>图片</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214502730.png" class="" title="image-20241211214502730">
-
-<p>然后在文章页的<code>Front-Formatter</code>中将封面图<code>cover</code>和顶部图<code>top_img</code>均设置为此图.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214653018.png" class="" title="image-20241211214653018">
-
-<p>然后我们在本地使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>命令运行博客</p>
-<p>我们可以看到封面图<code>cover</code>可以成功显示,没有问题.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214825220.png" class="" title="image-20241211214825220">
-
-<p>但是当我们点到文章页时,会发现<code>top_img</code>并没有成功显示</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214905887.png" class="" title="image-20241211214905887">
-
-<p>明明是一样的路径配置,但是一个正常,另一个不正常.很有可能是 hexo 以及我们安装的插件综合作用下,<strong>对<code>cover</code>和<code>top_img</code>的路径处理方式不同</strong>.</p>
-<p>为了验证我们的猜想,我们使用浏览器开发者工具分别查看两图片对应的元素,并对获取图片请求进行抓包分析.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211215143107.png" class="" title="image-20241211215143107">
-
-<p>对于<code>cover</code>我们可以看到,它是一个嵌套在<code>&lt;a&gt;</code>标签里的一个<code>&lt;img&gt;</code>标签.</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220138804.png" class="" title="image-20241211220138804">
-
-<p>我们点击当前来源，跳转到图片资源位置，没有问题。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220401618.png" class="" title="image-20241211220401618">
-
-<p>我们再来看一下<code>top_img</code>图片。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220503933.png" class="" title="image-20241211220503933">
-
-<p>我们可以看到它并不是<code>&lt;img&gt;</code>，而是用 CSS 的<code>background-image</code>属性来设置的。这里难以看出问题，我们对网络请求进行抓包。</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220746097.png" class="" title="image-20241211220746097">
-
-<p>我们可以看到是一个 404 错误，说明找不到资源，就是路径出错了。观察请求头地址，我们不难发现，<code>2024/12/08/OPPO23秋</code>这一部分内容写了两次.说明 hexo 在处理文章的<code>top_img</code>时,很有可能本来就会加上前面的内容,我们的插件之类的又产生了干扰.具体原因还不得而知,不过问题已经可以解决了.</p>
-<p>通过上述分析,我们可以推测,<code>top_img</code>不显示,很可能是因为我们使用了<strong>相对路径</strong>,框架在此处的路径处理出了一些问题,所以我们尝试改用绝对路径来引入.</p>
-<p>在项目的<code>source</code>文件夹下新建一个<code>img</code>目录,里面复制我们的<code>top.png</code></p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221230694.png" class="" title="image-20241211221230694">
-
-<p>将文章中<code>tom_img</code>路径改为绝对路径<code>/img/top.png</code>(因为 hexo 会把 source 文件当作根目录来建站,所以建站后<code>img</code>文件夹相当于在根目录下,使用<code>/img</code>即可访问)</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221402895.png" class="" title="image-20241211221402895">
-
-<p>清理 hexo,重新生成,发现顶部图成功显示!</p>
-<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221456484.png" class="" title="image-20241211221456484">
-
-
-
-<p>已知两个一维模式类别的类概率密度函数为</p>
-<p>$$<br>p(x_1|w_1) &#x3D; \begin{cases} x \quad 0&lt;x&lt;1 \ 2-x \quad 1 \leq x &lt; 2 \ 0 \quad 其他   \end{cases}<br>$$</p>
-<p>$$<br>p(x_1|w_1) &#x3D; \begin{cases} x-1 \quad 1 \leq x &lt; 2 \ 3-x \quad 2 \leq x \leq 3 \ 0 \quad 其他   \end{cases}<br>$$</p>
-<p>先验概率 $p(w_1)&#x3D;0.6,p(w_2)&#x3D;0.4$ </p>
-<p>（1）求 Bayes 最小错误率判决函数； </p>
-<p>（2）求总错误概率 p; </p>
-<p>（3）判断样本{x1&#x3D;1.35，x2&#x3D;1.45，x3&#x3D;1.55，x4&#x3D;1.65}各属于哪一类？ </p>
-<p>在字符检测中,假定类型$w_1$为字符,类型$w_2$为非字符,已知先验概率$P(w_1)&#x3D;0.6,P(w_2)&#x3D;0.4$,现在有两个待识样本$x_1,x_2$,其类概率密度分别为:<br>$$<br>p(x|w_1) &#x3D; 0.8,  0.1  \<br>p(x|w_2) &#x3D; 0.2,  0.9<br>$$<br>(1)试用贝叶斯最小误判概率准则判决两个样本各属于哪一个类型;</p>
-<p>(2)如果$\lambda_{12}$表示属于$w_1$类判决$w_2$造成的损失,正确判断的损失$\lambda_{11}&#x3D;\lambda{22}&#x3D;0$,如果$\lambda_{12}&#x3D;4$,试用贝叶斯最小风险准则判决两个样本均属于第一类,误判损失$\lambda_{21}$应该如何设计?请分析两种分类结果的异同及原因</p>
-<p>随机变量x服从Erlang概率密度函数:<br>$$<br>p(x, \theta) &#x3D; \theta^2 x exp(-\theta x)u(x)<br>$$<br>其中$u(x)$是单位阶跃函数<br>$$<br>u(x) &#x3D; \begin{cases} 1, x &gt; 0 \ 0, x &lt; 0, \end{cases}<br>$$<br>给定N个测量值$x_1,…,x_N$,计算$\theta$的最大似然估计</p>
-<p>给定数据样本 X &#x3D; {3, 4, 5, 5, 6, 12, 14, 14, 15, 16, 17,18}，采用 Parzen 窗估计在 5 和 14 处的密度函数 p(x)，窗宽 $h_N&#x3D;4$。试分别计算出采用方窗 和正态窗（ $\mu &#x3D; 0, \sigma &#x3D; 1 $）估计结果。 </p>
-<p>给定两类数据样本$w_1&#x3D;[-3, -2, -1, -1, 0, 1, 1, 2, 2, 3], w_2&#x3D;[1, 2, 3, 3, 4, 5, 5, 6, 6, 7]$，试用最小错误率贝叶斯决策判别观测样本 x&#x3D;2 属于哪一类？此处两类 出现的概率$p(w_1)$和$p(w_2)$ 相等，采用方窗函数$\phi(u) &#x3D; \begin{cases} 1 \quad \abs{u} \leq 1&#x2F;2 \ 0 \quad 其他 \end{cases}$ 的 Parzen 窗估计密度方法，窗宽$h_N&#x3D;5$估计类条件概率。 </p>
-]]></content>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机组成原理</title>
     <url>/2025/01/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h1 id="计算机的发展"><a href="#计算机的发展" class="headerlink" title="计算机的发展"></a>计算机的发展</h1><p>$$<br>计算机系统 &#x3D; 硬件 + 软件<br>$$</p>
@@ -17627,6 +17595,207 @@
       </categories>
       <tags>
         <tag>计组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随笔小记</title>
+    <url>/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><h2 id="关于矩阵的创建"><a href="#关于矩阵的创建" class="headerlink" title="关于矩阵的创建"></a>关于矩阵的创建</h2><p>今天做了一个 leetcode 的 59 螺旋矩阵题目，该题在最开始需要创建一个矩阵。GPT 给的方式如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: n &#125;, <span class="function">() =&gt;</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这个代码片段使用了 ES6 的 Array.from()方法，该方法接受一个可迭代对象（通常是一个类数组对象）作为参数，并返回一个新数组。其中第二个参数是一个映射函数，用于将每个元素映射到新数组中的元素。</p>
+<p>这个代码片段中，{ length: n }是一个对象，它表示创建一个长度为 n 的数组。然后，Array(n)是一个数组，它表示创建一个包含 n 个 0 的数组。最后，fill(0)是一个数组方法，它将数组中的每个元素设置为 0。</p>
+<p>我过去创建矩阵通常使用如下方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这个代码片段首先创建了一个长度为 n 的数组，每个元素都被设置为 0。然后，它使用 map()方法将每个元素转换为一个新的数组，并使用 fill(0)方法将每个数组中的元素设置为 0。</p>
+<p>这里在使用第二种方法时,很容易出现<strong>共享引用</strong>的错误.</p>
+<p>错误示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这里 fill 用的是同一个子数组引用，导致所有行指向同一个数组。<br>修改其中一个子数组会影响其他行：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">result[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// 输出:</span></span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0],</span></span><br><span class="line"><span class="comment">// [1, 0, 0]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结<br>Array.from 推荐: 更安全且代码简洁，避免引用共享问题。<br>fill + map: 同样有效，适合对 map 方法较为熟悉的开发者。<br>切记，<strong>不能用 fill 填充同一个子数组引用</strong>，否则会产生意外的共享引用问题。</p>
+</blockquote>
+<h2 id="map-和-parseInt-函数的使用"><a href="#map-和-parseInt-函数的使用" class="headerlink" title="map 和 parseInt 函数的使用"></a>map 和 parseInt 函数的使用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
+
+<p>今天在地铁上刷视频看到一个很有意思的题目，随笔记录一下，和大家分享。<br>乍一看这个题目，感觉非常简单，对一个字符串数组进行<code>map</code>处理,处理函数是<code>parseInt</code>,输出结果应该就是<code>[1, 2, 3]</code>.<br>然而当我们尝试运行这段代码会发现,真实的输出结果是<code>[1, NaN, NaN]</code>.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241212090639182.png" class="" title="image-20241212090639182">
+
+<p>那为什么会出现这么奇怪的现象呢?<br>这里有两个关键点,<code>map</code>和<code>parseInt</code>,我们需要深入且准确地弄清楚这两个函数的工作原理。才能解决这个问题。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>Array 实例的 <code>map()</code> 方法创建一个<strong>新数组</strong>，其中填充了对调用数组中的每个元素调用提供的函数的结果。</p>
+<p>使用语法如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn[, thisArg])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>callbackFn</code>: 要为数组中的每个元素执行的函数。其<strong>返回值</strong>将作为单个元素添加到新数组中。使用以下参数调用该函数：<ul>
+<li><code>element</code>: 数组中正在处理的当前元素</li>
+<li><code>index</code>: 数组中正在处理的当前元素的索引</li>
+<li><code>array</code>: 调用<code>map()</code>的数组</li>
+</ul>
+</li>
+<li><code>thisArg</code>: 可选。执行回调时使用的 this 值。(指定<code>callbackFn</code>函数内使用 this)</li>
+</ul>
+<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h3><p><code>parseInt()</code>函数解析字符串参数并返回指定<strong>基数</strong>(数学数字系统中的基数)的整数.]<br>其实就是返回指定进制的整数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (default base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;123&#x27;</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 123 (explicitly specify base-10)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;   123 &#x27;</span>));</span><br><span class="line"><span class="comment">// 123 (whitespace is ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;077&#x27;</span>));</span><br><span class="line"><span class="comment">// 77 (leading zeros are ignored)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;1.9&#x27;</span>));</span><br><span class="line"><span class="comment">// 1 (decimal part is truncated)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;ff&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (lower-case hexadecimal)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;0xFF&#x27;</span>, <span class="number">16</span>));</span><br><span class="line"><span class="comment">// 255 (upper-case hexadecimal with &quot;0x&quot; prefix)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;xyz&#x27;</span>));</span><br><span class="line"><span class="comment">// NaN (input can&#x27;t be converted to an integer)</span></span><br></pre></td></tr></table></figure>
+
+<p>使用语法如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string[, radix])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>string</code>: 以整数开头的字符串.此参数的<strong>前导空格</strong>将被忽略</p>
+<ul>
+<li>如果第一个非空白字符不能转换为基数范围内的数字,直接返回<code>NaN</code></li>
+<li>对于字符串的符号(<code>+/-</code>),<code>parseInt</code>可以理解,正常输出,不作处理.原来是正数就是正数,原来是负数就是负数.</li>
+<li>如果<code>parseInt</code>遇到不是指定基数中的数字字符,它将<strong>忽略该字符和所有后续字符</strong>,并返回到该点为止解析的整数值.例如,尽管<code>1e3</code>在技术上对整数进行编码(并且将被<code>parseFloat()</code>正确解析为整数<code>1000</code>),但<code>parseInt(&quot;1e3&quot;,10)</code>返回<code>1</code>,因为<code>e</code>不是以10为基数的有效数字.由于<code>.</code>也不是数字,因此返回值将始终为整数(也就是说,如果来解析小数,遇到小数点就会自动停止并返回,所以如果可以成功返回,返回值一定是整数)</li>
+</ul>
+</li>
+<li><p><code>radix</code>: 可选。一个介于<code>2</code>和<code>36</code>之间的整数，表示<code>字符串</code>的<strong>基数(进制)</strong>.</p>
+<ul>
+<li><p>如果**非零且超出[2,36]**的范围,则函数将始终返回<code>NaN</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,-<span class="number">1</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&#x27;213&#x27;</span>,<span class="number">37</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> * NaN</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果<strong>未提供,或者值变为<code>0</code>,<code>NaN</code>,或<code>Infinity</code>(<code>undefined</code>被强制转换为<code>NaN</code>)</strong>,则将根据<code>字符串</code>的值推断基数.注意,并<strong>不是默认为10</strong></p>
+<ul>
+<li><p>如果输入的<code>字符串</code>(删除了前导空格和可能的<code>+/-</code>符号)以<code>0x</code>或<code>0X</code>(0,后面跟小写或大写的<code>x</code>)开头,则基数假定为<strong>16</strong>,字符串的其余部分将被解析为16进制数.</p>
+</li>
+<li><p>如果输入<code>字符串</code>以任何其他值开头,则基数为<code>10</code>(十进制)</p>
+<blockquote>
+<p><strong>注意:<strong>其他前缀(如<code>0b</code>)在数字字面量中有效,但是在<code>parseInt()</code>中视为普通数字.<code>parseInt()</code>也</strong>不会</strong>将以<code>0</code>字符开头的字符串视为八进制.<code>parseInt()</code>识别的<strong>唯一前缀</strong>是十六进制值的<code>0x</code>或<code>0X</code>.如果缺少<code>radix</code>,其他所有内容都被解析为十进制值.可以使用<code>Number()</code>或<code>BigInt()</code>来解析这些前缀.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>如果为16,则可以在可选符号字符(<code>+/-</code>)后选择性地为字符串添加<code>0x</code>或<code>0X</code>前缀.</p>
+</li>
+<li><p>对于大于<code>10</code>的基数,英文字母表的字母表示大于<code>9</code>的数字.例如,对于十六进制数,使用<code>A</code>到<code>F</code>.这些字母<strong>不区分大小写</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在非字符串上使用<code>parseInt()</code></p>
+<p><code>parseInt()</code>在处理非字符串和高基数时可以产生有趣的结果;例如,<code>36</code>(使所有字母数字字符都是有效的数字进制,即0-9,和26个字母,总共36个)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">null</span>,<span class="number">36</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="literal">undefined</span>,<span class="number">36</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1112745</span></span><br><span class="line"><span class="comment">// 86464843759093</span></span><br></pre></td></tr></table></figure>
+
+<p>我们应尽可能避免用<code>parseInt</code>处理非整数的字符串</p>
+<p>所以回到我们的题目,为什么会有下面的输出呢?</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].<span class="title function_">map</span>(<span class="built_in">parseInt</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"><span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
+
+<p>这是因为我们把<code>parseInt</code>作为了<code>map</code>的回调函数.那么传递给<code>parseInt</code>的两个参数就是<code>item</code>和<code>index</code></p>
+<p>所以实际的处理相当于如下所示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr = [<span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>, <span class="number">0</span>),<span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>), <span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>)];</span><br></pre></td></tr></table></figure>
+
+<p>对于第一个元素,传递的<code>radix</code>为0,字符串<code>&#39;1&#39;</code>也不是以<code>0x</code>或<code>0X</code>开头,所以这里采用十进制转换.结果为数字<code>1</code></p>
+<p>对于第二个元素,传递的<code>radix</code>为1,这是一个非法的进制,(因为合法的进制是2-36的一个整数),所以直接返回<code>NaN</code></p>
+<p>对于第三个元素,传递的<code>radix</code>是2,表示解析为二进制.当开始解析后,遇到第一个字符<code>&#39;3&#39;</code>就不是二进制中的一个合法字符(二进制只有<code>0</code>和<code>1</code>),所以直接停止,返回<code>NaN</code>.</p>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h2><p>最近学着学着发现，css才是最难的.CSS的英文全称是<code>Cascading Style Sheets</code>，翻译过来就是层叠样式表.<br>也就是说多种选择器之间会互相影响覆盖,每次莫名其妙地某个元素直接就消失了,所以,如果不能准确透彻地理解CSS样式的计算规则,就会经常出现莫名其妙的bug.<br>比如我们经常写的如下代码</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">70%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请问我们这里的100%和70%是相对于谁的来计算的百分比呢?<br>很多同学可能会想当然的说,当然是父元素了,这还用说吗?<br>然而事实并非如此.</p>
+<p>CSS里面有两大重点.<br><strong>属性计算</strong>和<strong>视觉格式化模型</strong><br>对于视觉格式化模型,我们要清楚,以下内容</p>
+<ul>
+<li>元素的<code>width</code>,<code>height</code>,<code>margin</code>,<code>padding</code>的百分比都是相对于包含块的</li>
+<li>元素的<code>left</code>,<code>right</code>, <code>top</code>, <code>bottom</code>的百分比都是相对于包含块的</li>
+</ul>
+<p>那么如何来确定包含块呢?<br>包含块如何确定,完全取决于元素的<code>position</code>属性的值</p>
+<ol>
+<li>如果<code>position</code>属性是<code>static</code>(默认值),<code>relative</code>,或<code>stick</code>,包含块由<strong>最近的上级元素的内容盒的边缘形成</strong>,该元素可以是<strong>块容器</strong>(例如<code>inline-block</code>,<code>block</code>,<code>list-itme element</code>)或<strong>建立格式上下文</strong>(例如表格,网格,或块容器本身)</li>
+<li>如果<code>position</code>属性是<code>absolute</code>,包含块由最近的上级元素的定位<strong>非</strong><code>static</code>的父元素的<strong>内边距盒的边缘</strong>构成.</li>
+<li>如果<code>position</code>属性是<code>fixed</code>,包含块由<strong>视口(viewport)的边缘</strong>构成(在连续媒体的情况下),如果在分页媒体的情况下,则有页面区域的边缘构成.</li>
+<li>如果<code>position</code>属性是<code>absolute</code>或<code>fixed</code>,则包含块也可能由具有以下任何一项的最近上级元素的<strong>内边距盒边缘</strong>构成.<ul>
+<li><code>filter</code>,<code>backdrop-filter</code>,<code>transform</code>或<code>perspective</code>的值不是<code>none</code></li>
+<li>包含<code>layout</code>,<code>strict</code>,<code>paint</code>,或<code>content</code></li>
+<li><code>container-type</code>的值不是<code>normal</code></li>
+<li><code>will-change</code>的值包含一个属性,其非初始值形成一个包含块(例如<code>filter</code>和<code>transform</code>)</li>
+<li><code>content-visibility</code>的值是<code>auto</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>注意: 根元素<code>&lt;html&gt;</code>所在的包含块是一个被称为<strong>初始包含块</strong>的矩形.它的尺寸是视口(viewport)的尺寸.</p>
+</blockquote>
+<p>我们来看下面的例子</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">70%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中,<code>box</code>的高度是<code>0</code>.因为所有元素的属性默认值是<code>static</code>,所以我们依据第一条规则,<code>box</code>的百分比是相对于最近的上级元素的<code>内容盒</code>边缘形成的.即<code>container</code>.但是<code>container</code>没有明确设置<code>height</code>,所以为默认值<code>auto</code>由子元素撑开.所以这里无从参照,只能为0.</p>
+<p>当我们给<code>container</code>设置一个高度后,即可成功显示</p>
+<h1 id="hexo-个人博客"><a href="#hexo-个人博客" class="headerlink" title="hexo 个人博客"></a>hexo 个人博客</h1><h2 id="关于图片引用问题"><a href="#关于图片引用问题" class="headerlink" title="关于图片引用问题"></a>关于图片引用问题</h2><h3 id="文章图片本地和远程不能同时显示问题"><a href="#文章图片本地和远程不能同时显示问题" class="headerlink" title="文章图片本地和远程不能同时显示问题"></a>文章图片本地和远程不能同时显示问题</h3><p>在本地 typora 中使用绝对路径插入的图片部署到网站中会无法正常显示，解决方式如下</p>
+<ol>
+<li><p>在 Typora 的偏好设置中的图片设置中，设置如下图</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211211639069.png" class="" title="image-20241211211639069">
+
+<p>这样我们在本地只需要直接在 Typora 中粘贴图片，就会将图片复制到当前 markdown 文件同级的同名目录下。</p>
+</li>
+<li><p>在 hexo 项目的根目录的配置文件<code>_config.yml</code>中，把<code>post_asset_folder</code>属性设置为<code>ture</code>.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211212013176.png" class="" title="image-20241211212013176">
+
+<p>这样当我们在 hexo 中使用命令<code>hexo new xxxx</code>的时候,就会同时创建一个同名目录,用来存放静态资源</p>
+</li>
+<li><p>安装<code>hexo-asset-img</code>插件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add hexo-asset-img</span><br></pre></td></tr></table></figure>
+
+<p>安装完这个插件后,使用相对路径引入的图片在部署到站点后也可以显示.</p>
+</li>
+</ol>
+<h3 id="文章的-top-img-和-cover-路径问题"><a href="#文章的-top-img-和-cover-路径问题" class="headerlink" title="文章的 top_img 和 cover 路径问题"></a>文章的 top_img 和 cover 路径问题</h3><p>文章中图片的问题解决了以后，在文章页面中 top_img 和 cover 图片路径的问题就出现了。</p>
+<p>我们看下面这个例子,在经过上一步的设置后,已经在同级目录下有一个同名文件夹用来存放静态资源.这里我们在 OPPO23 秋文件夹中保存了一张<code>top.png</code>图片</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214502730.png" class="" title="image-20241211214502730">
+
+<p>然后在文章页的<code>Front-Formatter</code>中将封面图<code>cover</code>和顶部图<code>top_img</code>均设置为此图.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214653018.png" class="" title="image-20241211214653018">
+
+<p>然后我们在本地使用<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>命令运行博客</p>
+<p>我们可以看到封面图<code>cover</code>可以成功显示,没有问题.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214825220.png" class="" title="image-20241211214825220">
+
+<p>但是当我们点到文章页时,会发现<code>top_img</code>并没有成功显示</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211214905887.png" class="" title="image-20241211214905887">
+
+<p>明明是一样的路径配置,但是一个正常,另一个不正常.很有可能是 hexo 以及我们安装的插件综合作用下,<strong>对<code>cover</code>和<code>top_img</code>的路径处理方式不同</strong>.</p>
+<p>为了验证我们的猜想,我们使用浏览器开发者工具分别查看两图片对应的元素,并对获取图片请求进行抓包分析.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211215143107.png" class="" title="image-20241211215143107">
+
+<p>对于<code>cover</code>我们可以看到,它是一个嵌套在<code>&lt;a&gt;</code>标签里的一个<code>&lt;img&gt;</code>标签.</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220138804.png" class="" title="image-20241211220138804">
+
+<p>我们点击当前来源，跳转到图片资源位置，没有问题。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220401618.png" class="" title="image-20241211220401618">
+
+<p>我们再来看一下<code>top_img</code>图片。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220503933.png" class="" title="image-20241211220503933">
+
+<p>我们可以看到它并不是<code>&lt;img&gt;</code>，而是用 CSS 的<code>background-image</code>属性来设置的。这里难以看出问题，我们对网络请求进行抓包。</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211220746097.png" class="" title="image-20241211220746097">
+
+<p>我们可以看到是一个 404 错误，说明找不到资源，就是路径出错了。观察请求头地址，我们不难发现，<code>2024/12/08/OPPO23秋</code>这一部分内容写了两次.说明 hexo 在处理文章的<code>top_img</code>时,很有可能本来就会加上前面的内容,我们的插件之类的又产生了干扰.具体原因还不得而知,不过问题已经可以解决了.</p>
+<p>通过上述分析,我们可以推测,<code>top_img</code>不显示,很可能是因为我们使用了<strong>相对路径</strong>,框架在此处的路径处理出了一些问题,所以我们尝试改用绝对路径来引入.</p>
+<p>在项目的<code>source</code>文件夹下新建一个<code>img</code>目录,里面复制我们的<code>top.png</code></p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221230694.png" class="" title="image-20241211221230694">
+
+<p>将文章中<code>tom_img</code>路径改为绝对路径<code>/img/top.png</code>(因为 hexo 会把 source 文件当作根目录来建站,所以建站后<code>img</code>文件夹相当于在根目录下,使用<code>/img</code>即可访问)</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221402895.png" class="" title="image-20241211221402895">
+
+<p>清理 hexo,重新生成,发现顶部图成功显示!</p>
+<img src="/2024/12/11/%E9%9A%8F%E7%AC%94%E5%B0%8F%E8%AE%B0/image-20241211221456484.png" class="" title="image-20241211221456484">
+
+
+
+<p>已知两个一维模式类别的类概率密度函数为</p>
+<p>$$<br>p(x_1|w_1) &#x3D; \begin{cases} x \quad 0&lt;x&lt;1 \ 2-x \quad 1 \leq x &lt; 2 \ 0 \quad 其他   \end{cases}<br>$$</p>
+<p>$$<br>p(x_1|w_1) &#x3D; \begin{cases} x-1 \quad 1 \leq x &lt; 2 \ 3-x \quad 2 \leq x \leq 3 \ 0 \quad 其他   \end{cases}<br>$$</p>
+<p>先验概率 $p(w_1)&#x3D;0.6,p(w_2)&#x3D;0.4$ </p>
+<p>（1）求 Bayes 最小错误率判决函数； </p>
+<p>（2）求总错误概率 p; </p>
+<p>（3）判断样本{x1&#x3D;1.35，x2&#x3D;1.45，x3&#x3D;1.55，x4&#x3D;1.65}各属于哪一类？ </p>
+<p>在字符检测中,假定类型$w_1$为字符,类型$w_2$为非字符,已知先验概率$P(w_1)&#x3D;0.6,P(w_2)&#x3D;0.4$,现在有两个待识样本$x_1,x_2$,其类概率密度分别为:<br>$$<br>p(x|w_1) &#x3D; 0.8,  0.1  \<br>p(x|w_2) &#x3D; 0.2,  0.9<br>$$<br>(1)试用贝叶斯最小误判概率准则判决两个样本各属于哪一个类型;</p>
+<p>(2)如果$\lambda_{12}$表示属于$w_1$类判决$w_2$造成的损失,正确判断的损失$\lambda_{11}&#x3D;\lambda{22}&#x3D;0$,如果$\lambda_{12}&#x3D;4$,试用贝叶斯最小风险准则判决两个样本均属于第一类,误判损失$\lambda_{21}$应该如何设计?请分析两种分类结果的异同及原因</p>
+<p>随机变量x服从Erlang概率密度函数:<br>$$<br>p(x, \theta) &#x3D; \theta^2 x exp(-\theta x)u(x)<br>$$<br>其中$u(x)$是单位阶跃函数<br>$$<br>u(x) &#x3D; \begin{cases} 1, x &gt; 0 \ 0, x &lt; 0, \end{cases}<br>$$<br>给定N个测量值$x_1,…,x_N$,计算$\theta$的最大似然估计</p>
+<p>给定数据样本 X &#x3D; {3, 4, 5, 5, 6, 12, 14, 14, 15, 16, 17,18}，采用 Parzen 窗估计在 5 和 14 处的密度函数 p(x)，窗宽 $h_N&#x3D;4$。试分别计算出采用方窗 和正态窗（ $\mu &#x3D; 0, \sigma &#x3D; 1 $）估计结果。 </p>
+<p>给定两类数据样本$w_1&#x3D;[-3, -2, -1, -1, 0, 1, 1, 2, 2, 3], w_2&#x3D;[1, 2, 3, 3, 4, 5, 5, 6, 6, 7]$，试用最小错误率贝叶斯决策判别观测样本 x&#x3D;2 属于哪一类？此处两类 出现的概率$p(w_1)$和$p(w_2)$ 相等，采用方窗函数$\phi(u) &#x3D; \begin{cases} 1 \quad \abs{u} \leq 1&#x2F;2 \ 0 \quad 其他 \end{cases}$ 的 Parzen 窗估计密度方法，窗宽$h_N&#x3D;5$估计类条件概率。 </p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
