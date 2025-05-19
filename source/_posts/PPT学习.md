@@ -340,3 +340,29 @@ tags: PPT
 
 ![20250510001444](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250510001444.png)
 
+# 如何快速合并多份PPT
+
+## 重用幻灯片
+
+## 保留源格式
+
+![20250513153501](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250513153501.png)
+
+# 如何使用小图标打造可视化页面
+
+## 图标下载
+
+iconfont
+
+选择**面性图标**，格式为**svg或png**。
+
+![20250513153657](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250513153657.png)
+
+面性图标更容易使风格一致。因为线形需要考虑线的宽度，折角等。
+
+svg是矢量图，可以自行更改颜色等。
+
+# 如何利用参考线让整份PPT版式更加规整
+
+母版添加参考线，则编辑页无法调整。
+
