@@ -1,1 +1,2 @@
+export PATH="/Users/jialuma/.nvm/versions/node/v22.15.0/bin:$PATH"  # 替换为你的Node 22路径
 pnpm dlx commitlint --edit $1

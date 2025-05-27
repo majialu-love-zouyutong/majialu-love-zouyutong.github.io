@@ -1,5 +1,5 @@
 ---
-title: 实在受不了混乱的提交——我使用了CommitLint
+title: 实在受不了混乱的提交——我使用了commitlint和commitizen
 date: 2025-05-27 10:19:41
 tags: commitlint 工程化
 cover: /img/commitlint.png
@@ -50,12 +50,12 @@ pnpm add -D @commitlint/cli @commitlint/config-conventional
 
 ## 配置
 
-安装完成后，在项目的根目录下创建配置文件`commitlint.config.js`。
+安装完成后，在项目的根目录下创建配置文件`commitlint.config.mjs`。
 
 写入以下内容
 
 ```js
-// commitlint.config.js
+// commitlint.config.mjs
 export default {
   extends: ['@commitlint/config-conventional'],
 };
@@ -72,8 +72,6 @@ export default {
 # 安装husky
 pnpm add -D husky
 
-# 运行husky安装
-pnpm husky install
 ```
 
 在根目录创建`.husky`目录，并在该目录下创建`commit-msg`文件，写入以下内容
@@ -83,4 +81,21 @@ pnpm dlx commitlint --edit $1
 ```
 
 > 注意，这里的文件命名一定要命名为`commit-msg`.
+
+## 提交测试
+
+我们来提交一个不规范的commit进行测试。
+
+![20250527112807](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250527112807.png)
+
+![20250527114748](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250527114748.png)
+
+- `​subject may not be empty​`
+  提交信息的第一行（Subject）​主题描述为空，未按规范填写有效内容。
+- `​type may not be empty​`
+提交信息缺少类型标识符​（如 feat、fix、chore 等），导致校验失败。
+
+因为我们之前配置了传统规范规则`@commitlint/config-conventional`，所以这里我们的提交不符合规则时，便会报错，无法提交。
+
+规则详细详细和如何自定义配置可以查看官网：https://github.com/conventional-changelog/commitlint/#what-is-commitlint
 
