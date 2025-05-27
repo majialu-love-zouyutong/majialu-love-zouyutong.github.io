@@ -7,7 +7,8 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
-    "push": "hexo clean && hexo generate && hexo deploy && hexo server"
+    "push": "hexo clean && hexo generate && hexo deploy && hexo server",
+    "commit": "git-cz"
   },
   "hexo": {
     "version": "7.3.0"
@@ -40,7 +41,14 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

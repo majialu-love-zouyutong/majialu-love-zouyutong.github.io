@@ -99,3 +99,41 @@ pnpm dlx commitlint --edit $1
 
 规则详细详细和如何自定义配置可以查看官网：https://github.com/conventional-changelog/commitlint/#what-is-commitlint
 
+我们修改commit message使其符合传统规范，然后再次提交。
+
+![20250527115457](https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250527115457.png)
+
+然后我们发现可以成功提交。
+
+但是这样总感觉还是不够智能，我们需要清楚规范里到底定义了哪些提交类型等等信息，有没有更方便的方式呢？你还真别说，这就要用到我们的下一个工具[commitizen](https://github.com/commitizen/cz-cli)
+
+# 使用commitizen
+
+## 简介
+
+commitizen和commitlint不同，前者提供了一个命令行工具，帮助我们快速生成提交信息，而后者主要是来制定commit的校验规则。
+
+## 安装
+
+```bash
+pnpm add -D commitizen
+
+commitizen init cz-conventional-changelog --pnpm --save-dev --save-exact
+```
+
+在`package.json`中添加scripts脚本，方便日常提交.
+
+```json
+// package.json
+  "scripts": {
+    ...,
+    "commit": "git-cz"
+  },
+```
+
+添加更改到暂存区后运行提交命令
+
+```bash
+pnpm commit
+```
+
