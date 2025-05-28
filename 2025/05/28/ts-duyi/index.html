@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ts-duyi | 马嘉路</title><meta name="author" content="马嘉路"><meta name="copyright" content="马嘉路"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JS语言的问题 使用了不存在的变量，函数或者成员 把一个不确定的类型当作确定的类型处理 访问null或undefined的成员  js的原罪  js语言本身的特性，决定了该语言无法适应大型的复杂项目。 弱类型：某个变量，可以随时更换类型。 解释型：必须运行代码后才能知道错误，报错是在运行时。只要语法正确就可以运行，其他错误只有在运行时才会发现。  前端开发中，大部分时间都是在改bug。 TypeS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts-duyi">
+<meta property="og:url" content="http://example.com/2025/05/28/ts-duyi/index.html">
+<meta property="og:site_name" content="马嘉路">
+<meta property="og:description" content="JS语言的问题 使用了不存在的变量，函数或者成员 把一个不确定的类型当作确定的类型处理 访问null或undefined的成员  js的原罪  js语言本身的特性，决定了该语言无法适应大型的复杂项目。 弱类型：某个变量，可以随时更换类型。 解释型：必须运行代码后才能知道错误，报错是在运行时。只要语法正确就可以运行，其他错误只有在运行时才会发现。  前端开发中，大部分时间都是在改bug。 TypeS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/typescript.jpg">
+<meta property="article:published_time" content="2025-05-28T03:15:18.000Z">
+<meta property="article:modified_time" content="2025-05-28T08:52:25.152Z">
+<meta property="article:author" content="马嘉路">
+<meta property="article:tag" content="typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/typescript.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/05/28/ts-duyi/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 马嘉路","link":"链接: ","source":"来源: 马嘉路","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ts-duyi',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">56</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/typescript.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/favicon.png" alt="Logo"><span class="site-name">马嘉路</span></a><a class="nav-page-title" href="/"><span class="site-name">ts-duyi</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">ts-duyi</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-28T03:15:18.000Z" title="发表于 2025-05-28 11:15:18">2025-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-28T08:52:25.152Z" title="更新于 2025-05-28 16:52:25">2025-05-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="JS语言的问题"><a href="#JS语言的问题" class="headerlink" title="JS语言的问题"></a>JS语言的问题</h1><ul>
+<li>使用了不存在的变量，函数或者成员</li>
+<li>把一个不确定的类型当作确定的类型处理</li>
+<li>访问null或undefined的成员</li>
+</ul>
+<p>js的原罪</p>
+<ul>
+<li>js语言本身的特性，决定了该语言无法适应大型的复杂项目。</li>
+<li>弱类型：某个变量，可以随时更换类型。</li>
+<li>解释型：必须运行代码后才能知道错误，报错是在运行时。只要语法正确就可以运行，其他错误只有在运行时才会发现。</li>
+</ul>
+<p>前端开发中，大部分时间都是在改bug。</p>
+<h1 id="TypeScript概述"><a href="#TypeScript概述" class="headerlink" title="TypeScript概述"></a>TypeScript概述</h1><p>简称TS</p>
+<p>TypeScript是JS的超集，是一个<strong>可选的</strong>，<strong>静态的</strong>类型系统。</p>
+<ul>
+<li>类型系统：对代码中所有的标识符（变量，函数，参数，返回值）进行类型检查。</li>
+<li>可选的</li>
+<li>静态的：检查发生的时间是编译时，不是运行时，<strong>TS</strong>不参与运行时的任何类型检查。<br>无论是浏览器环境还是node环境，都无法直接执行TS。<br>babel: ES6-&gt;ES5<br>tsc： TS -&gt; JS</li>
+</ul>
+<p>TS的常识</p>
+<ul>
+<li>2012年微软发布</li>
+<li>Anders Hejlsberg 负责开发TS项目</li>
+<li>开源, 拥抱ES标准</li>
+</ul>
+<p><strong>额外惊喜</strong></p>
+<p>有了类型检查，增强了面向对象的开发。</p>
+<p>JS中也有类和对象，js支持面向对象开发，但是没有类型检查。</p>
+<h1 id="在node中搭建TS开发环境"><a href="#在node中搭建TS开发环境" class="headerlink" title="在node中搭建TS开发环境"></a>在node中搭建TS开发环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add -g typescript</span><br></pre></td></tr></table></figure>
+<p>默认情况下，TS会做出以下几种假设：</p>
+<ol>
+<li>加上当前执行环境为浏览器</li>
+<li>如果代码中没有使用模块化语句（import, export），便认为该代码是全局执行的。</li>
+<li>编译的目标代码是ES3</li>
+</ol>
+<p>有两种方式改变以上假设：</p>
+<ol>
+<li>使用tsc命令行的时候，加上选项参数</li>
+<li>使用ts配置文件, 更改编译选项</li>
+</ol>
+<h1 id="基本类型约束"><a href="#基本类型约束" class="headerlink" title="基本类型约束"></a>基本类型约束</h1><h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><blockquote>
+<ul>
+<li>number</li>
+<li>string</li>
+<li>booling</li>
+<li>bigint</li>
+<li>symbol</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+</blockquote>
+<h2 id="如何进行类型约束"><a href="#如何进行类型约束" class="headerlink" title="如何进行类型约束"></a>如何进行类型约束</h2><p>变量，参数，函数的返回值加上<code>:类型</code></p>
+<p>TS具有类型推导功能，能根据上下文进行分析类型。</p>
+<p>any: 可以是任意类型，不进行类型检查。</p>
+<blockquote>
+<p>小技巧：如何区分数字字符串和数字，如果按照数字的方式去读，就是数字；否则是字符串</p>
+</blockquote>
+<h2 id="源代码和编译结果的差异"><a href="#源代码和编译结果的差异" class="headerlink" title="源代码和编译结果的差异"></a>源代码和编译结果的差异</h2><p>编译后就是JS代码，没有任何类型。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>有时，书写某个函数时，会丢失一些类型信息（多个位置的类型应该保持一致或有关联的信息）</p>
+<p>泛型： 是指附属于函数，类，接口，类型别名之上的类型</p>
+<p>泛型相当于是一个类型变量，在定义时，无法预先知道具体的类型，可以用该变量来代替，只有到调用时，才能确定他的类型。</p>
+<p>泛型也可以设置默认值。</p>
+<h2 id="在函数中使用泛型"><a href="#在函数中使用泛型" class="headerlink" title="在函数中使用泛型"></a>在函数中使用泛型</h2><p>在函数名之后写上<code>&lt;泛型名称&gt;</code>,通常是<code>&lt;T&gt;</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myconsole = &lt;T&gt;(<span class="attr">a</span>: T, <span class="attr">b</span>: T): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myconsole&lt;<span class="built_in">number</span>&gt;(<span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p>很多时候，TS会智能的根据传递的参数，推导出泛型的具体类型</p>
+<p>如果无法完成推导，并且又没有传递具体的类型，默认为空对象类型</p>
+<h2 id="在类型别名，接口，类中使用泛型"><a href="#在类型别名，接口，类中使用泛型" class="headerlink" title="在类型别名，接口，类中使用泛型"></a>在类型别名，接口，类中使用泛型</h2><p>在名称后面写上<code>&lt;泛型&gt;</code>.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> callback&lt;T&gt; = <span class="function">(<span class="params"><span class="attr">n</span>: T, <span class="attr">i</span>: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">boolean</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="TS的配置文件"><a href="#TS的配置文件" class="headerlink" title="TS的配置文件"></a>TS的配置文件</h1><blockquote>
+<p>有了配置文件后，使用tsc进行编译时，不能跟上文件名，否则配置文件会被忽略，直接使用<code>tsc</code>命令即可。</p>
+</blockquote>
+<p>可以直接在项目根目录下新建<code>tsconfig.json</code>或者使用<code>tsc --init</code>自动生成。</p>
+<ul>
+<li><code>compilerOptions</code>: 编译选项<ul>
+<li><code>target</code>: 编译目标的ES版本标准</li>
+<li><code>module</code>: 编译目标使用的模块化标准</li>
+<li><code>lib</code>: 代码运行环境，默认是浏览器环境</li>
+<li><code>outDir</code>: 输出目录</li>
+</ul>
+</li>
+<li><code>include</code>: 要编译的文件夹</li>
+<li><code>files</code>: 要编译的具体文件</li>
+</ul>
+<p>给lib配置为ES2016后，虽然没有了浏览器环境中的<code>window</code>,<code>document</code>等对象的干扰，但是我们需要的node环境中的<code>console</code>对象也没有了。</p>
+<p>由于我们是node环境，但是ts没有给lib提供node环境，所以需要安装第三方库<code>@types/node</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add @types/node</span><br></pre></td></tr></table></figure>
+<p><code>@types</code>是ts官方的类型库，其中包含了很多对JS代码的描述</p>
+<h1 id="TS中类"><a href="#TS中类" class="headerlink" title="TS中类"></a>TS中类</h1><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>使用属性列表来描述属性</p>
+<p><strong>属性的初始化检查</strong></p>
+<p><code>strictPropertyInitialization:true</code></p>
+<p>属性的初始化位置：</p>
+<ol>
+<li>构造函数</li>
+<li>属性默认值</li>
+</ol>
+<h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><p>访问修饰符可以控制类中的某个成员的访问权限</p>
+<ul>
+<li>public: 默认的访问修饰符，公开的，所有代码均可访问</li>
+<li>private：私有的，只有在类中可以访问</li>
+<li>protected：类和子类中可以访问</li>
+</ul>
+<p><strong>属性简写</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">public</span> <span class="attr">name</span>:<span class="built_in">string</span>, <span class="keyword">public</span> <span class="attr">age</span>:<span class="built_in">number</span>, <span class="keyword">public</span> <span class="attr">sex</span>: <span class="built_in">string</span></span>) &#123;&#125;</span><br><span class="line">  <span class="title function_">say</span>(): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问器"><a href="#访问器" class="headerlink" title="访问器"></a>访问器</h2><p>用于控制属性的读取和赋值</p>
+<h1 id="扩展类型和兼容性"><a href="#扩展类型和兼容性" class="headerlink" title="扩展类型和兼容性"></a>扩展类型和兼容性</h1><p>扩展类型：类型别名，枚举，接口，类</p>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>枚举：枚举通常用于约束某个变量的取值范围</p>
+<p>字面量和联合类型配合使用，也可以达到相同的目标</p>
+<blockquote>
+<p>字面量类型的问题</p>
+<ol>
+<li>在类型约束位置会出现重复代码（可以用通过类型别名来解决）</li>
+<li><strong>逻辑名称</strong>和<strong>真实的值</strong>产生了混淆，会导致修改真实值时会产生大量修改，比如’男’ | ‘女’ 修改为’帅哥’ | ‘美女’</li>
+<li>字面量类型不会进入到编译结果</li>
+</ol>
+</blockquote>
+<p>如何定义一个枚举：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> myEnum &#123;</span><br><span class="line">  male = <span class="number">1</span>;</span><br><span class="line">  female = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>枚举会出现在编译结果中，表现为对象。</p>
+<p>枚举的规则</p>
+<ul>
+<li>枚举的字段值可以是字符串或者数字</li>
+<li>数字枚举的值会自动自增</li>
+<li>被数字枚举约束的变量可以直接被赋值为数字</li>
+<li>数字枚举的编译结果和字符串枚举不同，它会在结果对象中对枚举的键和值进行双向绑定</li>
+</ul>
+<p>最佳实践</p>
+<ul>
+<li>尽量不要在一个枚举中既出现字符串字段又出现数字字段</li>
+<li>使用枚举时，尽量使用枚举字段的名称，而不是使用真实的值</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> myEnum &#123;</span><br><span class="line">  male = <span class="number">1</span>,</span><br><span class="line">  female,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: myEnum;</span><br><span class="line">a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口：用于约束类，对象，函数的契约（标准）</p>
+<p>契约（标准）的形式：</p>
+<ul>
+<li>API文档，弱标准</li>
+<li>代码约束，强标准</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">u</span>: <span class="title class_">User</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;sdfds&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">33</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>interface</code>和<code>type</code>有什么区别呢？</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">User</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">u</span>: <span class="title class_">User</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;sjdklfj&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">33</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>本节课相关的配置</p>
+<table>
+<thead>
+<tr>
+<th align="center">配置名称</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">module</td>
+<td align="center">设置编译结果中使用的模块化标准</td>
+</tr>
+<tr>
+<td align="center">moduleResolution</td>
+<td align="center">设置解析模块的模式</td>
+</tr>
+<tr>
+<td align="center">noImplicitUseStrict</td>
+<td align="center">编译结果中不包含”use strict”</td>
+</tr>
+<tr>
+<td align="center">removeComments</td>
+<td align="center">编译结果移除注释</td>
+</tr>
+<tr>
+<td align="center">noEmitOnError</td>
+<td align="center">错误时不生成编译结果</td>
+</tr>
+<tr>
+<td align="center">esModuleInterop</td>
+<td align="center">启用ES模块化交互非ES模块导出</td>
+</tr>
+</tbody></table>
+<p>前端领域的模块化标准：CJS，ESM，UMD，ESNEXT</p>
+<h2 id="TS中如何书写模块化标准"><a href="#TS中如何书写模块化标准" class="headerlink" title="TS中如何书写模块化标准"></a>TS中如何书写模块化标准</h2><p>TS中，导入和导出模块，统一使用ES6的模块化标准。</p>
+<ul>
+<li>注意不需要加文件后缀名<code>.ts</code>,因为编译后没有TS文件。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong.github.io">马嘉路</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/28/ts-duyi/">http://example.com/2025/05/28/ts-duyi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">马嘉路</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/typescript/">typescript</a></div><div class="post-share"><div class="social-share" data-image="/img/typescript.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素"><img class="cover" src="/img/leetcode.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【代码随想录刷题总结】leetcode27-移除元素</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/12/TypeScript/" title="TypeScript"><img class="cover" src="/img/typescript.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-05-28</div><div class="info-item-2">TypeScript</div></div><div class="info-2"><div class="info-item-1">简介TypeScript由微软开发,是基于JavaScript的一个扩展语言. TypeScript包含了JavaScript的所有内容,即TypeScript是JavaScript的超集 TypeScript增加了: 静态类型检查,接口,泛型等很多现代开发特性,因此更加适合大型项目的开发. TypeScript需要编译为JavaScript,然后才能在浏览器或其他JavaScript运行环境运行. 为何需要TypeScript JavaScript当年诞生的时候定位是浏览器的脚本语言,用于在网页中嵌入一些简单的逻辑  JavaScript的困扰  不清不楚的数据类型  12let welcome = &#x27;hello&#x27;welcome()		// TypeError: welcome is not a function   有漏洞的逻辑  1234567const str = Date.now() % 2 ? &#x27;奇数&#x27; : &#x27;偶数&#x27;if (str !== &#x27;奇数&#x27;) &#123;   ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">马嘉路</div><div class="author-info-description">电子科技大学26届在读,冲刺大厂前端</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">56</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/majialu-love-zouyutong" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/2404816298@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">暂时无公告</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E8%AF%AD%E8%A8%80%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">JS语言的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TypeScript%E6%A6%82%E8%BF%B0"><span class="toc-text">TypeScript概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8node%E4%B8%AD%E6%90%AD%E5%BB%BATS%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-text">在node中搭建TS开发环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F"><span class="toc-text">基本类型约束</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F"><span class="toc-text">如何进行类型约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E7%BC%96%E8%AF%91%E7%BB%93%E6%9E%9C%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="toc-text">源代码和编译结果的差异</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-text">泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B"><span class="toc-text">在函数中使用泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%EF%BC%8C%E6%8E%A5%E5%8F%A3%EF%BC%8C%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B"><span class="toc-text">在类型别名，接口，类中使用泛型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TS%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">TS的配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TS%E4%B8%AD%E7%B1%BB"><span class="toc-text">TS中类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">访问修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%99%A8"><span class="toc-text">访问器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">扩展类型和兼容性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TS%E4%B8%AD%E5%A6%82%E4%BD%95%E4%B9%A6%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A0%87%E5%87%86"><span class="toc-text">TS中如何书写模块化标准</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/ts-duyi/" title="ts-duyi"><img src="/img/typescript.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ts-duyi"/></a><div class="content"><a class="title" href="/2025/05/28/ts-duyi/" title="ts-duyi">ts-duyi</a><time datetime="2025-05-28T08:52:25.152Z" title="更新于 2025-05-28 16:52:25">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/12/TypeScript/" title="TypeScript"><img src="/img/typescript.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TypeScript"/></a><div class="content"><a class="title" href="/2025/02/12/TypeScript/" title="TypeScript">TypeScript</a><time datetime="2025-05-28T03:12:39.688Z" title="更新于 2025-05-28 11:12:39">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode27-移除元素"/></a><div class="content"><a class="title" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素">【代码随想录刷题总结】leetcode27-移除元素</a><time datetime="2025-05-28T02:55:21.724Z" title="更新于 2025-05-28 10:55:21">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="【代码随想录刷题总结】leetcode704-二分查找"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode704-二分查找"/></a><div class="content"><a class="title" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="【代码随想录刷题总结】leetcode704-二分查找">【代码随想录刷题总结】leetcode704-二分查找</a><time datetime="2025-05-28T02:49:50.797Z" title="更新于 2025-05-28 10:49:50">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/27/%E5%AE%9E%E5%9C%A8%E5%8F%97%E4%B8%8D%E4%BA%86%E6%B7%B7%E4%B9%B1%E7%9A%84%E6%8F%90%E4%BA%A4%E2%80%94%E2%80%94%E6%88%91%E4%BD%BF%E7%94%A8%E4%BA%86commitlint%E5%92%8Ccommitizen/" title="实在受不了混乱的提交——我使用了commitlint和commitizen"><img src="/img/commitlint.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实在受不了混乱的提交——我使用了commitlint和commitizen"/></a><div class="content"><a class="title" href="/2025/05/27/%E5%AE%9E%E5%9C%A8%E5%8F%97%E4%B8%8D%E4%BA%86%E6%B7%B7%E4%B9%B1%E7%9A%84%E6%8F%90%E4%BA%A4%E2%80%94%E2%80%94%E6%88%91%E4%BD%BF%E7%94%A8%E4%BA%86commitlint%E5%92%8Ccommitizen/" title="实在受不了混乱的提交——我使用了commitlint和commitizen">实在受不了混乱的提交——我使用了commitlint和commitizen</a><time datetime="2025-05-27T08:17:29.029Z" title="更新于 2025-05-27 16:17:29">2025-05-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 马嘉路</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23licJwdCTNkzOiuBF',
+      clientSecret: 'db3ef983a56a96ffaa7a55da43f03bbe66283109',
+      repo: 'comments',
+      owner: 'majialu-love-zouyutong',
+      admin: ['majialu-love-zouyutong'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'ece3242bca9f4a66e021c9573fdb2689'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
