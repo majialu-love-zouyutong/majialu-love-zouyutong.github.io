@@ -105,9 +105,11 @@ function search(nums: number[], target: number): number {
 ## 复杂度分析
 
 时间复杂度：$O(logn)$
+
 空间复杂度；$O(1)$
 
 二分法折半查找，空间复杂度$O(logn)$没什么好说的。
+
 整个过程只有指针和临时栈变量，只用常数空间，故空间复杂度为$O(1)$。
 
 ## 总结
