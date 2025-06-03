@@ -1,17 +1,13 @@
-class Dog {
-  name: string;
-  constructor(name: string) {
-    this.name = name;
+function combile(a: number, b: number): number;
+function combile(a: string, b: string): string;
+
+function combile(a: any, b: any) {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a + b;
+  } else if (typeof a === 'string' && typeof b === 'string') {
+    return a + b;
   }
-  run() {
-    console.log(this.name + "在跑");
-  }
-  static eat() {
-    console.log("dog在吃");
-  }
+  throw new Error('Invalid arguments');
 }
 
-Dog.eat();
-
-const dog = new Dog("wangwang");
-dog.run();
+const num = combile()

@@ -1,16 +1,11 @@
 "use strict";
-var Dog = /** @class */ (function () {
-    function Dog(name) {
-        this.name = name;
-    }
-    Dog.prototype.run = function () {
-        console.log(this.name + "在跑");
-    };
-    Dog.eat = function () {
-        console.log("dog在吃");
-    };
-    return Dog;
-}());
-Dog.eat();
-var dog = new Dog("wangwang");
-dog.run();
+var Permission;
+(function (Permission) {
+    Permission[Permission["Read"] = 1] = "Read";
+    Permission[Permission["Write"] = 2] = "Write";
+    Permission[Permission["Execute"] = 4] = "Execute";
+})(Permission || (Permission = {}));
+var p = Permission.Read | Permission.Write;
+console.log(p);
+var hasPermission = function (p, permission) { return (p & permission) === permission; };
+console.log(hasPermission(p, Permission.Read));
