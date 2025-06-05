@@ -1,11 +1,8 @@
 "use strict";
-var Permission;
-(function (Permission) {
-    Permission[Permission["Read"] = 1] = "Read";
-    Permission[Permission["Write"] = 2] = "Write";
-    Permission[Permission["Execute"] = 4] = "Execute";
-})(Permission || (Permission = {}));
-var p = Permission.Read | Permission.Write;
-console.log(p);
-var hasPermission = function (p, permission) { return (p & permission) === permission; };
-console.log(hasPermission(p, Permission.Read));
+var arr = [1, 2, 3, 4, 5];
+var target = 3;
+var deleteItem = function (arr, target) {
+    return arr.filter(function (item) { return item !== target; });
+};
+console.log(deleteItem(arr, target));
+console.log(arr);
