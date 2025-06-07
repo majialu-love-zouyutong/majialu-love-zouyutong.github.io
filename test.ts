@@ -1,11 +1,10 @@
-const arr = [1, 2, 3, 4, 5];
-
-const target = 3;
-
-const deleteItem = (arr: number[], target: number): number[] => {
-  return arr.filter(item => item !== target);
+function d(value: undefined, context: ClassFieldDecoratorContext) {
+  console.log(context.name);
 }
+class A {
+  @d
+  public prop1: string = '';
 
-console.log(deleteItem(arr, target));
-console.log(arr);
-
+  @d
+  public prop2: string = '';
+}
