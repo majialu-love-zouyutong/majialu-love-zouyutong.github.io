@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CommonJS和ES的模块化标准分析 | 马嘉路</title><meta name="author" content="马嘉路"><meta name="copyright" content="马嘉路"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言CJS和ESM是两种常见的模块化标准,本文首先从性质,语法差异,加载机制,对动态导入的支持,导出值的类型,循环依赖的处理,以及兼容性7个方面分析了CJS和ESM的异同,然后得出了CJS和ESM互操作的最佳实践的建议,最后补充了ESM中静态import的异步和同步的理解.  一、 性质   特性 CommonJS ES Modules    性质 社区规范 官方规范   CJS由 Mozilla">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CommonJS和ES的模块化标准分析 | 马嘉路</title><meta name="author" content="马嘉路"><meta name="copyright" content="马嘉路"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言CJS和ESM是两种常见的模块化标准,本文首先从性质,语法差异,加载机制,对动态导入的支持,导出值的类型,循环依赖的处理,以及兼容性7个方面分析了CJS和ESM的异同,然后得出了CJS和ESM互操作的最佳实践的建议,最后补充了ESM中静态import的异步和同步的理解.  一、 性质    特性 CommonJS ES Modules     性质 社区规范 官方规范     CJS由 Moz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CommonJS和ES的模块化标准分析">
 <meta property="og:url" content="http://example.com/2025/02/21/CommonJS%E5%92%8CES%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A0%87%E5%87%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="马嘉路">
-<meta property="og:description" content="前言CJS和ESM是两种常见的模块化标准,本文首先从性质,语法差异,加载机制,对动态导入的支持,导出值的类型,循环依赖的处理,以及兼容性7个方面分析了CJS和ESM的异同,然后得出了CJS和ESM互操作的最佳实践的建议,最后补充了ESM中静态import的异步和同步的理解.  一、 性质   特性 CommonJS ES Modules    性质 社区规范 官方规范   CJS由 Mozilla">
+<meta property="og:description" content="前言CJS和ESM是两种常见的模块化标准,本文首先从性质,语法差异,加载机制,对动态导入的支持,导出值的类型,循环依赖的处理,以及兼容性7个方面分析了CJS和ESM的异同,然后得出了CJS和ESM互操作的最佳实践的建议,最后补充了ESM中静态import的异步和同步的理解.  一、 性质    特性 CommonJS ES Modules     性质 社区规范 官方规范     CJS由 Moz">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/CJS&ESM.jpg">
 <meta property="article:published_time" content="2025-02-21T07:22:10.000Z">
@@ -167,9 +167,10 @@
     btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
     btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
   }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/CJS&amp;ESM.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/favicon.png" alt="Logo"><span class="site-name">马嘉路</span></a><a class="nav-page-title" href="/"><span class="site-name">CommonJS和ES的模块化标准分析</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CommonJS和ES的模块化标准分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-21T07:22:10.000Z" title="发表于 2025-02-21 15:22:10">2025-02-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-26T11:03:13.449Z" title="更新于 2025-04-26 19:03:13">2025-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>CJS</code>和<code>ESM</code>是两种常见的模块化标准,本文首先从性质,语法差异,加载机制,对动态导入的支持,导出值的类型,循环依赖的处理,以及兼容性7个方面分析了<code>CJS</code>和<code>ESM</code>的异同,然后得出了<code>CJS</code>和<code>ESM</code>互操作的最佳实践的建议,最后补充了<code>ESM</code>中静态<code>import</code>的异步和同步的理解.</p>
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/CJS&amp;ESM.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/favicon.png" alt="Logo"><span class="site-name">马嘉路</span></a><a class="nav-page-title" href="/"><span class="site-name">CommonJS和ES的模块化标准分析</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CommonJS和ES的模块化标准分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-21T07:22:10.000Z" title="发表于 2025-02-21 15:22:10">2025-02-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-26T11:03:13.449Z" title="更新于 2025-04-26 19:03:13">2025-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>CJS</code>和<code>ESM</code>是两种常见的模块化标准,本文首先从性质,语法差异,加载机制,对动态导入的支持,导出值的类型,循环依赖的处理,以及兼容性7个方面分析了<code>CJS</code>和<code>ESM</code>的异同,然后得出了<code>CJS</code>和<code>ESM</code>互操作的最佳实践的建议,最后补充了<code>ESM</code>中静态<code>import</code>的异步和同步的理解.</p>
 <hr>
-<h1 id="一、-性质"><a href="#一、-性质" class="headerlink" title="一、 性质"></a>一、 性质</h1><table>
+<h1 id="一、-性质"><a href="#一、-性质" class="headerlink" title="一、 性质"></a>一、 性质</h1><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>特性</th>
@@ -177,183 +178,195 @@
 <th><code>ES Modules</code></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>性质</td>
 <td>社区规范</td>
 <td>官方规范</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><code>CJS</code>由 Mozilla 工程师 <code>Kevin Dangoor</code> 于 2009 年发起，最初为解决浏览器外（如服务端）的 JS 模块化问题而提出的社区标准.</p>
 <p><code>ESM</code>是由ECMAScript 2015 (ES6) 正式纳入语言标准（<a target="_blank" rel="noopener" href="https://262.ecma-international.org/6.0/#sec-modules">ECMA-262</a>）.</p>
 <hr>
-<h1 id="二、语法差异"><a href="#二、语法差异" class="headerlink" title="二、语法差异"></a>二、语法差异</h1><h4 id="1-导出语法"><a href="#1-导出语法" class="headerlink" title="1. 导出语法"></a>1. 导出语法</h4><table>
+<h1 id="二、语法差异"><a href="#二、语法差异" class="headerlink" title="二、语法差异"></a>二、语法差异</h1><h4 id="1-导出语法"><a href="#1-导出语法" class="headerlink" title="1. 导出语法"></a>1. 导出语法</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>操作</strong></th>
-<th align="left"><strong>CJS</strong></th>
-<th align="left"><strong>ESM</strong></th>
+<th style="text-align:left"><strong>操作</strong></th>
+<th style="text-align:left"><strong>CJS</strong></th>
+<th style="text-align:left"><strong>ESM</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">默认导出</td>
-<td align="left"><code>module.exports = value</code></td>
-<td align="left"><code>export default value</code></td>
+<tbody>
+<tr>
+<td style="text-align:left">默认导出</td>
+<td style="text-align:left"><code>module.exports = value</code></td>
+<td style="text-align:left"><code>export default value</code></td>
 </tr>
 <tr>
-<td align="left">命名导出</td>
-<td align="left"><code>exports.name = value</code></td>
-<td align="left"><code>export const name = value</code></td>
+<td style="text-align:left">命名导出</td>
+<td style="text-align:left"><code>exports.name = value</code></td>
+<td style="text-align:left"><code>export const name = value</code></td>
 </tr>
 <tr>
-<td align="left">混合导出</td>
-<td align="left"><code>module.exports = &#123; name, default &#125;</code></td>
-<td align="left"><code>export &#123; name &#125;; export default ...</code></td>
+<td style="text-align:left">混合导出</td>
+<td style="text-align:left"><code>module.exports = &#123; name, default &#125;</code></td>
+<td style="text-align:left"><code>export &#123; name &#125;; export default ...</code></td>
 </tr>
 <tr>
-<td align="left">默认严格模式</td>
-<td align="left">否</td>
-<td align="left">是</td>
+<td style="text-align:left">默认严格模式</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">是</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>CJS 示例</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">add</span> = (<span class="params">a, b</span>) =&gt; a + b;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = add; <span class="comment">// 默认导出</span></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">multiply</span> = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a * b; <span class="comment">// 命名导出（无效！因为是通过exports = module.exports这种方式得到的exports,也就是说exports和module.exports指向同一个引用,但是在第3行,已经给module.exports指向了新的引用--add函数,但exports的引用并没有变,所以最后的命名导出只能加在原来的引用上.而CJS每一个modeule最后实际导出的是module.exports,所以第4行代码加到原来地址上的命名导出无效）</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>ESM 示例</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">add</span> = (<span class="params">a, b</span>) =&gt; a + b; <span class="comment">// 命名导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="title function_">default</span> (a, b) =&gt; a * b; <span class="comment">// 默认导出</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-导入语法"><a href="#2-导入语法" class="headerlink" title="2. 导入语法"></a>2. 导入语法</h4><table>
+<h4 id="2-导入语法"><a href="#2-导入语法" class="headerlink" title="2. 导入语法"></a>2. 导入语法</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>操作</strong></th>
-<th align="left"><strong>CJS</strong></th>
-<th align="left"><strong>ESM</strong></th>
+<th style="text-align:left"><strong>操作</strong></th>
+<th style="text-align:left"><strong>CJS</strong></th>
+<th style="text-align:left"><strong>ESM</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">默认导入</td>
-<td align="left"><code>const mod = require(&#39;module&#39;)</code></td>
-<td align="left"><code>import mod from &#39;module&#39;</code></td>
+<tbody>
+<tr>
+<td style="text-align:left">默认导入</td>
+<td style="text-align:left"><code>const mod = require(&#39;module&#39;)</code></td>
+<td style="text-align:left"><code>import mod from &#39;module&#39;</code></td>
 </tr>
 <tr>
-<td align="left">命名导入</td>
-<td align="left"><code>const &#123; name &#125; = require(...)</code></td>
-<td align="left"><code>import &#123; name &#125; from &#39;module&#39;</code></td>
+<td style="text-align:left">命名导入</td>
+<td style="text-align:left"><code>const &#123; name &#125; = require(...)</code></td>
+<td style="text-align:left"><code>import &#123; name &#125; from &#39;module&#39;</code></td>
 </tr>
 <tr>
-<td align="left">混合导入</td>
-<td align="left"><code>const mod = require(&#39;module&#39;)</code>(默认导出作为<code>mod</code>中的<code>default</code>属性的值)</td>
-<td align="left"><code>import defaultname, &#123; name &#125; from &#39;module&#39;</code></td>
+<td style="text-align:left">混合导入</td>
+<td style="text-align:left"><code>const mod = require(&#39;module&#39;)</code>(默认导出作为<code>mod</code>中的<code>default</code>属性的值)</td>
+<td style="text-align:left"><code>import defaultname, &#123; name &#125; from &#39;module&#39;</code></td>
 </tr>
 <tr>
-<td align="left">省略扩展名</td>
-<td align="left">能</td>
-<td align="left">否</td>
+<td style="text-align:left">省略扩展名</td>
+<td style="text-align:left">能</td>
+<td style="text-align:left">否</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>CJS 动态导入</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">  <span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">&#x27;./utils.js&#x27;</span>); <span class="comment">// 可出现在任意位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><strong>ESM 动态导入</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">  <span class="keyword">const</span> utils = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">&#x27;./utils.mjs&#x27;</span>); <span class="comment">// 必须用异步</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意在导入时,<code>CJS</code>可以省略拓展名,<code>ESM</code>必须加上拓展名.</p>
 </blockquote>
 <hr>
-<h1 id="三、加载机制"><a href="#三、加载机制" class="headerlink" title="三、加载机制"></a>三、加载机制</h1><table>
+<h1 id="三、加载机制"><a href="#三、加载机制" class="headerlink" title="三、加载机制"></a>三、加载机制</h1><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>特性</strong></th>
-<th align="left"><strong><code>CommonJS</code></strong></th>
-<th align="left"><strong><code>ES Modules</code></strong></th>
+<th style="text-align:left"><strong>特性</strong></th>
+<th style="text-align:left"><strong><code>CommonJS</code></strong></th>
+<th style="text-align:left"><strong><code>ES Modules</code></strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>加载时机</strong></td>
-<td align="left">运行时动态解析+同步加载</td>
-<td align="left">编译时静态解析 + 异步预加载</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>加载时机</strong></td>
+<td style="text-align:left">运行时动态解析+同步加载</td>
+<td style="text-align:left">编译时静态解析 + 异步预加载</td>
 </tr>
 <tr>
-<td align="left"><strong>依赖分析</strong></td>
-<td align="left">执行到 <code>require()</code> 时才加载</td>
-<td align="left">预处理阶段解析所有 <code>import</code> 语句,也就是说无论<code>import</code>语句在代码中的什么位置,都会在执行代码之前先按顺序解析</td>
+<td style="text-align:left"><strong>依赖分析</strong></td>
+<td style="text-align:left">执行到 <code>require()</code> 时才加载</td>
+<td style="text-align:left">预处理阶段解析所有 <code>import</code> 语句,也就是说无论<code>import</code>语句在代码中的什么位置,都会在执行代码之前先按顺序解析</td>
 </tr>
 <tr>
-<td align="left"><strong>执行顺序</strong></td>
-<td align="left">父模块先执行，遇到 <code>require</code> 时暂停,转而去加载子模块</td>
-<td align="left">子模块优先完全执行，再执行父模块剩余代码</td>
+<td style="text-align:left"><strong>执行顺序</strong></td>
+<td style="text-align:left">父模块先执行，遇到 <code>require</code> 时暂停,转而去加载子模块</td>
+<td style="text-align:left">子模块优先完全执行，再执行父模块剩余代码</td>
 </tr>
 <tr>
-<td align="left"><code>tree-shaking</code></td>
-<td align="left">不支持</td>
-<td align="left">支持</td>
+<td style="text-align:left"><code>tree-shaking</code></td>
+<td style="text-align:left">不支持</td>
+<td style="text-align:left">支持</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>示例</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CJS (main.js)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Main start&#x27;</span>); <span class="comment">// 1️⃣ 先执行</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>); <span class="comment">// 2️⃣ 暂停主模块，加载并执行 a.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Main end&#x27;</span>); <span class="comment">// 4️⃣</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Module A&#x27;</span>); <span class="comment">// 3️⃣</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出顺序：Main start → Module A → Main end</span></span><br><span class="line"></span><br><span class="line">javascript<span class="comment">// ESM (main.mjs)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Main start&#x27;</span>); <span class="comment">// 2️⃣</span></span><br><span class="line"><span class="keyword">import</span> &#123; a &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.mjs&#x27;</span>; <span class="comment">// 1️⃣ 预处理阶段优先加载 a.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Main end&#x27;</span>); <span class="comment">// 3️⃣</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Module A&#x27;</span>); <span class="comment">// 1️⃣</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出顺序：Module A → Main start → Main end</span></span><br></pre></td></tr></table></figure>
-
 <hr>
-<h1 id="四、对动态导入的支持"><a href="#四、对动态导入的支持" class="headerlink" title="四、对动态导入的支持"></a>四、对动态导入的支持</h1><table>
+<h1 id="四、对动态导入的支持"><a href="#四、对动态导入的支持" class="headerlink" title="四、对动态导入的支持"></a>四、对动态导入的支持</h1><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>特性</strong></th>
-<th align="left"><strong>CJS</strong></th>
-<th align="left"><strong>ESM</strong></th>
+<th style="text-align:left"><strong>特性</strong></th>
+<th style="text-align:left"><strong>CJS</strong></th>
+<th style="text-align:left"><strong>ESM</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>动态导入</strong></td>
-<td align="left"><code>require()</code>函数原生支持动态导入,可以写在if条件判断中</td>
-<td align="left"><code>import</code>关键字只能静态导入,必须处于模块的顶层.要实现动态导入需要使用<code>import()</code>函数来基于<code>Promise</code>进行操作.</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>动态导入</strong></td>
+<td style="text-align:left"><code>require()</code>函数原生支持动态导入,可以写在if条件判断中</td>
+<td style="text-align:left"><code>import</code>关键字只能静态导入,必须处于模块的顶层.要实现动态导入需要使用<code>import()</code>函数来基于<code>Promise</code>进行操作.</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="CJS"><a href="#CJS" class="headerlink" title="CJS"></a>CJS</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;我是a模块,我被导入了&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">random</span>() &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;导入成功&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;没有导入&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221143475.png" alt="image-20250222114303436"></p>
 <h2 id="ESM"><a href="#ESM" class="headerlink" title="ESM"></a>ESM</h2><p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221140547.png" alt="image-20250222114030514"></p>
 <p>ESM中无法的<code>import</code>关键字只能在模块顶层代码使用,否则报错.</p>
 <p>要想在ESM中实现动态导入,必须使用<code>import()</code>函数来返回<code>Promise</code>进行操作.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.mjs</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;我是a模块,我被导入了&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// main.mjs</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">random</span>() &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="string">&#x27;./a.mjs&#x27;</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;导入成功&#x27;</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;没有导入&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221143933.png" alt="image-20250222114350897"></p>
 <p>当然,由于<code>import()</code>函数是基于<code>Promise</code>的,所以也可以使用<code>async/await</code>语法糖.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.mjs</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">random</span>() &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">&#x27;./a.mjs&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;导入了&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;没有导入&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意:在<code>CommonJS</code>模块和非模块的普通脚本(浏览器中的<code>&lt;script&gt;</code>标签,无<code>type=module</code>)中不能再顶层代码中直接使用<code>await</code>关键字,必须在<code>async</code>函数中才能使用.<br>在<code>ESM</code>中,可以在顶层代码直接使用<code>await</code>(ES2022正式规范).</p>
 </blockquote>
-<h1 id="五、导出值的类型"><a href="#五、导出值的类型" class="headerlink" title="五、导出值的类型"></a>五、导出值的类型</h1><table>
+<h1 id="五、导出值的类型"><a href="#五、导出值的类型" class="headerlink" title="五、导出值的类型"></a>五、导出值的类型</h1><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>特性</strong></th>
-<th align="left"><strong>CJS</strong></th>
-<th align="left"><strong>ESM</strong></th>
+<th style="text-align:left"><strong>特性</strong></th>
+<th style="text-align:left"><strong>CJS</strong></th>
+<th style="text-align:left"><strong>ESM</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>基本类型导出</strong></td>
-<td align="left">导出值的<strong>拷贝</strong></td>
-<td align="left">导出值的<strong>只读引用</strong>（实时绑定）</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>基本类型导出</strong></td>
+<td style="text-align:left">导出值的<strong>拷贝</strong></td>
+<td style="text-align:left">导出值的<strong>只读引用</strong>（实时绑定）</td>
 </tr>
 <tr>
-<td align="left"><strong>对象类型导出</strong></td>
-<td align="left">导出对象的引用</td>
-<td align="left">导出的对象的<strong>只读引用</strong>(实时绑定)</td>
+<td style="text-align:left"><strong>对象类型导出</strong></td>
+<td style="text-align:left">导出对象的引用</td>
+<td style="text-align:left">导出的对象的<strong>只读引用</strong>(实时绑定)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="CJS-1"><a href="#CJS-1" class="headerlink" title="CJS"></a>CJS</h2><p><strong>基本类型</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = <span class="number">4</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221454522.png" alt="image-20250222145435468"></p>
 <p>输出的两个都是3,说明<code>CJS</code>导出基本类型是,导出的是<code>值拷贝</code>,当原始值变化,导入部分获取的值不会更新.</p>
 <p><strong>对象类型</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: &#123;</span><br><span class="line">    <span class="attr">c</span>: <span class="number">2</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = obj;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  obj.<span class="property">a</span> = <span class="string">&#x27;a的新值&#x27;</span>;</span><br><span class="line">  obj.<span class="property">b</span>.<span class="property">c</span> = <span class="number">3</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221457977.png" alt="image-20250222145707944"></p>
 <p>当原始对象中的属性发生变化,导入部分获取到的对象也发生变化,说明在<code>CJS</code>导出对象类型时,导出的是对象的<code>引用</code>.而且在导入模块可以对导入的对象进行属性的修改,修改后原对象也会变化.</p>
 <h2 id="ESM-1"><a href="#ESM-1" class="headerlink" title="ESM"></a>ESM</h2><p><strong>基本类型</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a中的回调开始执行&#x27;</span>)</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.mjs</span></span><br><span class="line"><span class="keyword">import</span> &#123; a &#125; <span class="keyword">from</span> <span class="string">&quot;./a.mjs&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;主模块回调开始执行&#x27;</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221508066.png" alt="image-20250222150826024"></p>
 <p>可以看到,当我们在导出模块中修改了基本类型的值后,导入模块也实时更新,说明导出的是值的<code>引用</code>.</p>
 <blockquote>
@@ -362,7 +375,6 @@
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221511975.png" alt="image-20250222151136926"></p>
 <p><strong>对象类型</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: &#123;</span><br><span class="line">    <span class="attr">c</span>: <span class="number">2</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  obj.<span class="property">b</span>.<span class="property">c</span> = <span class="number">3</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.mjs</span></span><br><span class="line"><span class="keyword">import</span> &#123; obj &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221514213.png" alt="image-20250222151426176"></p>
 <p>同样的,对于对象类型,<code>ESM</code>导出的也是对象的<code>引用</code>,会自动更新,因为其实它们指向同一块内存地址.</p>
 <blockquote>
@@ -370,30 +382,32 @@
 </blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502221517419.png" alt="image-20250222151748371"></p>
 <hr>
-<h1 id="六、循环依赖处理"><a href="#六、循环依赖处理" class="headerlink" title="六、循环依赖处理"></a>六、循环依赖处理</h1><table>
+<h1 id="六、循环依赖处理"><a href="#六、循环依赖处理" class="headerlink" title="六、循环依赖处理"></a>六、循环依赖处理</h1><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>场景</strong></th>
-<th align="left"><strong>CJS</strong></th>
-<th align="left"><strong>ESM</strong></th>
+<th style="text-align:left"><strong>场景</strong></th>
+<th style="text-align:left"><strong>CJS</strong></th>
+<th style="text-align:left"><strong>ESM</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>循环加载</strong></td>
-<td align="left">可能读取到未初始化的值</td>
-<td align="left">利用<code>let</code>和<code>const</code>的<code>TDZ</code>暂时死区的报错来提醒.</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>循环加载</strong></td>
+<td style="text-align:left">可能读取到未初始化的值</td>
+<td style="text-align:left">利用<code>let</code>和<code>const</code>的<code>TDZ</code>暂时死区的报错来提醒.</td>
 </tr>
 <tr>
-<td align="left"><strong>执行顺序</strong></td>
-<td align="left">父模块执行到一半时加载子模块</td>
-<td align="left">子模块优先完全初始化</td>
+<td style="text-align:left"><strong>执行顺序</strong></td>
+<td style="text-align:left">父模块执行到一半时加载子模块</td>
+<td style="text-align:left">子模块优先完全初始化</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>CJS 循环依赖问题</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a 开始执行&#x27;</span>);</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="built_in">require</span>(<span class="string">&#x27;./b.js&#x27;</span>); <span class="comment">// 1️⃣ 加载 b.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 a.js 中，b.done =&#x27;</span>, b.<span class="property">done</span>);</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a 执行结束&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b 开始执行&#x27;</span>);</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>); <span class="comment">// 2️⃣ 此时 a.js 尚未执行完毕</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 b.js 中，a.done =&#x27;</span>, a.<span class="property">done</span>);</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b 执行结束&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;main 开始执行&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> b = <span class="built_in">require</span>(<span class="string">&#x27;./b.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 main.js 中，a.done =&#x27;</span>, a.<span class="property">done</span>, <span class="string">&#x27;b.done =&#x27;</span>, b.<span class="property">done</span>);</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line">main 开始执行</span><br><span class="line">a 开始执行</span><br><span class="line">b 开始执行</span><br><span class="line">在 b.<span class="property">js</span> 中，a.<span class="property">done</span> = <span class="literal">false</span></span><br><span class="line">b 执行结束</span><br><span class="line">在 a.<span class="property">js</span> 中，b.<span class="property">done</span> = <span class="literal">true</span></span><br><span class="line">a 执行结束</span><br><span class="line">在 main.<span class="property">js</span> 中，a.<span class="property">done</span> = <span class="literal">true</span> b.<span class="property">done</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <ul>
 <li><strong>未完成的导出</strong>：当 <code>b.js</code> 加载 <code>a.js</code> 时，<code>a.js</code> 仅执行到 <code>exports.done = false</code>，因此 <code>b.js</code> 看到的是未更新的值。</li>
@@ -402,7 +416,6 @@
 </blockquote>
 <p><strong>ESM 解决方案</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a 开始执行&#x27;</span>);</span><br><span class="line"><span class="keyword">import</span> &#123; bDone &#125; <span class="keyword">from</span> <span class="string">&#x27;./b.mjs&#x27;</span>; <span class="comment">// 1️⃣ 静态分析时建立绑定</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> aDone = <span class="literal">false</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 a.mjs 中，bDone =&#x27;</span>, bDone); <span class="comment">// 2️⃣</span></span><br><span class="line">aDone = <span class="literal">true</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a 执行结束&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b 开始执行&#x27;</span>);</span><br><span class="line"><span class="keyword">import</span> &#123; aDone &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.mjs&#x27;</span>; <span class="comment">// 3️⃣ 静态分析时建立绑定</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> bDone = <span class="literal">false</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 b.mjs 中，aDone =&#x27;</span>, aDone); <span class="comment">// 4️⃣</span></span><br><span class="line">bDone = <span class="literal">true</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b 执行结束&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;main 开始执行&#x27;</span>);</span><br><span class="line"><span class="keyword">import</span> &#123; aDone &#125; <span class="keyword">from</span> <span class="string">&#x27;./a.mjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; bDone &#125; <span class="keyword">from</span> <span class="string">&#x27;./b.mjs&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 main.mjs 中，aDone =&#x27;</span>, aDone, <span class="string">&#x27;bDone =&#x27;</span>, bDone);</span><br></pre></td></tr></table></figure>
-
 <p>如果直接运行main.mjs会报错如下:</p>
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202502212200320.png" alt="image-20250221220052271"></p>
 <blockquote>
@@ -410,27 +423,30 @@
 </blockquote>
 <p>可以改用<code>var</code>声明来明确一下过程.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出如下</span></span><br><span class="line">b 开始执行</span><br><span class="line">在 b.<span class="property">mjs</span> 中，aDone = <span class="literal">undefined</span></span><br><span class="line">b 执行结束</span><br><span class="line">a 开始执行</span><br><span class="line">在 a.<span class="property">mjs</span> 中，bDone = <span class="literal">true</span></span><br><span class="line">a 执行结束</span><br><span class="line">main 开始执行</span><br><span class="line">在 main.<span class="property">mjs</span> 中，aDone = <span class="literal">true</span> bDone = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <hr>
-<h1 id="七、兼容性支持"><a href="#七、兼容性支持" class="headerlink" title="七、兼容性支持"></a>七、兼容性支持</h1><table>
+<h1 id="七、兼容性支持"><a href="#七、兼容性支持" class="headerlink" title="七、兼容性支持"></a>七、兼容性支持</h1><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>维度</strong></th>
-<th align="left"><strong>CommonJS</strong></th>
-<th align="left"><strong>ES Modules</strong></th>
+<th style="text-align:left"><strong>维度</strong></th>
+<th style="text-align:left"><strong>CommonJS</strong></th>
+<th style="text-align:left"><strong>ES Modules</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>浏览器支持</strong></td>
-<td align="left">需 Webpack 等工具转换</td>
-<td align="left">现代浏览器原生支持 (<code>type=&quot;module&quot;</code>)</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>浏览器支持</strong></td>
+<td style="text-align:left">需 Webpack 等工具转换</td>
+<td style="text-align:left">现代浏览器原生支持 (<code>type=&quot;module&quot;</code>)</td>
 </tr>
 <tr>
-<td align="left"><strong>Node.js 使用</strong></td>
-<td align="left">默认模块系统</td>
-<td align="left">需 <code>.mjs</code> 扩展名或 在<code>package.json</code>中设置<code>&quot;type&quot;: &quot;module&quot;</code></td>
+<td style="text-align:left"><strong>Node.js 使用</strong></td>
+<td style="text-align:left">默认模块系统</td>
+<td style="text-align:left">需 <code>.mjs</code> 扩展名或 在<code>package.json</code>中设置<code>&quot;type&quot;: &quot;module&quot;</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h1 id="八、最佳实践建议"><a href="#八、最佳实践建议" class="headerlink" title="八、最佳实践建议"></a>八、最佳实践建议</h1><ol>
 <li><p>新项目优先选择 ESM：</p>
@@ -454,38 +470,39 @@
 <hr>
 <h3 id="示例验证"><a href="#示例验证" class="headerlink" title="示例验证"></a><strong>示例验证</strong></h3><p>假设有以下依赖关系：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.mjs → a.mjs → b.mjs</span><br><span class="line">                  → c.mjs</span><br></pre></td></tr></table></figure>
-
 <p>执行顺序为：<code>b.mjs → c.mjs → a.mjs → main.mjs</code></p>
 <h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;main 执行&quot;</span>);</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./a.mjs&#x27;</span>; <span class="comment">// 依赖 a.mjs</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;a 执行&quot;</span>);</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./b.mjs&#x27;</span>; <span class="comment">// 依赖 b.mjs</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./c.mjs&#x27;</span>; <span class="comment">// 依赖 c.mjs</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// b.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;b 执行&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// c.mjs</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;c 执行&quot;</span>);</span><br></pre></td></tr></table></figure>
-
 <h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b 执行</span><br><span class="line">c 执行</span><br><span class="line">a 执行</span><br><span class="line">main 执行</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="底层机制的三阶段"><a href="#底层机制的三阶段" class="headerlink" title="底层机制的三阶段"></a><strong>底层机制的三阶段</strong></h3><p>ESM 的处理过程分为三个阶段，且<strong>完全串行化</strong>：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">阶段</th>
-<th align="left">行为</th>
-<th align="left">是否阻塞主线程</th>
+<th style="text-align:left">阶段</th>
+<th style="text-align:left">行为</th>
+<th style="text-align:left">是否阻塞主线程</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>解析</strong></td>
-<td align="left">静态分析所有 <code>import</code>，构建完整的依赖树</td>
-<td align="left">异步（可并行加载资源）</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>解析</strong></td>
+<td style="text-align:left">静态分析所有 <code>import</code>，构建完整的依赖树</td>
+<td style="text-align:left">异步（可并行加载资源）</td>
 </tr>
 <tr>
-<td align="left"><strong>实例化</strong></td>
-<td align="left">为所有模块分配内存，绑定 <code>import</code>&#x2F;<code>export</code> 的引用关系</td>
-<td align="left">同步</td>
+<td style="text-align:left"><strong>实例化</strong></td>
+<td style="text-align:left">为所有模块分配内存，绑定 <code>import</code>/<code>export</code> 的引用关系</td>
+<td style="text-align:left">同步</td>
 </tr>
 <tr>
-<td align="left"><strong>求值</strong></td>
-<td align="left">按后序遍历顺序执行模块的顶层代码</td>
-<td align="left">同步</td>
+<td style="text-align:left"><strong>求值</strong></td>
+<td style="text-align:left">按后序遍历顺序执行模块的顶层代码</td>
+<td style="text-align:left">同步</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h3 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a><strong>关键特性</strong></h3><ol>
 <li><p><strong>阻塞性执行</strong><br>父模块的代码执行会被<strong>阻塞</strong>，直到所有依赖模块的代码执行完成。</p>
@@ -498,42 +515,46 @@
 </li>
 </ol>
 <hr>
-<h3 id="与-CommonJS-的对比"><a href="#与-CommonJS-的对比" class="headerlink" title="与 CommonJS 的对比"></a><strong>与 CommonJS 的对比</strong></h3><table>
+<h3 id="与-CommonJS-的对比"><a href="#与-CommonJS-的对比" class="headerlink" title="与 CommonJS 的对比"></a><strong>与 CommonJS 的对比</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>特性</strong></th>
-<th align="left">ESM</th>
-<th align="left">CommonJS (<code>require()</code>)</th>
+<th style="text-align:left"><strong>特性</strong></th>
+<th style="text-align:left">ESM</th>
+<th style="text-align:left">CommonJS (<code>require()</code>)</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>依赖分析时机</strong></td>
-<td align="left">编译时静态分析</td>
-<td align="left">运行时动态解析</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>依赖分析时机</strong></td>
+<td style="text-align:left">编译时静态分析</td>
+<td style="text-align:left">运行时动态解析</td>
 </tr>
 <tr>
-<td align="left"><strong>执行顺序</strong></td>
-<td align="left">子模块优先执行</td>
-<td align="left">父模块执行到 <code>require()</code> 时才加载子模块</td>
+<td style="text-align:left"><strong>执行顺序</strong></td>
+<td style="text-align:left">子模块优先执行</td>
+<td style="text-align:left">父模块执行到 <code>require()</code> 时才加载子模块</td>
 </tr>
 <tr>
-<td align="left"><strong>输出顺序确定性</strong></td>
-<td align="left">完全确定（依赖树后序遍历）</td>
-<td align="left">依赖代码执行路径（可能不确定）</td>
+<td style="text-align:left"><strong>输出顺序确定性</strong></td>
+<td style="text-align:left">完全确定（依赖树后序遍历）</td>
+<td style="text-align:left">依赖代码执行路径（可能不确定）</td>
 </tr>
 <tr>
-<td align="left"><strong>顶层代码执行</strong></td>
-<td align="left">所有依赖完成后同步执行</td>
-<td align="left">同步阻塞式逐行执行</td>
+<td style="text-align:left"><strong>顶层代码执行</strong></td>
+<td style="text-align:left">所有依赖完成后同步执行</td>
+<td style="text-align:left">同步阻塞式逐行执行</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
 <li>ESM 中所有静态 <code>import</code> 的模块会先完成加载和解析，然后严格按照<strong>从叶子到根的顺序同步执行代码</strong>。</li>
 <li>🌐 <strong>浏览器中的表现</strong>：即使模块需要网络下载，执行顺序依然严格遵循此规则，开发者无需关心底层加载的异步性。</li>
 <li>⚙️ <strong>设计优势</strong>：这种机制保证了模块间状态的确定性，避免了 CommonJS 中可能出现的未初始化导出问题。</li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong.github.io">马嘉路</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/21/CommonJS%E5%92%8CES%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A0%87%E5%87%86%E5%88%86%E6%9E%90/">http://example.com/2025/02/21/CommonJS%E5%92%8CES%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A0%87%E5%87%86%E5%88%86%E6%9E%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">马嘉路</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a></div><div class="post-share"><div class="social-share" data-image="/img/CJS&amp;ESM.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/27/%E6%B5%85%E6%9E%90webpack%E5%92%8Cvite/" title="浅析webpack和vite"><img class="cover" src="/img/webpack-vite.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">浅析webpack和vite</div></div><div class="info-2"><div class="info-item-1">前言webpack和vite使我们在前端工程化中最常使用的两个工具.  那么它们到底有什么区别? 我们在开发时又应该如何选择呢?  本文首先对webpack和vite进行了简单的介绍,然后分别从核心设计理念,开发服务器,构建机制,生态系统,配置复杂度,性能优化,适用场景,社区与生态八个方面分析了webpack和vite的区别,最后总结了它们的核心差异以及选择建议. 一、核心设计理念   维度 webpack vite    构建目标 面向所有项目(兼容传统与现代) 专为现代浏览器优化的开发体验   核心思想 Bundle-based(打包所有资源) Native...</div></div></div></a><a class="pagination-related" href="/2025/02/20/%E9%9D%A2%E7%BB%8F%E9%9B%86%E5%90%88/" title="面经集合"><img class="cover" src="/img/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">面经集合</div></div><div class="info-2"><div class="info-item-1">2025-02-20 腾讯微信小店实习生面试现在刚面完记录一下. 没有问八股,上来直接根据简历进行拷打. 1. Flutter这项技术有什么优缺点我回答了: 优点:  一次开发,多端运行 性能相对Uniapp,React Native来说较好.  缺点:  开发体验较差,嵌套地狱   GPT总结: Flutter 作为 Google 推出的跨平台开发框架，近年来备受关注。以下从开发效率、性能、生态、维护成本、学习曲线、应用场景等多个角度分析其优缺点： 一、优点分析 跨平台能力 单代码库覆盖多平台：通过一套 Dart 代码可同时编译为 iOS、Android、Web、Windows&#x2F;macOS&#x2F;Linux 桌面端甚至嵌入式设备应用，大幅减少开发成本。 一致性 UI：自绘引擎（Skia）直接渲染控件，避免平台原生组件差异导致的 UI 不一致问题，例如 Android 和 iOS 的按钮样式差异。   高性能体验 接近原生性能：通过 AOT（Ahead-of-Time）编译生成原生机器码，性能优于基于 JavaScript 的框架（如 React...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/" title="模块化"><img class="cover" src="/img/module.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-04-26</div><div class="info-item-2">模块化</div></div><div class="info-2"><div class="info-item-1">JavaScript 模块化发展史第一阶段在JavaScript语言刚刚诞生的时候，它仅仅用于实现页面中一些小效果，那个时候，一个页面所用到的 JS 可能只有区区几百行的代码在这种情况下，语言本身所存在的一些缺陷往往被大家有意地忽略，因为程序的规模实在太小，只要开发人员小心谨慎，往往不会造成什么问题在这个阶段，也不存在专业的前端工程师，由于前端要做的事情实在太少，因此这一部分工作往往由后端工程师顺带完成第一阶段发生的大事  1996 年，NetScape将JavaScript语言提交给欧洲的一个标准指定组织 ECMA(欧洲计算机制造商协会) 1998 年,NetScape在与微软浏览器 IE 的竞争中失利,宣布破产  第二阶段ajax的出现,逐渐改变了JavaScript在浏览器中扮演的角色.现在,它不仅可以实现小的效果,还可以和服务器之间进行交互,以更好的体验来改变数据.JS...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">马嘉路</div><div class="author-info-description">电子科技大学26届在读,冲刺大厂前端</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/majialu-love-zouyutong" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/2404816298@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">暂时无公告</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%80%A7%E8%B4%A8"><span class="toc-text">一、 性质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AF%AD%E6%B3%95%E5%B7%AE%E5%BC%82"><span class="toc-text">二、语法差异</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AF%BC%E5%87%BA%E8%AF%AD%E6%B3%95"><span class="toc-text">1. 导出语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AF%BC%E5%85%A5%E8%AF%AD%E6%B3%95"><span class="toc-text">2. 导入语法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-text">三、加载机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-text">四、对动态导入的支持</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CJS"><span class="toc-text">CJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESM"><span class="toc-text">ESM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AF%BC%E5%87%BA%E5%80%BC%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">五、导出值的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CJS-1"><span class="toc-text">CJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESM-1"><span class="toc-text">ESM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E5%A4%84%E7%90%86"><span class="toc-text">六、循环依赖处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%85%BC%E5%AE%B9%E6%80%A7%E6%94%AF%E6%8C%81"><span class="toc-text">七、兼容性支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text">八、最佳实践建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ESM%E4%B8%AD%E9%9D%99%E6%80%81import%E7%9A%84%E5%BC%82%E6%AD%A5%E5%92%8C%E5%90%8C%E6%AD%A5"><span class="toc-text">[补充]深入理解ESM中静态import的异步和同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ESM-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%9A%84%E6%A0%B8%E5%BF%83%E8%A7%84%E5%88%99"><span class="toc-text">ESM 代码执行的核心规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E9%AA%8C%E8%AF%81"><span class="toc-text">示例验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-text">输出结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E7%9A%84%E4%B8%89%E9%98%B6%E6%AE%B5"><span class="toc-text">底层机制的三阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="toc-text">关键特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E-CommonJS-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">与 CommonJS 的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="【代码随想录刷题总结】leetcode209-长度最小的子数组"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode209-长度最小的子数组"/></a><div class="content"><a class="title" href="/2025/06/08/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="【代码随想录刷题总结】leetcode209-长度最小的子数组">【代码随想录刷题总结】leetcode209-长度最小的子数组</a><time datetime="2025-06-08T01:17:29.890Z" title="更新于 2025-06-08 09:17:29">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/26/react/" title="react"><img src="/img/react.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="react"/></a><div class="content"><a class="title" href="/2025/04/26/react/" title="react">react</a><time datetime="2025-06-07T12:37:17.146Z" title="更新于 2025-06-07 20:37:17">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" title="【代码随想录刷题总结】leetcode977-有序数组的平方"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode977-有序数组的平方"/></a><div class="content"><a class="title" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" title="【代码随想录刷题总结】leetcode977-有序数组的平方">【代码随想录刷题总结】leetcode977-有序数组的平方</a><time datetime="2025-06-07T10:16:09.222Z" title="更新于 2025-06-07 18:16:09">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode27-移除元素"/></a><div class="content"><a class="title" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素">【代码随想录刷题总结】leetcode27-移除元素</a><time datetime="2025-06-07T09:49:26.783Z" title="更新于 2025-06-07 17:49:26">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/ts-duyi/" title="ts-duyi"><img src="/img/typescript.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ts-duyi"/></a><div class="content"><a class="title" href="/2025/05/28/ts-duyi/" title="ts-duyi">ts-duyi</a><time datetime="2025-06-07T09:43:14.703Z" title="更新于 2025-06-07 17:43:14">2025-06-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 马嘉路</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>(async () => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong.github.io">马嘉路</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/21/CommonJS%E5%92%8CES%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A0%87%E5%87%86%E5%88%86%E6%9E%90/">http://example.com/2025/02/21/CommonJS%E5%92%8CES%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A0%87%E5%87%86%E5%88%86%E6%9E%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">马嘉路</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a></div><div class="post-share"><div class="social-share" data-image="/img/CJS&amp;ESM.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/27/%E6%B5%85%E6%9E%90webpack%E5%92%8Cvite/" title="浅析webpack和vite"><img class="cover" src="/img/webpack-vite.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">浅析webpack和vite</div></div><div class="info-2"><div class="info-item-1">前言webpack和vite使我们在前端工程化中最常使用的两个工具.  那么它们到底有什么区别? 我们在开发时又应该如何选择呢?  本文首先对webpack和vite进行了简单的介绍,然后分别从核心设计理念,开发服务器,构建机制,生态系统,配置复杂度,性能优化,适用场景,社区与生态八个方面分析了webpack和vite的区别,最后总结了它们的核心差异以及选择建议. 一、核心设计理念    维度 webpack vite     构建目标 面向所有项目(兼容传统与现代) 专为现代浏览器优化的开发体验   核心思想 Bundle-based(打包所有资源) Native...</div></div></div></a><a class="pagination-related" href="/2025/02/20/%E9%9D%A2%E7%BB%8F%E9%9B%86%E5%90%88/" title="面经集合"><img class="cover" src="/img/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">面经集合</div></div><div class="info-2"><div class="info-item-1">2025-02-20 腾讯微信小店实习生面试现在刚面完记录一下. 没有问八股,上来直接根据简历进行拷打. 1. Flutter这项技术有什么优缺点我回答了: 优点:  一次开发,多端运行 性能相对Uniapp,React Native来说较好.  缺点:  开发体验较差,嵌套地狱   GPT总结: Flutter 作为 Google 推出的跨平台开发框架，近年来备受关注。以下从开发效率、性能、生态、维护成本、学习曲线、应用场景等多个角度分析其优缺点： 一、优点分析 跨平台能力 单代码库覆盖多平台：通过一套 Dart 代码可同时编译为 iOS、Android、Web、Windows/macOS/Linux 桌面端甚至嵌入式设备应用，大幅减少开发成本。 一致性 UI：自绘引擎（Skia）直接渲染控件，避免平台原生组件差异导致的 UI 不一致问题，例如 Android 和 iOS 的按钮样式差异。   高性能体验 接近原生性能：通过 AOT（Ahead-of-Time）编译生成原生机器码，性能优于基于 JavaScript 的框架（如 React Native）。 60/120...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/16/%E6%A8%A1%E5%9D%97%E5%8C%96/" title="模块化"><img class="cover" src="/img/module.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-04-26</div><div class="info-item-2">模块化</div></div><div class="info-2"><div class="info-item-1">JavaScript 模块化发展史第一阶段在JavaScript语言刚刚诞生的时候，它仅仅用于实现页面中一些小效果，那个时候，一个页面所用到的 JS 可能只有区区几百行的代码在这种情况下，语言本身所存在的一些缺陷往往被大家有意地忽略，因为程序的规模实在太小，只要开发人员小心谨慎，往往不会造成什么问题在这个阶段，也不存在专业的前端工程师，由于前端要做的事情实在太少，因此这一部分工作往往由后端工程师顺带完成第一阶段发生的大事  1996 年，NetScape将JavaScript语言提交给欧洲的一个标准指定组织 ECMA(欧洲计算机制造商协会) 1998 年,NetScape在与微软浏览器 IE 的竞争中失利,宣布破产  第二阶段ajax的出现,逐渐改变了JavaScript在浏览器中扮演的角色.现在,它不仅可以实现小的效果,还可以和服务器之间进行交互,以更好的体验来改变数据.JS...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">马嘉路</div><div class="author-info-description">电子科技大学26届在读,冲刺大厂前端</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/majialu-love-zouyutong" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/2404816298@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">暂时无公告</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%80%A7%E8%B4%A8"><span class="toc-text">一、 性质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AF%AD%E6%B3%95%E5%B7%AE%E5%BC%82"><span class="toc-text">二、语法差异</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AF%BC%E5%87%BA%E8%AF%AD%E6%B3%95"><span class="toc-text">1. 导出语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AF%BC%E5%85%A5%E8%AF%AD%E6%B3%95"><span class="toc-text">2. 导入语法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-text">三、加载机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-text">四、对动态导入的支持</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CJS"><span class="toc-text">CJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESM"><span class="toc-text">ESM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AF%BC%E5%87%BA%E5%80%BC%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">五、导出值的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CJS-1"><span class="toc-text">CJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESM-1"><span class="toc-text">ESM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E5%A4%84%E7%90%86"><span class="toc-text">六、循环依赖处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%85%BC%E5%AE%B9%E6%80%A7%E6%94%AF%E6%8C%81"><span class="toc-text">七、兼容性支持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text">八、最佳实践建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ESM%E4%B8%AD%E9%9D%99%E6%80%81import%E7%9A%84%E5%BC%82%E6%AD%A5%E5%92%8C%E5%90%8C%E6%AD%A5"><span class="toc-text">[补充]深入理解ESM中静态import的异步和同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ESM-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%9A%84%E6%A0%B8%E5%BF%83%E8%A7%84%E5%88%99"><span class="toc-text">ESM 代码执行的核心规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E9%AA%8C%E8%AF%81"><span class="toc-text">示例验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-text">输出结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E7%9A%84%E4%B8%89%E9%98%B6%E6%AE%B5"><span class="toc-text">底层机制的三阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="toc-text">关键特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E-CommonJS-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">与 CommonJS 的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/10/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/" title="【代码随想录刷题总结】leetcode59-螺旋矩阵II"><img src="/img/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode59-螺旋矩阵II"/></a><div class="content"><a class="title" href="/2025/06/10/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/" title="【代码随想录刷题总结】leetcode59-螺旋矩阵II">【代码随想录刷题总结】leetcode59-螺旋矩阵II</a><time datetime="2025-06-10T06:33:58.228Z" title="更新于 2025-06-10 14:33:58">2025-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="【代码随想录刷题总结】leetcode209-长度最小的子数组"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode209-长度最小的子数组"/></a><div class="content"><a class="title" href="/2025/06/08/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="【代码随想录刷题总结】leetcode209-长度最小的子数组">【代码随想录刷题总结】leetcode209-长度最小的子数组</a><time datetime="2025-06-08T07:01:41.323Z" title="更新于 2025-06-08 15:01:41">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/26/react/" title="react"><img src="/img/react.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="react"/></a><div class="content"><a class="title" href="/2025/04/26/react/" title="react">react</a><time datetime="2025-06-07T12:37:17.146Z" title="更新于 2025-06-07 20:37:17">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" title="【代码随想录刷题总结】leetcode977-有序数组的平方"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode977-有序数组的平方"/></a><div class="content"><a class="title" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" title="【代码随想录刷题总结】leetcode977-有序数组的平方">【代码随想录刷题总结】leetcode977-有序数组的平方</a><time datetime="2025-06-07T10:16:09.222Z" title="更新于 2025-06-07 18:16:09">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode27-移除元素"/></a><div class="content"><a class="title" href="/2025/05/28/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" title="【代码随想录刷题总结】leetcode27-移除元素">【代码随想录刷题总结】leetcode27-移除元素</a><time datetime="2025-06-07T09:49:26.783Z" title="更新于 2025-06-07 17:49:26">2025-06-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 马嘉路</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>(async () => {
   const showKatex = () => {
     document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
   }
