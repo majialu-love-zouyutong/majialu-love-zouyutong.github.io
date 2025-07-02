@@ -1,5 +1,5 @@
 ---
-title: 【十万字长文】深入浅出：彻底搞懂Promise
+title: 【万字长文】深入浅出：彻底搞懂Promise
 date: 2025-06-13 21:59:13
 tags: promise
 top_img: /img/promise.png
