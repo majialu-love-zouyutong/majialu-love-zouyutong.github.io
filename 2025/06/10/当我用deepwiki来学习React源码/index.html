@@ -1,0 +1,1320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>当我用deepwiki来学习React源码 | 马嘉路</title><meta name="author" content="马嘉路"><meta name="copyright" content="马嘉路"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概述本文档全面介绍了React代码库，解释了其架构，关键组件以及他们是如何协同工作来创建React库生态系统。React是一个基于组件的，声明式的JavaScript库，用于构建用户界面。 React简介React是由Meta（前Facebook）和开发者社区开发与维护的JavaScript库。其主要目的是通过组件化架构来简化用户界面的构建。React采用虚拟DOM进行高效的渲染和更新，使开发者能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当我用deepwiki来学习React源码">
+<meta property="og:url" content="http://example.com/2025/06/10/%E5%BD%93%E6%88%91%E7%94%A8deepwiki%E6%9D%A5%E5%AD%A6%E4%B9%A0React%E6%BA%90%E7%A0%81/index.html">
+<meta property="og:site_name" content="马嘉路">
+<meta property="og:description" content="概述本文档全面介绍了React代码库，解释了其架构，关键组件以及他们是如何协同工作来创建React库生态系统。React是一个基于组件的，声明式的JavaScript库，用于构建用户界面。 React简介React是由Meta（前Facebook）和开发者社区开发与维护的JavaScript库。其主要目的是通过组件化架构来简化用户界面的构建。React采用虚拟DOM进行高效的渲染和更新，使开发者能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/react.png">
+<meta property="article:published_time" content="2025-06-10T09:38:16.000Z">
+<meta property="article:modified_time" content="2025-07-02T19:04:07.639Z">
+<meta property="article:author" content="马嘉路">
+<meta property="article:tag" content="react deepwiki">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/react.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/06/10/%E5%BD%93%E6%88%91%E7%94%A8deepwiki%E6%9D%A5%E5%AD%A6%E4%B9%A0React%E6%BA%90%E7%A0%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 马嘉路","link":"链接: ","source":"来源: 马嘉路","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '当我用deepwiki来学习React源码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">81</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">53</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/react.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/favicon.png" alt="Logo"><span class="site-name">马嘉路</span></a><a class="nav-page-title" href="/"><span class="site-name">当我用deepwiki来学习React源码</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">当我用deepwiki来学习React源码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-10T09:38:16.000Z" title="发表于 2025-06-10 17:38:16">2025-06-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-02T19:04:07.639Z" title="更新于 2025-07-03 03:04:07">2025-07-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">12.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>39分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文档全面介绍了React代码库，解释了其架构，关键组件以及他们是如何协同工作来创建React库生态系统。React是一个<strong>基于组件的，声明式</strong>的JavaScript库，用于构建用户界面。</p>
+<h2 id="React简介"><a href="#React简介" class="headerlink" title="React简介"></a>React简介</h2><p>React是由Meta（前Facebook）和开发者社区开发与维护的JavaScript库。其主要目的是通过组件化架构来简化用户界面的构建。React采用虚拟DOM进行高效的渲染和更新，使开发者能够创建交互式且更新可预测的用户界面。</p>
+<p>React有以下几点关键原则：</p>
+<ul>
+<li><strong>声明式</strong>： 开发者根据当前的状态描述UI应该呈现的样子</li>
+<li><strong>组件化</strong>： React将UI分解为封装的，可复用的组件</li>
+<li><strong>一次学习，到处编写</strong>：React可以用于构建网页应用(React DOM)，移动应用(React Native)以及其他平台。</li>
+</ul>
+<h2 id="React仓库结构"><a href="#React仓库结构" class="headerlink" title="React仓库结构"></a>React仓库结构</h2><p>React仓库以<code>MonoRepo</code>模式组织，包含多个子包，每个包在React生态系统中承担特定的职责。主要的包包括：</p>
+<table>
+<thead>
+<tr>
+<th>包</th>
+<th>描述</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>react</code></td>
+<td><code>React</code>核心包</td>
+<td>19.1.0</td>
+</tr>
+<tr>
+<td><code>react-dom</code></td>
+<td>用于操作DOM</td>
+<td>19.1.0</td>
+</tr>
+<tr>
+<td><code>react-test-renderer</code></td>
+<td>用于快照测试</td>
+<td>19.1.0</td>
+</tr>
+<tr>
+<td><code>react-reconciler</code></td>
+<td>用于创建自定义渲染器</td>
+<td>0.32.0</td>
+</tr>
+<tr>
+<td><code>scheduler</code></td>
+<td>浏览器环境的协作式调度器</td>
+<td>0.26.0</td>
+</tr>
+<tr>
+<td><code>react-is</code></td>
+<td>用于检查<code>React</code>元素的类型</td>
+<td>19.1.0</td>
+</tr>
+<tr>
+<td><code>eslint-plugin-react-hooks</code></td>
+<td><code>React Hooks</code>的<code>ESLint</code>规则</td>
+<td>5.2.0</td>
+</tr>
+</tbody></table>
+<p>构建系统使用<code>Rollup</code>为不同的环境创建各种打包文件，包括：</p>
+<ul>
+<li>开发与生产构建</li>
+<li>CommonJS，ESM和浏览器打包文件</li>
+<li>特定平台的构建(<code>Web</code>，<code>React Native</code>)</li>
+</ul>
+<h2 id="核心架构"><a href="#核心架构" class="headerlink" title="核心架构"></a>核心架构</h2><h3 id="React组件模型"><a href="#React组件模型" class="headerlink" title="React组件模型"></a>React组件模型</h3><p>React的组件架构允许开发者构建封装的，可重用的UI元素。组件可以是基于类或者基于函数的(使用<code>hooks</code>)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101806616.png" alt="image-20250610180639501"></p>
+<p>上面的流程图展示了JSX如何被转换为React元素，然后通过协调算法进行处理并渲染到目标平台。</p>
+<h3 id="高层系统架构"><a href="#高层系统架构" class="headerlink" title="高层系统架构"></a>高层系统架构</h3><p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101808971.png" alt="image-20250610180832889"></p>
+<p>上图展示了核心React包，渲染目标（如ReactDOM和ReactNative）以及附加工具之间的关系。核心的<code>reconciler</code>通过一个定义良好的接口与不同的渲染器进行协调。</p>
+<h3 id="Fiber协调结构"><a href="#Fiber协调结构" class="headerlink" title="Fiber协调结构"></a>Fiber协调结构</h3><p>Fiber是React的协调(<code>reconciliation</code>)引擎，提供了一种方式：</p>
+<ul>
+<li>将渲染任务分解为小单元</li>
+<li>暂停和恢复任务</li>
+<li>对不同类型的更新分配优先级</li>
+<li>尽可能重用之前的任务</li>
+<li>任务不再需要时进行终止</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101817039.png" alt="image-20250610181754971"></p>
+<p>Fiber架构允许React实现并发渲染等高级功能，这使得React能够同时处理多个版本的UI。</p>
+<h3 id="构建和打包系统"><a href="#构建和打包系统" class="headerlink" title="构建和打包系统"></a>构建和打包系统</h3><p>React采用了一个复杂的构建系统，为不同的环境创建优化的包。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101822965.png" alt="image-20250610182229903"></p>
+<p>构建系统支持多种模块格式和环境，使React能够在不同的平台上运行，并针对不同平台进行代码优化。</p>
+<h2 id="功能标志和环境分支"><a href="#功能标志和环境分支" class="headerlink" title="功能标志和环境分支"></a>功能标志和环境分支</h2><p>React使用功能标志根据构建环境来决定是否启用功能，从而进行功能实验和逐步推出。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101826801.png" alt="image-20250610182640716"></p>
+<p>分支系统使React能够在不同平台共享大部分代码，同时为不同环境定制特定模块。</p>
+<h2 id="发布渠道"><a href="#发布渠道" class="headerlink" title="发布渠道"></a>发布渠道</h2><p>React支持多个发布渠道，从而在启用实验性的同时提供稳定性。</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Stable</code></td>
+<td>具有语义版本控制的正式发布</td>
+</tr>
+<tr>
+<td><code>Experimental</code></td>
+<td>包含尚未准备好公开发布的功能</td>
+</tr>
+<tr>
+<td><code>Release Candidates</code></td>
+<td>候选发布版本，即稳定版本发布前的测试预发布版本</td>
+</tr>
+</tbody></table>
+<p>发布渠道使得开发者能够在选择稳定性和访问新功能之间达成平衡。</p>
+<h2 id="服务端渲染-SSR-和服务器组件"><a href="#服务端渲染-SSR-和服务器组件" class="headerlink" title="服务端渲染(SSR)和服务器组件"></a>服务端渲染(SSR)和服务器组件</h2><p>React通过多种技术支持在服务端渲染组件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101833850.png" alt="image-20250610183333783"></p>
+<ul>
+<li>传统SSR：原始的<strong>同步</strong>服务器渲染</li>
+<li>Fizz：一个可以增量发送HTML的流式服务器渲染器</li>
+<li>Server Component：允许组件在服务器上独立运行，无需客户端JavaScript</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>React是一个具有模块化架构的复杂库，使其能够支持多种平台和渲染策略。代码库围绕一个核心的协调引擎构建，该引擎可以通过可插拔的主机配置系统适应不同的渲染目标。构建系统为各种环境创建优化的包，而特性标志允许实现特定环境的代码路径。</p>
+<h1 id="React的核心概念"><a href="#React的核心概念" class="headerlink" title="React的核心概念"></a>React的核心概念</h1><p>这份文档概述了驱动React设计和架构的基本概念。它涵盖了是React成为构建用户界面强大库的核心原则，包括组件模型，虚拟DOM，声明式编程范式和协调(<code>reconciliation</code>)过程。</p>
+<h2 id="1-什么是React"><a href="#1-什么是React" class="headerlink" title="1. 什么是React"></a>1. 什么是React</h2><p>React 是一个用于构建用户界面的 JavaScript 库。其核心是提供基于组件的架构和高效的渲染系统。该库的设计原则主要关注三个方面：</p>
+<ul>
+<li><strong>声明式UI</strong>：React 通过使用声明式范式，让创建交互式用户界面变得毫不费力。你描述在任何给定状态下 UI 应该看起来如何，当数据变化时，React 会高效地更新和渲染正确的组件。</li>
+<li><strong>组件化架构</strong>：组件化架构：React 鼓励构建封装的、可重用的组件，这些组件管理自己的状态。组件可以组合起来构建复杂用户界面。</li>
+<li><strong>一次学习，到处编写</strong>：React 的设计使其能够在不同平台上渲染，包括浏览器（通过 ReactDOM）、移动设备（通过 React Native）和服务器（通过SSR）。</li>
+</ul>
+<h2 id="2-组件模型"><a href="#2-组件模型" class="headerlink" title="2. 组件模型"></a>2. 组件模型</h2><p>React 的核心是其组件模型。组件是任何 React 应用程序的构建块，封装了 UI 和逻辑。</p>
+<h3 id="2-1-组件类型"><a href="#2-1-组件类型" class="headerlink" title="2.1 组件类型"></a>2.1 组件类型</h3><p>React 支持两种主要的组件类型：</p>
+<ul>
+<li><strong>函数组件</strong>：接受 props 作为参数并返回 React 元素的简单 JavaScript 函数。</li>
+<li><strong>类组件</strong>：继承自 <code>React.Component</code> 并实现 render 方法的 ES6 类。</li>
+</ul>
+<p>虽然两种组件类型都受支持，但现在推荐使用带 hooks 的函数组件来编写新代码。</p>
+<h3 id="2-2-组件数据流"><a href="#2-2-组件数据流" class="headerlink" title="2.2 组件数据流"></a>2.2 组件数据流</h3><p>React 遵循单向数据流模型：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101845718.png" alt="image-20250610184517675"></p>
+<p>上图是组件数据流图：</p>
+<ul>
+<li><strong>Props</strong>: 从父组件传递到子组件的<strong>只读数据</strong></li>
+<li><strong>State</strong>: 组件<strong>内部</strong>管理的<strong>可变</strong>数据</li>
+<li><strong>Context</strong>: <strong>无需显式传递</strong> props 即可被组件树访问的数据</li>
+</ul>
+<h2 id="3-虚拟DOM与重新渲染"><a href="#3-虚拟DOM与重新渲染" class="headerlink" title="3. 虚拟DOM与重新渲染"></a>3. 虚拟DOM与重新渲染</h2><p>React的核心创新之一是其虚拟DOM和高效重新渲染算法的实现。</p>
+<h3 id="3-1-虚拟DOM"><a href="#3-1-虚拟DOM" class="headerlink" title="3.1 虚拟DOM"></a>3.1 虚拟DOM</h3><p>虚拟 DOM 是实际 DOM 的轻量级内存表示。React 不会直接更新浏览器 DOM，而是先在这个虚拟表示上进行操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101852957.png" alt="image-20250610185252914"></p>
+<h3 id="3-2-重新渲染过程"><a href="#3-2-重新渲染过程" class="headerlink" title="3.2 重新渲染过程"></a>3.2 重新渲染过程</h3><p>协调(<code>reconciliation</code>)是指状态或属性变化后，React响应这种变化并更新真实DOM的过程。</p>
+<ol>
+<li>当组件状态或属性发生变化时，React会创建一个新的虚拟DOM树</li>
+<li>React将新的虚拟DOM树与之前的虚拟DOM树进行对比(Diffing)</li>
+<li>React计算更新实际DOM所需要的最小操作集合</li>
+<li>React仅仅将这些最小化的更改应用于真实DOM</li>
+</ol>
+<p>这种方法通过最小化昂贵的 DOM 操作，提供了显著的性能优化。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101859662.png" alt="image-20250610185958609"></p>
+<p>上图是协调序列图</p>
+<h2 id="4-React元素树"><a href="#4-React元素树" class="headerlink" title="4. React元素树"></a>4. React元素树</h2><h3 id="4-1-JSX和React元素"><a href="#4-1-JSX和React元素" class="headerlink" title="4.1 JSX和React元素"></a>4.1 JSX和React元素</h3><p>JSX是JavaScript的语法扩展，允许在JavaScript中编写类似HTML的代码。他在构建的时候被转换为<code>React.createElement()</code>调用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JSX code</span></span><br><span class="line">&lt;div className=<span class="string">&quot;container&quot;</span>&gt;</span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 转换成</span></span><br><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">	<span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">  &#123;<span class="attr">className</span>: <span class="string">&#x27;container&#x27;</span>&#125;,</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;h1&#x27;</span>, <span class="literal">null</span>, <span class="string">&#x27;Hello, world!&#x27;</span>);</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-元素结构"><a href="#4-2-元素结构" class="headerlink" title="4.2 元素结构"></a>4.2 元素结构</h3><p>React元素是普通的JavaScript对象，他们代表了虚拟DOM中的组件：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>type</code></td>
+<td>对于DOM元素来说是字符串，对于组件来说是函数或类</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>唯一标识符(可选)，用于帮助React在重新渲染过程中识别元素</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td>引用(可选)，用于访问实际的DOM节点或组件实例</td>
+</tr>
+<tr>
+<td><code>props</code></td>
+<td>一个对象，包含当前元素和子元素的属性</td>
+</tr>
+<tr>
+<td><code>$$typeof</code></td>
+<td>一个符号，用于安全目的</td>
+</tr>
+</tbody></table>
+<h2 id="5-React类型系统"><a href="#5-React类型系统" class="headerlink" title="5. React类型系统"></a>5. React类型系统</h2><p>React定义了一个全面的类型系统来表示其内部数据结构和API。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506101908206.png" alt="image-20250610190853157"></p>
+<p>关键类型包括：</p>
+<ul>
+<li>ReactNode：最通用的类型，表示任何可以渲染的内容</li>
+<li>ReactElement：<code>React.createElement()</code>返回的对象</li>
+<li>ReactText：字符串或数字字面量</li>
+<li>ReactFragment：多个元素组合在一起</li>
+<li>ReactPortal：渲染到不同DOM子树中的元素</li>
+<li>ReactContext：用于在组件树中传递数据的上下文对象(包括ReactProvider和ReactConsumer)</li>
+</ul>
+<h2 id="6-React-Hooks"><a href="#6-React-Hooks" class="headerlink" title="6. React Hooks"></a>6. React Hooks</h2><p>Hooks 是让你能够从函数组件中”钩入”React 状态和生命周期特性的函数。它们在 React 16.8 中引入，并已成为编写 React 组件的首选方式。</p>
+<h2 id="6-1-核心Hooks"><a href="#6-1-核心Hooks" class="headerlink" title="6.1 核心Hooks"></a>6.1 核心Hooks</h2><table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>useState</code></td>
+<td>为函数组件添加状态</td>
+</tr>
+<tr>
+<td><code>useEffect</code></td>
+<td>执行副作用(类似于生命周期方法)</td>
+</tr>
+<tr>
+<td><code>useContext</code></td>
+<td>访问上下文值</td>
+</tr>
+<tr>
+<td><code>useReducer</code></td>
+<td>管理复杂的状态逻辑</td>
+</tr>
+<tr>
+<td><code>userCallback</code></td>
+<td>缓存回调函数</td>
+</tr>
+<tr>
+<td><code>userMemo</code></td>
+<td>缓存计算值</td>
+</tr>
+<tr>
+<td><code>useRef</code></td>
+<td>创建可变引用</td>
+</tr>
+</tbody></table>
+<h2 id="6-2-Hook规则"><a href="#6-2-Hook规则" class="headerlink" title="6.2 Hook规则"></a>6.2 Hook规则</h2><ul>
+<li>只在顶层调用钩子(不再循环，条件或嵌套函数内部调用)</li>
+<li>只在React<strong>函数组件</strong>或<strong>自定义钩子</strong>中调用钩子</li>
+</ul>
+<h2 id="7-渲染架构"><a href="#7-渲染架构" class="headerlink" title="7. 渲染架构"></a>7. 渲染架构</h2><p>React的渲染架构由几个关键的组件组成，这些组件协同工作，以高效地更新UI。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102042138.png" alt="image-20250610204211056"></p>
+<h3 id="7-1-Fiber架构"><a href="#7-1-Fiber架构" class="headerlink" title="7.1 Fiber架构"></a>7.1 Fiber架构</h3><p>Fiber架构是React的协调引擎。关键方面包括：</p>
+<ul>
+<li>**Fiber节点(Fiber Nodes)**：组件的内存表示</li>
+<li>**工作循环(Work Loop)**：协调渲染过程</li>
+<li>**优先级调度器(Priority Scheduling)**：允许React优先处理紧急更新</li>
+<li>**增量渲染(Incremental Rendering)**：允许将渲染工作分解为多个块</li>
+</ul>
+<h3 id="7-2-渲染过程"><a href="#7-2-渲染过程" class="headerlink" title="7.2 渲染过程"></a>7.2 渲染过程</h3><p>渲染过程遵循以下步骤：</p>
+<ol>
+<li>**渲染阶段(Render Phase)**：React调用组件并创建一个新的<code>Fiber</code>树(工作进度树)</li>
+<li>**提交阶段(Commit Phase)**：React将更改应用到DOM</li>
+<li>**副作用阶段(Passive Effects Phase)**：React运行副作用，如<code>useEffect</code>回调</li>
+</ol>
+<h2 id="8-并发特性"><a href="#8-并发特性" class="headerlink" title="8. 并发特性"></a>8. 并发特性</h2><p>React包含并发渲染功能，这使React能够同时处理多个版本的UI：</p>
+<ul>
+<li><strong>Suspense</strong>：一个让你可以<strong>“等待”</strong>某些代码或数据加载，并声明式地指定加载状态的组件</li>
+<li><strong>Transitions</strong>：用于将更新标记为**”非紧急”**的API，允许React优先处理更重要的更新</li>
+<li><strong>Deferred Values</strong>：允许你在更新新值时显示之前的值</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102104350.png" alt="image-20250610210459291"></p>
+<h2 id="9-跨平台渲染"><a href="#9-跨平台渲染" class="headerlink" title="9. 跨平台渲染"></a>9. 跨平台渲染</h2><p>React架构允许通过不同的渲染器渲染到多个平台：</p>
+<table>
+<thead>
+<tr>
+<th>渲染器</th>
+<th>目标平台</th>
+<th>包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ReactDOM</td>
+<td>Web浏览器</td>
+<td><code>react-dom</code></td>
+</tr>
+<tr>
+<td>React Native</td>
+<td>移动设备</td>
+<td><code>react-native</code></td>
+</tr>
+<tr>
+<td>React Server</td>
+<td>服务端渲染</td>
+<td><code>react-dom/server</code></td>
+</tr>
+<tr>
+<td>React Flight</td>
+<td>服务器组件</td>
+<td><code>react-server-dom-*</code></td>
+</tr>
+</tbody></table>
+<p>所有渲染器共享相同的<code>React</code>核心重组引擎，但实现平台特定的渲染逻辑。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>React的核心概念建立在它的组件模型，虚拟DOM和协调算法之上，为构建用户界面提供了一种高效且对开发者友好的方式。单向数据流，声明式方法和组件可重用性使得复杂UI开发更加易于维护。</p>
+<p>React的架构使其能够支持多个渲染目标，同时在不同平台上共享相同的核心原则。</p>
+<h1 id="仓库结构"><a href="#仓库结构" class="headerlink" title="仓库结构"></a>仓库结构</h1><p>本文档描述了React仓库的组织和结构。它提供了关于代码如何组织，包系统以及代码库中关键组件之间关系的概述。</p>
+<h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>React仓库作为一个包含多个包的单仓库结构(<code>Monorepo</code>)，使用<code>Yarn</code>工作区进行依赖管理。该仓库包含了所有核心React包以及支持工具，实用工具和测试基础设施。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102115334.png" alt="image-20250610211500256"></p>
+<h2 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h2><p>React 由多个包组成，每个包都有不同的用途。这些包遵循一致的架构，大多数包提供不同的入口点和构建格式。</p>
+<h3 id="核心包"><a href="#核心包" class="headerlink" title="核心包"></a>核心包</h3><table>
+<thead>
+<tr>
+<th>Package 包</th>
+<th>Description 描述</th>
+<th>Key Entry Points 关键入口点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>react</code></td>
+<td>Core React APIs 核心 React API</td>
+<td>jsx-runtime, jsx-dev-runtime,运行时</td>
+</tr>
+<tr>
+<td><code>react-dom</code></td>
+<td>DOM renderer DOM 渲染器</td>
+<td>客户端，服务器，静态，性能分析</td>
+</tr>
+<tr>
+<td><code>react-reconciler</code></td>
+<td>Reconciliation engine 调和引擎</td>
+<td>被渲染器使用</td>
+</tr>
+<tr>
+<td><code>scheduler</code></td>
+<td>Scheduling primitives 调度原语</td>
+<td>被调和器使用</td>
+</tr>
+<tr>
+<td><code>react-is</code></td>
+<td>Type checking utilities 类型检查工具</td>
+<td>被库使用</td>
+</tr>
+<tr>
+<td><code>eslint-plugin-react-hooks</code></td>
+<td>Hooks linting rules Hooks 检查规则</td>
+<td>被 ESLint 使用</td>
+</tr>
+</tbody></table>
+<p>每个包可以有多个打包类型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102119070.png" alt="image-20250610211927009"></p>
+<h2 id="工作空间配置"><a href="#工作空间配置" class="headerlink" title="工作空间配置"></a>工作空间配置</h2><p>该仓库设置为 Yarn 工作区，允许在开发期间本地链接包依赖。工作区配置在根 <code>package.json</code> 文件中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;workspaces&quot;: [</span><br><span class="line">    &quot;packages/*&quot;</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此配置便于管理包之间的相互依赖，并简化了开发流程。</p>
+<h2 id="构建系统"><a href="#构建系统" class="headerlink" title="构建系统"></a>构建系统</h2><p>React 使用基于 Rollup 的复杂构建系统，针对不同环境和打包格式进行了广泛的自定义。</p>
+<h3 id="打包-Bundle-类型"><a href="#打包-Bundle-类型" class="headerlink" title="打包(Bundle)类型"></a>打包(Bundle)类型</h3><p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102121532.png" alt="image-20250610212126490"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102121656.png" alt="image-20250610212156613"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102122164.png" alt="image-20250610212220132"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102122180.png" alt="image-20250610212230141"></p>
+<h3 id="模块类型"><a href="#模块类型" class="headerlink" title="模块类型"></a>模块类型</h3><p>构建系统还定义了不同的模块类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const moduleTypes = &#123;</span><br><span class="line">  // React</span><br><span class="line">  ISOMORPHIC: &#x27;ISOMORPHIC&#x27;,</span><br><span class="line">  // Individual renderers. They bundle the reconciler. (e.g. ReactDOM)</span><br><span class="line">  RENDERER: &#x27;RENDERER&#x27;,</span><br><span class="line">  // Helper packages that access specific renderer&#x27;s internals. (e.g. TestUtils)</span><br><span class="line">  RENDERER_UTILS: &#x27;RENDERER_UTILS&#x27;,</span><br><span class="line">  // Standalone reconciler for third-party renderers.</span><br><span class="line">  RECONCILER: &#x27;RECONCILER&#x27;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这些模块类型规定了包的构建方式以及它们包含的依赖项。</p>
+<h3 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h3><p>React 的构建过程涉及几个关键步骤：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102124865.png" alt="image-20250610212450834"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102125888.png" alt="image-20250610212523843"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102126762.png" alt="image-20250610212627720"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102126863.png" alt="image-20250610212650820"></p>
+<p>构建过程支持为不同的发布渠道：</p>
+<ol>
+<li><strong>Stable</strong>: 稳定版：遵循语义版本控制的常规发布</li>
+<li><strong>Experimental</strong>:实验版：前沿功能，不推荐用于生产环境</li>
+<li><strong>Canary</strong>:用于测试即将推出的功能的预发布版本</li>
+</ol>
+<h2 id="模块分叉"><a href="#模块分叉" class="headerlink" title="模块分叉"></a>模块分叉</h2><p>React采用了一个复杂的模块分叉系统，允许根据构建环境使用同一模块的不同实现。</p>
+<p>分叉系统定义在<code>scripts/rollup/forks.js</code>中，允许React：</p>
+<ol>
+<li>替换共享模块为环境特定的实现</li>
+<li>处理不同渲染器的平台特定代码</li>
+<li>针对不同环境（浏览器、Node.js、React Native）优化代码</li>
+</ol>
+<p>关键模块分支包括：</p>
+<ul>
+<li><code>ReactFeatureFlags</code> : 根据构建类型配置功能标志</li>
+<li><code>ReactFiberConfig</code> : 渲染器特定配置</li>
+<li><code>ReactServerStreamConfig</code> : 服务器渲染流实现</li>
+<li><code>EventListener</code> : 环境特定的事件处理</li>
+</ul>
+<h2 id="功能标志"><a href="#功能标志" class="headerlink" title="功能标志"></a>功能标志</h2><p>React 使用功能标志来在不同的环境中启用或禁用功能。这些标志通过基于打包类型的模块分叉系统进行配置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Fork paths are relative to the project root. They must include the full path,</span></span><br><span class="line"><span class="comment">// including the extension.</span></span><br><span class="line"><span class="keyword">const</span> forks = <span class="title class_">Object</span>.<span class="title function_">freeze</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">&#x27;./packages/shared/ReactFeatureFlags.js&#x27;</span>: <span class="function">(<span class="params">bundleType, entry</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (entry) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;react-native-renderer&#x27;</span>:</span><br><span class="line">        <span class="comment">// Use React Native specific feature flags</span></span><br><span class="line">        <span class="keyword">switch</span> (bundleType) &#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="attr">RN_FB_DEV</span>:</span><br><span class="line">          <span class="keyword">case</span> <span class="attr">RN_FB_PROD</span>:</span><br><span class="line">          <span class="keyword">case</span> <span class="attr">RN_FB_PROFILING</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;./packages/shared/forks/ReactFeatureFlags.native-fb.js&#x27;</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="attr">RN_OSS_DEV</span>:</span><br><span class="line">          <span class="keyword">case</span> <span class="attr">RN_OSS_PROD</span>:</span><br><span class="line">          <span class="keyword">case</span> <span class="attr">RN_OSS_PROFILING</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;./packages/shared/forks/ReactFeatureFlags.native-oss.js&#x27;</span>;</span><br><span class="line">          <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="comment">// ...other cases</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="发布渠道-1"><a href="#发布渠道-1" class="headerlink" title="发布渠道"></a>发布渠道</h2><p>React 使用多个发布渠道来管理不同版本和功能集：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102138172.png" alt="image-20250610213845121"></p>
+<p>发布渠道在 <code>ReactVersions.js</code> 和构建系统中进行管理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// From ReactVersions.js</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">ReactVersion</span> = <span class="string">&#x27;19.2.0&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> canaryChannelLabel = <span class="string">&#x27;canary&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> rcNumber = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stablePackages = &#123;</span><br><span class="line">  <span class="string">&#x27;eslint-plugin-react-hooks&#x27;</span>: <span class="string">&#x27;6.0.0&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;jest-react&#x27;</span>: <span class="string">&#x27;0.17.0&#x27;</span>,</span><br><span class="line">  <span class="attr">react</span>: <span class="title class_">ReactVersion</span>,</span><br><span class="line">  <span class="string">&#x27;react-art&#x27;</span>: <span class="title class_">ReactVersion</span>,</span><br><span class="line">  <span class="string">&#x27;react-dom&#x27;</span>: <span class="title class_">ReactVersion</span>,</span><br><span class="line">  <span class="comment">// ... other packages</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> experimentalPackages = [<span class="string">&#x27;react-markup&#x27;</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="仓库目录结构"><a href="#仓库目录结构" class="headerlink" title="仓库目录结构"></a>仓库目录结构</h2><p>React 仓库遵循标准化的目录结构：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>packages/</code></td>
+<td>包含所有 React 包</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td>构建、发布和工具脚本</td>
+</tr>
+<tr>
+<td><code>fixtures/</code></td>
+<td>测试用例和示例</td>
+</tr>
+<tr>
+<td><code>build/</code></td>
+<td>构建输出（未提交到 git）</td>
+</tr>
+<tr>
+<td><code>scripts/rollup/</code></td>
+<td>构建配置</td>
+</tr>
+<tr>
+<td><code>scripts/release/</code></td>
+<td>发布管理脚本</td>
+</tr>
+<tr>
+<td><code>scripts/jest/</code></td>
+<td>测试配置</td>
+</tr>
+<tr>
+<td><code>scripts/error-codes/</code></td>
+<td>错误代码提取工具</td>
+</tr>
+<tr>
+<td><code>scripts/flow/</code></td>
+<td>类型检查配置</td>
+</tr>
+</tbody></table>
+<h2 id="持续集成和测试"><a href="#持续集成和测试" class="headerlink" title="持续集成和测试"></a>持续集成和测试</h2><p>该仓库包含用于构建和测试 React 在不同配置下的 CI&#x2F;CD 工作流配置。还集成了大小比较工具以跟踪包大小变化。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102141312.png" alt="image-20250610214119248"></p>
+<p>通过在 CI 中运行的 SizeBot 来追踪打包大小，该 Bot 会在包含大小变化的 pull 请求中添加评论。</p>
+<h2 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h2><p>React 的仓库结构旨在支持多个发布渠道、构建目标和环境，同时保持模块化架构。这种组织方式使 React 团队能够高效地开发和维护库，同时支持广泛的使用场景和平台。</p>
+<p>理解这种结构对于想要修改 React 或了解系统不同部分如何协同工作的贡献者来说至关重要。</p>
+<h1 id="React调和器-Reconciler"><a href="#React调和器-Reconciler" class="headerlink" title="React调和器(Reconciler)"></a>React调和器(Reconciler)</h1><p>React 的 Reconciler 是 React 的核心引擎，实现了调和算法（有时也称为“diffing”算法）。它负责计算两个 React 元素树之间的差异，确定需要在 DOM 或其他渲染环境中更新哪些内容，并协调渲染过程。Reconciler 是平台无关的，允许 React 支持多种渲染环境，如 DOM（Web）、原生移动平台和自定义渲染器。</p>
+<p>本文档涵盖了 React Reconciler 的内部架构和关键概念。有关 React DOM 等特定渲染目标的信息，请参阅渲染目标。</p>
+<h2 id="架构概述"><a href="#架构概述" class="headerlink" title="架构概述"></a>架构概述</h2><p>React 的 Reconciler 在 React 架构中处于核心系统地位，连接了 React 的核心概念与平台特定的渲染实现。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102150037.png" alt="image-20250610215003983"></p>
+<h2 id="Fiber架构"><a href="#Fiber架构" class="headerlink" title="Fiber架构"></a>Fiber架构</h2><p>React的调和器(Reconciler)围绕”fiber”的概念构建，fiber是组件树中组件的工作单元。这种架构<strong>取代</strong>了React16中<strong>基于栈</strong>的调和器(reconciler)，并支持<strong>增量渲染</strong>，基于优先级的更新和更好的<strong>错误边界</strong>等功能。</p>
+<h3 id="Fiber数据结构"><a href="#Fiber数据结构" class="headerlink" title="Fiber数据结构"></a>Fiber数据结构</h3><p>Fiber 是一个 JavaScript 对象，表示工作单元和 React 组件树中的一个节点。它包含有关组件、其输入和输出的信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102155051.png" alt="image-20250610215511991"></p>
+<p>Fiber的关键属性：</p>
+<ul>
+<li><strong>tag</strong>：标识Fiber的类型（例如，函数组件，类组件，宿主组件）</li>
+<li><strong>type</strong>：与该Fiber关联的函数或类</li>
+<li><strong>stateNode</strong>：指向宿主环境实例（例如，DOM节点）或类实例的引用</li>
+<li><strong>return,child,sibling</strong>：返回值，子元素，兄弟元素，构成Fiber树结构的指针</li>
+<li><strong>memoizedState</strong>：组件的当前状态</li>
+<li><strong>updateQueue</strong>：带处理的更新状态队列</li>
+<li><strong>flags</strong>：标识需要执行何种工作的标志(例如，放置，更新，删除)</li>
+<li><strong>lanes</strong>：标识更新优先级</li>
+</ul>
+<h2 id="调和过程"><a href="#调和过程" class="headerlink" title="调和过程"></a>调和过程</h2><p>调和过程是决定 UI 中需要更新内容的核心理法，它包含几个阶段：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102205159.png" alt="image-20250610220517107"></p>
+<h3 id="渲染阶段-调和"><a href="#渲染阶段-调和" class="headerlink" title="渲染阶段(调和)"></a>渲染阶段(调和)</h3><p>渲染阶段计算需要哪些变化，但不会将它们应用到宿主环境中。这个阶段可以被中断和恢复，因此适合时间分片和优先级排序：</p>
+<ol>
+<li><strong>开始工作</strong>：从上到下处理组件，创建或更新工作单元。</li>
+<li><strong>完成工作</strong>：从下到上继续，完成每个单元的工作。</li>
+</ol>
+<p>这些阶段创建了一个Fiber的工作进行中(WIP)树，代表了UI的下一个状态。</p>
+<h3 id="提交阶段"><a href="#提交阶段" class="headerlink" title="提交阶段"></a>提交阶段</h3><p>提交阶段将计算出的变更应用到宿主环境（例如 DOM）。与渲染阶段不同，它同步运行且无法中断：</p>
+<ol>
+<li>**更新阶段之前(Before Mutation Phase)**：处理DOM更新前所需的操作(例如，类组件中的<code>getSnapshotBeforeUpdate</code>)</li>
+<li>**更新阶段(Mutation Phase)**：应用DOM更新(插入，更新，删除)</li>
+<li>**布局阶段(Layout Phase)**：运行需要更新DOM的效果(例如<code>componentDidMount</code>,<code>componentDidUpdate</code>)</li>
+<li>**副作用阶段(Passive Effects Phase)**：稍后运行副作用(例如,<code>useEffect</code>回调)</li>
+</ol>
+<h2 id="工作循环与调度"><a href="#工作循环与调度" class="headerlink" title="工作循环与调度"></a>工作循环与调度</h2><p>Fiber 工作循环是重新渲染过程中的核心，负责协调工作何时以及如何执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102212047.png" alt="image-20250610221252954"></p>
+<p>工作循环可以在两种模式下运行：</p>
+<ol>
+<li>**同步模式(<code>Synchronous Mode</code>)**：进程占用浏览器，确保更新立即应用</li>
+<li>**并发模式(Concurrent Mode)**：可以暂停和恢复工作，让出浏览器以保持响应性</li>
+</ol>
+<h3 id="车道-Lanes-：优先级系统"><a href="#车道-Lanes-：优先级系统" class="headerlink" title="车道(Lanes)：优先级系统"></a>车道(Lanes)：优先级系统</h3><p>React使用一个称为“lanes”的概念来表示更新的优先级。<code>lanes</code>允许React：</p>
+<ol>
+<li>将更新分组到不同的优先级别</li>
+<li>独立跟踪多个更新</li>
+<li>当被更高优先级的工作取代时，丢弃低优先级更新</li>
+<li>处理过渡(transitions)和并发功能</li>
+</ol>
+<p>与lane相关的关键操作：</p>
+<ul>
+<li><code>requestUpdateLane</code> : 确定更新的适当车道</li>
+<li><code>markRootUpdated</code> : 标记特定 Lane 中有待处理的根节点</li>
+<li><code>getNextLanes</code> : 选择在当前工作循环中处理的 Lane</li>
+</ul>
+<h2 id="Hooks实现"><a href="#Hooks实现" class="headerlink" title="Hooks实现"></a>Hooks实现</h2><p><code>React Hooks</code>在<code>reconciler</code>中实现。每个Hook都会在Fiber的<code>memoizedState</code>属性中存储的链表对象中创建一个对象。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102224885.png" alt="image-20250610222430811"></p>
+<p>当组件渲染时：</p>
+<ol>
+<li>根据是挂载还是更新来设置调度器(<code>dispatcher</code>)</li>
+<li>调用组件函数，并顺序处理hooks</li>
+<li>对于更新，hooks的位置与先前版本一致</li>
+</ol>
+<h3 id="状态和效果管理"><a href="#状态和效果管理" class="headerlink" title="状态和效果管理"></a>状态和效果管理</h3><p>React使用Fiber架构管理状态更新和副作用(effects)：</p>
+<ul>
+<li><strong>状态更新</strong>：在Fiber的<code>updateQueue</code>中进行排队，并在<strong>渲染阶段</strong>进行处理</li>
+<li><strong>副作用</strong>：使用副作用标志在Fiber上标记，并在<strong>提交阶段</strong>进行处理</li>
+</ul>
+<p>不同类型的效果(effect)</p>
+<ul>
+<li>布局效果(Layout effects)：在DOM变更后同步执行</li>
+<li>被动效果(Passive effects)：在浏览器绘制完成后异步执行</li>
+<li>引用更新(Ref updates)：在提交阶段应用</li>
+</ul>
+<h2 id="更新管理"><a href="#更新管理" class="headerlink" title="更新管理"></a>更新管理</h2><p>调和器(reconciler)处理两种主要的更新：</p>
+<ol>
+<li>组件驱动更新(Component-driven updates)：由<code>setState</code>,<code>useState</code>更新函数或<code>forceUpdate</code>触发。</li>
+<li>外部更新(External updates)：由ReactDOM.render或其他顶层API触发</li>
+</ol>
+<p>每个更新都与以下内容相关联：</p>
+<ul>
+<li>一个优先级级别(lane)</li>
+<li>一个有效负载(例如，新状态或属性)</li>
+<li>可能是一个在更新处理完成后执行的回调函数</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506102237070.png" alt="image-20250610223743914"></p>
+<h2 id="错误处理与挂起状态"><a href="#错误处理与挂起状态" class="headerlink" title="错误处理与挂起状态"></a>错误处理与挂起状态</h2><p>Reconciler包含对错误和挂起状态的特别处理。</p>
+<ol>
+<li>错误边界(Error Boundaries)：当渲染过程中发生错误时，Reconciler会沿着fiber树向上搜索错误边界。</li>
+<li>挂起状态(Suspense)：组件可以挂起渲染(抛出Promise)，Reconciler会捕获这一行为并显示备用内容。</li>
+</ol>
+<h2 id="公共API"><a href="#公共API" class="headerlink" title="公共API"></a>公共API</h2><p>调和器(reconciler)为渲染器提供了一个公共API使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Core functions</span></span><br><span class="line"><span class="title function_">createContainer</span>() <span class="comment">// Create a fiber root</span></span><br><span class="line"><span class="title function_">updateContainer</span>() <span class="comment">// Update a container with new elements</span></span><br></pre></td></tr></table></figure>
+
+<p>这些函数被ReactDOM等渲染器用来和调和器交互。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>React Reconciler 是一个复杂的系统，它：</p>
+<ol>
+<li>实现了用于增量渲染的 Fiber 架构</li>
+<li>协调 React 元素树的 reconciling（调和）过程</li>
+<li>根据优先级调度更新</li>
+<li>管理组件状态和副作用</li>
+<li>为并发模式、挂起和过渡等高级功能提供基础</li>
+</ol>
+<p>其设计使 React 能够高效、灵活，并适应不同的渲染环境，同时提供一致的开发者体验。</p>
+<h1 id="Fiber架构-1"><a href="#Fiber架构-1" class="headerlink" title="Fiber架构"></a>Fiber架构</h1><p>Fiber是React的调和算法，在React16引入，用来取代之前的<strong>栈式调和器</strong>。本文档解释了Fiber的架构，其内部工作原理，以及它如何实现并发渲染和增量更新等特性。关于Fiber与特定渲染器的交互方式，请参阅React DOM。</p>
+<h2 id="什么是Fiber"><a href="#什么是Fiber" class="headerlink" title="什么是Fiber"></a>什么是Fiber</h2><p>Fiber既是一种数据结构，也是一种架构，它允许React：</p>
+<ol>
+<li>暂停，中止和恢复任务</li>
+<li>对不同类型的更新分配优先级</li>
+<li>重用已经完成的任务</li>
+<li>取消不再需要的任务</li>
+</ol>
+<p>Fiber的核心设计原则是使渲染可中断，是React能够同时处理多个任务，并提供更好的用户体验，特别是对于复杂的应用程序。</p>
+<h2 id="Fiber数据结构-1"><a href="#Fiber数据结构-1" class="headerlink" title="Fiber数据结构"></a>Fiber数据结构</h2><p>本质上，Fiber是一个JavaScript对象，它代表了一个组件的输入和输出。它既是任务单元，又捕获了组件的状态和DOM。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506111150441.png" alt="image-20250611115042382"></p>
+<p>关于Fiber结构的关键点：</p>
+<ul>
+<li>**标签(Tag)**：识别Fiber的类型(例如，函数式组件，类组件，宿主组件)</li>
+<li>**键(key)**：在调和过程中识别哪些子元素已经更改</li>
+<li>**类型(Type)**：与此Fiber关联的函数或类</li>
+<li>**状态节点(StateNode)**：为此Fiber创建的实例(例如DOM节点，组件实例)</li>
+<li>**子节点，兄弟节点，返回(Child,Sibling,Return)**：形成Fiber树结构</li>
+<li>**待处理属性&#x2F;缓存属性(PendingProps&#x2F;MemoizedProps)**：组件的输入&#x2F;输出</li>
+<li>**更新队列(UpdateQueue)**：状态更新，回调和DOM更新的队列</li>
+<li>**缓存状态(MemoizedState)**：用于创建输出的状态</li>
+<li>**标志(Flags)**：用于标记需要完成的工作类型</li>
+<li>**车道(Lanes)**：表示更新优先级</li>
+</ul>
+<h2 id="工作循环和执行上下文"><a href="#工作循环和执行上下文" class="headerlink" title="工作循环和执行上下文"></a>工作循环和执行上下文</h2><p>React Fiber引入了一个“工作循环”，它控制在Fiber树遍历并执行工作。这个循环可以被中断，允许浏览器处理高优先级事件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121344505.png" alt="image-20250612134422234"></p>
+<p>这个实现的核心部分在<code>ReactFiberWorkLoop.js</code>，它定义了几个关键的执行上下文</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121346657.png" alt="image-20250612134653456"></p>
+<p>在处理过程中，React跟踪当前的执行上下文以了解其所在阶段，这对于在可中断渲染期间保持正确的行为至关重要。</p>
+<h2 id="使用当前树和进行中的树进行双缓冲"><a href="#使用当前树和进行中的树进行双缓冲" class="headerlink" title="使用当前树和进行中的树进行双缓冲"></a>使用当前树和进行中的树进行双缓冲</h2><p>Fiber使用双缓冲技术来构建新的树(workInProgress)，同时保持当前渲染树的完整。这种方法允许React在屏幕外准备新工作，而不会影响用户界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121349555.png" alt="image-20250612134953437"></p>
+<p>当前Fibers和在进行中的Fiebers通过<code>alternate</code>属性相连，创建成对的结构，以促进这种双缓冲方法。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121352965.png" alt="image-20250612135236871"></p>
+<h2 id="调和阶段"><a href="#调和阶段" class="headerlink" title="调和阶段"></a>调和阶段</h2><p>React的Fiber架构将工作分为两个主要阶段：</p>
+<h3 id="1-渲染-调和阶段"><a href="#1-渲染-调和阶段" class="headerlink" title="1. 渲染&#x2F;调和阶段"></a>1. 渲染&#x2F;调和阶段</h3><p>在这个阶段，React</p>
+<ul>
+<li>遍历Fiber树</li>
+<li>调用组件函数和类渲染方法</li>
+<li>计算变更</li>
+<li>此阶段可以被中断，暂停和恢复</li>
+</ul>
+<blockquote>
+<p>注意：此阶段<strong>不会产生任何可见变更</strong>，它只是构建“进行中的“树并计算需要变更的内容。</p>
+</blockquote>
+<h3 id="2-提交阶段"><a href="#2-提交阶段" class="headerlink" title="2. 提交阶段"></a>2. 提交阶段</h3><p>提交阶段：</p>
+<ul>
+<li>是<strong>同步</strong>且<strong>不可中断</strong>的</li>
+<li>将所有更改应用于DOM</li>
+<li>运行生命周期方法和副作用</li>
+</ul>
+<p>提交阶段进一步细分为子阶段：</p>
+<ul>
+<li>更新阶段之前</li>
+<li>更新阶段</li>
+<li>布局阶段</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121358410.png" alt="image-20250612135853213"></p>
+<h2 id="任务处理"><a href="#任务处理" class="headerlink" title="任务处理"></a>任务处理</h2><p>在构建或更新Fiber树时，React遵循两个阶段过程：</p>
+<ol>
+<li><strong>开始阶段(自上而下)</strong><ul>
+<li>从根开始向下工作</li>
+<li>对于每个Fiber，调用<code>beginWork</code>来返回下一个要处理的子元素</li>
+<li>根据需要创建新的Fibers</li>
+</ul>
+</li>
+<li><strong>完成阶段(自底向上)</strong><ul>
+<li>一旦Fiber没有子节点(或他们已经处理)，则完成Fiber</li>
+<li>调用<code>completeWork</code>来完成Fiber</li>
+<li>继续到兄弟节点，然后回到父节点</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121406358.png" alt="image-20250612140603138"></p>
+<p>在处理一个Fiber时，React可能会发现：</p>
+<ul>
+<li>它需要更新(属性已更改)</li>
+<li>它需要重新创建(类型已更改)</li>
+<li>它需要被删除</li>
+<li>子节点需要被调和</li>
+</ul>
+<p>每种情况处理方式不同，Fiber上设置了适当的标志来进行标识。</p>
+<h2 id="优先级和调度"><a href="#优先级和调度" class="headerlink" title="优先级和调度"></a>优先级和调度</h2><p>Fiber引入了车道(lanes)(取代了早期的“过期时间”模型)的复杂优先级系统来处理更新。车道在一个位字段中表示优先级和批处理。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121414846.png" alt="image-20250612141412745"></p>
+<p>更新会被分配到特定的车道，React按优先级顺序处理他们。多个更新可以合并到同一个车道中。</p>
+<p>调度系统支持：</p>
+<ul>
+<li>先处理高优先级更新(例如，用户交互)</li>
+<li>批量处理低优先级更新(例如，数据获取)</li>
+<li>分时处理工作以保持界面响应性</li>
+<li>必要时暂停工作</li>
+</ul>
+<h2 id="副作用管理"><a href="#副作用管理" class="headerlink" title="副作用管理"></a>副作用管理</h2><p>Fiber使用标志和列表的组合来跟踪副作用(例如，DOM更新，生命周期方法，refs)。副作用在渲染阶段收集，在提交阶段执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121707681.png" alt="image-20250612170735631"></p>
+<p>副作用在提交阶段以特定的顺序应用，以确保正确行为。</p>
+<ol>
+<li>DOM变更(放置，更新，删除)</li>
+<li>Refs更新</li>
+<li>布局效果(componentDidMount&#x2F;Update, useLayoutEffect)</li>
+<li>被动效果(useEffect)——异步执行</li>
+</ol>
+<h2 id="Hooks实现-1"><a href="#Hooks实现-1" class="headerlink" title="Hooks实现"></a>Hooks实现</h2><p>React Hooks是在Fiber架构基础上实现的。对于<strong>函数组件</strong>，每一个函数组件Fiber都有一个<code>memoizedState</code>字段，该字段存储了一个Hooks的<strong>链表</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121712120.png" alt="image-20250612171239060"></p>
+<p>每个钩子都使用这个链表结构在渲染之间维护其状态。当函数组件渲染时：</p>
+<ol>
+<li>当前的钩子指针被重置</li>
+<li>每当每个钩子在组件体中被调用：<ul>
+<li>对于首次渲染：创建并初始化钩子</li>
+<li>对于更新：从列表中获取现有的钩子</li>
+</ul>
+</li>
+<li>钩子返回当前值和更新函数</li>
+</ol>
+<p>渲染之间的Hooks调用顺序的严格性是通过依赖这个链表结构来</p>
+<h2 id="挂起和恢复能力"><a href="#挂起和恢复能力" class="headerlink" title="挂起和恢复能力"></a>挂起和恢复能力</h2><p>Fiber的一个强大功能是能够暂停渲染并在稍后从停止的地方继续。这使以下功能成为可能：</p>
+<ul>
+<li>React 挂起来获取数据和代码拆分</li>
+<li>并发模式渲染</li>
+<li>时间切片以提升响应性</li>
+</ul>
+<p>当组件挂起(抛出一个Promise)时：</p>
+<ol>
+<li>React捕获这个Promise</li>
+<li>取消当前正在进行的任务</li>
+<li>显示备用UI</li>
+<li>当Proimse解决后，React尝试重新渲染</li>
+</ol>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>Fiber包含强大的错误处理机制，用于捕获沿着组件树传播的错误。</p>
+<ol>
+<li>当渲染过程中发生错误时，React会：<ul>
+<li>回溯调用栈</li>
+<li>查找最近的错误边界</li>
+<li>在边界上创建错误更新</li>
+</ul>
+</li>
+<li>在提交阶段<ul>
+<li>错误边界的状态被更新</li>
+<li>显示回退UI</li>
+</ul>
+</li>
+</ol>
+<p>这种机制确保应用程序某一部分的错误不会导致整个UI崩溃。</p>
+<h2 id="Fiber调和算法"><a href="#Fiber调和算法" class="headerlink" title="Fiber调和算法"></a>Fiber调和算法</h2><p>核心的调和算法决定哪些内容发生了变化需要更新：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121726549.png" alt="image-20250612172656461"></p>
+<p>在子元素调和过程中，React使用见匹配和启发式方式来决定哪些元素对应与先前渲染的哪些Fiber。</p>
+<h2 id="性能跟踪"><a href="#性能跟踪" class="headerlink" title="性能跟踪"></a>性能跟踪</h2><p>Fiber包含内置的性能跟踪功能，用于分析和调试：</p>
+<ol>
+<li>**性能分析组件(Profiler Component)**：测量树中特定部分的渲染时间</li>
+<li>**调试工具集成(Devtools Integration)**：为React调试工具提供详细的运行时间信息</li>
+<li>**追踪标记(Tracing Markers)**：跟踪特定操作和转换</li>
+</ol>
+<p>该架构提供了在调和和渲染的不同阶段收集性能数据的钩子，使像React DevTools这样的工具能够提供详细的可视化信息。</p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>Fiber架构代表了React内部算法的全面重新构想，以实现并发，增量更新和优先级排序。它基于这些核心原则构建：</p>
+<ol>
+<li>**增量渲染(Incremental Rendering)**：任务可以分成多个块，并在多个帧中分摊</li>
+<li>**优先级管理(Priority Management)**：根据来源和上下文，不同的更新可以被设置不同的优先级</li>
+<li>**暂停和继续(Pause and Resume)**：任务可以被暂停，放弃或者暂停后再继续。</li>
+<li>**复用任务(Reuse of Work)**：在特定情况下，之前完成的工作可以被重复使用</li>
+</ol>
+<p>这种架构支持了React的许多高级功能，包括并发模式，Suspense和Hooks API。它使React能够在频繁更新的复杂应用程序中提供响应式用户体验。</p>
+<h1 id="React-Hooks"><a href="#React-Hooks" class="headerlink" title="React Hooks"></a>React Hooks</h1><p>React Hooks提供了一种在函数组件中使用状态和其他React功能的方式，而无需编写类组件。这个系统是现代React开发的核心，它使函数组件能够实现状态逻辑，副作用，上下文访问以及其他必要功能。</p>
+<h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>React Hooks于React16.8引入，允许开发者使用原本仅在类组件中可用的React功能。Hooks为React的核心概念(如状态，上下文和生命周期行为)提供了更直接的API。</p>
+<p>Hooks是作为React Fiber调和架构的一部分实现的。Hooks系统负责：</p>
+<ol>
+<li>在渲染之间创建和维护组件状态</li>
+<li>管理副作用(DOM操作，数据获取，订阅)</li>
+<li>访问上下文和其他React特性</li>
+<li>通过缓存优化渲染性能</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121803475.png" alt="image-20250612180334397"></p>
+<h2 id="Hook核心架构"><a href="#Hook核心架构" class="headerlink" title="Hook核心架构"></a>Hook核心架构</h2><p>Hooks系统围绕几个关键的组件构建：</p>
+<ol>
+<li>**Hook调度器(Hook Dispatcher)**：基于当前执行上下文提供钩子实现的核心机制</li>
+<li>**Hook存储(Hook Storage)**：链表结构，用于存储附加到Fiber上的Hook状态</li>
+<li>**Hook规则(Hook Rules)**：需要严格的调用顺序要求来跟踪Hook状态</li>
+<li>**副作用系统(Effect System)**：管理具有不同时序的副作用(布局副作用，被动副作用)</li>
+</ol>
+<h3 id="内部Hook状态管理"><a href="#内部Hook状态管理" class="headerlink" title="内部Hook状态管理"></a>内部Hook状态管理</h3><p>React将钩子状态维护在Fiber的<code>memoizedState</code>属性上的链表中。每个组件中的钩子都会向这个链表添加一个节点，这就是钩子必须在每次渲染中<strong>按相同顺序调用</strong>的原因——React依赖于顺序调用将钩子调用于其存储的状态关联起来。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121814040.png" alt="image-20250612181433986"></p>
+<h2 id="Hook执行模型"><a href="#Hook执行模型" class="headerlink" title="Hook执行模型"></a>Hook执行模型</h2><p>Hooks在React调和过程中的渲染阶段执行。<code>renderWithHooks</code>函数作为组件渲染过程中钩子函数处理的入口点。</p>
+<h3 id="使用Hooks进行渲染"><a href="#使用Hooks进行渲染" class="headerlink" title="使用Hooks进行渲染"></a>使用Hooks进行渲染</h3><p>组件使用Hooks渲染过程遵循以下流程：</p>
+<ol>
+<li>当处理函数组件时，<code>reconciler</code>调和器会调用<code>renderWithHooks</code>。</li>
+<li>根据是挂载(首次渲染)还是更新，设置对应的Hook调度器</li>
+<li>执行组件函数，该函数会调用Hooks</li>
+<li>每次调用Hook会更新内部Hook的状态并可能安排更新</li>
+<li>组件的渲染结果被返回</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121821239.png" alt="image-20250612182103159"></p>
+<h2 id="Hook类型"><a href="#Hook类型" class="headerlink" title="Hook类型"></a>Hook类型</h2><p>React提供了多个内置钩子，每个钩子服务于不同的目的：</p>
+<h3 id="状态钩子-State-Hooks"><a href="#状态钩子-State-Hooks" class="headerlink" title="状态钩子(State Hooks)"></a>状态钩子(State Hooks)</h3><ul>
+<li><strong>useState</strong>：提供状态变量和设置函数</li>
+<li><strong>useReducer</strong>：提供基于reducer的更新逻辑和状态管理</li>
+</ul>
+<h3 id="副作用钩子-Effect-Hooks"><a href="#副作用钩子-Effect-Hooks" class="headerlink" title="副作用钩子(Effect Hooks)"></a>副作用钩子(Effect Hooks)</h3><ul>
+<li><strong>useEffect</strong>：在渲染后运行副作用，并带有清理功能</li>
+<li><strong>useLayoutEffect</strong>：与<code>useEffect</code>类似，但在DOM变更后同步运行</li>
+<li><strong>useInsertionEffect</strong>：在<code>CSS-in-JS</code>库的任何DOM变更<strong>之前</strong>运行</li>
+</ul>
+<h3 id="上下文钩子-Context-Hooks"><a href="#上下文钩子-Context-Hooks" class="headerlink" title="上下文钩子(Context Hooks)"></a>上下文钩子(Context Hooks)</h3><ul>
+<li><strong>useContext</strong>：读取并订阅React上下文</li>
+</ul>
+<h3 id="引用钩子-Ref-Hooks"><a href="#引用钩子-Ref-Hooks" class="headerlink" title="引用钩子(Ref Hooks)"></a>引用钩子(Ref Hooks)</h3><ul>
+<li><strong>useRef</strong>：创建一个可变的对象，该对象在渲染之间始终持有</li>
+<li><strong>useImperativeHandle</strong>：自定义通过ref暴露的值</li>
+</ul>
+<h3 id="性能钩子-Performance-Hooks"><a href="#性能钩子-Performance-Hooks" class="headerlink" title="性能钩子(Performance Hooks)"></a>性能钩子(Performance Hooks)</h3><ul>
+<li><strong>useMemo</strong>：缓存计算结果</li>
+<li><strong>useCallback</strong>：缓存回调函数</li>
+<li><strong>useTransition</strong>：将状态更新标记为非紧急</li>
+<li><strong>useDeferredValue</strong>：延迟更新UI的非关键部分</li>
+</ul>
+<h3 id="其他钩子"><a href="#其他钩子" class="headerlink" title="其他钩子"></a>其他钩子</h3><ul>
+<li><strong>useId</strong>：为访问生成唯一ID</li>
+<li><strong>useDebugValue</strong>：在React Devtools中显示标签</li>
+</ul>
+<h2 id="useState的实现"><a href="#useState的实现" class="headerlink" title="useState的实现"></a>useState的实现</h2><p><code>useState</code>是最常用的钩子之一。它提供了组件状态和更新状态的函数。</p>
+<p>当来自<code>useState</code>的状态设置函数被调用时，React：</p>
+<ol>
+<li>创建一个包含新状态或更新函数的更新对象</li>
+<li>添加这个更新对象到hook的更新队列中</li>
+<li>安排组件的重新渲染</li>
+<li>在下次渲染期间，处理所有挂起的更新以计算新的状态</li>
+</ol>
+<h2 id="副作用系统"><a href="#副作用系统" class="headerlink" title="副作用系统"></a>副作用系统</h2><p><code>useEffect</code>钩子允许函数组件执行副作用。</p>
+<h3 id="副作用阶段"><a href="#副作用阶段" class="headerlink" title="副作用阶段"></a>副作用阶段</h3><p>React中的副作用在不同的阶段执行：</p>
+<ol>
+<li><strong>布局副作用(Layout Effects)<strong>：在所有DOM变更之后，</strong>浏览器绘制前同步运行</strong></li>
+<li><strong>被动副作用(Passive Effects)<strong>：在浏览器绘制后</strong>异步运行</strong>。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121857948.png" alt="image-20250612185741883"></p>
+<h3 id="生命周期副作用"><a href="#生命周期副作用" class="headerlink" title="生命周期副作用"></a>生命周期副作用</h3><p>当使用<code>useEffect</code>的组件进行渲染时：</p>
+<ol>
+<li>在渲染过程中，会捕获副作用函数及其依赖项</li>
+<li>在提交过程中，React会将依赖项与之前的依赖项进行比较</li>
+<li>如果依赖项已更改(或为首次渲染)，则会调用上一个副作用清理函数</li>
+<li>新的副作用将被安排到浏览器<strong>绘制后</strong>执行</li>
+</ol>
+<h2 id="Hooks规则"><a href="#Hooks规则" class="headerlink" title="Hooks规则"></a>Hooks规则</h2><p>钩子系统需要严格遵循特定规则：</p>
+<ol>
+<li>只在顶层调用钩子，不再循环，条件或嵌套函数中调用</li>
+<li>仅在React函数组件或自定义钩子中调用钩子——不要在普通的JavaScript函数调用</li>
+</ol>
+<p>这些规则的存在是因为React依赖于调用顺序来在渲染之间将钩子调用与其状态关联起来。钩子实现使用链表结构，调用顺序必须保持一致，以正确地将钩子与其状态关联。</p>
+<p>React提供了ESLint规则来自动执行这些约束</p>
+<h2 id="自定义Hooks"><a href="#自定义Hooks" class="headerlink" title="自定义Hooks"></a>自定义Hooks</h2><p>自定义钩子是使用React钩子并遵循相同规则的JavaScript函数。他们能够提取和在不同的组件之间重用有状态的逻辑。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121906490.png" alt="image-20250612190607407"></p>
+<p>自定义钩子与内置钩子遵循相同的执行模型，允许组件重用有状态的逻辑，同时为每个组件实例维护独立的状态。</p>
+<h2 id="Hooks调试和DevTools集成"><a href="#Hooks调试和DevTools集成" class="headerlink" title="Hooks调试和DevTools集成"></a>Hooks调试和DevTools集成</h2><p>React为调试Hooks提供了特殊的开发特性：</p>
+<ol>
+<li>**Hook警告(Hook warning)**：检测并警告常见的Hook错误(顺序变化，违反规则)</li>
+<li>**DevTools集成(DevTools integration)**：在React DevTools中显示hook状态和值</li>
+<li><strong>useDebugValue</strong>：这是一个内置钩子，允许自定义钩子在DevTools中显示自定义标签</li>
+</ol>
+<h2 id="性能考量"><a href="#性能考量" class="headerlink" title="性能考量"></a>性能考量</h2><p>Hooks提供了多种优化措施来帮助管理组件性能：</p>
+<h3 id="缓存钩子-Memoization-Hooks"><a href="#缓存钩子-Memoization-Hooks" class="headerlink" title="缓存钩子(Memoization Hooks)"></a>缓存钩子(Memoization Hooks)</h3><ul>
+<li><strong>useMemo</strong>：放置昂贵的计算在每一次渲染时都要运行</li>
+<li><strong>useCallback</strong>：放置回调函数在每次渲染时改变身份</li>
+</ul>
+<p>这些钩子有助于打破可能导致子组件不必要的重新渲染的“引用相等性”链</p>
+<h3 id="渲染优化"><a href="#渲染优化" class="headerlink" title="渲染优化"></a>渲染优化</h3><ul>
+<li><strong>useTransition</strong>：将状态更新标记为非紧急，使其他更新可以优先处理</li>
+<li><strong>useDeferredValue</strong>：创建一个逐渐过渡的值的延迟版本</li>
+</ul>
+<h2 id="幕后：Hook调度器"><a href="#幕后：Hook调度器" class="headerlink" title="幕后：Hook调度器"></a>幕后：Hook调度器</h2><p>React使用调度器机制根据当前阶段(渲染，挂载，更新等)提供不同的Hook实现。在组件渲染之前切换调度器，确定哪一个Hook的具体实现将被调用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121916947.png" alt="image-20250612191617862"></p>
+<h2 id="与React-Fiber集成"><a href="#与React-Fiber集成" class="headerlink" title="与React Fiber集成"></a>与React Fiber集成</h2><p>Hooks与React Fiber架构深度集成：</p>
+<ol>
+<li>Hook状态存储在Fiber的<code>memoizedState</code>属性上</li>
+<li>Hook更新可以通过Fiber工作循环来调度</li>
+<li>副作用通过Fibers上的effects标签系统进行管理</li>
+</ol>
+<p>当Hook计划更新时，它：</p>
+<ol>
+<li>创建一个更新对象</li>
+<li>将其添加到组件的更新队列</li>
+<li>通过<code>scheduleUpdateOnFiber</code>规划一个重新渲染</li>
+<li>渲染系统最终会处理这些更新</li>
+</ol>
+<h2 id="结论-2"><a href="#结论-2" class="headerlink" title="结论"></a>结论</h2><p>React Hooks为管理函数组件中的状态和副作用提供了强大的API。Hooks系统建立在React Fiber架构之上，利用其能力来跟踪组件状态和调度更新。理解Hooks的内部结构有助于有效使用它们并调试可能出现的问题。</p>
+<p>Hook的规则并不是拍脑袋想出来的，而是Hook系统的实现方式直接导致的后果。遵循这些规则可以确保React在渲染之间正确地将Hook调用与其状态关联起来。</p>
+<h1 id="渲染目标"><a href="#渲染目标" class="headerlink" title="渲染目标"></a>渲染目标</h1><p>React通过一套平台特定的渲染器系统设计为可渲染到多个环境。本节内容解释了React的渲染架构工作原理，React核心与平台特定代码之间的接口，以及React生态系统中可用的主要渲染目标。</p>
+<h2 id="渲染架构概述"><a href="#渲染架构概述" class="headerlink" title="渲染架构概述"></a>渲染架构概述</h2><p>React的架构将核心的调和算法与平台特定的渲染逻辑分离。这种分离使React能够在保持一致的编程模型的同时支持多个渲染目标。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121931539.png" alt="image-20250612193141430"></p>
+<h2 id="宿主配置接口"><a href="#宿主配置接口" class="headerlink" title="宿主配置接口"></a>宿主配置接口</h2><p>每个渲染器都提供一个“宿主配置”实现，定义了React如何与目标平台交互。宿主配置包括创建，更新和管理平台特定实例的方法。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121933839.png" alt="image-20250612193319769"></p>
+<h3 id="宿主配置作用"><a href="#宿主配置作用" class="headerlink" title="宿主配置作用"></a>宿主配置作用</h3><p>宿主配置负责：</p>
+<ol>
+<li>**实例管理(Instance Management)**：创建，更新和删除特定平台的实例</li>
+<li>**树操作(Tree Operations)**：操作渲染的树(apppendChild, insertBefore, removeChild)</li>
+<li>**属性管理(Property Management)**：将属性应用于实例，处理更新</li>
+<li>**事件处理(Event Handling)**：管理平台事件并映射到React的事件系统</li>
+<li>**杂项(Miscellaneous)**：支持文本内容，超时，微任务等特性</li>
+</ol>
+<h2 id="主要渲染目标"><a href="#主要渲染目标" class="headerlink" title="主要渲染目标"></a>主要渲染目标</h2><p>React包含多个官方渲染目标：</p>
+<h3 id="ReactDOM"><a href="#ReactDOM" class="headerlink" title="ReactDOM"></a>ReactDOM</h3><p>ReactDOM是面向网页浏览器的DOM的主要渲染器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121938073.png" alt="image-20250612193803987"></p>
+<p>主要特性：</p>
+<ul>
+<li>兼容标准DOM元素和浏览器API</li>
+<li>包含浏览器特定优化和事件处理</li>
+<li>支持DOM特定功能，如样式，表单元素和可访问性</li>
+</ul>
+<h3 id="ReactNative"><a href="#ReactNative" class="headerlink" title="ReactNative"></a>ReactNative</h3><p>ReactNative能够将React组件渲染到原生移动平台(iOS, Android)。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121939053.png" alt="image-20250612193943987"></p>
+<p>主要特性：</p>
+<ul>
+<li>通过<code>UIManager</code>桥与原生平台通信</li>
+<li>使用React Native视图系统管理原生视图实例</li>
+<li>处理平台特定属性和事件</li>
+</ul>
+<h3 id="ReactFabric"><a href="#ReactFabric" class="headerlink" title="ReactFabric"></a>ReactFabric</h3><p>ReactFabric是使用C++Fabric渲染系统进行渲染的ReactNative的现代渲染器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121946749.png" alt="image-20250612194634681"></p>
+<p>主要特性：</p>
+<ul>
+<li>使用更高效的C++渲染基础设施</li>
+<li>与原生平台直接通信(无需JSON序列化)</li>
+<li>比传统的ReactNative渲染器具有更好的性能</li>
+</ul>
+<h3 id="Testing-Renderers"><a href="#Testing-Renderers" class="headerlink" title="Testing Renderers"></a>Testing Renderers</h3><p>React包含两个测试渲染器：</p>
+<ol>
+<li><strong>ReactTestRenderer</strong>：创建渲染树的纯JavaScript表示</li>
+<li><strong>ReactNoop</strong>：一个用于测试reconciler本身的“无操作”渲染器</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121948791.png" alt="image-20250612194851726"></p>
+<h2 id="宿主配置实现细节"><a href="#宿主配置实现细节" class="headerlink" title="宿主配置实现细节"></a>宿主配置实现细节</h2><p>每个渲染器为其管理的平台特定实例定义自己的类型：</p>
+<table>
+<thead>
+<tr>
+<th>Renderer 渲染器</th>
+<th>Instance Type 实例类型</th>
+<th>Container Type 容器类型</th>
+<th>Text Instance 文本实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ReactDOM</td>
+<td>DOM Element DOM 元素</td>
+<td>DOM 元素&#x2F;文档&#x2F;片段</td>
+<td>文本节点</td>
+</tr>
+<tr>
+<td>ReactNative</td>
+<td>ReactNativeFiberHostComponent</td>
+<td>带有 containerTag 的容器对象</td>
+<td>数字（tag）</td>
+</tr>
+<tr>
+<td>ReactFabric</td>
+<td>具有节点和规范属性的对象</td>
+<td>根容器</td>
+<td>O具有节点属性的对象</td>
+</tr>
+<tr>
+<td>ReactTestRenderer</td>
+<td>具有类型、属性和子元素的 Object</td>
+<td>具有子元素数组的 Object</td>
+<td>具有文本属性的 Object</td>
+</tr>
+</tbody></table>
+<h3 id="所有渲染器共有的方法"><a href="#所有渲染器共有的方法" class="headerlink" title="所有渲染器共有的方法"></a>所有渲染器共有的方法</h3><p>所有渲染器实现这些关键方法，这些方法是调和器使用的：</p>
+<h4 id="Creation-and-Initial-Setup-创建和初始设置"><a href="#Creation-and-Initial-Setup-创建和初始设置" class="headerlink" title="Creation and Initial Setup 创建和初始设置"></a>Creation and Initial Setup 创建和初始设置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle)</span><br><span class="line">createTextInstance(text, rootContainerInstance, hostContext, internalInstanceHandle)</span><br><span class="line">appendInitialChild(parentInstance, child)</span><br><span class="line">finalizeInitialChildren(instance, type, props, hostContext)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Updates-and-Mutations-更新与变异"><a href="#Updates-and-Mutations-更新与变异" class="headerlink" title="Updates and Mutations 更新与变异"></a>Updates and Mutations 更新与变异</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">appendChild(parentInstance, child)</span><br><span class="line">insertBefore(parentInstance, child, beforeChild)</span><br><span class="line">removeChild(parentInstance, child)</span><br><span class="line">commitUpdate(instance, updatePayload, type, oldProps, newProps, internalInstanceHandle)</span><br><span class="line">commitTextUpdate(textInstance, oldText, newText)</span><br></pre></td></tr></table></figure>
+
+<h2 id="调和器怎么连接到渲染器"><a href="#调和器怎么连接到渲染器" class="headerlink" title="调和器怎么连接到渲染器"></a>调和器怎么连接到渲染器</h2><p>React reconciliation 计算更新并通过宿主配置接口调用渲染器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121956351.png" alt="image-20250612195605275"></p>
+<h2 id="通过自定义渲染器扩展React"><a href="#通过自定义渲染器扩展React" class="headerlink" title="通过自定义渲染器扩展React"></a>通过自定义渲染器扩展React</h2><p>React 的架构允许为任何目标平台创建自定义渲染器。这些自定义渲染器使用与官方渲染器实现相同的宿主配置接口。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506121957411.png" alt="image-20250612195756356"></p>
+<p>自定义渲染器必须实现与官方渲染器相同的宿主配置接口，包括：</p>
+<ol>
+<li>特定平台的原始类型定义</li>
+<li>实例的创建和管理</li>
+<li>属性更新</li>
+<li>树形结构管理</li>
+<li>事件处理（如适用）</li>
+</ol>
+<h2 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h2><p>React 中的渲染目标通过特定平台的渲染器实现，这些渲染器与核心的重新 reconcile 算法共享一个公共接口。这种架构允许 React 同时针对多个平台，同时保持一致的编程模型。</p>
+<p>每个渲染器实现一个宿主配置，该配置定义了 React 如何与目标平台交互，包括创建实例、管理属性和处理事件。官方渲染器（ReactDOM、ReactNative、ReactFabric、ReactTestRenderer）涵盖了最常见的用例，但该架构也支持自定义渲染器以支持更多平台。</p>
+<h1 id="React-DOM"><a href="#React-DOM" class="headerlink" title="React DOM"></a>React DOM</h1><p>React DOM 是 React 的 DOM 特定渲染器，使 React 组件能够与网页浏览器的文档对象模型（DOM）交互。它实现了必要的宿主配置 API，并提供 DOM 特定功能来连接 React 的虚拟 DOM 与浏览器的实际 DOM。</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>React DOM是使用React构建的Web应用程序的主要渲染器。它将React组件，元素和状态变化转换为高效的DOM操作。</p>
+<p>ReactDOM实现了React调和器所需的宿主环境接口，提供了针对DOM的特定方法：</p>
+<ul>
+<li>创建和操作DOM元素</li>
+<li>处理浏览器事件</li>
+<li>管理属性和特性</li>
+<li>支持过渡，水合和端口等特性</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506122001585.png" alt="image-20250612200117505"></p>
+<h2 id="2-核心组件"><a href="#2-核心组件" class="headerlink" title="2. 核心组件"></a>2. 核心组件</h2><p>React DOM 由几个关键模块组成，它们协同工作以提供 DOM 渲染功能：</p>
+<table>
+<thead>
+<tr>
+<th>Component 组件</th>
+<th>Purpose 目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ReactDOM</code></td>
+<td>主入口点，提供顶级 API 如 <code>render</code> 、 <code>createRoot</code> 和 <code>hydrate</code></td>
+</tr>
+<tr>
+<td><code>ReactFiberConfigDOM</code></td>
+<td>针对 DOM 的宿主配置接口实现</td>
+</tr>
+<tr>
+<td><code>ReactDOMComponent</code></td>
+<td>处理 DOM 组件操作，如设置属性和特性</td>
+</tr>
+<tr>
+<td><code>ReactDOMEventListener</code></td>
+<td>管理 React 合成事件系统</td>
+</tr>
+<tr>
+<td><code>ReactDOMUpdatePriority</code></td>
+<td>处理 DOM 更新的调度优先级</td>
+</tr>
+</tbody></table>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506122003450.png" alt="image-20250612200321372"></p>
+<h2 id="3-主机配置实现"><a href="#3-主机配置实现" class="headerlink" title="3. 主机配置实现"></a>3. 主机配置实现</h2><p>React DOM 实现了 React 调解器所需的主机配置接口。该实现主要由 <code>ReactFiberConfigDOM</code> 提供，它定义了 React 如何与浏览器 DOM 交互。</p>
+<h3 id="3-1-实例类型"><a href="#3-1-实例类型" class="headerlink" title="3.1 实例类型"></a>3.1 实例类型</h3><p>React DOM 定义了多种类型来表示虚拟 DOM 中的 DOM 元素：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Types defined in ReactFiberConfigDOM</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">Container</span> = <span class="title class_">Element</span> | <span class="title class_">Document</span> | <span class="title class_">DocumentFragment</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">Instance</span> = <span class="title class_">Element</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">TextInstance</span> = <span class="title class_">Text</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">SuspenseInstance</span> = <span class="title class_">Comment</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">HydratableInstance</span> = <span class="title class_">Instance</span> | <span class="title class_">TextInstance</span> | <span class="title class_">SuspenseInstance</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">PublicInstance</span> = <span class="title class_">Element</span> | <span class="title class_">Text</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这些类型将 React 的内部表示映射到相应的 DOM 元素。</p>
+<h3 id="3-2-元素创建"><a href="#3-2-元素创建" class="headerlink" title="3.2 元素创建"></a>3.2 元素创建</h3><p>当 reconciler 需要实例化新组件时，React DOM 会创建实际的 DOM 元素：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createInstance</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">type</span>: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">props</span>: <span class="title class_">Props</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">rootContainerInstance</span>: <span class="title class_">Container</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">hostContext</span>: <span class="title class_">HostContext</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">internalInstanceHandle</span>: <span class="title class_">Object</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">Instance</span> &#123;</span><br><span class="line">  <span class="comment">// Create the DOM element based on type and namespace context</span></span><br><span class="line">  <span class="comment">// Apply initial props</span></span><br><span class="line">  <span class="comment">// Set up event listeners</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该实现处理：</p>
+<ul>
+<li>元素命名空间(HTML, SVG, MathML)</li>
+<li>特殊元素如<code>script</code>和<code>select</code></li>
+<li>属性初始化</li>
+<li>DOM插入</li>
+</ul>
+<h3 id="3-3-DOM变更"><a href="#3-3-DOM变更" class="headerlink" title="3.3 DOM变更"></a>3.3 DOM变更</h3><p>React DOM 支持更新操作，以响应 React 组件更新来更新 DOM：</p>
+<table>
+<thead>
+<tr>
+<th>Operation 操作</th>
+<th>Function 函数</th>
+<th>Purpose 目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Create 创建</td>
+<td><code>createInstance()</code></td>
+<td>创建新的 DOM 元素</td>
+</tr>
+<tr>
+<td>Update 更新</td>
+<td><code>commitUpdate()</code></td>
+<td>更新元素属性</td>
+</tr>
+<tr>
+<td>Text Update 文本更新</td>
+<td><code>commitTextUpdate()</code></td>
+<td>更新文本内容</td>
+</tr>
+<tr>
+<td>Insert 插入</td>
+<td><code>appendChild()</code>, <code>insertBefore()</code></td>
+<td>向 DOM 添加元素</td>
+</tr>
+<tr>
+<td>Remove 移除</td>
+<td><code>removeChild()</code></td>
+<td>从 DOM 移除元素</td>
+</tr>
+</tbody></table>
+<p>这些操作经过优化以最小化 DOM 交互。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506122026098.png" alt="image-20250612202649016"></p>
+<h2 id="4-事件处理"><a href="#4-事件处理" class="headerlink" title="4. 事件处理"></a>4. 事件处理</h2><p>ReactDOM实现了一个复杂的事件处理系统，它能够标准化不同浏览器中的事件，并提供事件委托和合成事件等额外功能。</p>
+<h3 id="4-1-事件系统架构"><a href="#4-1-事件系统架构" class="headerlink" title="4.1 事件系统架构"></a>4.1 事件系统架构</h3><p>React DOM 使用事件委托，将大多数事件监听器附加到根 DOM 容器而不是单个元素上。当事件冒泡到容器时，React 识别出应该处理该事件的 React 组件，并向其派发一个合成事件。</p>
+<p>事件系统：</p>
+<ol>
+<li>注册支持的事件监听器</li>
+<li>标准化浏览器差异</li>
+<li>实现事件池以提升性能</li>
+<li>提供额外的功能，如捕获阶段处理</li>
+</ol>
+<h3 id="4-2-事件优先级"><a href="#4-2-事件优先级" class="headerlink" title="4.2 事件优先级"></a>4.2 事件优先级</h3><p>ReactDOM为事件分配不同的优先级，这有助于确定相关更新应该如何紧急处理</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> supportsMicrotasks = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> scheduleMicrotask = <span class="keyword">typeof</span> queueMicrotask === <span class="string">&#x27;function&#x27;</span></span><br><span class="line">  ? queueMicrotask</span><br><span class="line">  : <span class="keyword">typeof</span> <span class="title class_">Promise</span> !== <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">    ? <span class="function"><span class="params">callback</span> =&gt;</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="literal">null</span>).<span class="title function_">then</span>(callback).<span class="title function_">catch</span>(handleErrorInNextTick)</span><br><span class="line">    : scheduleTimeout;</span><br></pre></td></tr></table></figure>
+
+<p>这种优先级分配对于确保响应式交互同时高效地批处理次要更新至关重要。</p>
+<h2 id="5-视图过渡支持"><a href="#5-视图过渡支持" class="headerlink" title="5. 视图过渡支持"></a>5. 视图过渡支持</h2><p>视图过渡系统通过以下方式实现不同 UI 状态之间的过渡：</p>
+<ol>
+<li>捕获当前状态</li>
+<li>应用过渡效果</li>
+<li>渲染新状态</li>
+<li>在两种状态之间动画过渡</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">startViewTransition</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">rootContainer</span>: <span class="title class_">Container</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">transitionTypes</span>: <span class="literal">null</span> | <span class="title class_">TransitionTypes</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">mutationCallback</span>: () =&gt; <span class="built_in">void</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">layoutCallback</span>: () =&gt; <span class="built_in">void</span>,</span></span><br><span class="line"><span class="params">  ...</span></span><br><span class="line"><span class="params"></span>): <span class="literal">null</span> | <span class="title class_">RunningViewTransition</span> &#123;</span><br><span class="line">  <span class="comment">// Implementation to manage view transitions</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506122033262.png" alt="image-20250612203345195"></p>
+<h2 id="6-与Reconciler集成"><a href="#6-与Reconciler集成" class="headerlink" title="6. 与Reconciler集成"></a>6. 与Reconciler集成</h2><p>React DOM设计为与React调和器无缝协作，调和器负责处理React组件的核心更新逻辑</p>
+<h3 id="6-1-调和器集成"><a href="#6-1-调和器集成" class="headerlink" title="6.1 调和器集成"></a>6.1 调和器集成</h3><p>调和器在调和过程中的特定阶段调用React DOM的宿主配置函数</p>
+<ol>
+<li>在渲染阶段，调和器构建一个描述所需变更的效果树</li>
+<li>在提交阶段，调和器会调用特定的DOM方法来应用这些变更</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React DOM implements these interfaces</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">prepareForCommit</span>(<span class="params"><span class="attr">containerInfo</span>: <span class="title class_">Container</span></span>): <span class="title class_">Object</span> | <span class="literal">null</span> &#123;</span><br><span class="line">  <span class="comment">// Capture state before commit</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">resetAfterCommit</span>(<span class="params"><span class="attr">containerInfo</span>: <span class="title class_">Container</span></span>): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="comment">// Restore state after commit</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-宿主上下文"><a href="#6-2-宿主上下文" class="headerlink" title="6.2 宿主上下文"></a>6.2 宿主上下文</h3><p>React DOM 提供上下文信息，以帮助调和器就元素做出适当的决策：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getRootHostContext</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">rootContainerInstance</span>: <span class="title class_">Container</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">HostContext</span> &#123;</span><br><span class="line">  <span class="comment">// Determine context based on container type</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getChildHostContext</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">parentHostContext</span>: <span class="title class_">HostContext</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">type</span>: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">HostContext</span> &#123;</span><br><span class="line">  <span class="comment">// Update context based on element type (e.g., SVG, MathML)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个上下文有助于处理特殊元素（如 SVG 和 MathML）的命名空间。</p>
+<h2 id="7-跨平台考虑"><a href="#7-跨平台考虑" class="headerlink" title="7. 跨平台考虑"></a>7. 跨平台考虑</h2><p>React DOM 是专门为网络浏览器设计的，但 React 的架构允许有针对不同平台的多个渲染器。</p>
+<h3 id="7-1-与其他渲染器的比较"><a href="#7-1-与其他渲染器的比较" class="headerlink" title="7.1 与其他渲染器的比较"></a>7.1 与其他渲染器的比较</h3><p>React 在实现平台特定渲染器的同时，保持了跨平台的统一 API：</p>
+<table>
+<thead>
+<tr>
+<th>Renderer 渲染器</th>
+<th>Target Platform 目标平台</th>
+<th>Key Differences 主要区别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>React DOM</td>
+<td>Web 浏览器</td>
+<td>使用浏览器 DOM API</td>
+</tr>
+<tr>
+<td>React Native</td>
+<td>移动设备（iOS&#x2F;Android）</td>
+<td>使用原生 UI 组件</td>
+</tr>
+<tr>
+<td>React Test Renderer</td>
+<td>测试</td>
+<td>内存中的表示</td>
+</tr>
+<tr>
+<td>React Art</td>
+<td>Canvas&#x2F;SVG</td>
+<td>面向图形的 API</td>
+</tr>
+</tbody></table>
+<p>每个渲染器实现相同的宿主配置接口，但具有平台特定的行为。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202506122039980.png" alt="image-20250612203913917"></p>
+<h2 id="8-性能考量"><a href="#8-性能考量" class="headerlink" title="8. 性能考量"></a>8. 性能考量</h2><p>React DOM 包含多种优化措施，以确保高效的 DOM 操作和响应式用户界面。</p>
+<h3 id="8-1-DOM操作批处理"><a href="#8-1-DOM操作批处理" class="headerlink" title="8.1 DOM操作批处理"></a>8.1 DOM操作批处理</h3><p>React DOM 批量处理 DOM 变化，以减少布局抖动并提升性能：</p>
+<ul>
+<li>多个样式更新被批量处理为单个操作</li>
+<li>元素创建和插入经过优化</li>
+<li>文本内容更新处理高效</li>
+</ul>
+<h3 id="8-2-事件系统效率"><a href="#8-2-事件系统效率" class="headerlink" title="8.2 事件系统效率"></a>8.2 事件系统效率</h3><p>事件系统使用委托来最小化事件监听器的数量：</p>
+<ul>
+<li>大多数事件绑定到根容器上</li>
+<li>合成事件在可能的情况下会被重用</li>
+<li>事件与React Fibers合作以实现高效分发</li>
+</ul>
+<h2 id="结论-3"><a href="#结论-3" class="headerlink" title="结论"></a>结论</h2><p>ReactDOM是React虚拟DOM浏览器真实DOM之间的关键桥梁。它提供了所有与DOM相关的实现细节，是React能够高效的创建，更新和管理WebUI。通过实现React调和器所需的宿主配置接口，ReactDOM使React组件模型能够在Web浏览器中无缝运行，同事优化性能和开发者体验。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong.github.io">马嘉路</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/06/10/%E5%BD%93%E6%88%91%E7%94%A8deepwiki%E6%9D%A5%E5%AD%A6%E4%B9%A0React%E6%BA%90%E7%A0%81/">http://example.com/2025/06/10/%E5%BD%93%E6%88%91%E7%94%A8deepwiki%E6%9D%A5%E5%AD%A6%E4%B9%A0React%E6%BA%90%E7%A0%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">马嘉路</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/react-deepwiki/">react deepwiki</a></div><div class="post-share"><div class="social-share" data-image="/img/react.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/06/12/%E5%BD%93%E6%88%91%E7%94%A8deepwiki%E6%9D%A5%E5%AD%A6%E4%B9%A0Webpack%E6%BA%90%E7%A0%81/" title="当我用deepwiki来学习Webpack源码"><img class="cover" src="/img/webpack.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">当我用deepwiki来学习Webpack源码</div></div><div class="info-2"><div class="info-item-1">概述Webpack是一个用于JavaScript应用程序的模块打包工具。它转换，打包并组合代码和其他资源，以便在浏览器或其他平台上使用。本节内容提供了Webpack仓库架构的高层次概述，以及其核心系统及其交互方式。 什么是WebpackWebpack是一个静态模块打包工具，它通过分析应用程序的模块依赖关系图生成一个或多个打包文件。虽然主要是专注于JavaScript，但是Webpack可以通过其**加载器(loader)**系统转换几乎所有类型的文件。本质上，Webpack分析具有依赖关系的模块，生成打包文件，作为浏览器或其他环境的静态资源。  核心系统架构Webpack由几个关键系统组成，这些系统协同工作以处理模块并生成输出。其架构高度模块化并且可扩展，围绕着插件系统构建。  编译流程Webpack的编译过程包括：配置处理，模块解析，转换，优化和代码生成。 123456789101112131415161718192021222324252627282930313233343536373839graph TD    %% Webpack构建流程横向示意图   ...</div></div></div></a><a class="pagination-related" href="/2025/06/10/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/" title="【代码随想录刷题总结】leetcode59-螺旋矩阵II"><img class="cover" src="/img/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【代码随想录刷题总结】leetcode59-螺旋矩阵II</div></div><div class="info-2"><div class="info-item-1">引言大家好啊，我是前端拿破轮😁。 跟着卡哥学算法有一段时间了，通过代码随想录的学习，受益匪浅，首先向卡哥致敬🫡。 但是在学习过程中我也发现了一些问题，很多当时理解了并且AC的题目过一段时间就又忘记了，或者不能完美的写出来。根据费曼学习法，光有输入的知识掌握的是不够牢靠的，所以我决定按照代码随想录的顺序，输出自己的刷题总结和思考。同时，由于以前学习过程使用的是JavaScript,而在2025年的今天，TypeScript几乎成了必备项，所以本专题内容也将使用TypeScript，来巩固自己的TypeScript语言能力。 题目信息螺旋矩阵II leetcode题目链接 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。  题目分析本题是一道经典的面试题，主要考察模拟和对二维数组的理解。 这里在循环的时候，很多同学把循环条件设置为num &lt;=...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">马嘉路</div><div class="author-info-description">电子科技大学26届在读,冲刺大厂前端</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">81</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">53</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/majialu-love-zouyutong"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/majialu-love-zouyutong" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/2404816298@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">暂时无公告</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#React%E7%AE%80%E4%BB%8B"><span class="toc-text">React简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React%E4%BB%93%E5%BA%93%E7%BB%93%E6%9E%84"><span class="toc-text">React仓库结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84"><span class="toc-text">核心架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#React%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="toc-text">React组件模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%B1%82%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text">高层系统架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fiber%E5%8D%8F%E8%B0%83%E7%BB%93%E6%9E%84"><span class="toc-text">Fiber协调结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%92%8C%E6%89%93%E5%8C%85%E7%B3%BB%E7%BB%9F"><span class="toc-text">构建和打包系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%A0%87%E5%BF%97%E5%92%8C%E7%8E%AF%E5%A2%83%E5%88%86%E6%94%AF"><span class="toc-text">功能标志和环境分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E6%B8%A0%E9%81%93"><span class="toc-text">发布渠道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93-SSR-%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%84%E4%BB%B6"><span class="toc-text">服务端渲染(SSR)和服务器组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">React的核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFReact"><span class="toc-text">1. 什么是React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="toc-text">2. 组件模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-text">2.1 组件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">2.2 组件数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%99%9A%E6%8B%9FDOM%E4%B8%8E%E9%87%8D%E6%96%B0%E6%B8%B2%E6%9F%93"><span class="toc-text">3. 虚拟DOM与重新渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%99%9A%E6%8B%9FDOM"><span class="toc-text">3.1 虚拟DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E9%87%8D%E6%96%B0%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="toc-text">3.2 重新渲染过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-React%E5%85%83%E7%B4%A0%E6%A0%91"><span class="toc-text">4. React元素树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-JSX%E5%92%8CReact%E5%85%83%E7%B4%A0"><span class="toc-text">4.1 JSX和React元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%85%83%E7%B4%A0%E7%BB%93%E6%9E%84"><span class="toc-text">4.2 元素结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-React%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F"><span class="toc-text">5. React类型系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-React-Hooks"><span class="toc-text">6. React Hooks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E6%A0%B8%E5%BF%83Hooks"><span class="toc-text">6.1 核心Hooks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-Hook%E8%A7%84%E5%88%99"><span class="toc-text">6.2 Hook规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84"><span class="toc-text">7. 渲染架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-Fiber%E6%9E%B6%E6%9E%84"><span class="toc-text">7.1 Fiber架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="toc-text">7.2 渲染过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%B9%B6%E5%8F%91%E7%89%B9%E6%80%A7"><span class="toc-text">8. 并发特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%B8%B2%E6%9F%93"><span class="toc-text">9. 跨平台渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E7%BB%93%E6%9E%84"><span class="toc-text">仓库结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85%E7%BB%93%E6%9E%84"><span class="toc-text">包结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8C%85"><span class="toc-text">核心包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE"><span class="toc-text">工作空间配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F"><span class="toc-text">构建系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85-Bundle-%E7%B1%BB%E5%9E%8B"><span class="toc-text">打包(Bundle)类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E7%B1%BB%E5%9E%8B"><span class="toc-text">模块类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">构建过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%88%86%E5%8F%89"><span class="toc-text">模块分叉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%A0%87%E5%BF%97"><span class="toc-text">功能标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E6%B8%A0%E9%81%93-1"><span class="toc-text">发布渠道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">仓库目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="toc-text">持续集成和测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-1"><span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React%E8%B0%83%E5%92%8C%E5%99%A8-Reconciler"><span class="toc-text">React调和器(Reconciler)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="toc-text">架构概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber%E6%9E%B6%E6%9E%84"><span class="toc-text">Fiber架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fiber%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">Fiber数据结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">调和过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E9%98%B6%E6%AE%B5-%E8%B0%83%E5%92%8C"><span class="toc-text">渲染阶段(调和)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5"><span class="toc-text">提交阶段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%B0%83%E5%BA%A6"><span class="toc-text">工作循环与调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%A6%E9%81%93-Lanes-%EF%BC%9A%E4%BC%98%E5%85%88%E7%BA%A7%E7%B3%BB%E7%BB%9F"><span class="toc-text">车道(Lanes)：优先级系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hooks%E5%AE%9E%E7%8E%B0"><span class="toc-text">Hooks实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%92%8C%E6%95%88%E6%9E%9C%E7%AE%A1%E7%90%86"><span class="toc-text">状态和效果管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%AE%A1%E7%90%86"><span class="toc-text">更新管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%8E%E6%8C%82%E8%B5%B7%E7%8A%B6%E6%80%81"><span class="toc-text">错误处理与挂起状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%85%B1API"><span class="toc-text">公共API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fiber%E6%9E%B6%E6%9E%84-1"><span class="toc-text">Fiber架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFFiber"><span class="toc-text">什么是Fiber</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1"><span class="toc-text">Fiber数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%BE%AA%E7%8E%AF%E5%92%8C%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">工作循环和执行上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%BD%93%E5%89%8D%E6%A0%91%E5%92%8C%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E6%A0%91%E8%BF%9B%E8%A1%8C%E5%8F%8C%E7%BC%93%E5%86%B2"><span class="toc-text">使用当前树和进行中的树进行双缓冲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%92%8C%E9%98%B6%E6%AE%B5"><span class="toc-text">调和阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B8%B2%E6%9F%93-%E8%B0%83%E5%92%8C%E9%98%B6%E6%AE%B5"><span class="toc-text">1. 渲染&#x2F;调和阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5"><span class="toc-text">2. 提交阶段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86"><span class="toc-text">任务处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E5%92%8C%E8%B0%83%E5%BA%A6"><span class="toc-text">优先级和调度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%AF%E4%BD%9C%E7%94%A8%E7%AE%A1%E7%90%86"><span class="toc-text">副作用管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hooks%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">Hooks实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%82%E8%B5%B7%E5%92%8C%E6%81%A2%E5%A4%8D%E8%83%BD%E5%8A%9B"><span class="toc-text">挂起和恢复能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber%E8%B0%83%E5%92%8C%E7%AE%97%E6%B3%95"><span class="toc-text">Fiber调和算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%B7%9F%E8%B8%AA"><span class="toc-text">性能跟踪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React-Hooks"><span class="toc-text">React Hooks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hook%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84"><span class="toc-text">Hook核心架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8Hook%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-text">内部Hook状态管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hook%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B"><span class="toc-text">Hook执行模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Hooks%E8%BF%9B%E8%A1%8C%E6%B8%B2%E6%9F%93"><span class="toc-text">使用Hooks进行渲染</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hook%E7%B1%BB%E5%9E%8B"><span class="toc-text">Hook类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E9%92%A9%E5%AD%90-State-Hooks"><span class="toc-text">状态钩子(State Hooks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%AF%E4%BD%9C%E7%94%A8%E9%92%A9%E5%AD%90-Effect-Hooks"><span class="toc-text">副作用钩子(Effect Hooks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E9%92%A9%E5%AD%90-Context-Hooks"><span class="toc-text">上下文钩子(Context Hooks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E9%92%A9%E5%AD%90-Ref-Hooks"><span class="toc-text">引用钩子(Ref Hooks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E9%92%A9%E5%AD%90-Performance-Hooks"><span class="toc-text">性能钩子(Performance Hooks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%92%A9%E5%AD%90"><span class="toc-text">其他钩子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useState%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">useState的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%AF%E4%BD%9C%E7%94%A8%E7%B3%BB%E7%BB%9F"><span class="toc-text">副作用系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%AF%E4%BD%9C%E7%94%A8%E9%98%B6%E6%AE%B5"><span class="toc-text">副作用阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%89%AF%E4%BD%9C%E7%94%A8"><span class="toc-text">生命周期副作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hooks%E8%A7%84%E5%88%99"><span class="toc-text">Hooks规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Hooks"><span class="toc-text">自定义Hooks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hooks%E8%B0%83%E8%AF%95%E5%92%8CDevTools%E9%9B%86%E6%88%90"><span class="toc-text">Hooks调试和DevTools集成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%80%83%E9%87%8F"><span class="toc-text">性能考量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%92%A9%E5%AD%90-Memoization-Hooks"><span class="toc-text">缓存钩子(Memoization Hooks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96"><span class="toc-text">渲染优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%95%E5%90%8E%EF%BC%9AHook%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">幕后：Hook调度器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8EReact-Fiber%E9%9B%86%E6%88%90"><span class="toc-text">与React Fiber集成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-2"><span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%9B%AE%E6%A0%87"><span class="toc-text">渲染目标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="toc-text">渲染架构概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E9%85%8D%E7%BD%AE%E6%8E%A5%E5%8F%A3"><span class="toc-text">宿主配置接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E9%85%8D%E7%BD%AE%E4%BD%9C%E7%94%A8"><span class="toc-text">宿主配置作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%B8%B2%E6%9F%93%E7%9B%AE%E6%A0%87"><span class="toc-text">主要渲染目标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ReactDOM"><span class="toc-text">ReactDOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReactNative"><span class="toc-text">ReactNative</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReactFabric"><span class="toc-text">ReactFabric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Testing-Renderers"><span class="toc-text">Testing Renderers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">宿主配置实现细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%B8%B2%E6%9F%93%E5%99%A8%E5%85%B1%E6%9C%89%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">所有渲染器共有的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Creation-and-Initial-Setup-%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE"><span class="toc-text">Creation and Initial Setup 创建和初始设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Updates-and-Mutations-%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%8F%98%E5%BC%82"><span class="toc-text">Updates and Mutations 更新与变异</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%92%8C%E5%99%A8%E6%80%8E%E4%B9%88%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="toc-text">调和器怎么连接到渲染器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B2%E6%9F%93%E5%99%A8%E6%89%A9%E5%B1%95React"><span class="toc-text">通过自定义渲染器扩展React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React-DOM"><span class="toc-text">React DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1. 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="toc-text">2. 核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0"><span class="toc-text">3. 主机配置实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AE%9E%E4%BE%8B%E7%B1%BB%E5%9E%8B"><span class="toc-text">3.1 实例类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%85%83%E7%B4%A0%E5%88%9B%E5%BB%BA"><span class="toc-text">3.2 元素创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-DOM%E5%8F%98%E6%9B%B4"><span class="toc-text">3.3 DOM变更</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-text">4. 事件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text">4.1 事件系统架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%BA%8B%E4%BB%B6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">4.2 事件优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%A7%86%E5%9B%BE%E8%BF%87%E6%B8%A1%E6%94%AF%E6%8C%81"><span class="toc-text">5. 视图过渡支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%B8%8EReconciler%E9%9B%86%E6%88%90"><span class="toc-text">6. 与Reconciler集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E8%B0%83%E5%92%8C%E5%99%A8%E9%9B%86%E6%88%90"><span class="toc-text">6.1 调和器集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%AE%BF%E4%B8%BB%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">6.2 宿主上下文</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E8%80%83%E8%99%91"><span class="toc-text">7. 跨平台考虑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E4%B8%8E%E5%85%B6%E4%BB%96%E6%B8%B2%E6%9F%93%E5%99%A8%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">7.1 与其他渲染器的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%80%A7%E8%83%BD%E8%80%83%E9%87%8F"><span class="toc-text">8. 性能考量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-DOM%E6%93%8D%E4%BD%9C%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">8.1 DOM操作批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%95%88%E7%8E%87"><span class="toc-text">8.2 事件系统效率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-3"><span class="toc-text">结论</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/04/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" title="【代码随想录刷题总结】leetcode1-两数之和"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode1-两数之和"/></a><div class="content"><a class="title" href="/2025/07/04/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" title="【代码随想录刷题总结】leetcode1-两数之和">【代码随想录刷题总结】leetcode1-两数之和</a><time datetime="2025-07-04T05:51:07.626Z" title="更新于 2025-07-04 13:51:07">2025-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/04/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode202-%E5%BF%AB%E4%B9%90%E6%95%B0/" title="【代码随想录刷题总结】leetcode202-快乐数"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode202-快乐数"/></a><div class="content"><a class="title" href="/2025/07/04/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode202-%E5%BF%AB%E4%B9%90%E6%95%B0/" title="【代码随想录刷题总结】leetcode202-快乐数">【代码随想录刷题总结】leetcode202-快乐数</a><time datetime="2025-07-04T05:26:48.436Z" title="更新于 2025-07-04 13:26:48">2025-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/16/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0/" title="红宝书学习"><img src="/img/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="红宝书学习"/></a><div class="content"><a class="title" href="/2025/06/16/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0/" title="红宝书学习">红宝书学习</a><time datetime="2025-07-03T15:39:24.622Z" title="更新于 2025-07-03 23:39:24">2025-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/03/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/" title="【代码随想录刷题总结】leetcode349-两个数组的交集"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode349-两个数组的交集"/></a><div class="content"><a class="title" href="/2025/07/03/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/" title="【代码随想录刷题总结】leetcode349-两个数组的交集">【代码随想录刷题总结】leetcode349-两个数组的交集</a><time datetime="2025-07-03T06:11:02.067Z" title="更新于 2025-07-03 14:11:02">2025-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/03/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode242-%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/" title="【代码随想录刷题总结】leetcode242-有效的字母异位词"><img src="/img/leetcode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【代码随想录刷题总结】leetcode242-有效的字母异位词"/></a><div class="content"><a class="title" href="/2025/07/03/%E3%80%90%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E3%80%91leetcode242-%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/" title="【代码随想录刷题总结】leetcode242-有效的字母异位词">【代码随想录刷题总结】leetcode242-有效的字母异位词</a><time datetime="2025-07-03T05:27:29.369Z" title="更新于 2025-07-03 13:27:29">2025-07-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 马嘉路</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23licJwdCTNkzOiuBF',
+      clientSecret: 'db3ef983a56a96ffaa7a55da43f03bbe66283109',
+      repo: 'comments',
+      owner: 'majialu-love-zouyutong',
+      admin: ['majialu-love-zouyutong'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '7389ab9703d038e0253ebca362445a8c'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
