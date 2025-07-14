@@ -1,9 +1,8 @@
-const a = '2';
+const a = '     aaaabbbbccc';
+console.log(a);
+console.log(a.trim());
+
+const A = a.replace(/a/g, 'A');
 
 console.log(a);
-console.log(a * a);
-console.log(a + a);
-console.log(a - a);
-console.log(a / a);
-console.log(Math.pow(a, 2));
-console.log(a ** 2);
+console.log(A);

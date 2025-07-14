@@ -1,7 +1,7 @@
 ---
 title: 【代码随想录刷题总结】leetcode349-两个数组的交集
 date: 2025-07-03 13:26:57
-tags: 代码随想录 leetcode 链表
+tags: 代码随想录 leetcode 数组
 categories: leetcode
 top_img: /img/leetcode.png
 cover: /img/leetcode.png

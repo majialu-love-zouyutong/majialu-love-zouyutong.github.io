@@ -1,7 +1,7 @@
 ---
 title: 【代码随想录刷题总结】leetcode1-两数之和
 date: 2025-07-04 13:31:15
-tags: 代码随想录 leetcode 链表
+tags: 代码随想录 leetcode 哈希表
 categories: leetcode
 top_img: /img/leetcode.png
 cover: /img/leetcode.png
