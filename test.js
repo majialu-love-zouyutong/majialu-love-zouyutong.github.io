@@ -1,8 +1,6 @@
-const a = '     aaaabbbbccc';
-console.log(a);
-console.log(a.trim());
+function Parent() {}
+function Child() {}
 
-const A = a.replace(/a/g, 'A');
-
-console.log(a);
-console.log(A);
+Child.prototype = Object.create(Parent.prototype); // 创建新原型，但 constructor 丢失
+console.log(Child.prototype.constructor === Child); // false
+console.log(Child.prototype.constructor === Parent); // true
