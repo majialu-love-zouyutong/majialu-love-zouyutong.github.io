@@ -1,6 +1,13 @@
-function Parent() {}
-function Child() {}
+console.log('script start');
 
-Child.prototype = Object.create(Parent.prototype); // 创建新原型，但 constructor 丢失
-console.log(Child.prototype.constructor === Child); // false
-console.log(Child.prototype.constructor === Parent); // true
+setTimeout(() => {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('promise1');
+}).then(() => {
+  console.log('promise2');
+});
+
+console.log('script end');
