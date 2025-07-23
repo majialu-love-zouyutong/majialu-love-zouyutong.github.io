@@ -1,40 +1,57 @@
-const p1 = new Promise((resolve, reject) => {
-  console.log(1);
-  resolve();
-})
-  .then((res) => {
-    console.log(2);
-    return Promise.resolve();
-  })
-  .then(() => {
-    console.log(3);
-  })
+const PENDING = "pending";
+const FULFILLED = "fulfilled";
+const REJECTED = "rejected";
 
-const p2 = new Promise((resolve, reject) => {
-  console.log(4);
-  resolve();
-})
-  .then((res) => {
-    console.log(5);
-  })
-  .then(() => {
-    console.log(6);
-  })
-  .then(() => {
-    console.log(7);
-  })
-  .then(() => {
-    console.log(8);
-  });
+class MyPromise {
+  #state = PENDING;
+  #result = undefined;
+  #handlers = [];
 
+  constructor(executor) {
+    const resolve = (data) => {
+      this.#changeState(FULFILLED, data);
+    }
 
-// 执行栈 () => p1
+    const reject = (reason) => {
+      this.#changeState(REJECTED, reason);
+    }
 
-// 宏任务队列
+    try {
+      executor(resolve, reject);
+    } catch(err) {
+      reject(err);
+    }
+  }
 
-// 微任务队列 , 4,
+  #run() {
+    if (this.#state === PENDING) return;
+    while (this.#handlers.length) {
+      // 解构出队
+      const {onFulfilled, onRejected, resolve, reject} = this.handlers.shift();
+      if (this.#state === FULFILLED) {
+        if (typeof onFulfilled === 'function') {
+          onFulfilled(this.#result);
+        }
+      } else {
+        if (typeof onRejected === 'function') {
+          onRejected(this.#result);
+        }
+      }
+    }
+  }
 
+  #changeState(newState, result) {
+    if (this.#state !== PENDING) return;
+    this.#state = newState;
+    this.#result = result;
+    this.#run();
+  }
 
-// p1 fulfilled 1
-
-// p2 pending
+  then(onFulfilled, onRejected) {
+    return new MyPromise((resolve, reject) => {
+      // 注册回调
+      handlers.push({onFulfilled, onRejected, resolve, reject});
+      this.#run();
+    })
+  }
+}
