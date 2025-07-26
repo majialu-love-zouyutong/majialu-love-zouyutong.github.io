@@ -1,7 +1,10 @@
 ---
 title: 【代码随想录刷题总结】leetcode203-移除链表元素
 date: 2025-06-17 08:54:30
-tags:
+tags: 代码随想录 leetcode 链表
+categories: leetcode
+top_img: /img/leetcode.png
+cover: /img/leetcode.png
 ---
 
 ## 引言
