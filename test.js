@@ -1,8 +1,5 @@
-const obj = {
-  a: '1',
-  b: '2'
+function test() {
+  console.log(this);
 }
 
-const arr = ['1', '2'];
-
-console.log(String(arr));
+console.log(test.call(null));
