@@ -1,32 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <title>按钮闪烁效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
 <body>
-  <button id="btn">我是要变的</button>
-  <button id="button">点我让他变</button>
-
+  <button id="btn" disabled="false">点我</button>
   <script>
-    const button = document.getElementById('button');
-    const btn = document.getElementById('btn');
-
-    button.addEventListener('click', () => {
-      btn.style.background = 'blue';
-
-      setTimeout(() => {
-        btn.style.background = 'red';
-
-        setTimeout(() => {
-          btn.style.background = 'black';
-        }, 200);
-
-      }, 200);
-    });
+    const btn = document.querySelector('#btn');
+    btn.disabled = false;
   </script>
 </body>
-
 </html>
