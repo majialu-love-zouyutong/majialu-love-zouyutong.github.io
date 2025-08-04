@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug with TSX",
+      "name": "Debug with TS",
       "runtimeExecutable": "node",  // 直接调用 tsx
       "args": ["${workspaceFolder}/index.ts"], // 入口 TS 文件
       "skipFiles": ["<node_internals>/**"],

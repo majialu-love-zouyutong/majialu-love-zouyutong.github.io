@@ -4,17 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    .container {
-      width: 100px;
-      height: 100px;
-      background-color: red;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-
-  </div>
+  <button id="btn" disabled="false">点我</button>
+  <script>
+    const btn = document.querySelector('#btn');
+    btn.disabled = false;
+  </script>
 </body>
 </html>
