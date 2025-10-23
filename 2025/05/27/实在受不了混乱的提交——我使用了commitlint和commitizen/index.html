@@ -197,15 +197,19 @@
 <p>那应该如何实现呢，这里就用到我们今天介绍的<a target="_blank" rel="noopener" href="https://commitlint.js.org/">commitlint</a></p>
 <h1 id="使用commitlint"><a href="#使用commitlint" class="headerlink" title="使用commitlint"></a>使用commitlint</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>这里包管理工具我们使用<code>pnpm</code>，由于这些包的只在开发过程中使用，生产环境中不需要，所以安装为开发依赖。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add -D @commitlint/cli @commitlint/config-conventional</span><br></pre></td></tr></table></figure>
+
 <p>这里安装了两个包，一个是commitlint的命令行接口，另一个是一个基础的配置文件，会包含一些默认的commit规范配置。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>安装完成后，在项目的根目录下创建配置文件<code>commitlint.config.mjs</code>。</p>
 <p>写入以下内容</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// commitlint.config.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">extends</span>: [<span class="string">&#x27;@commitlint/config-conventional&#x27;</span>],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>在这个配置文件中，我们使用了基础配置文件<code>@commitlint/config-conventional</code>的配置，并进行默认导出。如果我们有个性化的配置需求，可以在该文件中进行进一步配置。</p>
 <h2 id="安装git-hooks管理器"><a href="#安装git-hooks管理器" class="headerlink" title="安装git hooks管理器"></a>安装git hooks管理器</h2><p>要在创建提交之前对其进行lint检查，还需要安装husky来添加钩子。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装husky</span></span><br><span class="line">pnpm add -D husky</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>在根目录创建<code>.husky</code>目录，并在该目录下创建<code>commit-msg</code>文件，写入以下内容</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm dlx commitlint --edit <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>注意，这里的文件命名一定要命名为<code>commit-msg</code>.</p>
 </blockquote>
@@ -225,10 +229,13 @@
 <p>您还真别说，还真有，这就要用到我们的下一个工具<a target="_blank" rel="noopener" href="https://github.com/commitizen/cz-cli">commitizen</a></p>
 <h1 id="使用commitizen"><a href="#使用commitizen" class="headerlink" title="使用commitizen"></a>使用commitizen</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen和commitlint不同，前者提供了一个命令行工具，帮助我们快速生成提交信息，而后者主要是来制定commit的校验规则。</p>
 <h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pnpm add -D commitizen</span><br><span class="line"></span><br><span class="line">commitizen init cz-conventional-changelog --pnpm --save-dev --save-exact</span><br></pre></td></tr></table></figure>
+
 <p>在<code>package.json</code>中添加scripts脚本，方便日常提交.</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit&quot;</span><span class="punctuation">:</span> <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>添加更改到暂存区后</strong>运行提交命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm commit</span><br></pre></td></tr></table></figure>
+
 <p>然后便可以通过命令行选择交互的方式来输入提交信息。</p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250527160318.png" alt="20250527160318"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文首先分析引入commit规范的必要性和紧迫性，然后依次介绍了commitlint和commitizen的引入方式，并成功使用commitlint进行提交校验，同时使用commitizen进行命令行交互式生成提交信息。</p>

@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CSS补充 | 马嘉路</title><meta name="author" content="马嘉路"><meta name="copyright" content="马嘉路"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="属性值的计算过程 每一个元素,所有的CSS属性都要有值.  确定声明值找到没有冲突的样式,直接作为计算后的样式. 层叠1. 比较重要性重要性从高到低:  带有!important的默认样式 带有important的作者样式 作者样式 默认样式  2. 比较特殊性对每个样式分别计数     style id 属性,类,伪类 元素,伪元素     内联: 1否则: 0 id选择器的数量 属性,类,伪类">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CSS补充 | 马嘉路</title><meta name="author" content="马嘉路"><meta name="copyright" content="马嘉路"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="属性值的计算过程 每一个元素,所有的CSS属性都要有值.  确定声明值找到没有冲突的样式,直接作为计算后的样式. 层叠1. 比较重要性重要性从高到低:  带有!important的默认样式 带有important的作者样式 作者样式 默认样式  2. 比较特殊性对每个样式分别计数    style id 属性,类,伪类 元素,伪元素    内联: 1否则: 0 id选择器的数量 属性,类,伪类的数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS补充">
 <meta property="og:url" content="http://example.com/2025/03/03/CSS%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="马嘉路">
-<meta property="og:description" content="属性值的计算过程 每一个元素,所有的CSS属性都要有值.  确定声明值找到没有冲突的样式,直接作为计算后的样式. 层叠1. 比较重要性重要性从高到低:  带有!important的默认样式 带有important的作者样式 作者样式 默认样式  2. 比较特殊性对每个样式分别计数     style id 属性,类,伪类 元素,伪元素     内联: 1否则: 0 id选择器的数量 属性,类,伪类">
+<meta property="og:description" content="属性值的计算过程 每一个元素,所有的CSS属性都要有值.  确定声明值找到没有冲突的样式,直接作为计算后的样式. 层叠1. 比较重要性重要性从高到低:  带有!important的默认样式 带有important的作者样式 作者样式 默认样式  2. 比较特殊性对每个样式分别计数    style id 属性,类,伪类 元素,伪元素    内联: 1否则: 0 id选择器的数量 属性,类,伪类的数">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/cover.jpg">
 <meta property="article:published_time" content="2025-03-03T11:48:43.000Z">
@@ -192,7 +192,6 @@
 <li>默认样式</li>
 </ol>
 <h3 id="2-比较特殊性"><a href="#2-比较特殊性" class="headerlink" title="2. 比较特殊性"></a>2. 比较特殊性</h3><p>对每个样式分别计数</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -202,16 +201,13 @@
 <th>元素,伪元素</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>内联: 1<br />否则: 0</td>
 <td>id选择器的数量</td>
 <td>属性,类,伪类的数量</td>
 <td>元素,伪元素的数量</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="3-比较源次序"><a href="#3-比较源次序" class="headerlink" title="3. 比较源次序"></a>3. 比较源次序</h3><p>源码中靠后的覆盖靠前的</p>
 <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>对<strong>仍然没有值</strong>的属性,若<strong>可以继承</strong>,则使用继承.</p>
 <h2 id="使用默认值"><a href="#使用默认值" class="headerlink" title="使用默认值"></a>使用默认值</h2><p>对仍然没有值的属性,直接使用默认值</p>
@@ -225,11 +221,12 @@
 <li><code>reset.css</code></li>
 <li><code>meyer.css</code></li>
 </ul>
-<ol>
+<ol start="2">
 <li>爱恨法则</li>
 </ol>
 <p><code>link &gt; visited &gt; hover &gt; active</code></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: chocolate;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>特殊的两个<code>css</code>取值:</p>
 <ul>
@@ -244,15 +241,15 @@
 <li>行盒不能设置宽高</li>
 </ol>
 <p>调整行盒的宽高,应该使用字体大小,行高,字体类型,间接调整.</p>
-<ol>
+<ol start="3">
 <li>内边距(填充区)</li>
 </ol>
 <p>水平方向有效,垂直方向仅影响背景,但是不占据空间.</p>
-<ol>
+<ol start="4">
 <li>边框</li>
 </ol>
 <p>水平方向有效,垂直方向仅影响背景,但是不占据空间.</p>
-<ol>
+<ol start="5">
 <li>外边距</li>
 </ol>
 <p>水平方向有效,垂直方向不占据空间.</p>
@@ -267,7 +264,7 @@
 <p>可替换元素: img, video, audio</p>
 <p>绝大部分可替换元素均为行盒.</p>
 <p>可替换元素类似于<strong>行块盒</strong>,盒模型中所有的属性都有效</p>
-<h1 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h1><p>一个元素的尺寸和位置经常受其包含块(<code>containing block</code>)的影响.大多数情况下,包含块就是这个元素最近的祖先<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Block-level_content">块元素</a>的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model#内容区域">内容区域</a>，但也不是总是这样。在本文中，我们来过一遍确定包含块的所有因素。</p>
+<h1 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h1><p>一个元素的尺寸和位置经常受其包含块(<code>containing block</code>)的影响.大多数情况下,包含块就是这个元素最近的祖先<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Block-level_content">块元素</a>的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model#%E5%86%85%E5%AE%B9%E5%8C%BA%E5%9F%9F">内容区域</a>，但也不是总是这样。在本文中，我们来过一遍确定包含块的所有因素。</p>
 <p>当一个客户端代理（比如说浏览器）展示一个文档的时候，对于每一个元素，它都产生了一个盒子。每一个盒子都被划分为四个区域：</p>
 <ol>
 <li>内容区</li>
@@ -287,7 +284,7 @@
 <li>如果<code>position</code>属性为<code>static</code>,<code>relative</code>或<code>sticky</code>,包含块可能由它的最近祖先<strong>块元素</strong>(比如说<code>inline-block</code>,<code>block</code>,<code>list-item</code>元素)的内容区边缘组成,也可能会建立格式化上下文(比如说一个表格容器,弹性容器,网格容器或块容器本身)</li>
 <li>如果<code>position</code>属性为<code>absolute</code>,则包含块由<code>position</code>值<code>非static</code>的最近祖先元素的内边距区域(填充盒)边缘形成.</li>
 <li>如果<code>position</code>值为<code>fixed</code>,则在连续媒体的情况下 (continuous media) 包含块是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Viewport">viewport</a> ,在分页媒体 (paged media) 下的情况下包含块是分页区域 (page area)。</li>
-<li>如果 position 属性是 <strong><code>absolute</code></strong> 或 <strong><code>fixed</code></strong>，包含块也可能是由满足以下条件的最近父级元素的内边距区的边缘组成的：<ol>
+<li>如果 position 属性是 <strong><code>absolute</code></strong> 或 **<code>fixed</code>**，包含块也可能是由满足以下条件的最近父级元素的内边距区的边缘组成的：<ol>
 <li><code>transform</code>或<code>perspective</code>的值不是none</li>
 <li><code>will-change</code>的值是<code>transform</code>或<code>perspective</code></li>
 <li><code>filter</code>的值不是<code>none</code>或<code>will-change</code>的值是<code>filter</code>(只在Firefox下生效)</li>
@@ -298,6 +295,8 @@
 </ol>
 <blockquote>
 <p><strong>备注：</strong> 根元素（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/html"><code>&lt;html&gt;</code></a>）所在的包含块是一个被称为<strong>初始包含块</strong>的矩形。它具有视口（对于连续媒体）或页面区域（对于分页媒体）的尺寸。</p>
+</blockquote>
+<blockquote>
 <p><strong>备注：</strong> <code>perspective</code> 和 <code>filter</code> 属性对形成包含块的作用存在浏览器之间的不一致性。</p>
 </blockquote>
 <h2 id="根据包含块计算百分比的值"><a href="#根据包含块计算百分比的值" class="headerlink" title="根据包含块计算百分比的值"></a>根据包含块计算百分比的值</h2><p>如上所述，当某些属性被赋予一个百分比值时，它的计算值取决于这个元素的包含块。以这种方式工作的属性包括<strong>盒模型属性</strong>和<strong>偏移属性</strong>：</p>
@@ -332,12 +331,12 @@
 <p>width吸收能力强于margin</p>
 <p>若宽度,边框,内边距,外边距计算后,仍然有剩余空间,该剩余空间被<code>margin-right</code>全部吸收.</p>
 <p>在<strong>常规流</strong>中,<strong>块盒</strong>在其包含块中居中,可以定宽,左右margin设置为auto</p>
-<ol>
+<ol start="2">
 <li>每个块盒垂直方向上的auto值</li>
 </ol>
 <p>height: auto,适应内容高度</p>
 <p>margin: auto, 表示0</p>
-<ol>
+<ol start="3">
 <li>百分比取值</li>
 </ol>
 <p>宽度的百分比</p>
@@ -345,7 +344,8 @@
 <p>以上的所有百分比相对于包含块的宽度</p>
 <p>高度的百分比</p>
 <ol>
-<li>包含块的高度是否取决于子元素的高度,设置百分比无效</li>
+<li><p>包含块的高度是否取决于子元素的高度,设置百分比无效</p>
+</li>
 <li><p>包含块的高度不取决于子元素的高度,设置百分比相对于包含块的高度</p>
 </li>
 <li><p>上下外边距的合并</p>
@@ -373,12 +373,14 @@
 <li>边框,内边距,百分比设置于常规流一样.</li>
 </ol>
 <h2 id="盒子排列"><a href="#盒子排列" class="headerlink" title="盒子排列"></a>盒子排列</h2><ol>
-<li>左浮动的盒子靠左靠上</li>
+<li><p>左浮动的盒子靠左靠上</p>
+</li>
 <li><p>右浮动的盒子靠右靠上</p>
 </li>
 <li><p>浮动盒子在包含块中浮动时,会避开常规流块盒</p>
 </li>
-<li>常规流块盒在排列时,无视浮动盒</li>
+<li><p>常规流块盒在排列时,无视浮动盒</p>
+</li>
 <li><p>行盒在排列时,会避开浮动盒子.</p>
 </li>
 <li><p><strong>不会发生</strong>外边距合并</p>
@@ -444,17 +446,22 @@
 <li>import</li>
 </ol>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;./reset.css&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
 <p>导入另一个css文件</p>
-<ol>
+<ol start="2">
 <li>charset</li>
 </ol>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@charset</span> <span class="string">&#x27;utf-8&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <p>告诉浏览器,该CSS文件,使用的字符编码集是<code>utf-8</code>,该指令<strong>必须写在第一行</strong></p>
-<p>​    </p>
+<p>​	</p>
 <h1 id="web字体和图标"><a href="#web字体和图标" class="headerlink" title="web字体和图标"></a>web字体和图标</h1><h2 id="web字体"><a href="#web字体" class="headerlink" title="web字体"></a>web字体</h2><p>解决用户电脑上没有安装相应字体,强制让用户下载该字体.</p>
 <p>使用<code>font-face</code>指令</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;good night&quot;</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;./font/good-night.ttf&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h2><p><a target="_blank" rel="noopener" href="https://iconfont.cn">https://iconfont.cn</a></p>
+
+<h2 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h2><p><a target="_blank" rel="noopener" href="https://iconfont.cn/">https://iconfont.cn</a></p>
 <hr>
 <h1 id="块级格式化上下文"><a href="#块级格式化上下文" class="headerlink" title="块级格式化上下文"></a>块级格式化上下文</h1><p>块级格式化上下文(<code>Block Formatting Context, BFC</code>)</p>
 <p>它是一块<strong>独立的渲染区域</strong>,它<strong>规定了在该区域中,常规流块盒的布局</strong></p>

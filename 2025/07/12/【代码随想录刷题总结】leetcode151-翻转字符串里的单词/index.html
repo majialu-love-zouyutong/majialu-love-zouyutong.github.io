@@ -194,9 +194,10 @@
 <p>这就需要使用<strong>正则表达式</strong>来进行匹配了。我们可以使用正则表达式<code>\/s+\g</code>来匹配字符串中的所有1个及以上的空格，再将其统一替换为1个空格即可。</p>
 <p>这里的<code>/s</code>是转义字符，代表空格，<code>+</code>表示前面的表达式出现1次及以上，<code>g</code>表示全局匹配，整个字符串中所有符合条件的都会匹配。所以整个正则表达式<code>/\s+/g</code>会匹配到整个字符串中所有的1个以上的空格。我们再使用字符串的<code>replace()</code>方法，将其替换为1个空格，再按照1个空格使用<code>split()</code>方法进行分割，再使用数组的<code>reverse()</code>方法进行翻转，再使用<code>join()</code>方法拼接成字符串即可。</p>
 <blockquote>
-<p>注意：在JS/TS中，<strong>字符串是不可变的！！！</strong>所有的字符串API都会返回一个新的字符串，而无法直接修改旧的字符串。</p>
+<p>注意：在JS&#x2F;TS中，<strong>字符串是不可变的！！！</strong>所有的字符串API都会返回一个新的字符串，而无法直接修改旧的字符串。</p>
 </blockquote>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">reverseWords</span>(<span class="params"><span class="attr">s</span>: <span class="built_in">string</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="comment">// 处理空格</span></span><br><span class="line">    <span class="keyword">const</span> newStr = s.<span class="title function_">trim</span>().<span class="title function_">replace</span>(<span class="regexp">/\s+/g</span>, <span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 翻转后拼接</span></span><br><span class="line">    <span class="keyword">return</span> newStr.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>事件复杂度: $O(N)$</p>
 <p>空间复杂度: $O(N)$</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题对于核心的交换思想并不难，使用双指针或直接使用<code>reverse()</code>API均可，关键在于对字符串的<strong>预处理</strong>，如何处理1个或多个空格。考查我们对<strong>正则表达式</strong>的掌握程度。</p>

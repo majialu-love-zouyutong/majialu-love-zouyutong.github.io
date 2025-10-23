@@ -196,11 +196,11 @@
 <li>浏览器进程</li>
 </ol>
 <p>主要负责界面显示,用户交互,<strong>子进程管理</strong>等.浏览器进程内部会启动多个线程处理不同的任务.</p>
-<ol>
+<ol start="2">
 <li>网络进程</li>
 </ol>
 <p>负责加载网络资源.网络进程内部会启动多个线程来处理不同的网络任务.</p>
-<ol>
+<ol start="3">
 <li><strong>渲染进程</strong></li>
 </ol>
 <p>渲染进程启动后,会开启一个<strong>渲染主线程</strong>,主线程负责执行HTML,CSS,JS代码.</p>
@@ -265,6 +265,7 @@
 </blockquote>
 <h2 id="JS为何会阻碍渲染"><a href="#JS为何会阻碍渲染" class="headerlink" title="JS为何会阻碍渲染"></a>JS为何会阻碍渲染</h2><p>先看代码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">      Mr.Yuan is awesome!</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">      change</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> h1 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">      </span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 死循环指定的时间</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">duration</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> start = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">while</span> (<span class="title class_">Date</span>.<span class="title function_">now</span>() - start &lt; duration) &#123;&#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      </span></span><br><span class="line"><span class="language-javascript">      btn.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        h1.<span class="property">textContent</span> = <span class="string">&#x27;袁老师很帅&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">delay</span>(<span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202503042100877.png" alt="image-20250304210053715"></p>
 <h2 id="任务有优先级吗"><a href="#任务有优先级吗" class="headerlink" title="任务有优先级吗?"></a>任务有优先级吗?</h2><p>任务没有优先级,在消息队列中先进先出.</p>
 <p>但是<strong>消息队列是有优先级的</strong></p>
@@ -297,11 +298,13 @@
 <li>根据W3C的标准,浏览器实现计时器时,如果嵌套层级超过5层,则会带有4ms的最少时间,这样也有误差</li>
 <li>受事件循环影响,计时器的回调函数只能在主线程空闲时运行,因此又带来了偏差.</li>
 </ol>
+</blockquote>
+<blockquote>
 <p>单线程是异步产生的原因</p>
 <p>事件循环是异步的实现方式</p>
 </blockquote>
 <h1 id="浏览器渲染原理"><a href="#浏览器渲染原理" class="headerlink" title="浏览器渲染原理"></a>浏览器渲染原理</h1><blockquote>
-<p>渲染(render): html字符串 —&gt; 像素信息</p>
+<p>渲染(render): html字符串 –&gt; 像素信息</p>
 </blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202503050814704.png" alt="image-20250305081449522"></p>
 <h2 id="渲染时间点"><a href="#渲染时间点" class="headerlink" title="渲染时间点"></a>渲染时间点</h2><p><img src="https://cdn.jsdelivr.net/gh/majialu-love-zouyutong/pictures/202503050815956.png" alt="image-20250305081545857"></p>

@@ -258,7 +258,8 @@
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250526232109.png" alt="20250526232109"></p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250526232148.png" alt="20250526232148"></p>
 <ul>
-<li>到期日<ul>
+<li><p>到期日</p>
+<ul>
 <li>在到期日，债务人要清偿债权的本息</li>
 <li>过了到期日，债券持有人不再获得现金流</li>
 </ul>
@@ -288,8 +289,6 @@
 </li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><p>嵌入期权：改变现金流的权利</p>
 <ul>
 <li>债券发行人（Call Option）<ul>
@@ -320,11 +319,11 @@
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250526234239.png" alt="20250526234239"></p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250526234434.png" alt="20250526234434"></p>
 <h1 id="债券定价与收益率衡量"><a href="#债券定价与收益率衡量" class="headerlink" title="债券定价与收益率衡量"></a>债券定价与收益率衡量</h1><h2 id="债券的报价与定价"><a href="#债券的报价与定价" class="headerlink" title="债券的报价与定价"></a>债券的报价与定价</h2><blockquote>
-<p>全价 = 净价 + 应计利息</p>
+<p>全价 &#x3D; 净价 + 应计利息</p>
 </blockquote>
 <p>通常用于贴现过程的贴现利率，也称为“必要收益率”</p>
 <blockquote>
-<p>必要收益率 = 基准利率(无风险利率) + 风险溢价</p>
+<p>必要收益率 &#x3D; 基准利率(无风险利率) + 风险溢价</p>
 </blockquote>
 <p>几个重要的利率概念：</p>
 <ol>
@@ -344,12 +343,12 @@
 <li>即使必要收益率没变，折价或溢价发行的债券，随到期日临近，价格会变化，趋近于面值。</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250601224434.png" alt="20250601224434"></p>
-<h2 id="到期收益率"><a href="#到期收益率" class="headerlink" title="到期收益率"></a>到期收益率</h2><script type="math/tex; mode=display">
-P_0 = \Sigma_{t = 1}^n \frac{C_t}{(1+y)^t} + \frac{M}{(1+y)^n}</script><p>前提：</p>
+<h2 id="到期收益率"><a href="#到期收益率" class="headerlink" title="到期收益率"></a>到期收益率</h2><p>$$<br>P_0 &#x3D; \Sigma_{t &#x3D; 1}^n \frac{C_t}{(1+y)^t} + \frac{M}{(1+y)^n}<br>$$</p>
+<p>前提：</p>
 <ol>
 <li>持有证券到期</li>
 <li>不存在违约风险</li>
-<li>再投资收益率 = 到期收益率</li>
+<li>再投资收益率 &#x3D; 到期收益率</li>
 <li>没有赎回，提前偿还等嵌入式期权</li>
 </ol>
 <h1 id="利率期限结构"><a href="#利率期限结构" class="headerlink" title="利率期限结构"></a>利率期限结构</h1><h2 id="收益率曲线"><a href="#收益率曲线" class="headerlink" title="收益率曲线"></a>收益率曲线</h2><p>影响基准利差的因素：</p>
@@ -371,27 +370,27 @@ P_0 = \Sigma_{t = 1}^n \frac{C_t}{(1+y)^t} + \frac{M}{(1+y)^n}</script><p>前提
 <li>直接从市场中得到不超过1年的零息债券的即期利率，如：</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602101049.png" alt="20250602101049"></p>
-<ol>
+<ol start="2">
 <li>利用线性插值法或者其他方法，获得1年的零息债券的即期利率</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602102721.png" alt="20250602102721"></p>
-<ol>
+<ol start="3">
 <li>分析期限在1-2年之间的债券，如一债券还有1年2月到期，息票利息是5%，价格是103.7，则有：</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602103035.png" alt="20250602103035"></p>
-<ol>
+<ol start="4">
 <li>重复第三步，可以得到2-3年之间的即期利率，乃至n-1到n年之间的即期利率。</li>
 </ol>
 <h3 id="间接法"><a href="#间接法" class="headerlink" title="间接法"></a>间接法</h3><h2 id="利率期限结构理论"><a href="#利率期限结构理论" class="headerlink" title="利率期限结构理论"></a>利率期限结构理论</h2><h3 id="完全预期理论"><a href="#完全预期理论" class="headerlink" title="完全预期理论"></a>完全预期理论</h3><p>到期收益曲线所含的远期利率等于未来在该段时间上的即期利率。</p>
 <p>在完全预期理论下，收益率曲线可以是向上，向下或者水平。</p>
 <h3 id="流动偏好理论"><a href="#流动偏好理论" class="headerlink" title="流动偏好理论"></a>流动偏好理论</h3><h3 id="偏好理论"><a href="#偏好理论" class="headerlink" title="偏好理论"></a>偏好理论</h3><h3 id="市场分割理论"><a href="#市场分割理论" class="headerlink" title="市场分割理论"></a>市场分割理论</h3><ul>
-<li>某些投资者/借款人喜欢长期投资/借款（例如，寿险公司与退休基金）</li>
-<li>其他投资者喜欢短期投资/借款（例如，商业银行）</li>
+<li>某些投资者&#x2F;借款人喜欢长期投资&#x2F;借款（例如，寿险公司与退休基金）</li>
+<li>其他投资者喜欢短期投资&#x2F;借款（例如，商业银行）</li>
 <li>市场中供给与需求的力量决定了各自的市场利率</li>
 </ul>
 <h1 id="债券本息剥离，合成与套利"><a href="#债券本息剥离，合成与套利" class="headerlink" title="债券本息剥离，合成与套利"></a>债券本息剥离，合成与套利</h1><h2 id="债券的本息剥离"><a href="#债券的本息剥离" class="headerlink" title="债券的本息剥离"></a>债券的本息剥离</h2><ol>
 <li><strong>购买国债</strong>存入银行的托管账户</li>
-<li><strong>发行</strong>代表账户中每笔国债利息收入的所有权的收据，以及代表本金所有权的<strong>*收据</strong></li>
+<li><strong>发行</strong>代表账户中每笔国债利息收入的所有权的收据，以及代表本金所有权的*<strong>收据</strong></li>
 <li>分别<strong>销售</strong>代表利息收入和本金收入的<strong>收据</strong>，而不是国债本身。</li>
 </ol>
 <blockquote>
@@ -410,11 +409,11 @@ P_0 = \Sigma_{t = 1}^n \frac{C_t}{(1+y)^t} + \frac{M}{(1+y)^n}</script><p>前提
 <li>对应收益率的大幅变动，价格上升的百分比要<strong>大于</strong>下降的百分比</li>
 </ol>
 <h2 id="久期及其应用"><a href="#久期及其应用" class="headerlink" title="久期及其应用"></a>久期及其应用</h2><h3 id="麦考利久期的定义和内涵"><a href="#麦考利久期的定义和内涵" class="headerlink" title="麦考利久期的定义和内涵"></a>麦考利久期的定义和内涵</h3><p>n：付利息的次数（每年支出利息1次）<br>C：每次支付的利息<br>M：面值，到期一次偿付本金</p>
-<script type="math/tex; mode=display">
-P = \frac{C}{1 + y} + \frac{C}{(1 + y)^2} +...+\frac{C}{(1+y)^n} + \frac{M}{(1+y)^n}</script><script type="math/tex; mode=display">
-\frac{dP}{dy} = \frac{(-1)C}{(1 + y)^2} + \frac{(-2)C}{(1 + y)^3}+... +\frac{(-n)C}{(1 + y)^{n + 1}} + \frac{(-n)C}{(1 + y)^{n + 1}}</script><script type="math/tex; mode=display">
-\frac{dP}{dy} = \frac{-1}{1 + y}[\frac{1C}{(1+y)^1} + \frac{2C}{(1+y)^2} + ... + \frac{nC}{(1+y)^n} + \frac{nM}{(1+y)^n}]</script><script type="math/tex; mode=display">
-dP = \frac{-dy}{1 + y}[\frac{1C}{(1 + y)^1} + \frac{2C}{(1 + y)^2} + \frac{nC}{(1 + y)^n} + \frac{nM}{(1 + y)^n}]</script><p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602124418.png" alt="20250602124418"></p>
+<p>$$<br>P &#x3D; \frac{C}{1 + y} + \frac{C}{(1 + y)^2} +…+\frac{C}{(1+y)^n} + \frac{M}{(1+y)^n}<br>$$</p>
+<p>$$<br>\frac{dP}{dy} &#x3D; \frac{(-1)C}{(1 + y)^2} + \frac{(-2)C}{(1 + y)^3}+… +\frac{(-n)C}{(1 + y)^{n + 1}} + \frac{(-n)C}{(1 + y)^{n + 1}}<br>$$</p>
+<p>$$<br>\frac{dP}{dy} &#x3D; \frac{-1}{1 + y}[\frac{1C}{(1+y)^1} + \frac{2C}{(1+y)^2} + … + \frac{nC}{(1+y)^n} + \frac{nM}{(1+y)^n}]<br>$$</p>
+<p>$$<br>dP &#x3D; \frac{-dy}{1 + y}[\frac{1C}{(1 + y)^1} + \frac{2C}{(1 + y)^2} + \frac{nC}{(1 + y)^n} + \frac{nM}{(1 + y)^n}]<br>$$</p>
+<p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602124418.png" alt="20250602124418"></p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602124535.png" alt="20250602124535"></p>
 <p><img src="https://raw.githubusercontent.com/majialu-love-zouyutong/pictures/main/20250602124637.png" alt="20250602124637"></p>
 <p>课堂练习： 计算一只5年期的零息债券的麦考利久期，面值是100元，当前价格88.</p>
