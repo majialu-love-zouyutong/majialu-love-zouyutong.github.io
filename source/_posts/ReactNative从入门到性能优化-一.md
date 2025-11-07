@@ -2217,7 +2217,7 @@ pnpm add -g eas-cli@latest
 # 登录
 eas login
 ```
-没有账户的可以去`expo`官网注册一个。
+没有账户的可以去`expo`官网注册一个。【】
 
 ```shell
 # 测试是否登录成功
