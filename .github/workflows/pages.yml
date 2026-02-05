@@ -14,18 +14,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
-      - name: Use Node.js 18.20.1
+      - name: Use Node.js 24.13.0
         uses: actions/setup-node@v4
         with:
           # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
           # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: '18.20.1'
-      
+          node-version: '24.13.0'
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10.28.1
-      
+
       - name: Get pnpm store directory
         run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
 
@@ -37,10 +37,10 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
-      
+
       - name: Build
         run: pnpm run build
-      
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
